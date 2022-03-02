@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-# *Starting May 01 2022, I will move to [ECS](https://www.ecs.soton.ac.uk/), University of Southampton. If you are looking for PhD opportunity, please feel free to contact me.*
+# *Starting May 01 2022, I will move to [ECS](https://www.ecs.soton.ac.uk/), University of Southampton. If you are looking for a PhD opportunity, please feel free to contact me.*
 
 I am a [Senior Lecturer](https://en.wikipedia.org/wiki/Senior_lecturer) (somewhat equivalent to the post of an Associate Professor in the [US](https://en.wikipedia.org/wiki/United_States)) in Computer Science and Artificial Intelligence at the [School of Computer Science and Electronic Engineering](https://www.essex.ac.uk/departments/computer-science-and-electronic-engineering) in the [University of Essex](https://www.essex.ac.uk/). Before embarking on a teaching and research journey, I was a [postdoctoral researcher](https://en.wikipedia.org/wiki/Postdoctoral_researcher) at the [School of Computer Science and Informatics](https://www.cardiff.ac.uk/computer-science) in [Cardiff University](https://www.cardiff.ac.uk/). At Cardiff, I was working with [Professor Steven Schockaert](https://www.cardiff.ac.uk/people/view/133772-schockaert-steven). Before coming to the [UK](https://en.wikipedia.org/wiki/United_Kingdom), I spent approximately six years in [Hong Kong](https://en.wikipedia.org/wiki/Hong_Kong) where I completed my [PhD](https://en.wikipedia.org/wiki/Doctor_of_Philosophy) under the supervision of [Professor Wai Lam](http://www.se.cuhk.edu.hk/people/academic-staff/prof-lam-wai/) at the [Chinese University of Hong Kong (CUHK)](http://www.cuhk.edu.hk/english/index.html).
 
