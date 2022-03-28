@@ -4,6 +4,7 @@ title: ""
 permalink: /news/
 author_profile: true
 ---
+69. **28 March 2022**: Serving on the PC of [COLING 2022](https://coling2022.org/).
 68. **23 March 2022**: Serving on the PC of [CIKM 2022](https://www.cikm2022.org/).
 67. **02 March 2022**: I have been promoted to Senior Lecturer.
 66. **02 February 2022**: World Wide Web Journal paper is now [online](https://trebuchet.public.springernature.app/get_content/3cdb117f-173c-4e20-890a-513ea49b1889) on explainable depression detection.
