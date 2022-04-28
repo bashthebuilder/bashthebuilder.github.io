@@ -4,6 +4,7 @@ title: ""
 permalink: /news/
 author_profile: true
 ---
+71. **28 April 2022**: [Here](https://www.essex.ac.uk/news/2022/04/22/scientist-selected-for-royal-society-pairing-scheme) is the article about my visit to Wesstminster under the Royal Society Pairing Scheme.
 70. **31 March 2022**: Serving on the PC of [NeurIPS 2022](https://neurips.cc/).
 69. **28 March 2022**: Serving on the PC of [COLING 2022](https://coling2022.org/).
 68. **23 March 2022**: Serving on the PC of [CIKM 2022](https://www.cikm2022.org/).
