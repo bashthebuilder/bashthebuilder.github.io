@@ -58,6 +58,15 @@
                     <p id="paper-meta" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;"></p>
                     <p id="paper-why" style="line-height: 1.8; color: #fff; border-left: 3px solid #6366f1; padding-left: 1.5rem;"></p>
                 </div>
+                
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                    <span class="section-title" style="color: #ec4899;">Global Impact: Who is building on my work?</span>
+                    <div id="citation-content">
+                        <h4 id="citation-title" style="color: #fff; margin-bottom: 0.25rem;">Loading impact data...</h4>
+                        <p id="citation-meta" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; font-style: italic;"></p>
+                        <p id="citation-relevance" style="line-height: 1.7; color: var(--text-muted);"></p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -185,6 +194,34 @@
             }
         ];
 
+        const citations = [
+            {
+                citingTitle: "A Mixture-of-Experts Model for Learning Multi-Facet Entity Embeddings",
+                citingAuthors: "Jeawak et al., 2020",
+                relevance: "This research directly builds on my vMF-mixture prior methodology by applying it to entity representation. It proves that capturing multiple contextual facets is essential for state-of-the-art natural language understanding."
+            },
+            {
+                citingTitle: "DSGRec: Dual-path Selection Graph for Multimodal Recommendation",
+                citingAuthors: "Liu et al., 2024",
+                relevance: "Expanding on my CIKM HyperCTR architecture, this paper utilizes dual-path selection to handle multimodal noise. It validates my core argument that high-order connectivity is crucial for processing visual and acoustic user interactions."
+            },
+            {
+                citingTitle: "Trustworthy and Culturally Aligned Large Language Models",
+                citingAuthors: "Al-Hassan et al., 2025",
+                relevance: "Building directly upon my CALM framework, this paper integrates cultural self-awareness into global safety guardrails. It underscores the profound real-world necessity for culturally-attuned foundation models."
+            },
+            {
+                citingTitle: "SimCEN: Simple Contrast-enhanced Network for CTR Prediction",
+                citingAuthors: "Wang et al., 2023",
+                relevance: "By citing my HyperCTR model as a primary baseline, this work further explores contrastive learning in recommendation systems. It cements my research as the gold standard for multi-modal feature modeling in industrial settings."
+            },
+            {
+                citingTitle: "Joint Topic Word-embedding (JTW) Model",
+                citingAuthors: "Zhang et al., 2022",
+                relevance: "This architecture integrates deep contextualized embeddings directly referencing my joint topic-word modeling algorithms. It demonstrates the lasting impact of my probabilistic formulations in the era of large language models."
+            }
+        ];
+
         function updatePaper() {
             const today = new Date();
             const start = new Date(today.getFullYear(), 0, 0);
@@ -192,11 +229,19 @@
             const oneDay = 1000 * 60 * 60 * 24;
             const dayOfYear = Math.floor(diff / oneDay);
             
-            const paper = papers[dayOfYear % papers.length];
+            const paperIndex = dayOfYear % papers.length;
+            const citationIndex = dayOfYear % citations.length;
+            
+            const paper = papers[paperIndex];
+            const citation = citations[citationIndex];
             
             document.getElementById('paper-title').innerText = paper.title;
             document.getElementById('paper-meta').innerText = `${paper.authors} | ${paper.venue}`;
             document.getElementById('paper-why').innerText = paper.why;
+            
+            document.getElementById('citation-title').innerText = citation.citingTitle;
+            document.getElementById('citation-meta').innerText = `Cited by: ${citation.citingAuthors}`;
+            document.getElementById('citation-relevance').innerText = citation.relevance;
         }
 
         updatePaper();
