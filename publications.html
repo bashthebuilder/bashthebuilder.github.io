@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | Shoaib Jameel</title>
+    <title>Research & Innovation | Shoaib Jameel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .theme-visual {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+        .theme-visual svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4));
+        }
+        .theme-section { margin-bottom: 6rem; }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -26,65 +46,112 @@
     </nav>
 
     <main class="container" style="padding-top: 160px;">
-        <section>
-            <span class="section-title">Research Vision & Impact</span>
-            <h2>Bridging Science and Scale.</h2>
-            
-            <div class="card">
-                <p style="margin-bottom: 2rem;">My research lives at the intersection of <span class="highlight-text">Probabilistic Graphical Models</span> and <span class="highlight-text">Deep Learning</span>. I focus on making AI more robust, interpretable, and culturally aware, ensuring that the theoretical breakthroughs we achieve in the lab can survive the complexities of real-world deployment.</p>
-                
-                <div class="grid">
-                    <div>
-                        <span class="impact-badge">Industrial Impact</span>
-                        <p style="font-size: 1rem; color: var(--text-muted);">From intent classification at <span class="highlight-text">British Telecom</span> to multi-modal recommendation engines at <span class="highlight-text">eBay</span>, my research is operational within Tier-1 global infrastructures, solving problems at a scale few academic models ever reach.</p>
-                    </div>
-                    <div>
-                        <span class="impact-badge">Global Recognition</span>
-                        <p style="font-size: 1rem; color: var(--text-muted);">Honored as a finalist for the <span class="award-glow">Best Research Awards</span> in Hong Kong and recipient of the <span class="award-glow">ACS Digital Disruptor Award</span>. My work has been featured on <span class="highlight-text">Forbes</span> and <span class="highlight-text">BBC Radio 4</span>.</p>
-                    </div>
-                </div>
-            </div>
+        <section style="text-align: center; margin-bottom: 5rem;">
+            <span class="section-title">Research Themes</span>
+            <h2 style="font-size: 3rem;">Categorizing Innovation.</h2>
+            <p class="lead" style="margin: 0 auto 2rem;">My work spans five core pillars of modern AI, each designed to solve a specific class of global technical challenge.</p>
         </section>
 
-        <section>
-            <span class="section-title">Peer-Reviewed Publications</span>
-            
+        <!-- Theme 1: Responsible AI & Governance -->
+        <section class="theme-section">
+            <div class="theme-visual" style="background: radial-gradient(circle at center, rgba(99, 102, 241, 0.1), transparent);">
+                <!-- Abstract Shield/Safety Icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="1.5">
+                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+            </div>
             <div class="card">
+                <span class="impact-badge">Pillar I</span>
+                <h3>Responsible AI & Governance</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">As Large Language Models (LLMs) integrate into society, making them <span class="highlight-text">culturally self-aware</span> and ethically aligned is non-negotiable. My recent work focuses on mitigating algorithmic bias and ensuring AI understands the diverse cultural nuances of its users.</p>
+                
                 <div class="pub-item">
                     <span class="tag">NeurIPS 2025</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">CALM: Culturally Self-Aware Language Models</h3>
-                    <p style="color: var(--text-muted);">Developing mechanisms for LLMs to understand and respect cultural nuances, ensuring global AI safety and equity.</p>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">CALM: Culturally Self-Aware Language Models</h4>
                 </div>
-
-                <div class="pub-item">
+                <div class="pub-item" style="border: none;">
                     <span class="tag">ACL 2026</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Long Context Modeling with Ranked Memory-Augmented Retrieval</h3>
-                    <p style="color: var(--text-muted);">Advancing the boundaries of how machines process and retrieve information from massive, long-form datasets.</p>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Evaluating LLMs on Health-Related Claims Across Arabic Dialects</h4>
                 </div>
-
-                <div class="pub-item">
-                    <span class="tag">WSDM 2025</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">BAKER: Bayesian Kernel Uncertainty in Domain-Specific Document Modelling</h3>
-                    <p style="color: var(--text-muted);">In collaboration with <span class="highlight-text">Thomson Reuters Labs</span>, tackling uncertainty in high-stakes domain-specific AI.</p>
-                </div>
-
-                <div class="pub-item">
-                    <div class="impact-badge" style="background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.2); color: #fbbf24;">eBay Leadership Choice</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Click-Through Rate Prediction with Multi-Modal Hypergraphs</h3>
-                    <p style="color: var(--text-muted);">Award-winning research deployed for eBay, redefining how they reach and engage global audiences.</p>
-                </div>
-
-                <div class="pub-item">
-                    <div class="impact-badge" style="background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.2); color: #818cf8;">Production Deployed</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Unified Transformer Multi-task Learning for Intent Classification</h3>
-                    <p style="color: var(--text-muted);">A core component of <span class="highlight-text">British Telecom's</span> internal NLP pipelines, proving the scalability of multi-task learning.</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" class="tag" style="padding: 16px 32px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border); font-size: 1.1rem;">Full Publication List on Google Scholar</a>
             </div>
         </section>
+
+        <!-- Theme 2: Multi-modal Learning -->
+        <section class="theme-section">
+            <div class="theme-visual" style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1), transparent);">
+                <!-- Abstract Multi-modal Connections -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.5">
+                    <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <div class="card">
+                <span class="impact-badge">Pillar II</span>
+                <h3>Multi-modal Learning at Scale</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Real-world data isn't just text; it's images, signals, and structured metadata. I architect <span class="highlight-text">Hypergraph models</span> that capture the complex relationships between diverse data types, currently operational at <span class="highlight-text">eBay</span> and <span class="highlight-text">British Telecom</span>.</p>
+                
+                <div class="pub-item">
+                    <span class="tag">CIKM Best Paper Nominee</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Click-Through Rate Prediction with Multi-Modal Hypergraphs</h4>
+                </div>
+                <div class="pub-item" style="border: none;">
+                    <span class="tag">AAAI 2022</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Inferring Prototypes for Multi-Label Few-Shot Image Classification</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme 3: Digital Health & Oculomics -->
+        <section class="theme-section">
+            <div class="theme-visual" style="background: radial-gradient(circle at center, rgba(236, 72, 153, 0.1), transparent);">
+                <!-- Abstract Eye/Precision Medicine -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.5">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+            </div>
+            <div class="card">
+                <span class="impact-badge">Pillar III</span>
+                <h3>Digital Health & Oculomics</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Using the eye as a non-invasive window into entire human biology. My work in <span class="highlight-text">Oculomics</span> combines computer vision with medical imaging to identify early biomarkers for cardiovascular and systemic health.</p>
+                
+                <div class="pub-item">
+                    <span class="tag">Featured on Forbes</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">The Eye as a Window to Systemic Health: A Survey of Retinal Imaging</h4>
+                </div>
+                <div class="pub-item" style="border: none;">
+                    <span class="tag">WISE 2024</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Would You Trust an AI Doctor? Building Reliable Medical Predictions</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme 4: Probabilistic Graphical Models -->
+        <section class="theme-section">
+            <div class="theme-visual" style="background: radial-gradient(circle at center, rgba(52, 211, 153, 0.1), transparent);">
+                <!-- Abstract Probabilistic Nodes -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5">
+                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+            </div>
+            <div class="card">
+                <span class="impact-badge">Pillar IV</span>
+                <h3>Probabilistic Foundations</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">The mathematical bedrock of my research. I develop <span class="highlight-text">Bayesian Non-parametric models</span> and approximate inference techniques that allow AI to manage uncertainty in high-stakes domain-specific environments.</p>
+                
+                <div class="pub-item">
+                    <span class="tag">ACL 2019</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Word and Document Embedding with vMF-Mixture Priors</h4>
+                </div>
+                <div class="pub-item" style="border: none;">
+                    <span class="tag">AAAI 2019</span>
+                    <h4 style="color: #fff; margin-bottom: 0.25rem;">Word Embedding as Maximum A Posteriori Estimation</h4>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" class="tag" style="padding: 16px 32px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border); font-size: 1.1rem;">Full Publication History</a>
+        </div>
     </main>
 
     <footer>
