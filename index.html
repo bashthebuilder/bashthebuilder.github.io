@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         .paper-day-card {
             border: 2px solid transparent;
@@ -38,40 +38,40 @@
     </nav>
 
     <main class="container">
-        <section class="hero">
+        <section class="hero reveal">
             <div class="hero-content">
-                <h1>Turning AI Theory into Industrial Reality.</h1>
+                <h1 class="liquid-text">Turning AI Theory into Industrial Reality.</h1>
                 <p class="lead">I'm an Associate Professor and AI Strategist focused on building production-grade intelligent systems that solve complex global challenges.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="tag" style="padding: 12px 24px; background: #6366f1; color: white; text-decoration: none;">Connect on LinkedIn</a>
-                    <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" class="tag" style="padding: 12px 24px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Google Scholar</a>
+                    <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">Connect on LinkedIn</a>
+                    <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Google Scholar</a>
                 </div>
             </div>
             <img src="Shoaib_Profile_ID.jpg" alt="Shoaib Jameel" class="hero-img">
         </section>
 
         <!-- Paper of the Day Section -->
-        <section id="paper-of-the-day" style="margin-bottom: 4rem;">
+        <section id="paper-of-the-day" class="reveal" style="margin-bottom: 4rem;">
             <div class="card paper-day-card">
                 <span class="section-title">Featured Research: Paper of the Day</span>
                 <div id="paper-content">
                     <h3 id="paper-title" style="margin-bottom: 0.5rem;">Loading today's feature...</h3>
-                    <p id="paper-meta" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;"></p>
-                    <p id="paper-why" style="line-height: 1.8; color: #fff; border-left: 3px solid #6366f1; padding-left: 1.5rem;"></p>
+                    <p id="paper-meta" style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; font-style: italic;"></p>
+                    <p id="paper-why" style="line-height: 1.8; color: #fff; border-left: 4px solid #6366f1; padding-left: 2rem; font-size: 1.5rem;"></p>
                 </div>
                 
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--glass-border);">
                     <span class="section-title" style="color: #ec4899;">Global Impact: Who is building on my work?</span>
                     <div id="citation-content">
-                        <h4 id="citation-title" style="color: #fff; margin-bottom: 0.25rem;">Loading impact data...</h4>
-                        <p id="citation-meta" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; font-style: italic;"></p>
-                        <p id="citation-relevance" style="line-height: 1.7; color: var(--text-muted);"></p>
+                        <h4 id="citation-title" style="color: #fff; margin-bottom: 0.5rem; font-size: 1.8rem;">Loading impact data...</h4>
+                        <p id="citation-meta" style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; font-style: italic;"></p>
+                        <p id="citation-relevance" style="line-height: 1.7; color: var(--text-muted); font-size: 1.3rem;"></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="grid" style="margin-bottom: 4rem;">
+        <section class="grid reveal" style="margin-bottom: 4rem;">
             <div class="card stat-card">
                 <span class="stat-value">100+</span>
                 <span class="stat-label">Publications in Top Venues</span>
@@ -86,69 +86,70 @@
             </div>
         </section>
 
-        <section class="grid" style="margin-bottom: 4rem;">
+        <section class="grid reveal" style="margin-bottom: 4rem;">
             <div class="card">
                 <span class="section-title">Industrial Impact</span>
                 <h2>Research at Scale.</h2>
-                <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem;">
-                    <li style="margin-bottom: 1.2rem;"><strong>British Telecom:</strong> Deployed multi-task Transformer models that redefined their internal intent classification and entity recognition pipelines.</li>
-                    <li style="margin-bottom: 1.2rem;"><strong>eBay:</strong> Developed multi-modal hypergraph models for CTR prediction, recognized by global leadership as a "Top 3 Leaders Choice."</li>
-                    <li style="margin-bottom: 1.2rem;"><strong>FinTex Ltd:</strong> Architected the core AI engine for RoleCatcher, bridging research models with large-scale industrial production.</li>
+                <ul style="list-style: none; color: var(--text-muted); font-size: 1.25rem;">
+                    <li style="margin-bottom: 1.5rem;"><strong>British Telecom:</strong> Deployed multi-task Transformer models that redefined their internal intent classification and entity recognition pipelines.</li>
+                    <li style="margin-bottom: 1.5rem;"><strong>eBay:</strong> Developed multi-modal hypergraph models for CTR prediction, recognized by global leadership as a "Top 3 Leaders Choice."</li>
+                    <li style="margin-bottom: 1.5rem;"><strong>FinTex Ltd:</strong> Architected the core AI engine for RoleCatcher, bridging research models with large-scale industrial production.</li>
                     <li><strong>Thomson Reuters:</strong> Collaborating on high-stakes Bayesian uncertainty modeling for domain-specific document intelligence.</li>
                 </ul>
             </div>
             <div class="card">
                 <span class="section-title">Awards & Honors</span>
                 <h2>Global Recognition.</h2>
-                <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem;">
-                    <li style="margin-bottom: 1.2rem;"><strong>Vice Chancellor’s Award Finalist (2024):</strong> One of three finalists out of 630 applications for teaching excellence at Southampton.</li>
-                    <li style="margin-bottom: 1.2rem;"><strong>ACS Digital Disruptors Winner (2022):</strong> Honored for groundbreaking work in multi-modal AI modeling.</li>
-                    <li style="margin-bottom: 1.2rem;"><strong>Outstanding Early-Career Researcher (2021):</strong> Awarded for significant scientific output and research income.</li>
+                <ul style="list-style: none; color: var(--text-muted); font-size: 1.25rem;">
+                    <li style="margin-bottom: 1.5rem;"><strong>Vice Chancellor’s Award Finalist (2024):</strong> One of three finalists out of 630 applications for teaching excellence at Southampton.</li>
+                    <li style="margin-bottom: 1.5rem;"><strong>ACS Digital Disruptors Winner (2022):</strong> Honored for groundbreaking work in multi-modal AI modeling.</li>
+                    <li style="margin-bottom: 1.5rem;"><strong>Outstanding Early-Career Researcher (2021):</strong> Awarded for significant scientific output and research income.</li>
                     <li><strong>Best Research Awards Finalist:</strong> Represented CUHK's entire Faculty of Engineering in the ACM Hong Kong competition.</li>
                 </ul>
             </div>
         </section>
 
-        <section>
+        <section class="reveal">
             <div class="card">
                 <span class="section-title">My Story</span>
                 <h2>A human pursuit of intelligent systems.</h2>
-                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">I've always believed that the most elegant algorithms are the ones that work in the real world. My journey started in India, where I was driven by a fascination with how machines could parse the nuance of human language. Landing national headlines for my early search algorithms as an undergraduate was the first sign that this was more than just an academic interest.</p>
-                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">That path led me through the high-pressure labs of Hong Kong and eventually to the UK. I've been fortunate to lead multi-million pound research grants that don't just result in papers, but in deployed software at places like BT and eBay. I treat every project as a bridge between a lab breakthrough and a human solution.</p>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">I've always believed that the most elegant algorithms are the ones that work in the real world. My journey started in India, where I was driven by a fascination with how machines could parse the nuance of human language. Landing national headlines for my early search algorithms as an undergraduate was the first sign that this was more than just an academic interest.</p>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">That path led me through the high-pressure labs of Hong Kong and eventually to the UK. I've been fortunate to lead multi-million pound research grants that don't just result in papers, but in deployed software at places like BT and eBay. I treat every project as a bridge between a lab breakthrough and a human solution.</p>
                 <p style="color: var(--text-muted);">Today, when I'm not in front of a lecture hall at the University of Southampton or mentoring my PhD students, I'm working with global organizations to ensure AI is built responsibly, ethically, and—most importantly—with a clear purpose.</p>
             </div>
         </section>
-        <section style="margin-bottom: 4rem;">
+
+        <section class="reveal" style="margin-bottom: 4rem;">
             <div class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%); border: 1px solid rgba(255, 255, 255, 0.1);">
                 <span class="section-title">Strategic Collaboration</span>
                 <h2>Let's build the future of AI together.</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2.5rem;">I am always open to high-impact collaborations that bridge the gap between rigorous research and global industrial needs.</p>
+                <p style="color: var(--text-muted); margin-bottom: 3rem;">I am always open to high-impact collaborations that bridge the gap between rigorous research and global industrial needs.</p>
                 
                 <div class="grid">
-                    <div style="border-left: 1px solid var(--glass-border); padding-left: 1.5rem;">
-                        <h4 style="color: #fff; margin-bottom: 0.5rem;">For Industry</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Advisory on AI risk, governance, and the deployment of large-scale NLP systems.</p>
+                    <div style="border-left: 2px solid var(--glass-border); padding-left: 2rem;">
+                        <h4 style="color: #fff; margin-bottom: 1rem;">For Industry</h4>
+                        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem;">Advisory on AI risk, governance, and the deployment of large-scale NLP systems.</p>
                         <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="background: #6366f1; color: #fff; text-decoration: none;">Consulting Inquiry</a>
                     </div>
-                    <div style="border-left: 1px solid var(--glass-border); padding-left: 1.5rem;">
-                        <h4 style="color: #fff; margin-bottom: 0.5rem;">For Students</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Prospective PhD students with strong mathematical backgrounds and a drive for impact.</p>
+                    <div style="border-left: 2px solid var(--glass-border); padding-left: 2rem;">
+                        <h4 style="color: #fff; margin-bottom: 1rem;">For Students</h4>
+                        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem;">Prospective PhD students with strong mathematical backgrounds and a drive for impact.</p>
                         <a href="students.html" class="tag" style="background: rgba(255,255,255,0.05); color: #fff; text-decoration: none; border: 1px solid var(--glass-border);">View My Lab</a>
                     </div>
-                    <div style="border-left: 1px solid var(--glass-border); padding-left: 1.5rem;">
-                        <h4 style="color: #fff; margin-bottom: 0.5rem;">For Media</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Expert commentary on AI ethics, healthcare innovation, and technical policy.</p>
+                    <div style="border-left: 2px solid var(--glass-border); padding-left: 2rem;">
+                        <h4 style="color: #fff; margin-bottom: 1rem;">For Media</h4>
+                        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem;">Expert commentary on AI ethics, healthcare innovation, and technical policy.</p>
                         <a href="press.html" class="tag" style="background: rgba(255,255,255,0.05); color: #fff; text-decoration: none; border: 1px solid var(--glass-border);">Media Kit</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="visitors" style="margin-top: 4rem; text-align: center;">
+        <section id="visitors" class="reveal" style="margin-top: 4rem; text-align: center;">
             <div class="card">
                 <span class="section-title">Visitor Statistics</span>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Connecting with the global research community.</p>
-                <div style="display: flex; justify-content: center; overflow: hidden; border-radius: 12px;">
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Connecting with the global research community.</p>
+                <div style="display: flex; justify-content: center; overflow: hidden; border-radius: 16px;">
                     <a href="https://info.flagcounter.com/uS3h"><img src="https://s11.flagcounter.com/count2/uS3h/bg_1A1C1E/txt_94A3B8/border_1A1C1E/columns_4/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
                 </div>
             </div>
@@ -162,6 +163,21 @@
     </footer>
 
     <script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+
         const papers = [
             {
                 title: "Word and Document Embedding with vMF-Mixture Priors on Context Word Vectors",
