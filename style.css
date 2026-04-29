@@ -51,7 +51,36 @@ nav {
     letter-spacing: -0.5px;
 }
 
-.nav-links { display: flex; gap: 2.5rem; }
+.nav-links { 
+    display: flex; 
+    gap: 1.5rem; 
+    overflow-x: auto; 
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+
+/* Thesis specific */
+.thesis-hero {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 24px;
+    margin-bottom: 4rem;
+}
+.thesis-badge {
+    background: #6366f1;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
