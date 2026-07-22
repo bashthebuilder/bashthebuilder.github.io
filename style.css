@@ -331,6 +331,54 @@ footer {
 .org-note a { color: #a5b4fc; }
 .org-note strong { color: #fff; }
 
+/* Reusable publication-entry list (cv.html, all-publications.html) */
+.pub-entry { padding: 1.4rem 0; border-bottom: 1px solid var(--glass-border); }
+.pub-entry:last-child { border-bottom: none; }
+.pub-entry-title { color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+.pub-entry-title a { color: #fff; text-decoration: none; }
+.pub-entry-title a:hover { color: #a5b4fc; text-decoration: underline; }
+.pub-entry-venue { color: var(--text-muted); font-size: 1.02rem; }
+.pub-entry-kind {
+    display: inline-block;
+    margin-right: 0.7rem;
+    padding: 3px 12px;
+    border-radius: 100px;
+    background: rgba(236, 72, 153, 0.12);
+    color: #f472b6;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* Search input, matching the site's glass aesthetic */
+.search-input {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.1rem;
+    outline: none;
+    transition: 0.3s;
+}
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: #818cf8; background: rgba(255,255,255,0.06); }
+
+.filter-pill {
+    cursor: pointer;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.filter-pill:hover { color: #fff; border-color: #818cf8; }
+.filter-pill.active { background: rgba(99,102,241,0.2); border-color: #818cf8; color: #fff; }
+
 @media (max-width: 1024px) {
     .hero { flex-direction: column-reverse; text-align: center; padding-top: 160px; }
     h1 { font-size: 3.5rem; }

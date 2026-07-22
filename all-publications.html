@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Publications | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="The complete, searchable publication archive of Dr. Shoaib Jameel — 97 papers across conferences, journals, workshops, and book chapters, filterable by research interest.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="All Publications | Shoaib Jameel">
+    <meta property="og:description" content="The complete, searchable publication archive of Dr. Shoaib Jameel — 97 papers across conferences, journals, workshops, and book chapters, filterable by research interest.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/all-publications.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All Publications | Shoaib Jameel">
+    <meta name="twitter:description" content="The complete, searchable publication archive of Dr. Shoaib Jameel — 97 papers across conferences, journals, workshops, and book chapters, filterable by research interest.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        #year-chart-wrap { overflow-x: auto; }
+        .chart-bar { fill: #6366f1; cursor: pointer; transition: fill 0.2s; }
+        .chart-bar:hover { fill: #818cf8; }
+        .chart-tick-label { fill: var(--text-muted); font-size: 11px; font-family: 'Inter', sans-serif; }
+        .chart-gridline { stroke: rgba(255,255,255,0.08); stroke-width: 1; }
+        .chart-value-label { fill: #fff; font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif; text-anchor: middle; }
+        #chart-tooltip {
+            position: absolute;
+            pointer-events: none;
+            background: #15171c;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.15s;
+            white-space: nowrap;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="publications.html" class="active">Research</a>
+                <a href="resources.html">The Lab</a>
+                <a href="press.html">Press</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="cv.html">CV</a>
+                <a href="thesis.html">Thesis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" style="padding-top: 160px;">
+        <section style="margin-bottom: 3rem;">
+            <a href="publications.html" style="color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem;">&larr; Back to Research Themes</a>
+            <span class="section-title" style="display:block; margin-top: 1.5rem;">The Complete Archive</span>
+            <h1 style="font-size: 3rem;">All Publications.</h1>
+            <p class="lead" style="max-width: 800px;">Every conference paper, journal article, workshop paper, and book chapter — 97 in total, spanning 2008 to 2026. Search by keyword or filter by research interest below.</p>
+        </section>
+
+        <section class="grid" style="margin-bottom: 3rem;">
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">97</span>
+                <span class="stat-label">Total Publications</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">18</span>
+                <span class="stat-label">Years Active (2008&ndash;2026)</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">2025</span>
+                <span class="stat-label">Peak Year &mdash; 19 Papers</span>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 3rem;">
+            <span class="section-title">Publications per Year</span>
+            <div class="card" id="year-chart-wrap" style="position: relative;">
+                <svg id="year-chart" width="100%" height="280" style="min-width: 700px; display: block;"></svg>
+                <div id="chart-tooltip"></div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+            <span class="section-title">Search &amp; Filter</span>
+            <input type="text" id="pub-search" class="search-input" placeholder="Search by title or venue (e.g. &quot;transformer&quot;, &quot;SIGIR&quot;, &quot;embedding&quot;)&hellip;" style="margin-bottom: 1.5rem;">
+            <div id="filter-pills" style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem;"></div>
+            <p id="results-count" style="color: var(--text-muted); font-size: 1rem;"></p>
+        </section>
+
+        <section style="margin-bottom: 4rem;">
+            <div class="card">
+                <div id="pub-list"></div>
+                <p id="no-results" style="color: var(--text-muted); display: none; text-align: center; padding: 2rem 0;">No publications match your search.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const ALL_PUBS = [
+          {title:"FLICK: Few-Label Incremental Learning for Low-Resource Dialects", venue:"The International Conference Language Technologies for Low-resource Languages (LaTeLL 2026).", year:"2026", kind:"Conference", url:null, tags:["Natural Language Processing"]},
+          {title:"Long Context Modeling with Ranked Memory-Augmented Retrieval", venue:"The 64th Annual Meeting of the Association for Computational Linguistics (ACL) full paper.", year:"2026", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"TAGS: A Test-Time Generalist–Specialist Framework with Retrieval-Augmented Reasoning and Verification", venue:"The 64th Annual Meeting of the Association for Computational Linguistics (ACL) full paper.", year:"2026", kind:"Conference", url:null, tags:["Web Search & Information Retrieval"]},
+          {title:"Lightweight Cross-Lingual Federated Prompt Tuning for Low-Resource Languages", venue:"Language Resources and Evaluation Conference 2026.", year:"2026", kind:"Conference", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"Cluster-SCP: Similarity and Contrastive Learning to Enhance Pseudo Labels for Fine Tuning under Few Labels", venue:"World Wide Web Journal.", year:"2026", kind:"Journal", url:null, tags:["Deep Neural Networks"]},
+          {title:"RetiSEM: Generalising Causal Models for Fragmented Biomedical Data", venue:"Fourth International Workshop on Generalizing from Limited Resources in the Open World Workshop at International Joint Conference on Artificial Intelligence (IJCAI) 2026", year:"2026", kind:"Workshop", url:null, tags:[]},
+          {title:"Exploring the Influence of Lifestyle, Social Health, and Demographic Factors on Psychological Well-being and Engagement Levels", venue:"Fourth International Workshop on Multimodal Content Analysis for Social Good (WebConf 2026).", year:"2026", kind:"Workshop", url:null, tags:["Social Networks & Urban Human Computing", "Multi-modal Machine Learning"]},
+          {title:"DeepChest: Dynamic Gradient-Free Task Weighting for Effective Multi-Task Learning in Chest X-ray Classification", venue:"IEEE BigData 2025 Conference.", year:"2025", kind:"Conference", url:null, tags:["Natural Language Processing", "Multi-modal Machine Learning"]},
+          {title:"Retinal–Lipidomics Associations as Candidate Biomarkers for Cardiovascular Health", venue:"6th International Conference on Medical Imaging and Computer-Aided Diagnosis (MICAD 2025).", year:"2025", kind:"Conference", url:null, tags:[]},
+          {title:"CALM: Culturally Self-Aware Language Models", venue:"The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS 2025).", year:"2025", kind:"Conference", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"HIPPD: Brain-Inspired Hierarchical Information Processing for Personality Detection", venue:"The 17th Asian Conference on Machine Learning (ACML--2025).", year:"2025", kind:"Conference", url:null, tags:[]},
+          {title:"EmoPerso: Enhancing Personality Detection with Self-Supervised Emotion-Aware Modelling", venue:"The Conference on Information and Knowledge Management (CIKM -- 2025).", year:"2025", kind:"Conference", url:null, tags:[]},
+          {title:"A Pipeline for AI-Based Quantitative Studies of Science Enhanced by Crowdsourced Inferential Modelling", venue:"23rd International Conference on Hybrid Intelligent Systems (HIS 2025), December 11-13, 2023, Volume 4: Machine Learning Applications.", year:"2025", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Enhancing Large Language Models for Arabic Dialects Using Knowledge-Based Rethinking and Contrastive Learning", venue:"17th International Conference on Social Networks Analysis and Mining (ASONAM 2025).", year:"2025", kind:"Conference", url:null, tags:["Natural Language Processing", "Social Networks & Urban Human Computing", "Deep Neural Networks"]},
+          {title:"Bias in Language Models: Interplay of Architecture and Data?", venue:"The 48th International ACM SIGIR Conference on Research and Development in Information Retrieval.", year:"2025", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"Less but Better: Parameter-Efficient Fine-Tuning of Large Language Models for Personality Detection", venue:"International Joint Conference on Neural Networks (IJCNN). Accepted Full paper.", year:"2025", kind:"Conference", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"Self-Supervised Dynamic Optimization for Graph-Based Personality Detection", venue:"IEEE International Conference on Multimedia&Expo 2025. Accepted Full paper.", year:"2025", kind:"Conference", url:null, tags:[]},
+          {title:"DiGrI: Distorted Greedy Approach for Human-Assisted Online Suicide Ideation Detection.", venue:"The Web Conference.", year:"2025", kind:"Conference", url:null, tags:[]},
+          {title:"Leveraging Taxonomy and LLMs for Improved Multimodal Hierarchical Classification.", venue:"The 31st International Conference on Computational Linguistics (COLING 2025).", year:"2025", kind:"Conference", url:null, tags:["Natural Language Processing", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Uncertainty Modelling in Under-Represented Languages with Bayesian Deep Gaussian Processess", venue:"The 31st International Conference on Computational Linguistics (COLING 2025).", year:"2025", kind:"Conference", url:null, tags:["Approximate Posterior Inference", "Bayesian Nonparametric Statistics", "Natural Language Processing", "Deep Neural Networks"]},
+          {title:"BAKER: Bayesian Kernel Uncertainty in Domain-Specific Document Modelling", venue:"The Eighteenth International Conference on Web Search and Data Mining (WSDM 2025). Accepted. Full paper. In collaboration with Thomson Reuters Labs", year:"2025", kind:"Conference", url:null, tags:["Approximate Posterior Inference", "Bayesian Nonparametric Statistics", "Web Search & Information Retrieval"]},
+          {title:"GAMED: Knowledge Adaptive Multi-Experts Decoupling for Multimodal Fake News Detection", venue:"The Eighteenth International Conference on Web Search and Data Mining (WSDM 2025). Accepted. Full paper.", year:"2025", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing", "Multi-modal Machine Learning"]},
+          {title:"The Eye as a Window to Systemic Health: A Survey of Retinal Imaging from Classical Techniques to Oculomics", venue:"The Journal of Precision Medicine: Health and Disease. Featured on: [Forbes]", year:"2025", kind:"Journal", url:"https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/", tags:[]},
+          {title:"Modelling Multi-modal Cross-interaction for Multi-label Few-shot Image Classification Based on Local Feature Selection", venue:"Transactions on Multimedia Computing Communications and Applications.", year:"2025", kind:"Journal", url:null, tags:["Natural Language Processing", "Multi-modal Machine Learning"]},
+          {title:"Evaluating Large Language Models on Health-Related Claims Across Arabic Dialects", venue:"The 1st Workshop on NLP for Languages Using Arabic Script at The 31st International Conference on Computational Linguistics (COLING 2025).", year:"2025", kind:"Workshop", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"Few Labels with Active Learning: From Weak to Strong Labels for Misinformation Detection", venue:"The 1st International Workshop on Large Language Models for Social Media (WebConf 2025)", year:"2025", kind:"Workshop", url:null, tags:["Natural Language Processing", "Social Networks & Urban Human Computing", "Deep Neural Networks"]},
+          {title:"Would You Trust an AI Doctor? Building Reliable Medical Predictions with Kernel Dropout Uncertainty", venue:"The 25th International Web Information Systems Engineering Conference (WISE 2024). Accepted. Full paper. In collaboration with Thomson Reuters Labs", year:"2024", kind:"Conference", url:null, tags:["Approximate Posterior Inference"]},
+          {title:"CLIMB: Imbalanced Data Modelling using Contrastive Learning with Limited Labels", venue:"The 25th International Web Information Systems Engineering Conference (WISE 2024). Accepted. Full paper.", year:"2024", kind:"Conference", url:null, tags:["Deep Neural Networks"]},
+          {title:"Question-Driven Text Summarization Using an Extractive-Abstractive Framework", venue:"Computational Intelligence. Accepted.", year:"2024", kind:"Journal", url:null, tags:["Natural Language Processing"]},
+          {title:"From Explainable to Interpretable Deep Learning for Natural Language Processing in Healthcare: How Far from Reality?", venue:"Computational and Structural Biotechnology Journal. Accepted.", year:"2024", kind:"Journal", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"A DSR Approach for the Design of a Hybrid Crowd-Algorithmic RLHF-based Scientometric System", venue:"The 23rd International Conference on Hybrid Intelligent Systems (HIS 2023). Accepted. Full paper.", year:"2023", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"IDoFew: Intermediate Training Using Dual-Clustering in Language Models for Few Labels Text Classification", venue:"The 17th ACM International Conference Web Search and Data Mining (WSDM 2023). Accepted. Full paper.", year:"2023", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"A DSR Approach for the Design of a Hybrid Crowd-Algorithmic RLHF-based Scientometric Data Analysis System", venue:"International Conference on Industry Sciences and Computer Science Innovation. Accepted. Full paper.", year:"2023", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Topics in Contextualised Attention Embeddings", venue:"The 45th European Conference on Information Retrieval (ECIR). Accepted. Full paper.", year:"2023", kind:"Conference", url:null, tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval", "Natural Language Processing", "Deep Neural Networks"]},
+          {title:"A Hybrid Human-AI Tool for Scientometric Analysis", venue:"Artificial Intelligence Review. Accepted.", year:"2023", kind:"Journal", url:null, tags:[]},
+          {title:"CLEFT: Contextualised Unified Learning of User Engagement in Video Lectures with Feedback", venue:"IEEE Access. Accepted.", year:"2023", kind:"Journal", url:null, tags:["Natural Language Processing"]},
+          {title:"Convolutional Attention Based Multimodal Network for Depression Detection on Social Media and Its Impact During Pandemic", venue:"the IEEE Journal of Biomedical and Health Informatics (J-BHI). Accepted.", year:"2023", kind:"Journal", url:null, tags:["Social Networks & Urban Human Computing", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Inferring Prototypes for Multi-Label Few-Shot Image Classification with Word Vector Guided Attention", venue:"Thirty-Sixth AAAI Conference on Artificial Intelligence, Vancouver. Accepted. Full paper.", year:"2022", kind:"Conference", url:null, tags:["Natural Language Processing", "Word Embeddings", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Graph-Aware Deep Fusion Networks for Online Spam Review Detection", venue:"IEEE Transactions on Computational Social Systems. Accepted.", year:"2022", kind:"Journal", url:null, tags:["Deep Neural Networks"]},
+          {title:"Adaptable Closed-Domain Question Answering Using Contextualized CNN-Attention Models and Question Expansion", venue:"IEEE Access. Accepted with minor revisions.", year:"2022", kind:"Journal", url:null, tags:["Natural Language Processing", "Deep Neural Networks"]},
+          {title:"Determinants and Predictors of Intentionality and Perceived Reliability in Human-AI Interaction as a Means for Innovative Scientific Discovery", venue:"The 3rd International Workshop on Big Data Tools, Methods, and Use Cases for Innovative Scientific Discovery (BTSD) 2021. Accepted. Short paper.", year:"2021", kind:"Conference", url:null, tags:[]},
+          {title:"Click-Through Rate Prediction with Multi-Modal Hypergraphs", venue:"Conference on Information and Knowledge Management (CIKM 2021). Accepted. Full paper. Nominated for the Best Paper Award; Winner in the ACS Digital Disruptors Awards 2022; Selected by the eBay leadership team as a Top 3 Leaders Choice Award recipient out of 2000 international submissions.", year:"2021", kind:"Conference", url:"https://www.bandt.com.au/reaching-gen-z-a-new-tool-for-marketers/", tags:["Multi-modal Machine Learning"]},
+          {title:"Emojional: Emoji Embeddings", venue:"20th Annual UK Workshop on Computational Intelligence (UKCI 2021). Accepted. Full paper. Authored by a final-year undergraduate student. We were recently contacted by BBC Radio 4 to talk about this research.", year:"2021", kind:"Conference", url:null, tags:["Word Embeddings"]},
+          {title:"DepressionNet: Learning Multi-modalities with User Post Summarization for Depression Detection on Social Media", venue:"The 44th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR 2021). Accepted. Full paper.", year:"2021", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing", "Social Networks & Urban Human Computing", "Multi-modal Machine Learning"]},
+          {title:"Aligning Visual Prototypes with BERT Embeddings for Few-Shot Learning", venue:"ACM International Conference on Multimedia Retrieval 2021 (ICMR 2021). Accepted. Full paper.", year:"2021", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Experimental Investigation of the Factors Influencing Researchers' Adoption of Crowdsourcing and Machine Learning: An Initial Survey", venue:"20th International Conference on Intelligent Systems Design and Applications (ISDA 2020). Online conference. Full paper.", year:"2021", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"AuthCrowd: Author Name Disambiguation and Entity Matching using Crowdsourcing", venue:"24th IEEE International Conference on Computer Supported Cooperative Work in Design (IEEE CSCWD 2021). Online conference. Full paper.", year:"2021", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Few-Shot Image Classification With Multi-Facet Prototypes", venue:"International Conference on Acoustics, Speech, & Signal Processing (ICASSP). Online conference. Full paper.", year:"2021", kind:"Conference", url:null, tags:["Natural Language Processing", "Multi-modal Machine Learning"]},
+          {title:"Unified Transformer Multi-task Learning for Intent Classification with Entity Recognition", venue:"IEEE Access. vol. 9., pp. 147306--147314. Model is currently deployed at BT (formerly British Telecom) and is being used by their development team.", year:"2021", kind:"Journal", url:null, tags:["Natural Language Processing", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Explainable Depression Detection with Multi-Modalities Using a Hybrid Deep Learning Model on Social Media", venue:"World Wide Web Journal.", year:"2021", kind:"Journal", url:null, tags:["Social Networks & Urban Human Computing", "Deep Neural Networks", "Multi-modal Machine Learning"]},
+          {title:"Detecting Community Depression Dynamics Due to COVID-19 Pandemic in Australia", venue:"IEEE Transactions on Computational Social Systems. vol. 8, no. 4, pp. 982-991, Aug. 2021.", year:"2021", kind:"Journal", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"A Workflow-Based Methodological Framework for Hybrid Human-AI Enabled Scientometrics", venue:"IEEE BigData. 2021. Online conference. Full paper.", year:"2020", kind:"Conference", url:null, tags:[]},
+          {title:"Dynamic Topic Tracker for KB-to-Text Generation", venue:"International Conference on Computational Linguistics (COLING). Online conference. Full paper.", year:"2020", kind:"Conference", url:null, tags:["Probabilistic Topic Modeling", "Natural Language Processing"]},
+          {title:"On the Socio-Technical Aspects of Crowdsourcing as a Mechanism for Academic Study: Conceptual Framework and Scoping Review", venue:"The Hawaii International Conference on System Sciences (HICSS), Hawaii, USA. Nominated for the Best Paper Award.", year:"2020", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"SciCrowd: A crowd-AI system for supporting crowd work in scientific research", venue:"In: Science and Technology Summit in Portugal. Poster.", year:"2019", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Development of a Crowd-Powered System Architecture for Knowledge Discovery in Scientific Domains", venue:"2019 IEEE International Conference on Systems, Man, and Cybernetics (SMC), pp. 1372--1377, Bari, Italy.", year:"2019", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Towards Hybrid Crowd-AI Centered Systems: Developing an Integrated Framework from an Empirical Perspective", venue:"2019 IEEE International Conference on Systems, Man, and Cybernetics (SMC), pp. 4013--4018, Bari, Italy.", year:"2019", kind:"Conference", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Word and Document Embedding with vMF-Mixture Priors on Context Word Vectors", venue:"In the 57th Annual Meeting of the Association for Computational Linguistics (ACL), pp. 3319--3328, Florence, Italy.", year:"2019", kind:"Conference", url:null, tags:["Natural Language Processing", "Word Embeddings"]},
+          {title:"A Latent Variable Model for Learning Distributional Relation Vectors", venue:"In the 28th International Joint Conference on Artificial Intelligence (IJCAI), 4911--4917, Macao, China.", year:"2019", kind:"Conference", url:null, tags:["Word Embeddings"]},
+          {title:"The Effect of Scientific Collaboration on CSCW Research: A Scientometric Study", venue:"In the 23rd IEEE International Conference on Computer Supported Cooperative Work in Design (IEEE CSCWD), pp. 149--161, Porto, Portugal.", year:"2019", kind:"Conference", url:null, tags:[]},
+          {title:"Word Embedding as Maximum A Posteriori Estimation", venue:"In the 33rd AAAI Conference on Artificial Intelligence (AAAI), pp. 6562--6569, Honolulu, Hawaii, USA.", year:"2019", kind:"Conference", url:"https://kar.kent.ac.uk/70009/7/AAAI-2019-Camera-Ready%20%281%29.pdf", tags:["Approximate Posterior Inference", "Word Embeddings"]},
+          {title:"'Caught Between Worlds': Leveraging Crowd Science and AI for Supporting Scientific Work Practices", venue:"Computer Supported Cooperative Work: The Journal of Collaborative Computing and Work Practices", year:"2019", kind:"Journal", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Hybrid Machine-Crowd Interaction for Handling Complexity in Science: A Scaffolding Design Framework", venue:"Springer Human-Computer Interaction Series", year:"2019", kind:"Book Chapter", url:null, tags:["Social Networks & Urban Human Computing"]},
+          {title:"Relation Induction in Word Embeddings Revisited", venue:"In the 27th International Conference on Computational Linguistics (COLING), pp. 1627--1637. Santa Fe, New Mexico. One of the Area Chair Favourites.", year:"2018", kind:"Conference", url:"https://arxiv.org/abs/1708.06266", tags:["Word Embeddings"]},
+          {title:"Unsupervised Learning of Distributional Relation Vectors", venue:"In the 56th Annual Meeting of the Association for Computational Linguistics (ACL), pp. 23--33. Melbourne, Australia.", year:"2018", kind:"Conference", url:"https://drive.google.com/open?id=1zwjJFiu6yaq-yq2as9liFkTagYlSl8x9", tags:["Word Embeddings"]},
+          {title:"Modeling Context Words as Regions: An Ordinal Regression Approach to Word Embedding", venue:"In the SIGNLL Conference on Computational Natural Language Learning (CoNLL), pp. 123--133, Vancouver, Canada.", year:"2017", kind:"Conference", url:"https://drive.google.com/open?id=18WMMGB-ohy_EkA_nyl3n8wDWMcLNX7HH", tags:["Natural Language Processing", "Word Embeddings"]},
+          {title:"Jointly Learning Word Embeddings and Latent Topics", venue:"In the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR), pp. 375--384, Tokyo, Japan.", year:"2017", kind:"Conference", url:"https://drive.google.com/open?id=1I_fmdLmae0SE1HEzBRO7Nv-RedkNlnAY", tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval", "Word Embeddings"]},
+          {title:"MEmbER: Max-Margin Based Embeddings for Entity Retrieval", venue:"In the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR), pp. 783--792, Tokyo, Japan.", year:"2017", kind:"Conference", url:"https://drive.google.com/open?id=1QVXU8E6VtG8TTKbfTeU4DvCifh8keWQa", tags:["Web Search & Information Retrieval"]},
+          {title:"Inductive Reasoning about Ontologies Using Conceptual Spaces", venue:"In Proceedings of the 31st AAAI Conference on Artificial Intelligence (AAAI), pp. 4364--4370, San Francisco, California, USA.", year:"2017", kind:"Conference", url:"https://drive.google.com/open?id=1CDoH5kqyN3UnqDgwSGaGqBOxnT7vvime", tags:["Probabilistic Graphical Models"]},
+          {title:"D-GloVe: A Feasible Least Squares Model for Estimating Word Embedding Densities", venue:"In Proceedings of the 26th International Conference on Computational Linguistics (COLING), pp. 1849--1860, Osaka, Japan.", year:"2016", kind:"Conference", url:"https://drive.google.com/open?id=1kgbHGwtLJBZPXKQWAMXp7WzNSLX9giFL", tags:["Word Embeddings"]},
+          {title:"Exploring Urban Lifestyles Using a Nonparametric Temporal Graphical Model", venue:"In Proceedings of the ACM SIGIR International Conference on the Theory of Information Retrieval (ICTIR), pp. 251--260, Newark, Delaware, USA.", year:"2016", kind:"Conference", url:"https://drive.google.com/open?id=1MrnfHbZO9jGJao9diVJihHmKIDj9KXRp", tags:["Probabilistic Graphical Models", "Bayesian Nonparametric Statistics", "Web Search & Information Retrieval", "Social Networks & Urban Human Computing"]},
+          {title:"Who Wants to Join Me? Companion Recommendation in Location-Based Social Networks", venue:"In Proceedings of the ACM SIGIR International Conference on the Theory of Information Retrieval (ICTIR), pp. 271--280, Newark, Delaware, USA.", year:"2016", kind:"Conference", url:"https://drive.google.com/open?id=1iPLZ8EDQaQYkjpZ6FTlK9ZPksf_Ki8wN", tags:["Web Search & Information Retrieval", "Social Networks & Urban Human Computing"]},
+          {title:"Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning", venue:"In Proceedings of the European Conference on Artificial Intelligence (ECAI), pp. 1353--1361, The Hague, Netherlands.", year:"2016", kind:"Conference", url:"https://arxiv.org/abs/1602.05765", tags:["Probabilistic Graphical Models"]},
+          {title:"Plausible Reasoning based on Qualitative Entity Embeddings", venue:"In Proceedings of the 25th International Joint Conference on Artificial Intelligence (IJCAI). Invited Paper, pp. 4078--4081, New York, USA.", year:"2016", kind:"Conference", url:"https://www.ijcai.org/Proceedings/16/Papers/605.pdf", tags:["Probabilistic Graphical Models"]},
+          {title:"Learning Track Representation and Trends for Conference Analytics", venue:"In Proceedings of the Hawaii International Conference on System Sciences (HICSS-49), pp. 1671--1680, Hawaii, USA.", year:"2016", kind:"Conference", url:"https://drive.google.com/file/d/1mRGqiIsAY1hFgvnr5zSQ_m5c0FTgDuZQ/view?usp=sharing", tags:[]},
+          {title:"Abstract Venue Concept Detection from Location-Based Social Networks", venue:"In Proceedings of the Asia Information Retrieval Societies Conference (AIRS), pp. 147--157, Brisbane, Australia.", year:"2015", kind:"Conference", url:"https://drive.google.com/file/d/1aRgJWZJPdfd_cMPB7IucGDO9FQIJ-SFG/view?usp=sharing", tags:["Web Search & Information Retrieval", "Social Networks & Urban Human Computing"]},
+          {title:"A Unified Posterior Regularized Topic Model with Maximum Margin for Learning-to-Rank", venue:"In Proceedings of the 24th ACM International Conference on Information and Knowledge Management (CIKM), pp. 103--112, Melbourne, Australia.", year:"2015", kind:"Conference", url:"https://drive.google.com/file/d/1FlUuVeUd0eSb7aNrdJZgm5LdRKLvNDDT/view?usp=sharing", tags:["Approximate Posterior Inference", "Probabilistic Topic Modeling", "Learning-to-Rank"]},
+          {title:"Topic Modeling for Conference Analytics", venue:"In Proceedings of the 16th Annual Conference of the International Speech Communication Association (INTERSPEECH).", year:"2015", kind:"Conference", url:"https://drive.google.com/file/d/11Bz2_A6kpyR01ED8rnfECo4aDNKvH-yF/view?usp=sharing", tags:["Probabilistic Topic Modeling"]},
+          {title:"Nonparametric Topic Modeling using Chinese Restaurant Franchise with Buddy Customers", venue:"In Proceedings of the 37th European Conference on Information Retrieval (ECIR), pp. 648--659, Vienna, Austria.", year:"2015", kind:"Conference", url:"https://drive.google.com/file/d/1m52uOZw3tPxPp3LkPfqEyR-LkPTi_m5q/view?usp=sharing", tags:["Bayesian Nonparametric Statistics", "Probabilistic Topic Modeling", "Web Search & Information Retrieval"]},
+          {title:"Supervised Topic Models with Word Order Structure for Document Classification and Retrieval Learning", venue:"In Information Retrieval Journal (IRJ). 18 (4): 283-330.", year:"2015", kind:"Journal", url:null, tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"Adaptive Concept Resolution for Document Representation and Its Applications in Text Mining", venue:"In Knowledge-Based Systems 74 (2015): 1-13.", year:"2015", kind:"Journal", url:null, tags:["Natural Language Processing"]},
+          {title:"Web Query Reformulation via Joint Modeling of Latent Topic Dependency and Term Context", venue:"In ACM Transactions on Information Systems (TOIS). Volume 33, Issue 2.", year:"2015", kind:"Journal", url:null, tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"Website Community Mining from Query Logs with Two-phase Clustering", venue:"In Proceedings of the 15th International Conference on Intelligent Text Processing and Computational Linguistics (CICLing), pp. 201--212, Kathmandu, Nepal.", year:"2014", kind:"Conference", url:"https://drive.google.com/file/d/1INsfUIRtjIuCzLXa_dlmkR_B07lp2tC9/view?usp=sharing", tags:["Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"A Nonparametric N-Gram Topic Model with Interpretable Latent Topics", venue:"In Proceedings of the Ninth Asia Information Retrieval Societies Conference (AIRS), pp. 74--85, Singapore.", year:"2013", kind:"Conference", url:"https://drive.google.com/file/d/18jXDQmbGjBDzrJXSJ9tRLcRa0DH_MLVJ/view?usp=sharing", tags:["Bayesian Nonparametric Statistics", "Probabilistic Topic Modeling", "Web Search & Information Retrieval"]},
+          {title:"An Unsupervised Topic Segmentation Model Incorporating Word Order", venue:"In Proceedings of the 36th Special Interest Group on Information Retrieval (ACM-SIGIR), pp. 203--212, Dublin, Ireland.", year:"2013", kind:"Conference", url:"https://drive.google.com/file/d/18F6SyQP5ipi4MUbXhqAlsi92Ri7T3d3K/view?usp=sharing", tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval"]},
+          {title:"An N-gram Topic Model for Time-Stamped Documents", venue:"In Proceedings of the 35th European Conference on Information Retrieval (ECIR), pp. 292--304, Moscow, Russia.", year:"2013", kind:"Conference", url:"https://drive.google.com/file/d/1wR1Yeyw5l9rf1UD1SxpWTfUaUo5P34Eo/view?usp=sharing", tags:["Probabilistic Topic Modeling", "Web Search & Information Retrieval"]},
+          {title:"N-gram Fragment Sequence Based Unsupervised Domain-Specific Document Readability", venue:"In Proceedings of the 24th International Conference on Computational Linguistics (COLING), pp. 1309--1326, Mumbai, India.", year:"2012", kind:"Conference", url:"http://www.aclweb.org/anthology/C12-1080", tags:["Web Search & Information Retrieval"]},
+          {title:"An unsupervised technical difficulty ranking model based on conceptual terrain in the latent space", venue:"In Proceedings of the 12th ACM/IEEE-CS Joint Conference on Digital Libraries (JCDL), pp. 351--352, Washington D.C., USA.", year:"2012", kind:"Conference", url:"https://drive.google.com/file/d/1uLTRvw9sQchIj0FF3A2tWTduNGedOIo4/view?usp=sharing", tags:["Probabilistic Graphical Models", "Web Search & Information Retrieval", "Learning-to-Rank"]},
+          {title:"An Unsupervised Technical Readability Ranking Model by Building a Conceptual Terrain in LSI", venue:"In Proceedings of the International Conference on Semantics, Knowledge and Grids (SKG), pp. 39--46, Beijing, China.", year:"2012", kind:"Conference", url:"https://drive.google.com/file/d/1z-6qqTff1fo8LbmOfcTyIps6WGGNizd1/view?usp=sharing", tags:["Probabilistic Graphical Models", "Web Search & Information Retrieval", "Learning-to-Rank"]},
+          {title:"Ranking Text Documents based on Conceptual Difficulty using Term Embedding and Sequential Discourse Cohesion", venue:"In Proceedings of the 2012 IEEE/WIC/ACM International Conference on Web Intelligence (WI), pp. 145--152, Macau, China.", year:"2012", kind:"Conference", url:"https://drive.google.com/file/d/1eGZ6GZ8-tf2pWaQtCutobVG5kleL6yfG/view?usp=sharing", tags:["Natural Language Processing", "Learning-to-Rank"]},
+          {title:"An Unsupervised Ranking Method based on a Technical Difficulty Terrain", venue:"In Proceedings of the 20th ACM International Conference on Information and Knowledge Management (CIKM), pp. 1989--1992, Glasgow, Scotland. Winner: Best Paper Award at the Beijing-Hong Kong International Doctoral Forum-2011.", year:"2011", kind:"Conference", url:"https://dl.acm.org/doi/abs/10.1145/2063576.2063872", tags:["Learning-to-Rank"]},
+          {title:"An Intelligent Automatic Text Summarizer", venue:"In Proceedings of the First International Conference on Intelligent Human Computer Interaction, pp. 223--230, Hyderabad, India.", year:"2009", kind:"Conference", url:null, tags:["Natural Language Processing"]},
+          {title:"Compounded Uniqueness Level: Geo-Location Indexing Using Address Parser", venue:"In International Journal of Computer Theory and Engineering. pp. 27--34", year:"2009", kind:"Journal", url:null, tags:[]},
+          {title:"Deploying CPU Load Balancing in the Linux Cluster Using Non-Repetitive CPU Selection", venue:"In International Journal of Computer Theory and Electrical Engineering, pp. 228--234.", year:"2009", kind:"Journal", url:null, tags:[]},
+          {title:"Enhancements in Query Evaluation and Page Summarization of The Thinking Algorithm", venue:"In Proceedings of the International Symposium on Information Technology (ITSim), pp. 1--8, Kuala Lumpur, Malaysia.", year:"2008", kind:"Conference", url:null, tags:["Web Search & Information Retrieval", "Natural Language Processing"]},
+          {title:"Scientometric Research Assessment of IEEE CSCWD Conference Proceedings: An Exploratory Analysis from 2001 to 2019", venue:"Dalian, China. Conference postponed due to SARS-COV-2 outbreak; publication year unconfirmed.", year:"", kind:"Conference", url:null, tags:[]},
+          {title:"NLP-Crowdsourcing Hybrid Framework for Inter-Researcher Similarity Detection", venue:"IEEE Transactions on Human-Machine Systems. Accepted.", year:"", kind:"Journal", url:null, tags:["Natural Language Processing", "Social Networks & Urban Human Computing"]},
+        ];
+
+        const TAGS = ["Probabilistic Graphical Models","Approximate Posterior Inference","Bayesian Nonparametric Statistics","Probabilistic Topic Modeling","Web Search & Information Retrieval","Natural Language Processing","Social Networks & Urban Human Computing","Learning-to-Rank","Word Embeddings","Deep Neural Networks","Multi-modal Machine Learning"];
+
+        let activeTags = new Set();
+        let searchTerm = "";
+
+        function esc(s) {
+            const d = document.createElement('div');
+            d.innerText = s == null ? '' : s;
+            return d.innerHTML;
+        }
+
+        function renderPills() {
+            const wrap = document.getElementById('filter-pills');
+            let html = `<span class="filter-pill${activeTags.size === 0 ? ' active' : ''}" id="pill-all">All</span>`;
+            TAGS.forEach(t => {
+                html += `<span class="filter-pill${activeTags.has(t) ? ' active' : ''}" data-tag="${esc(t)}">${esc(t)}</span>`;
+            });
+            wrap.innerHTML = html;
+            document.getElementById('pill-all').onclick = () => { activeTags.clear(); renderPills(); renderList(); };
+            wrap.querySelectorAll('[data-tag]').forEach(el => {
+                el.onclick = () => {
+                    const tag = el.dataset.tag;
+                    activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
+                    renderPills();
+                    renderList();
+                };
+            });
+        }
+
+        function renderList() {
+            const term = searchTerm.trim().toLowerCase();
+            const filtered = ALL_PUBS.filter(p => {
+                const matchesSearch = !term || p.title.toLowerCase().includes(term) || p.venue.toLowerCase().includes(term);
+                const matchesTags = activeTags.size === 0 || p.tags.some(t => activeTags.has(t));
+                return matchesSearch && matchesTags;
+            });
+
+            document.getElementById('results-count').innerText = `Showing ${filtered.length} of ${ALL_PUBS.length} publications`;
+            document.getElementById('no-results').style.display = filtered.length ? 'none' : 'block';
+
+            document.getElementById('pub-list').innerHTML = filtered.map(p => `
+                <div class="pub-entry">
+                    <div class="pub-entry-title">${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</div>
+                    <div class="pub-entry-venue"><span class="pub-entry-kind">${esc(p.kind)}${p.year ? ' ' + esc(p.year) : ''}</span>${esc(p.venue)}</div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('pub-search').addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderList();
+        });
+
+        renderPills();
+        renderList();
+
+        // ---- Publications-per-year chart ----
+        function buildYearChart() {
+            const counts = {};
+            ALL_PUBS.forEach(p => { if (p.year) counts[p.year] = (counts[p.year] || 0) + 1; });
+            const years = Object.keys(counts).sort();
+            const niceMax = 20;
+            const ticks = [0, 5, 10, 15, 20];
+
+            const svg = document.getElementById('year-chart');
+            const W = Math.max(700, years.length * 46);
+            const H = 280;
+            const padL = 36, padR = 10, padT = 24, padB = 34;
+            const plotW = W - padL - padR, plotH = H - padT - padB;
+            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+            svg.setAttribute('width', W);
+            svg.style.minWidth = W + 'px';
+
+            const bandW = plotW / years.length;
+            const barW = Math.min(24, bandW * 0.55);
+
+            const yFor = v => padT + plotH - (v / niceMax) * plotH;
+
+            let svgContent = '';
+
+            ticks.forEach(t => {
+                const y = yFor(t);
+                svgContent += `<line class="chart-gridline" x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}"/>`;
+                svgContent += `<text class="chart-tick-label" x="${padL - 8}" y="${y + 4}" text-anchor="end">${t}</text>`;
+            });
+
+            years.forEach((yr, i) => {
+                const v = counts[yr];
+                const cx = padL + bandW * i + bandW / 2;
+                const x = cx - barW / 2;
+                const yTop = yFor(v);
+                const yBase = yFor(0);
+                const r = 4;
+                const path = `M${x},${yBase} L${x},${yTop + r} Q${x},${yTop} ${x + r},${yTop} L${x + barW - r},${yTop} Q${x + barW},${yTop} ${x + barW},${yTop + r} L${x + barW},${yBase} Z`;
+                svgContent += `<path class="chart-bar" d="${path}" data-year="${yr}" data-count="${v}"/>`;
+                svgContent += `<text class="chart-tick-label" x="${cx}" y="${H - padB + 16}" text-anchor="middle">${yr}</text>`;
+            });
+
+            // Direct label on the peak year only
+            const peakYear = years.reduce((a, b) => counts[a] > counts[b] ? a : b);
+            const peakCx = padL + bandW * years.indexOf(peakYear) + bandW / 2;
+            svgContent += `<text class="chart-value-label" x="${peakCx}" y="${yFor(counts[peakYear]) - 8}">${counts[peakYear]}</text>`;
+
+            svg.innerHTML = svgContent;
+
+            const tooltip = document.getElementById('chart-tooltip');
+            const wrap = document.getElementById('year-chart-wrap');
+            svg.querySelectorAll('.chart-bar').forEach(bar => {
+                bar.addEventListener('mousemove', (e) => {
+                    const rect = wrap.getBoundingClientRect();
+                    tooltip.innerText = `${bar.dataset.year}: ${bar.dataset.count} publication${bar.dataset.count === '1' ? '' : 's'}`;
+                    tooltip.style.left = (e.clientX - rect.left + 14) + 'px';
+                    tooltip.style.top = (e.clientY - rect.top - 30) + 'px';
+                    tooltip.style.opacity = '1';
+                });
+                bar.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
+            });
+        }
+
+        buildYearChart();
+    </script>
+</body>
+</html>

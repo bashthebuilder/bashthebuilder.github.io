@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Timeline | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="An interactive career timeline of Dr. Shoaib Jameel — academic posts, industry engagements, awards, and flagship publications from 2004 to today, on one story.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="Career Timeline | Shoaib Jameel">
+    <meta property="og:description" content="An interactive career timeline of Dr. Shoaib Jameel — academic posts, industry engagements, awards, and flagship publications from 2004 to today, on one story.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/timeline.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Career Timeline | Shoaib Jameel">
+    <meta name="twitter:description" content="An interactive career timeline of Dr. Shoaib Jameel — academic posts, industry engagements, awards, and flagship publications from 2004 to today, on one story.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .tl-legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .tl-legend-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; color: var(--text-muted); }
+        .tl-legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+        .timeline { position: relative; padding-left: 44px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px; top: 8px; bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.03));
+        }
+        .tl-item { position: relative; margin-bottom: 2.2rem; transition: opacity 0.25s, max-height 0.25s; }
+        .tl-item.hidden { display: none; }
+        .tl-dot {
+            position: absolute;
+            left: -44px; top: 6px;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            border: 3px solid var(--bg-dark);
+            box-shadow: 0 0 0 2px currentColor;
+        }
+        .tl-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            transition: 0.3s;
+        }
+        .tl-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.18); }
+        .tl-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+        .tl-year { font-weight: 800; color: #fff; font-size: 1.15rem; }
+        .tl-cat-badge { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 3px 12px; border-radius: 100px; }
+        .tl-title { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+        .tl-note { color: var(--text-muted); font-size: 1.02rem; line-height: 1.6; }
+
+        .tl-item[data-cat="academic"] .tl-dot { background: #6366f1; color: #6366f1; }
+        .tl-item[data-cat="academic"] .tl-cat-badge { background: rgba(99,102,241,0.15); color: #818cf8; }
+        .tl-item[data-cat="industry"] .tl-dot { background: #ec4899; color: #ec4899; }
+        .tl-item[data-cat="industry"] .tl-cat-badge { background: rgba(236,72,153,0.15); color: #f472b6; }
+        .tl-item[data-cat="award"] .tl-dot { background: #fbbf24; color: #fbbf24; }
+        .tl-item[data-cat="award"] .tl-cat-badge { background: rgba(251,191,36,0.15); color: #fbbf24; }
+        .tl-item[data-cat="publication"] .tl-dot { background: #a855f7; color: #a855f7; }
+        .tl-item[data-cat="publication"] .tl-cat-badge { background: rgba(168,85,247,0.15); color: #c084fc; }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html" class="active">Timeline</a>
+                <a href="publications.html">Research</a>
+                <a href="resources.html">The Lab</a>
+                <a href="press.html">Press</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="cv.html">CV</a>
+                <a href="thesis.html">Thesis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" style="padding-top: 160px;">
+        <section style="margin-bottom: 3rem;">
+            <span class="section-title">One Story, Two Tracks</span>
+            <h1 class="liquid-text" style="font-size: 3.4rem; letter-spacing: -2px;">The Career Timeline.</h1>
+            <p class="lead" style="max-width: 800px;">Academia and industry, running side by side by design — from a first internship at Tata Steel in 2007 to a Ministry of Defence platform today. Filter by track to follow just one thread, or see the whole story.</p>
+        </section>
+
+        <section class="grid" style="margin-bottom: 3rem;">
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">20+</span>
+                <span class="stat-label">Years, One Continuous Thread</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">7</span>
+                <span class="stat-label">Institutions &amp; Companies</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value" style="font-size: 2.2rem;">2</span>
+                <span class="stat-label">Tracks, Run Concurrently</span>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+            <div id="tl-filters" style="display: flex; gap: 0.6rem; flex-wrap: wrap;"></div>
+        </section>
+
+        <section style="margin-bottom: 4rem;">
+            <div class="timeline" id="timeline"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const CATS = [
+            { key: "academic", label: "Academic", color: "#6366f1" },
+            { key: "industry", label: "Industry & Government", color: "#ec4899" },
+            { key: "award", label: "Awards & Recognition", color: "#fbbf24" },
+            { key: "publication", label: "Flagship Publications", color: "#a855f7" },
+        ];
+
+        const EVENTS = [
+            { year: "2026", cat: "academic", title: "Associate Professor, University of Southampton", note: "Continuing to lead the Machine Learning Technologies and Knowledge Graphs for AI Systems modules, both ranked in the top 1% school-wide." },
+            { year: "2025", cat: "award", title: "Featured in Forbes", note: "Research on AI for oculomics and retinal imaging covered as a breakthrough for whole-body wellness diagnostics." },
+            { year: "2025", cat: "publication", title: "Peak publication year — 19 papers", note: "Including CALM at NeurIPS 2025 and BAKER at WSDM 2025, the latter in collaboration with Thomson Reuters Labs." },
+            { year: "2024", cat: "award", title: "Finalist, Vice-Chancellor's Awards (Teaching)", note: "One of three finalists out of 630 applications for teaching excellence at the University of Southampton." },
+            { year: "Aug 2024", cat: "academic", title: "Promoted to Associate Professor", note: "University of Southampton, Electronics and Computer Science." },
+            { year: "2023–2024", cat: "industry", title: "Director of Engineering & Chief Scientist, Bezoku", note: "Architected a commercial generative AI product end to end for the US market — fine-tuned SLMs, Kubernetes/Docker production deployment." },
+            { year: "May 2022", cat: "academic", title: "Lecturer, University of Southampton", note: "Moved to Southampton's Electronics and Computer Science department, continuing through July 2024." },
+            { year: "2022", cat: "industry", title: "PICASO begins — Alan Turing Institute", note: "Probabilistic Conceptual Spaces Sensemaking under Uncertainty, for the UK Ministry of Defence. Ongoing as Principal Investigator." },
+            { year: "2022", cat: "award", title: "Best KTP Project (SME) 2022 & ACS Digital Disruptors Award", note: "Mersea Homes KTP wins national recognition; the eBay hypergraph work wins the ACS Digital Disruptors Award." },
+            { year: "2022", cat: "award", title: "Royal Society Pairing Scheme", note: "Selected to advise UK Government policymakers on National AI Regulation & Governance in Education, paired with a UK Home Office official." },
+            { year: "Sept 2022", cat: "industry", title: "Wyser KTP begins", note: "One of the first agentic AI systems for the legal domain — built before MCP servers existed. £400k Innovate UK Smart Grant." },
+            { year: "2021", cat: "award", title: "eBay Top 3 Leaders' Choice Award", note: "Multi-modal hypergraph work for Gen Z onboarding selected out of 2,000+ global corporate submissions; also nominated for CIKM Best Paper." },
+            { year: "2021", cat: "award", title: "Outstanding Early-Career Researcher, University of Essex", note: "Runner-up, Faculty of Science and Health — judged on quality and quantity of research output and income." },
+            { year: "2020–2022", cat: "industry", title: "Mersea Homes KTP", note: "AI agent and .NET platform for property development site-plan management, saving an estimated £50,000/year." },
+            { year: "2020–2021", cat: "industry", title: "RoleCatcher (Fintex Ltd.)", note: "Directed AWS-based CV search systems and automatic cover-letter generation — built when LLMs were still in their infancy." },
+            { year: "Jan 2020", cat: "academic", title: "Senior Lecturer, University of Essex", note: "Computer Science and Artificial Intelligence, School of Computer Science and Electronic Engineering." },
+            { year: "2019–2022", cat: "industry", title: "BT (British Telecom) KTP", note: "Transformer-based intent classification model deployed into BT's production systems; the KTP Associate secured a permanent role, ending the project 10 months early." },
+            { year: "July 2019", cat: "award", title: "Peking University Summer School", note: "The only academic selected from the entire UK/EU region to lecture at the Department of Intelligent Computing and Sensing Laboratory — ahead of senior lecturers and professors also nominated." },
+            { year: "2017–2022", cat: "industry", title: "Neotas KTP", note: "Three-year, £350k OSINT due-diligence platform — 98% classification accuracy, joint University-Corporate patent filings." },
+            { year: "Dec 2017", cat: "academic", title: "Lecturer, University of Kent", note: "School of Computing, Medway — continuing through December 2019." },
+            { year: "2015–2017", cat: "academic", title: "Research Associate, Cardiff University", note: "Postdoctoral work with Professor Steven Schockaert on word embeddings and conceptual spaces." },
+            { year: "Nov 2014", cat: "academic", title: "Postdoctoral Fellow, CUHK / Microsoft Research Asia", note: "With Prof. Wai Lam at CUHK, in collaboration with Dr Xing Xie at MSRA." },
+            { year: "2014", cat: "publication", title: "MSRA Urban Informatics Research Fund", note: "Independently designed a non-parametric temporal graphical model — later the basis of a production-scale platform analysing 1M+ individuals across 493 cities." },
+            { year: "2013", cat: "award", title: "Finalist, ACM-Hong Kong Best Research Awards", note: "One of only two candidates selected from CUHK's entire Faculty of Engineering to represent the university in the final." },
+            { year: "2011", cat: "publication", title: "First CIKM paper — the idea that started it all", note: "“An Unsupervised Ranking Method Based on a Technical Difficulty Terrain” — the Super Mario-inspired idea that became the seed of the whole PhD. Won Best Paper at the Beijing-Hong Kong International Doctoral Forum." },
+            { year: "Aug 2009", cat: "academic", title: "PhD in Information Systems, CUHK", note: "Latent Probabilistic Topic Discovery for Text Documents — finalist, Best Research Awards (entire Hong Kong)." },
+            { year: "Jan 2008", cat: "industry", title: "Research & Development Intern, Tata Steel", note: "Designed and deployed a CPU load-balancing architecture for a Linux cluster, and a multi-threaded intranet crawler." },
+            { year: "Sept 2004", cat: "academic", title: "BTech, Computer Science & Engineering, SMIT", note: "Ranked among the top 10% of the batch; undergraduate thesis awarded a Superb (S) grade." },
+        ];
+
+        let activeCat = null;
+
+        function renderFilters() {
+            const wrap = document.getElementById('tl-filters');
+            let html = `<span class="filter-pill${activeCat === null ? ' active' : ''}" id="tl-all">All Tracks</span>`;
+            CATS.forEach(c => {
+                html += `<span class="filter-pill${activeCat === c.key ? ' active' : ''}" data-cat="${c.key}" style="${activeCat === c.key ? `background:${c.color}22; border-color:${c.color}; color:#fff;` : ''}">${c.label}</span>`;
+            });
+            wrap.innerHTML = html;
+            document.getElementById('tl-all').onclick = () => { activeCat = null; renderFilters(); renderTimeline(); };
+            wrap.querySelectorAll('[data-cat]').forEach(el => {
+                el.onclick = () => { activeCat = el.dataset.cat; renderFilters(); renderTimeline(); };
+            });
+        }
+
+        function renderTimeline() {
+            const el = document.getElementById('timeline');
+            el.innerHTML = EVENTS.map(e => {
+                const hidden = activeCat && e.cat !== activeCat ? ' hidden' : '';
+                const catInfo = CATS.find(c => c.key === e.cat);
+                return `
+                <div class="tl-item${hidden}" data-cat="${e.cat}">
+                    <div class="tl-dot"></div>
+                    <div class="tl-card">
+                        <div class="tl-meta">
+                            <span class="tl-year">${e.year}</span>
+                            <span class="tl-cat-badge">${catInfo.label}</span>
+                        </div>
+                        <div class="tl-title">${e.title}</div>
+                        <div class="tl-note">${e.note}</div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        renderFilters();
+        renderTimeline();
+
+        const tlLegend = document.createElement('div');
+        tlLegend.className = 'tl-legend';
+        tlLegend.innerHTML = CATS.map(c => `<div class="tl-legend-item"><span class="tl-legend-dot" style="background:${c.color};"></span>${c.label}</div>`).join('');
+        document.getElementById('tl-filters').insertAdjacentElement('beforebegin', tlLegend);
+    </script>
+</body>
+</html>
