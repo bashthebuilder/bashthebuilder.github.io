@@ -83,6 +83,7 @@
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <div class="nav-links">
                 <a href="index.html">Profile</a>
                 <a href="timeline.html" class="active">Timeline</a>
@@ -233,5 +234,6 @@
         tlLegend.innerHTML = CATS.map(c => `<div class="tl-legend-item"><span class="tl-legend-dot" style="background:${c.color};"></span>${c.label}</div>`).join('');
         document.getElementById('tl-filters').insertAdjacentElement('beforebegin', tlLegend);
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
