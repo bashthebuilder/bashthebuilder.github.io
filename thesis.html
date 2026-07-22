@@ -8,10 +8,120 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .thesis-hero {
+            padding: 4rem;
+            border-radius: 28px;
+            background: var(--accent-liquid);
+            margin-bottom: 3rem;
+        }
+        .thesis-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Story section */
+        .story-card p { color: var(--text-muted); font-size: 1.15rem; margin-bottom: 1.5rem; }
+        .story-card p:last-child { margin-bottom: 0; }
+        .story-card strong { color: #fff; }
+
+        /* Terrain visualization */
+        .terrain-wrap {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem 2rem 2rem;
+            overflow-x: auto;
+        }
+        .terrain-track {
+            position: relative;
+            height: 360px;
+            min-width: 1000px;
+        }
+        .terrain-ground {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--glass-border), rgba(255,255,255,0.25));
+        }
+        .platform {
+            position: absolute;
+            width: 120px;
+            height: 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px -8px rgba(99,102,241,0.5);
+        }
+        .platform:hover, .platform.active {
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px rgba(168,85,247,0.7);
+        }
+        .platform-diff {
+            position: absolute;
+            top: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #fbbf24;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .platform-stem {
+            position: absolute;
+            bottom: -1000px;
+            left: 50%;
+            width: 2px;
+            height: 1000px;
+            background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 4px, transparent 4px 9px);
+        }
+        .explorer {
+            position: absolute;
+            width: 30px;
+            height: 34px;
+            transition: left 0.7s cubic-bezier(.34,1.56,.64,1), bottom 0.7s cubic-bezier(.34,1.56,.64,1);
+            z-index: 5;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
+        }
+
+        .terrain-controls { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .terrain-btn {
+            cursor: pointer;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            border-radius: 100px;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: inherit;
+        }
+        .terrain-btn:hover { border-color: #818cf8; background: rgba(99,102,241,0.15); }
+        .terrain-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+        .load-meter-label { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .load-meter { height: 12px; border-radius: 100px; background: rgba(255,255,255,0.05); overflow: hidden; }
+        .load-meter-fill { height: 100%; width: 0%; background: var(--accent-liquid); transition: width 0.6s ease; border-radius: 100px; }
+
+        #terrain-panel { margin-top: 1.5rem; }
+        #terrain-sentence { color: #fff; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; }
+        #terrain-note { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
+
+        .paper-origin-card { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .paper-origin-card .doi-tag { color: var(--text-muted); font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
-    
+
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
@@ -40,6 +150,62 @@
             </div>
         </section>
 
+        <!-- The Story -->
+        <section style="margin-bottom: 4rem;">
+            <span class="section-title">Where the Idea Came From</span>
+            <h2 style="font-size: 2.4rem;">A Game, a Cliff, and a Question About Reading.</h2>
+            <div class="card story-card">
+                <p>Long before "technical difficulty" was a term in a peer-reviewed paper, it was a plumber jumping between platforms. Growing up playing <strong>Super Mario</strong>, I noticed something every player learns instinctively: not all jumps are equal. A gap between two nearby, low ledges is trivial. But make the next platform <em>farther away</em>, or put it <em>higher up</em>, and suddenly the jump demands real precision — more speed, a longer run-up, better timing. Distance and height, combined, are what make a jump hard.</p>
+                <p>Years later, as a PhD student thinking about how people read, that same picture came back to me. Reading a document isn't so different from crossing that terrain. Some sentences are short hops between familiar, everyday words — easy footing. Others force the reader to leap across a wide gap between unfamiliar concepts, or up onto a ledge of dense, technical vocabulary that demands far more cognitive effort to land on safely. The <strong>farther apart two ideas are conceptually, and the "higher" the vocabulary sits above everyday language</strong>, the harder the reader has to work to get from one to the next — exactly like a harder jump in the game.</p>
+                <p>That single idea — that a document could be modelled as a <strong>terrain</strong>, where technical difficulty has both a "height" and a "distance," and that ranking text by difficulty means measuring how hard the jumps across it are — became my first CIKM paper, and the seed that grew into my entire PhD research on latent, structure-aware topic models. The interactive terrain below is my attempt to make that mental picture playable.</p>
+            </div>
+        </section>
+
+        <!-- Interactive Terrain -->
+        <section style="margin-bottom: 4rem;">
+            <span class="section-title">Play It: The Difficulty Terrain</span>
+            <h2 style="font-size: 2.4rem;">Farther cliffs, higher cliffs, harder reading.</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 800px;">Each ledge below is a sentence. Click a ledge — or use the controls — to make the explorer jump to it. The height and distance of the jump map directly onto how much cognitive load that sentence demands from a reader.</p>
+
+            <div class="terrain-wrap">
+                <div class="terrain-track" id="terrain-track">
+                    <div class="terrain-ground"></div>
+                    <svg id="terrain-arcs" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></svg>
+                    <!-- platforms injected by JS -->
+                    <div class="explorer" id="explorer">
+                        <svg viewBox="0 0 30 34" width="30" height="34">
+                            <ellipse cx="15" cy="32" rx="10" ry="2.5" fill="#000" opacity="0.25"/>
+                            <rect x="8" y="16" width="14" height="14" rx="4" fill="#6366f1"/>
+                            <circle cx="15" cy="9" r="8" fill="#f8fafc"/>
+                            <path d="M7 9a8 8 0 0 1 16 0c-2.5-1.5-5-2-8-2s-5.5 0.5-8 2z" fill="#ec4899"/>
+                            <circle cx="12" cy="9" r="1.6" fill="#080a0f"/>
+                            <circle cx="18" cy="9" r="1.6" fill="#080a0f"/>
+                            <rect x="4" y="18" width="6" height="4" rx="2" fill="#a855f7"/>
+                            <rect x="20" y="18" width="6" height="4" rx="2" fill="#a855f7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terrain-controls">
+                <button class="terrain-btn" id="btn-prev" onclick="stepTerrain(-1)">◂ Easier Jump</button>
+                <button class="terrain-btn" id="btn-next" onclick="stepTerrain(1)">Harder Jump ▸</button>
+                <button class="terrain-btn" onclick="jumpTo(0)">↺ Restart</button>
+            </div>
+
+            <div id="terrain-panel" class="card">
+                <div class="load-meter-label">
+                    <span>Cognitive Load</span>
+                    <span id="load-meter-value">0 / 6</span>
+                </div>
+                <div class="load-meter"><div class="load-meter-fill" id="load-meter-fill"></div></div>
+                <div style="margin-top: 1.5rem;">
+                    <div id="terrain-sentence">Ready when you are.</div>
+                    <div id="terrain-note">Click a ledge on the terrain above, or press "Harder Jump" to start climbing.</div>
+                </div>
+            </div>
+        </section>
+
         <section class="grid" style="margin-bottom: 4rem;">
             <div class="card">
                 <span class="section-title">The Innovation</span>
@@ -53,7 +219,20 @@
             </div>
         </section>
 
-        <section>
+        <!-- The paper that started it all -->
+        <section style="margin-bottom: 4rem;">
+            <div class="card paper-origin-card">
+                <div style="flex: 1; min-width: 280px;">
+                    <span class="section-title" style="color: #fbbf24;">The Paper That Started It All</span>
+                    <h3 style="margin-bottom: 0.5rem;">An Unsupervised Ranking Method Based on a Technical Difficulty Terrain</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 0.75rem;">Shoaib Jameel, Wai Lam, Ching-man Au Yeung, and Sheaujiun Chyan. <strong style="color:#fff;">CIKM 2011</strong>, pp. 1989&ndash;1992, Glasgow, Scotland. <span class="award-glow">Winner: Best Paper Award, Beijing&ndash;Hong Kong International Doctoral Forum 2011.</span></p>
+                    <span class="doi-tag">DOI: 10.1145/2063576.2063872</span>
+                </div>
+                <a href="https://dl.acm.org/doi/abs/10.1145/2063576.2063872" target="_blank" rel="noopener" class="tag" style="background: #6366f1; color: #fff; text-decoration: none; padding: 14px 28px; white-space: nowrap;">Read on ACM DL →</a>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 4rem;">
             <div class="card">
                 <span class="section-title">Novelty & Contributions</span>
                 <ul style="list-style: none; color: var(--text-muted);">
@@ -79,5 +258,108 @@
             <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const TERRAIN = [
+            { x: 20,  h: 10,  diff: 0, text: "Start", note: "Every reader starts on solid, familiar ground." },
+            { x: 150, h: 30,  diff: 1, text: "“See Spot run.”", note: "Three words, all among the most common in English. A short hop to the next rock — almost no cognitive load." },
+            { x: 300, h: 60,  diff: 2, text: "“The dog chased the ball.”", note: "Simple subject–verb–object structure, still entirely familiar words. Still an easy jump." },
+            { x: 470, h: 105, diff: 3, text: "“The committee approved the annual budget.”", note: "A longer sentence with one abstract noun (‘committee’). The gap widens — there's more conceptual distance to cover." },
+            { x: 650, h: 160, diff: 4, text: "“Stakeholders evaluated the fiscal implications of the merger.”", note: "Several abstract, domain-specific nouns stacked together. Both the height and the gap increase — harder to parse, harder to reach." },
+            { x: 840, h: 225, diff: 5, text: "“The epistemological ramifications remain contested.”", note: "Dense academic vocabulary and a nested clause. A serious jump — miss the landing, and comprehension falls into the gap." },
+            { x: 1040, h: 300, diff: 6, text: "“Heteroscedastic priors induce non-trivial identifiability constraints.”", note: "Pure technical jargon. The highest, farthest ledge on the terrain — exactly the kind of sentence my ranking model was built to flag as ‘hard’." },
+        ];
+
+        const track = document.getElementById('terrain-track');
+        const explorer = document.getElementById('explorer');
+        let current = 0;
+
+        function renderPlatforms() {
+            TERRAIN.forEach((p, i) => {
+                const el = document.createElement('div');
+                el.className = 'platform';
+                el.id = 'platform-' + i;
+                el.style.left = p.x + 'px';
+                el.style.bottom = p.h + 'px';
+                el.onclick = () => jumpTo(i);
+                if (i > 0) {
+                    const diffLabel = document.createElement('div');
+                    diffLabel.className = 'platform-diff';
+                    diffLabel.innerText = 'DIFFICULTY ' + p.diff;
+                    el.appendChild(diffLabel);
+                }
+                track.appendChild(el);
+            });
+            track.style.width = (TERRAIN[TERRAIN.length - 1].x + 200) + 'px';
+        }
+
+        function drawArcs() {
+            const svg = document.getElementById('terrain-arcs');
+            const trackH = 360;
+            const trackW = TERRAIN[TERRAIN.length - 1].x + 200;
+            svg.setAttribute('width', trackW);
+            svg.setAttribute('height', trackH);
+            svg.style.width = trackW + 'px';
+            svg.style.height = trackH + 'px';
+
+            let paths = '';
+            for (let i = 0; i < TERRAIN.length - 1; i++) {
+                const a = TERRAIN[i], b = TERRAIN[i + 1];
+                const x1 = a.x + 60, y1 = trackH - (a.h + 16);
+                const x2 = b.x + 60, y2 = trackH - (b.h + 16);
+                const midX = (x1 + x2) / 2;
+                const arcY = Math.min(y1, y2) - 30 - b.diff * 6;
+                paths += `<path d="M ${x1} ${y1} Q ${midX} ${arcY} ${x2} ${y2}" stroke="rgba(255,255,255,0.18)" stroke-width="2" stroke-dasharray="4 7" fill="none" stroke-linecap="round"/>`;
+            }
+            svg.innerHTML = paths;
+        }
+
+        function jumpTo(i) {
+            current = Math.max(0, Math.min(TERRAIN.length - 1, i));
+            const p = TERRAIN[current];
+
+            explorer.style.left = (p.x + 45) + 'px';
+            explorer.style.bottom = (p.h + 16) + 'px';
+
+            document.querySelectorAll('.platform').forEach((el, idx) => {
+                el.classList.toggle('active', idx === current);
+            });
+
+            const pct = Math.round((p.diff / 6) * 100);
+            document.getElementById('load-meter-fill').style.width = pct + '%';
+            document.getElementById('load-meter-value').innerText = p.diff + ' / 6';
+            document.getElementById('terrain-sentence').innerText = p.text;
+            document.getElementById('terrain-note').innerText = p.note;
+
+            document.getElementById('btn-prev').disabled = current === 0;
+            document.getElementById('btn-next').disabled = current === TERRAIN.length - 1;
+
+            const wrap = document.querySelector('.terrain-wrap');
+            const targetScroll = Math.max(0, p.x - wrap.clientWidth / 2 + 60);
+            wrap.scrollTo({ left: targetScroll, behavior: 'smooth' });
+        }
+
+        function stepTerrain(delta) {
+            jumpTo(current + delta);
+        }
+
+        renderPlatforms();
+        drawArcs();
+        jumpTo(0);
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
 </body>
 </html>
