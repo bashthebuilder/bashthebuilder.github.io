@@ -33,7 +33,14 @@
             width: 2px;
             background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.03));
         }
-        .tl-item { position: relative; margin-bottom: 2.2rem; transition: opacity 0.25s, max-height 0.25s; }
+        .tl-item {
+            position: relative;
+            margin-bottom: 2.2rem;
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s cubic-bezier(.16,.8,.3,1), transform 0.7s cubic-bezier(.16,.8,.3,1);
+        }
+        .tl-item.in-view { opacity: 1; transform: translateY(0); }
         .tl-item.hidden { display: none; }
         .tl-dot {
             position: absolute;
@@ -42,7 +49,10 @@
             border-radius: 50%;
             border: 3px solid var(--bg-dark);
             box-shadow: 0 0 0 2px currentColor;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(.34,1.76,.64,1) 0.18s;
         }
+        .tl-item.in-view .tl-dot { transform: scale(1); }
         .tl-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
@@ -173,9 +183,9 @@
                 html += `<span class="filter-pill${activeCat === c.key ? ' active' : ''}" data-cat="${c.key}" style="${activeCat === c.key ? `background:${c.color}22; border-color:${c.color}; color:#fff;` : ''}">${c.label}</span>`;
             });
             wrap.innerHTML = html;
-            document.getElementById('tl-all').onclick = () => { activeCat = null; renderFilters(); renderTimeline(); };
+            document.getElementById('tl-all').onclick = () => { activeCat = null; renderFilters(); renderTimeline(); revealTimeline(); };
             wrap.querySelectorAll('[data-cat]').forEach(el => {
-                el.onclick = () => { activeCat = el.dataset.cat; renderFilters(); renderTimeline(); };
+                el.onclick = () => { activeCat = el.dataset.cat; renderFilters(); renderTimeline(); revealTimeline(); };
             });
         }
 
@@ -199,8 +209,23 @@
             }).join('');
         }
 
+        function revealTimeline() {
+            const windowHeight = window.innerHeight;
+            const visibleMargin = 120;
+            document.querySelectorAll('.tl-item:not(.hidden)').forEach(item => {
+                const top = item.getBoundingClientRect().top;
+                if (top < windowHeight - visibleMargin) {
+                    item.classList.add('in-view');
+                }
+            });
+        }
+
         renderFilters();
         renderTimeline();
+        revealTimeline();
+
+        window.addEventListener('scroll', revealTimeline);
+        window.addEventListener('resize', revealTimeline);
 
         const tlLegend = document.createElement('div');
         tlLegend.className = 'tl-legend';
