@@ -5,25 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentorship | Shoaib Jameel</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="The mentorship philosophy and alumni outcomes of Dr. Shoaib Jameel's PhD supervision — graduates now at Huawei Research, BT, Lloyds Bank, and leading universities.">
+    <meta name="description" content="The full mentorship record of Dr. Shoaib Jameel — graduated and current PhD students, Masters students and KTP Associates, their papers, awards and media coverage, from Huawei Research to Forbes.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shoaib Jameel">
     <meta property="og:title" content="Mentorship | Shoaib Jameel">
-    <meta property="og:description" content="The mentorship philosophy and alumni outcomes of Dr. Shoaib Jameel's PhD supervision — graduates now at Huawei Research, BT, Lloyds Bank, and leading universities.">
+    <meta property="og:description" content="The full mentorship record — graduated and current PhD students, Masters students and KTP Associates, their papers, awards and media coverage.">
     <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <meta property="og:url" content="https://bashthebuilder.github.io/students.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mentorship | Shoaib Jameel">
-    <meta name="twitter:description" content="The mentorship philosophy and alumni outcomes of Dr. Shoaib Jameel's PhD supervision — graduates now at Huawei Research, BT, Lloyds Bank, and leading universities.">
+    <meta name="twitter:description" content="The full mentorship record — graduated and current PhD students, Masters students and KTP Associates, their papers, awards and media coverage.">
     <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .ms-progress { position: fixed; top: var(--nav-height); left: 0; height: 3px; width: 0%; background: var(--accent-liquid); z-index: 999; transition: width 0.12s linear; }
+        .ms-counter { font-variant-numeric: tabular-nums; }
+
+        /* Hub diagram */
+        .ms-hub-svg { width: 100%; height: auto; display: block; }
+        .ms-hub-node { cursor: pointer; }
+        .ms-hub-node circle.ms-hub-core { transition: filter 0.25s; }
+        .ms-hub-node:hover circle.ms-hub-core, .ms-hub-node.ms-active circle.ms-hub-core { filter: brightness(1.35); }
+        .ms-hub-label { fill: #fff; font-size: 12.5px; font-weight: 700; font-family: 'Inter', sans-serif; text-anchor: middle; pointer-events: none; }
+        .ms-hub-sub { fill: var(--text-muted); font-size: 10px; font-family: 'Inter', sans-serif; text-anchor: middle; pointer-events: none; }
+        .ms-hub-edge { fill: none; stroke: rgba(255,255,255,0.22); stroke-width: 1.6; transition: stroke-dashoffset 1.3s cubic-bezier(.16,.8,.3,1), stroke 0.25s, stroke-width 0.25s, opacity 0.25s; }
+        .ms-hub-edge.ms-edge-active { stroke: #fff; stroke-width: 2.4; opacity: 1; }
+        #ms-hub-caption { min-height: 3.4em; transition: opacity 0.2s; }
+
+        /* Cards & grids */
+        .ms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; }
+        .ms-card { padding: 2.5rem; opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(.16,.8,.3,1), transform 0.7s cubic-bezier(.16,.8,.3,1); }
+        .ms-card.active { opacity: 1; transform: translateY(0); }
+        .ms-name { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+        .ms-inst { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.2rem; }
+
+        .ms-journey { display: flex; align-items: center; margin-bottom: 1.4rem; gap: 0; }
+        .ms-journey-from, .ms-journey-to { font-size: 0.82rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+        .ms-journey-to { color: #a5b4fc; }
+        .ms-journey-track { position: relative; flex: 1; height: 2px; min-width: 30px; margin: 0 12px; background: linear-gradient(to right, var(--glass-border), #818cf8); overflow: visible; }
+        .ms-journey-dot { position: absolute; top: 50%; left: 0; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px 1px #818cf8; transform: translateY(-50%); animation: ms-travel 2.6s ease-in-out infinite; }
+        @keyframes ms-travel { 0% { left: 0%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+        .ms-highlight { color: var(--text-muted); border-left: 3px solid #6366f1; padding-left: 1.2rem; margin-bottom: 1.4rem; font-size: 1rem; line-height: 1.65; }
+        .ms-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+        .ms-chip { display: inline-block; padding: 5px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.04); color: var(--text-muted); }
+        .ms-chip.ms-chip-gold { color: #fbbf24; border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); }
+
+        .ms-papers { margin-bottom: 1rem; }
+        .ms-paper { padding: 0.65rem 0; border-bottom: 1px solid var(--glass-border); font-size: 0.95rem; }
+        .ms-paper:last-child { border-bottom: none; }
+        .ms-paper a { color: #a5b4fc; text-decoration: none; font-weight: 600; }
+        .ms-paper a:hover { text-decoration: underline; }
+        .ms-paper-title { color: #fff; font-weight: 600; }
+        .ms-paper-venue { color: var(--text-muted); font-size: 0.82rem; display: block; margin-top: 2px; }
+        .ms-more { color: var(--text-muted); font-size: 0.85rem; font-style: italic; }
+
+        .ms-links { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+        .ms-links a { font-size: 0.85rem; font-weight: 700; color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 100px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); }
+        .ms-links a:hover { border-color: #818cf8; color: #a5b4fc; }
+
+        /* Compact cohort strip for students without individual data yet */
+        .ms-cohort-strip { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+        .ms-cohort-pill { padding: 10px 20px; border-radius: 100px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.95rem; }
+        .ms-cohort-pill strong { color: #fff; }
+
+        .ms-spotlight { border: 1px dashed rgba(255,255,255,0.18); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ms-journey-dot, .ms-card { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+        }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
-    
+    <div class="ms-progress" id="ms-progress"></div>
+
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
@@ -45,80 +104,163 @@
     </nav>
 
     <main class="container" style="padding-top: 160px;">
-        <section>
-            <span class="section-title">The Mentorship Philosophy</span>
-            <h2>Architecting Minds for Global Leadership.</h2>
-            
-            <div class="card">
-                <p style="margin-bottom: 2rem;">My role as a mentor goes beyond standard academic supervision; I see myself as a <span class="highlight-text">technical architect for future careers</span>. I train my students in the deep rigors of mathematical modelling, scientific programming, and robust experimental design. My mission is to ensure that every mind I shape is capable of not just publishing at flagship conferences, but of leading high-impact AI teams in industry and academia.</p>
-                
+
+        <!-- Hero / Philosophy -->
+        <section class="reveal" style="margin-bottom: 3rem;">
+            <span class="section-title">The Mentorship Record</span>
+            <h2 class="liquid-text" style="font-size: 3rem;">Architecting Minds for Global Leadership.</h2>
+            <div class="card" style="margin-top: 2rem;">
+                <p style="margin-bottom: 2rem;">My role as a mentor goes beyond standard academic supervision; I see myself as a <span class="highlight-text">technical architect for future careers</span>. I train my students in the deep rigours of mathematical modelling, scientific programming, and robust experimental design. Below is the full record — not a highlight reel — of everyone I've supervised as PhD students, Masters students, and KTP Associates: what they built, where it was published, and where they are now.</p>
                 <div class="grid">
                     <div>
                         <span class="impact-badge">Technical Advisory</span>
-                        <p style="font-size: 1rem; color: var(--text-muted);">Training in probabilistic topic modelling, data analysis at scale, and the bridge between theoretical equations and production-ready Java/Python codebases.</p>
+                        <p style="font-size: 1rem; color: var(--text-muted);">Training in probabilistic modelling, data analysis at scale, and the bridge between theoretical equations and production-ready codebases.</p>
                     </div>
                     <div>
                         <span class="impact-badge">Global Outcomes</span>
-                        <p style="font-size: 1rem; color: var(--text-muted);">My alumni are currently shaping the future of AI at <span class="highlight-text">Huawei Research</span>, <span class="highlight-text">British Telecom</span>, <span class="highlight-text">Lloyds Bank</span>, and elite technical universities.</p>
+                        <p style="font-size: 1rem; color: var(--text-muted);">Alumni now shape AI at <span class="highlight-text">Huawei Research</span>, <span class="highlight-text">BT</span>, <span class="highlight-text">Lloyds Bank</span>, <span class="highlight-text">3 UK</span>, and as faculty in India and Portugal.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section>
-            <span class="section-title">Alumni Success Stories</span>
-            
+        <!-- Stat counters -->
+        <section class="grid reveal" style="margin-bottom: 3rem;">
+            <div class="card stat-card">
+                <span class="stat-value"><span class="ms-counter" data-target="7">0</span></span>
+                <span class="stat-label">Graduated PhD &amp; Masters Students</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="ms-counter" data-target="11">0</span></span>
+                <span class="stat-label">Current PhD Researchers</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="ms-counter" data-target="4">0</span></span>
+                <span class="stat-label">KTP &amp; Postdoctoral Associates</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="ms-counter" data-target="6">0</span></span>
+                <span class="stat-label">Organisations Where Alumni Now Work</span>
+            </div>
+        </section>
+
+        <!-- Quick nav -->
+        <div class="quick-nav reveal">
+            <a href="#graduated">Graduated Alumni</a>
+            <a href="#current">Current PhD Cohort</a>
+            <a href="#ktp">KTP &amp; Postdoctoral Associates</a>
+            <a href="#spotlight">Undergraduate Spotlight</a>
+        </div>
+
+        <!-- Hub diagram: where alumni are now -->
+        <section style="margin-bottom: 6rem;">
             <div class="card">
-                <div class="student-item">
-                    <span class="tag">Huawei Research</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Liao Yi & Sam Lai</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">I served as the technical advisor for these researchers at CUHK, guiding them through complex mathematical modelling and scientific programming. Today, Liao Yi is a <strong>Research Scientist at Huawei's Research Lab</strong>, while Sam Lai's work on social network crawling and topic modelling led to flagship publications at SIGIR.</p>
-                </div>
+                <span class="section-title">Where They Are Now</span>
+                <h2 style="font-size: 2.2rem;">One Lab, Six Destinations.</h2>
+                <p class="lead" style="margin-bottom: 2rem;">Hover a node to see who's there.</p>
+                <svg class="ms-hub-svg" viewBox="0 0 800 520" id="ms-hub-svg">
+                    <path class="ms-hub-edge" data-node="huawei" d="M400,260 L400,70"/>
+                    <path class="ms-hub-edge" data-node="bt" d="M400,260 L565,165"/>
+                    <path class="ms-hub-edge" data-node="lloyds" d="M400,260 L565,355"/>
+                    <path class="ms-hub-edge" data-node="iit" d="M400,260 L400,450"/>
+                    <path class="ms-hub-edge" data-node="inesc" d="M400,260 L235,355"/>
+                    <path class="ms-hub-edge" data-node="threeuk" d="M400,260 L235,165"/>
 
-                <div class="student-item">
-                    <span class="tag">Microsoft Research Fellow</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">António Correia</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">António's journey under my co-supervision led him to become the <strong>first Portuguese PhD student</strong> ever to be awarded the prestigious <strong>Microsoft Research PhD Fellowship (2021)</strong>. His work on hybrid human-AI enabled scientometrics has received multiple best paper awards and international recognition.</p>
-                </div>
-
-                <div class="student-item">
-                    <span class="tag">Industrial Leadership</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Mahsa Abazari Kia & Reyhaneh Hashempour</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">I mentored Mahsa and Reyhaneh to bridge the gap between AI theory and industrial requirements. Mahsa's models were successfully developed for <strong>British Telecom (BT) systems</strong>, and she is now a <strong>Lecturer in London</strong>. Reyhaneh now applies her expertise as a <strong>Data Scientist at BT</strong>.</p>
-                </div>
-
-                <div class="student-item">
-                    <span class="tag">IIT Professorship</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Dr. Yogesh Kumar Meena</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">As my Postdoctoral KTP Associate at the University of Essex, Yogesh worked at the intersection of industry and research. He has now transitioned into an academic leadership role as an <strong>Assistant Professor at IIT Gujarat</strong>.</p>
-                </div>
-
-                <div class="student-item">
-                    <span class="tag">Global Finance & Tech</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Anastasia Tomita & Faizan Khan</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Mentored into high-stakes environments: Anastasia now serves as a <strong>Graduate Trainee at Lloyds Bank</strong>, while Faizan Khan transitioned from our security intelligence KTP to become a <strong>Data Scientist at 3 UK</strong>.</p>
-                </div>
+                    <g class="ms-hub-node" transform="translate(400,260)">
+                        <circle class="ms-hub-core" r="52" fill="#080a0f" stroke="url(#msGrad)" stroke-width="2.5"/>
+                        <circle r="52" fill="#6366f1" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="-4">Shoaib's</text>
+                        <text class="ms-hub-label" y="14">Research Group</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="huawei" transform="translate(400,70)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#34d399" stroke-width="2.2"/>
+                        <circle r="36" fill="#34d399" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="4">Huawei</text>
+                        <text class="ms-hub-sub" y="18">Research</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="bt" transform="translate(565,165)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#a855f7" stroke-width="2.2"/>
+                        <circle r="36" fill="#a855f7" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="6">BT</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="lloyds" transform="translate(565,355)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#ec4899" stroke-width="2.2"/>
+                        <circle r="36" fill="#ec4899" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="4">Lloyds</text>
+                        <text class="ms-hub-sub" y="18">Bank</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="iit" transform="translate(400,450)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#818cf8" stroke-width="2.2"/>
+                        <circle r="36" fill="#818cf8" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="4">IIT</text>
+                        <text class="ms-hub-sub" y="18">Gujarat</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="inesc" transform="translate(235,355)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#fbbf24" stroke-width="2.2"/>
+                        <circle r="36" fill="#fbbf24" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="4">INESC TEC</text>
+                        <text class="ms-hub-sub" y="18">Portugal</text>
+                    </g>
+                    <g class="ms-hub-node" data-id="threeuk" transform="translate(235,165)">
+                        <circle class="ms-hub-core" r="36" fill="#080a0f" stroke="#34d399" stroke-width="2.2"/>
+                        <circle r="36" fill="#34d399" fill-opacity="0.12"/>
+                        <text class="ms-hub-label" y="6">3 UK</text>
+                    </g>
+                    <defs>
+                        <linearGradient id="msGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#ec4899"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <p id="ms-hub-caption" style="color: var(--text-muted); font-size: 1.1rem;">Hover or tap a node to see who's there.</p>
             </div>
         </section>
 
-        <section>
+        <!-- Graduated Alumni -->
+        <section id="graduated" style="margin-bottom: 6rem;">
+            <span class="section-title">Alumni Success Stories</span>
+            <h2 style="font-size: 2.4rem;">Graduated PhD &amp; Masters Students.</h2>
+            <p class="lead" style="max-width: 780px; margin-bottom: 2.5rem;">Every completed PhD and Masters supervision, in full — what they built, where it was published, and where they went next.</p>
+            <div class="ms-grid" id="ms-graduated-grid"></div>
+        </section>
+
+        <!-- Current PhD Cohort -->
+        <section id="current" style="margin-bottom: 6rem;">
             <span class="section-title">Current Research Group</span>
-            <div class="grid">
-                <div class="card">
-                    <h4 style="color: #fff; margin-bottom: 1rem;">Strategic PhD Candidates</h4>
-                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.8rem;">▹ <span class="highlight-text">Ubaid Azam:</span> Leading UNDP competition-winning work on AI Trust & Safety. Winner, Doctoral College Director's Award 2026 (Public Engagement & Outreach and Knowledge Exchange & Enterprise).</li>
-                        <li style="margin-bottom: 0.8rem;">▹ <span class="highlight-text">Lingzhi Shen:</span> Researching parameter-efficient fine-tuning for personality detection.</li>
-                        <li style="margin-bottom: 0.8rem;">▹ <span class="highlight-text">Inamullah Khan:</span> Pioneering retinal imaging associations for systemic health (featured in Forbes).</li>
-                        <li style="margin-bottom: 0.8rem;">▹ <span class="highlight-text">Ghadir Alselwi:</span> Advancing long-context modeling for ACL full paper.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h4 style="color: #fff; margin-bottom: 1rem;">Global Researchers</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Supervising a diverse cohort of researchers across Southampton and international collaborations, including Dalia Nahhas, Fatima Alshareef, Bador Ali Al Sari, Abdulrahman Alalawi, Ibtisam Khader Alzahrani, Abdulsalam Obaid A. Alharbi, and Matthew Javanshir.</p>
-                </div>
+            <h2 style="font-size: 2.4rem;">The Current PhD Cohort.</h2>
+            <p class="lead" style="max-width: 780px; margin-bottom: 2.5rem;">Eleven PhD researchers, mid-story — their most recent publications and recognitions to date.</p>
+            <div class="ms-grid" id="ms-current-grid" style="margin-bottom: 2rem;"></div>
+            <div class="card">
+                <h4 style="color: #fff; margin-bottom: 1rem;">Also in the Group</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.95rem;">Early-stage PhD researchers building out their publication record at the University of Southampton.</p>
+                <div class="ms-cohort-strip" id="ms-cohort-strip"></div>
             </div>
         </section>
+
+        <!-- KTP & Postdoctoral Associates -->
+        <section id="ktp" style="margin-bottom: 6rem;">
+            <span class="section-title">Industry-Facing Mentorship</span>
+            <h2 style="font-size: 2.4rem;">KTP &amp; Postdoctoral Associates.</h2>
+            <p class="lead" style="max-width: 780px; margin-bottom: 2.5rem;">Knowledge Transfer Partnerships and research-assistant roles that turned into permanent careers.</p>
+            <div class="ms-grid" id="ms-ktp-grid"></div>
+        </section>
+
+        <!-- Undergraduate spotlight -->
+        <section id="spotlight" style="margin-bottom: 4rem;">
+            <span class="section-title">Beyond the PhD</span>
+            <h2 style="font-size: 2rem;">Undergraduate Spotlight.</h2>
+            <div class="card ms-spotlight reveal" style="max-width: 800px;">
+                <span class="ms-chip ms-chip-gold" style="margin-bottom: 1rem; display: inline-block;">BBC Radio 4</span>
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.6rem;">Elena Barry</h3>
+                <p style="color: var(--text-muted);">A final-year undergraduate at the time, Elena co-authored <em>"Emojional: Emoji Embeddings"</em> (UKCI 2021) with Haider Raza and me — work that got picked up by <strong style="color:#fff;">BBC Radio 4</strong>, who contacted us to talk about the research. Proof that strong mentorship starts well before the PhD.</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-bottom: 4rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="all-publications.html" class="tag" style="padding: 16px 32px; background: #6366f1; color: white; text-decoration: none; font-size: 1.1rem;">Browse All Publications →</a>
+            <a href="industry.html" class="tag" style="padding: 16px 32px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border); font-size: 1.1rem;">See Industry Impact</a>
+        </div>
     </main>
 
     <footer>
@@ -126,6 +268,388 @@
             <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        // ---------------- Data ----------------
+        const GRADUATED = [
+            {
+                name: "Liao Yi (Yi Liao)",
+                level: "PhD",
+                inst: "The Chinese University of Hong Kong (CUHK)",
+                from: "PhD Student · CUHK",
+                to: "Research Scientist, Huawei Research Lab",
+                highlight: "I was best described as a “technical advisor” — guiding Yi through mathematical modelling, scientific programming and experimental design. He is now a Research Scientist at Huawei's Research Lab.",
+                chips: ["Huawei Research Lab"],
+                papers: [
+                    { title: "Who Wants to Join Me? Companion Recommendation in Location-Based Social Networks", venue: "ICTIR 2016", url: "https://drive.google.com/open?id=1iPLZ8EDQaQYkjpZ6FTlK9ZPksf_Ki8wN" },
+                    { title: "Exploring Urban Lifestyles Using a Nonparametric Temporal Graphical Model", venue: "ICTIR 2016", url: "https://drive.google.com/open?id=1MrnfHbZO9jGJao9diVJihHmKIDj9KXRp" },
+                    { title: "Abstract Venue Concept Detection from Location-Based Social Networks", venue: "AIRS 2015", url: "https://drive.google.com/file/d/1aRgJWZJPdfd_cMPB7IucGDO9FQIJ-SFG/view?usp=sharing" }
+                ]
+            },
+            {
+                name: "Sam Lai (Kwun Ping Lai)",
+                level: "MPhil",
+                inst: "The Chinese University of Hong Kong (CUHK)",
+                from: "MPhil Student · CUHK",
+                to: "Research Assistant, Prof. Wai Lam's Group, CUHK",
+                highlight: "I supervised Sam for a year, training him in social-network data crawling and probabilistic topic modelling in Java. He successfully defended his MPhil thesis and we jointly published a paper at a flagship information retrieval conference.",
+                chips: ["SIGIR 2017"],
+                papers: [
+                    { title: "Jointly Learning Word Embeddings and Latent Topics", venue: "SIGIR 2017", url: "https://drive.google.com/open?id=1I_fmdLmae0SE1HEzBRO7Nv-RedkNlnAY" }
+                ]
+            },
+            {
+                name: "Mahsa Abazari Kia",
+                level: "PhD",
+                inst: "University of Essex · Research Supervisor",
+                from: "PhD Student · Essex",
+                to: "Lecturer, a university in London",
+                highlight: "Mahsa's question-answering and summarisation models were developed to completion for deployment on British Telecom (BT) systems. She now lectures at a university in London.",
+                chips: ["Deployed at BT", "Lecturer in London"],
+                papers: [
+                    { title: "Question-Driven Text Summarization Using an Extractive-Abstractive Framework", venue: "Computational Intelligence, 2024", url: null },
+                    { title: "Adaptable Closed-Domain Question Answering Using Contextualized CNN-Attention Models and Question Expansion", venue: "IEEE Access, 2022", url: null }
+                ]
+            },
+            {
+                name: "Reyhaneh Hashempour",
+                level: "PhD",
+                inst: "University of Essex · Research Co-Supervisor",
+                from: "PhD Student · Essex",
+                to: "Data Scientist, BT",
+                highlight: "Co-built a transformer-based intent classification and entity recognition model that shipped into BT's internal production systems — work strong enough that the KTP concluded ten months ahead of schedule when she secured a permanent role there.",
+                chips: ["Deployed at BT", "IEEE Access"],
+                papers: [
+                    { title: "Unified Transformer Multi-task Learning for Intent Classification with Entity Recognition", venue: "IEEE Access, 2021 · Deployed at BT", url: null }
+                ]
+            },
+            {
+                name: "António Correia",
+                level: "PhD",
+                inst: "Univ. Trás-os-Montes e Alto Douro, Portugal · Research Co-Supervisor",
+                from: "PhD Student · UTAD",
+                to: "Researcher, INESC TEC, Porto",
+                highlight: "First Portuguese PhD student ever awarded the Microsoft Research PhD Fellowship (2021) — on top of a Best Paper Award, the Scientific Production Award 2021, an FLAD Science Award USA grant, and a Top-10 finish in the Annual Excellence in Doctoral Research Award.",
+                chips: ["Microsoft Research PhD Fellow · First Portuguese Recipient", "Best Paper Award", "Scientific Production Award 2021"],
+                links: [{ label: "Top 10 Doctoral Research Award — video", url: "https://www.youtube.com/watch?v=9Wvq0P95560" }],
+                papers: [
+                    { title: "A Pipeline for AI-Based Quantitative Studies of Science Enhanced by Crowdsourced Inferential Modelling", venue: "HIS 2025", url: null },
+                    { title: "A DSR Approach for the Design of a Hybrid Crowd-Algorithmic RLHF-based Scientometric System", venue: "HIS 2023", url: null },
+                    { title: "On the Socio-Technical Aspects of Crowdsourcing as a Mechanism for Academic Study", venue: "HICSS 2020 · Best Paper Nominee", url: null },
+                    { title: "‘Caught Between Worlds’: Leveraging Crowd Science and AI for Supporting Scientific Work Practices", venue: "CSCW Journal, 2019", url: null }
+                ],
+                more: "+ 10 more co-authored papers on hybrid crowd-AI systems (2019–2025)"
+            },
+            {
+                name: "Hamad Zogan",
+                level: "PhD",
+                inst: "University of Technology Sydney, Australia · Research Co-Supervisor",
+                from: "PhD Student · UTS Sydney",
+                to: "PhD Graduate, UTS Sydney",
+                highlight: "His social-media depression-detection work reached SIGIR 2021 and drew news coverage during the pandemic, including reporting on the team's COVID-19 community depression findings.",
+                chips: ["SIGIR 2021", "Covered in the Media"],
+                links: [{ label: "Gazette News: Twitter research shows depression rise", url: "https://www.gazette-news.co.uk/news/19068066.twitter-research-university-essex-shows-increase-depression-pandemic/" }],
+                papers: [
+                    { title: "Explainable Depression Detection with Multi-Modalities Using a Hybrid Deep Learning Model on Social Media", venue: "World Wide Web Journal, 2021 · Most-cited paper in the archive", url: null },
+                    { title: "DepressionNet: Learning Multi-modalities with User Post Summarization for Depression Detection on Social Media", venue: "SIGIR 2021", url: null },
+                    { title: "Detecting Community Depression Dynamics Due to COVID-19 Pandemic in Australia", venue: "IEEE Trans. Computational Social Systems, 2021", url: null },
+                    { title: "Convolutional Attention Based Multimodal Network for Depression Detection on Social Media", venue: "IEEE J-BHI, 2023", url: null }
+                ]
+            },
+            {
+                name: "Mozhgan Talebpour",
+                level: "PhD",
+                inst: "University of Essex · Research Supervisor",
+                from: "PhD Student · Essex",
+                to: "PhD Graduate, University of Essex",
+                highlight: "Her computational model was deployed on a company's live production systems, with the underlying research published at two premier venues — ECIR and SIGIR.",
+                chips: ["Deployed in Production", "ECIR", "SIGIR"],
+                links: [{ label: "Thomson Reuters Labs: talk on this research", url: "https://medium.com/tr-labs-ml-engineering-blog/a-talk-on-contextualized-attention-embeddings-by-professor-shoaib-jameel-5e68e3bb12f1" }],
+                papers: [
+                    { title: "Topics in Contextualised Attention Embeddings", venue: "ECIR 2023", url: null },
+                    { title: "Bias in Language Models: Interplay of Architecture and Data?", venue: "SIGIR 2025", url: null }
+                ]
+            }
+        ];
+
+        const CURRENT = [
+            {
+                name: "Lingzhi Shen",
+                inst: "PhD Student · Research Supervisor",
+                highlight: "The most prolific member of the current cohort — six papers in 2025 alone, spanning personality detection, emotion-aware modelling and multimodal misinformation.",
+                chips: ["NeurIPS 2025", "6 papers in 2025"],
+                papers: [
+                    { title: "CALM: Culturally Self-Aware Language Models", venue: "NeurIPS 2025", url: null },
+                    { title: "EmoPerso: Enhancing Personality Detection with Self-Supervised Emotion-Aware Modelling", venue: "CIKM 2025", url: null },
+                    { title: "GAMED: Knowledge Adaptive Multi-Experts Decoupling for Multimodal Fake News Detection", venue: "WSDM 2025", url: null },
+                    { title: "HIPPD: Brain-Inspired Hierarchical Information Processing for Personality Detection", venue: "ACML 2025", url: null }
+                ],
+                more: "+ 2 more (IJCNN 2025, IEEE ICME 2025)"
+            },
+            {
+                name: "Ubaid Azam",
+                inst: "PhD Student · Research Supervisor",
+                highlight: "Winner, Doctoral College Director's Award 2026 (Public Engagement & Outreach, and Knowledge Exchange & Enterprise). Co-leads a UNDP-selected global team on AI Trust & Safety with me, and leads the PICASO probabilistic-reasoning project for the Alan Turing Institute.",
+                chips: ["Doctoral College Director's Award 2026", "UNDP AI Trust & Safety", "with Thomson Reuters Labs"],
+                links: [
+                    { label: "UNDP: AI Trust & Safety", url: "https://www.undp.org/digital/ai-trust-and-safety" },
+                    { label: "PICASO project page", url: "https://ubaidazam.github.io/PICASO/" }
+                ],
+                papers: [
+                    { title: "BAKER: Bayesian Kernel Uncertainty in Domain-Specific Document Modelling", venue: "WSDM 2025 · with Thomson Reuters Labs", url: null },
+                    { title: "Would You Trust an AI Doctor? Building Reliable Medical Predictions with Kernel Dropout Uncertainty", venue: "WISE 2024 · with Thomson Reuters Labs", url: null },
+                    { title: "Uncertainty Modelling in Under-Represented Languages with Bayesian Deep Gaussian Processes", venue: "COLING 2025", url: null },
+                    { title: "Lightweight Cross-Lingual Federated Prompt Tuning for Low-Resource Languages", venue: "LREC-COLING 2026", url: null }
+                ]
+            },
+            {
+                name: "Inamullah Khan",
+                inst: "PhD Student · Research Supervisor",
+                highlight: "His oculomics research — reading whole-body health from retinal scans — was featured on Forbes.",
+                chips: ["Featured on Forbes"],
+                links: [{ label: "Forbes: AI eye exams as a gateway to whole-body wellness", url: "https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" }],
+                papers: [
+                    { title: "The Eye as a Window to Systemic Health: A Survey of Retinal Imaging from Classical Techniques to Oculomics", venue: "J. Precision Medicine, 2025 · Featured on Forbes", url: "https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" },
+                    { title: "Retinal–Lipidomics Associations as Candidate Biomarkers for Cardiovascular Health", venue: "MICAD 2025", url: null },
+                    { title: "RetiSEM: Generalising Causal Models for Fragmented Biomedical Data", venue: "IJCAI 2026 Workshop", url: null }
+                ]
+            },
+            {
+                name: "Ghadir Alselwi",
+                inst: "PhD Student · Research Co-Supervisor",
+                highlight: "Advancing long-context modelling for retrieval-augmented language models.",
+                chips: ["ACL 2026"],
+                papers: [
+                    { title: "Long Context Modeling with Ranked Memory-Augmented Retrieval", venue: "ACL 2026", url: null }
+                ]
+            },
+            {
+                name: "Abdulrahman Alalawi",
+                inst: "PhD Student · Research Co-Supervisor",
+                highlight: "Working across uncertainty-aware language modelling and misinformation detection under limited labels.",
+                chips: ["COLING 2025", "WWW Journal 2026"],
+                papers: [
+                    { title: "Uncertainty Modelling in Under-Represented Languages with Bayesian Deep Gaussian Processes", venue: "COLING 2025", url: null },
+                    { title: "Few Labels with Active Learning: From Weak to Strong Labels for Misinformation Detection", venue: "WebConf 2025 Workshop", url: null },
+                    { title: "Cluster-SCP: Similarity and Contrastive Learning to Enhance Pseudo Labels for Fine Tuning under Few Labels", venue: "World Wide Web Journal, 2026", url: null }
+                ]
+            },
+            {
+                name: "Abdulsalam Obaid A. Alharbi",
+                inst: "PhD Student · Research Co-Supervisor",
+                highlight: "Focused on large language models for Arabic dialects — both general-purpose adaptation and health-claim evaluation.",
+                chips: ["ASONAM 2025", "COLING 2025"],
+                papers: [
+                    { title: "Enhancing Large Language Models for Arabic Dialects Using Knowledge-Based Rethinking and Contrastive Learning", venue: "ASONAM 2025", url: null },
+                    { title: "Evaluating Large Language Models on Health-Related Claims Across Arabic Dialects", venue: "COLING 2025 Workshop", url: null }
+                ]
+            }
+        ];
+
+        const COHORT_ONLY = ["Bador Ali Al Sari", "Dalia Nahhas", "Ibtisam Khader Alzahrani", "Fatima Alshareef", "Matthew Javanshir"];
+
+        const KTP = [
+            {
+                name: "Dr. Yogesh Kumar Meena",
+                inst: "Postdoctoral KTP Associate · University of Essex",
+                from: "Postdoctoral KTP Associate",
+                to: "Assistant Professor, IIT Gujarat",
+                highlight: "Worked at the intersection of industry and research as a Postdoctoral KTP Associate; now shapes the next generation of engineers as faculty in India.",
+                chips: ["Assistant Professor, IIT Gujarat"]
+            },
+            {
+                name: "Faizan Khan",
+                inst: "KTP Associate · University of Essex, with Horus Security Consultancy (Oxford)",
+                from: "KTP Associate · Horus Security",
+                to: "Data Scientist, 3 UK",
+                highlight: "Built security-intelligence tooling for Horus Security Consultancy through the KTP scheme before moving into a Data Scientist role at 3 UK.",
+                chips: ["Data Scientist, 3 UK"],
+                links: [{ label: "Horus Security Consultancy partners with Essex", url: "https://www.essex.ac.uk/news/2021/11/30/horus-security-consultancy-partners-with-university-of-essex" }]
+            },
+            {
+                name: "Anastasia Tomita",
+                inst: "Research Assistant · University of Essex",
+                from: "Research Assistant · Essex",
+                to: "Graduate Trainee, Lloyds Bank",
+                highlight: "Moved from research-assistant work directly into a Graduate Trainee programme at Lloyds Bank.",
+                chips: ["Lloyds Bank"]
+            },
+            {
+                name: "Yaseen Mohammed Osman",
+                inst: "Research Assistant · University of Southampton",
+                from: "Research Assistant · Southampton",
+                to: "PhD Student, University of Southampton",
+                highlight: "Progressed directly from research-assistant work into doctoral study — now a PhD student at Southampton.",
+                chips: ["Progressed to PhD"]
+            }
+        ];
+
+        // ---------------- Rendering ----------------
+        function esc(s) { const d = document.createElement('div'); d.innerText = s == null ? '' : s; return d.innerHTML; }
+
+        function renderPapers(papers, more) {
+            if (!papers || !papers.length) return '';
+            let html = '<div class="ms-papers">';
+            papers.forEach(p => {
+                html += `<div class="ms-paper">`;
+                if (p.url) {
+                    html += `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
+                } else {
+                    html += `<span class="ms-paper-title">${esc(p.title)}</span>`;
+                }
+                html += `<span class="ms-paper-venue">${esc(p.venue)}</span></div>`;
+            });
+            html += '</div>';
+            if (more) html += `<p class="ms-more">${esc(more)}</p>`;
+            return html;
+        }
+
+        function renderChips(chips) {
+            if (!chips || !chips.length) return '';
+            return `<div class="ms-chips">${chips.map(c => `<span class="ms-chip">${esc(c)}</span>`).join('')}</div>`;
+        }
+
+        function renderLinks(links) {
+            if (!links || !links.length) return '';
+            return `<div class="ms-links">${links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} →</a>`).join('')}</div>`;
+        }
+
+        function renderJourneyCard(s) {
+            return `
+            <div class="card ms-card reveal">
+                <div class="ms-name">${esc(s.name)}</div>
+                <div class="ms-inst">${esc(s.inst)}</div>
+                ${s.from && s.to ? `
+                <div class="ms-journey">
+                    <span class="ms-journey-from">${esc(s.from)}</span>
+                    <span class="ms-journey-track"><span class="ms-journey-dot"></span></span>
+                    <span class="ms-journey-to">${esc(s.to)}</span>
+                </div>` : ''}
+                <p class="ms-highlight">${s.highlight}</p>
+                ${renderChips(s.chips)}
+                ${renderPapers(s.papers, s.more)}
+                ${renderLinks(s.links)}
+            </div>`;
+        }
+
+        function renderCurrentCard(s) {
+            return `
+            <div class="card ms-card reveal">
+                <div class="ms-name">${esc(s.name)}</div>
+                <div class="ms-inst">${esc(s.inst)}</div>
+                <p class="ms-highlight">${s.highlight}</p>
+                ${renderChips(s.chips)}
+                ${renderPapers(s.papers, s.more)}
+                ${renderLinks(s.links)}
+            </div>`;
+        }
+
+        document.getElementById('ms-graduated-grid').innerHTML = GRADUATED.map(renderJourneyCard).join('');
+        document.getElementById('ms-current-grid').innerHTML = CURRENT.map(renderCurrentCard).join('');
+        document.getElementById('ms-ktp-grid').innerHTML = KTP.map(renderJourneyCard).join('');
+        document.getElementById('ms-cohort-strip').innerHTML = COHORT_ONLY.map(n => `<span class="ms-cohort-pill"><strong>${esc(n)}</strong> · PhD Student</span>`).join('');
+
+        // ---------------- Scroll reveal ----------------
+        function reveal() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('resize', reveal);
+        reveal();
+
+        // ---------------- Scroll progress ----------------
+        function updateProgress() {
+            const h = document.documentElement;
+            const scrollTop = h.scrollTop || document.body.scrollTop;
+            const scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+            const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            document.getElementById('ms-progress').style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // ---------------- Stat counters ----------------
+        function runCounters() {
+            document.querySelectorAll('.ms-counter').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const duration = 1200;
+                const start = performance.now();
+                function tick(now) {
+                    const p = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(target * eased);
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+        let countersStarted = false;
+        function checkCounters() {
+            if (countersStarted) return;
+            const el = document.querySelector('.ms-counter');
+            if (!el) return;
+            if (el.getBoundingClientRect().top < window.innerHeight - 60) { countersStarted = true; runCounters(); }
+        }
+        window.addEventListener('scroll', checkCounters);
+        window.addEventListener('resize', checkCounters);
+        checkCounters();
+
+        // ---------------- Hub diagram ----------------
+        const hubCaptions = {
+            huawei: "Liao Yi — PhD student at CUHK, now a Research Scientist at Huawei's Research Lab.",
+            bt: "Reyhaneh Hashempour — PhD student at Essex, now a Data Scientist at BT, after her transformer model shipped into BT's production systems.",
+            lloyds: "Anastasia Tomita — Research Assistant at Essex, now a Graduate Trainee at Lloyds Bank.",
+            iit: "Dr. Yogesh Kumar Meena — Postdoctoral KTP Associate at Essex, now Assistant Professor at IIT Gujarat.",
+            inesc: "António Correia — PhD student (co-supervised), now a researcher at INESC TEC, Porto — and the first Portuguese PhD student ever awarded a Microsoft Research PhD Fellowship.",
+            threeuk: "Faizan Khan — KTP Associate with Horus Security Consultancy, now a Data Scientist at 3 UK."
+        };
+
+        const hubEdges = Array.from(document.querySelectorAll('.ms-hub-edge'));
+        hubEdges.forEach(path => {
+            const len = path.getTotalLength();
+            path.style.strokeDasharray = len;
+            path.style.strokeDashoffset = len;
+        });
+        const hubObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    hubEdges.forEach(path => { path.style.strokeDashoffset = 0; });
+                    hubObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        const hubSvg = document.getElementById('ms-hub-svg');
+        if (hubSvg) hubObserver.observe(hubSvg);
+
+        document.querySelectorAll('.ms-hub-node[data-id]').forEach(node => {
+            const id = node.dataset.id;
+            function activate() {
+                document.querySelectorAll('.ms-hub-node').forEach(n => n.classList.toggle('ms-active', n === node));
+                hubEdges.forEach(path => path.classList.toggle('ms-edge-active', path.dataset.node === id));
+                const caption = document.getElementById('ms-hub-caption');
+                caption.style.opacity = 0;
+                setTimeout(() => { caption.textContent = hubCaptions[id]; caption.style.opacity = 1; }, 120);
+            }
+            function deactivate() {
+                document.querySelectorAll('.ms-hub-node').forEach(n => n.classList.remove('ms-active'));
+                hubEdges.forEach(path => path.classList.remove('ms-edge-active'));
+                const caption = document.getElementById('ms-hub-caption');
+                caption.style.opacity = 0;
+                setTimeout(() => { caption.textContent = "Hover or tap a node to see who's there."; caption.style.opacity = 1; }, 120);
+            }
+            node.addEventListener('mouseenter', activate);
+            node.addEventListener('mouseleave', deactivate);
+            node.addEventListener('click', activate);
+        });
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            document.querySelectorAll('svg').forEach(svg => { if (svg.pauseAnimations) svg.pauseAnimations(); });
+        }
+    </script>
     <script src="nav.js"></script>
 </body>
 </html>
