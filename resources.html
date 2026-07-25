@@ -3,42 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lab | Resources & Open Source | Shoaib Jameel</title>
+    <title>PICASO: Probabilistic Conceptual Spaces | Shoaib Jameel</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Open-source code, models, and datasets from Dr. Shoaib Jameel's research group, including the PICASO probabilistic reasoning platform built for the Ministry of Defence.">
+    <meta name="description" content="PICASO replaces knowledge graphs' rigid points with probability clouds — matching deep graph neural networks on accuracy at O(1) cost while telling you exactly how confident it is. Funded by the Alan Turing Institute's Defence & Security Programme.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shoaib Jameel">
-    <meta property="og:title" content="The Lab | Resources & Open Source | Shoaib Jameel">
-    <meta property="og:description" content="Open-source code, models, and datasets from Dr. Shoaib Jameel's research group, including the PICASO probabilistic reasoning platform built for the Ministry of Defence.">
+    <meta property="og:title" content="PICASO: Probabilistic Conceptual Spaces | Shoaib Jameel">
+    <meta property="og:description" content="Knowledge graphs that know what they don't know — PICASO replaces rigid points with probability clouds, matching deep GNNs at O(1) cost with calibrated uncertainty.">
     <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <meta property="og:url" content="https://bashthebuilder.github.io/resources.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Lab | Resources & Open Source | Shoaib Jameel">
-    <meta name="twitter:description" content="Open-source code, models, and datasets from Dr. Shoaib Jameel's research group, including the PICASO probabilistic reasoning platform built for the Ministry of Defence.">
+    <meta name="twitter:title" content="PICASO: Probabilistic Conceptual Spaces | Shoaib Jameel">
+    <meta name="twitter:description" content="Knowledge graphs that know what they don't know — PICASO replaces rigid points with probability clouds, matching deep GNNs at O(1) cost with calibrated uncertainty.">
     <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <style>
-        .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
-        .resource-card { position: relative; overflow: hidden; }
-        .resource-type { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #6366f1; }
-        .code-link { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
-        .code-link:hover { text-decoration: underline; }
-        
-        .featured-project {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-            border: 1px solid var(--glass-border);
-            padding: 4rem;
-            border-radius: 32px;
-            margin-bottom: 5rem;
+        .pc-progress { position: fixed; top: var(--nav-height); left: 0; height: 3px; width: 0%; background: var(--accent-liquid); z-index: 999; transition: width 0.12s linear; }
+        .pc-counter { font-variant-numeric: tabular-nums; }
+        .pc-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(.16,.8,.3,1), transform 0.8s cubic-bezier(.16,.8,.3,1); }
+        .pc-reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Equation cards */
+        .pc-eqn { background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.25); border-radius: 16px; padding: 1.8rem 2rem; margin: 1.5rem 0; text-align: center; overflow-x: auto; }
+        .pc-eqn .katex-display { margin: 0; }
+        .pc-plain { color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem; text-align: left; padding-top: 1rem; border-top: 1px dashed rgba(255,255,255,0.12); }
+        .pc-plain strong { color: #a5b4fc; }
+
+        /* Comparison cards */
+        .pc-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+        @media (max-width: 700px) { .pc-compare-grid { grid-template-columns: 1fr; } }
+        .pc-compare { border-radius: 18px; padding: 1.8rem; border: 1px solid var(--glass-border); }
+        .pc-compare.old { background: linear-gradient(135deg, rgba(239,68,68,0.08), transparent); border-color: rgba(239,68,68,0.25); }
+        .pc-compare.old h4 { color: #f87171; }
+        .pc-compare.new { background: linear-gradient(135deg, rgba(99,102,241,0.1), transparent); border-color: rgba(99,102,241,0.3); }
+        .pc-compare.new h4 { color: #a5b4fc; }
+
+        /* Toggle demo */
+        .pc-toggle-btns { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .pc-toggle-btn { padding: 10px 20px; border-radius: 100px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.04); color: var(--text-muted); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: 0.25s; font-family: inherit; }
+        .pc-toggle-btn.active { background: rgba(99,102,241,0.2); border-color: #818cf8; color: #fff; }
+        .pc-toggle-svg { width: 100%; height: auto; max-width: 620px; display: block; margin: 0 auto; }
+
+        /* Idea / feature grid */
+        .pc-idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .pc-idea-card { padding: 1.8rem; }
+        .pc-idea-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(99,102,241,0.15); color: #a5b4fc; font-weight: 800; margin-bottom: 1rem; }
+
+        /* Tables */
+        .pc-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+        table.pc-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 560px; }
+        table.pc-table th, table.pc-table td { padding: 0.7rem 1rem; text-align: center; border-bottom: 1px solid var(--glass-border); white-space: nowrap; }
+        table.pc-table th { color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+        table.pc-table td:first-child, table.pc-table th:first-child { text-align: left; color: #fff; font-weight: 600; }
+        table.pc-table tr.pc-highlight td { background: rgba(99,102,241,0.1); color: #fff; font-weight: 700; }
+        table.pc-table tr.pc-highlight td:first-child { color: #a5b4fc; }
+
+        /* Uncertainty chart */
+        .pc-chart-svg { width: 100%; height: auto; }
+        .pc-chart-bar { fill: #6366f1; transition: fill 0.2s; }
+        .pc-chart-bar:hover { fill: #818cf8; }
+
+        /* Figures */
+        .pc-figure { border-radius: 20px; overflow: hidden; border: 1px solid var(--glass-border); cursor: zoom-in; background: rgba(255,255,255,0.02); }
+        .pc-figure img { width: 100%; display: block; transition: transform 0.4s ease; }
+        .pc-figure:hover img { transform: scale(1.03); }
+        .pc-caption { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; text-align: center; }
+        #pc-lightbox { position: fixed; inset: 0; background: rgba(5,6,10,0.92); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 3rem; cursor: zoom-out; }
+        #pc-lightbox.open { display: flex; }
+        #pc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+        .pc-shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+        /* Algorithm box */
+        .pc-algo { font-family: 'SF Mono', 'Courier New', monospace; font-size: 0.88rem; line-height: 2; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.5rem 1.8rem; overflow-x: auto; color: #cbd5e1; }
+        .pc-algo .pc-comment { color: #64748b; }
+        .pc-algo .pc-kw { color: #f472b6; font-weight: 700; }
+
+        /* WP cards */
+        .pc-wp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .pc-wp-card { padding: 1.8rem; border-top: 3px solid var(--c); }
+
+        video.pc-video { width: 100%; border-radius: 20px; border: 1px solid var(--glass-border); display: block; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pc-reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
         }
     </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
-    
+    <div class="pc-progress" id="pc-progress"></div>
+
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
@@ -48,7 +106,7 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html" class="active">The Lab</a>
+                <a href="resources.html" class="active">PICASO</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
@@ -60,75 +118,532 @@
         </div>
     </nav>
 
-    <main class="container" style="padding-top: 180px;">
-        <section class="reveal">
-            <span class="section-title">Open Science & Digital Tools</span>
-            <h2 class="liquid-text">The Architecture of Impact.</h2>
-            <p class="lead" style="margin-bottom: 4rem;">I believe that the most impactful research is actionable. My lab focuses on releasing production-grade software, calibrated models, and high-fidelity datasets to empower the global AI community.</p>
+    <main class="container" style="padding-top: 160px;">
+
+        <!-- Hero -->
+        <section class="pc-reveal" style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-title">Alan Turing Institute · Defence &amp; Security Programme</span>
+            <h1 class="liquid-text" style="font-size: 3.1rem; letter-spacing: -2px;">Knowledge Graphs That Know What They Don't Know.</h1>
+            <p class="lead" style="margin: 0 auto 2rem; max-width: 820px;"><strong style="color:#fff;">PICASO</strong> — Probabilistic Conceptual Spaces Sensemaking under Uncertainty — replaces every rigid point in a knowledge graph with a <span class="highlight-text">probability cloud</span>. It matches heavyweight graph neural networks on accuracy, runs at the speed of a lookup table, and — unlike either — tells you exactly how confident it is.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                <a href="https://github.com/ubaidazam/PICASO" target="_blank" rel="noopener" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">View on GitHub →</a>
+                <a href="https://ubaidazam.github.io/PICASO/" target="_blank" rel="noopener" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Read the Full Project Blog →</a>
+            </div>
         </section>
 
-        <!-- Featured Project: PICASO -->
-        <section class="featured-project reveal">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <!-- Stats -->
+        <section class="grid pc-reveal" style="margin-bottom: 3rem;">
+            <div class="card stat-card">
+                <span class="stat-value"><span class="pc-counter" data-target="68826" data-decimals="0">0</span></span>
+                <span class="stat-label">Defence Entities Modelled</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="pc-counter" data-target="143532" data-decimals="0">0</span></span>
+                <span class="stat-label">Relations</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="pc-counter" data-target="63" data-decimals="0" data-suffix="M+">0</span></span>
+                <span class="stat-label">Wikidata Entities Scanned</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="pc-counter" data-target="0.417" data-decimals="3">0</span></span>
+                <span class="stat-label">MRR — State of the Art, FB15k-237</span>
+            </div>
+        </section>
+
+        <div class="quick-nav pc-reveal">
+            <a href="#problem">The Problem</a>
+            <a href="#theory">The Theory</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#results">Results</a>
+            <a href="#defence-case">Defence Case Study</a>
+            <a href="#llms">Complementing LLMs</a>
+            <a href="#phase-two">Phase II</a>
+            <a href="#publications">Publications</a>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <section id="problem" style="margin: 4rem 0 6rem;">
+            <span class="section-title">The Problem</span>
+            <h2 style="font-size: 2.4rem;">Why AI Needs to Know What It Doesn't Know.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">Intelligence analysts face a paradox: the data they need is vast, ambiguous and often contradictory — yet the computational tools they rely on demand certainty. Real-world analysis is challenged by volume, variety, velocity and veracity. Analysts build mental models that <em>weigh</em> information by how uncertain it is, and revise beliefs as evidence arrives. A standard knowledge-graph embedding cannot do this: every entity is a single fixed coordinate — one pin on a map. When one source reports an entity is "in a foreign country" and another says "near the border", the system has no principled way to reconcile two vague, non-overlapping statements.</p>
+
+            <div class="card" style="padding: 2.5rem;">
+                <h3 style="text-align:center; margin-bottom: 0.5rem;">Click to Toggle: Pins vs. Clouds</h3>
+                <p style="text-align:center; color: var(--text-muted); margin-bottom: 1.5rem;">Four vehicle types are known precisely. A vague report just says <em>"a vehicle."</em></p>
+                <div class="pc-toggle-btns">
+                    <button class="pc-toggle-btn active" data-view="pins">Fixed Pins (Traditional)</button>
+                    <button class="pc-toggle-btn" data-view="clouds">Probability Clouds (PICASO)</button>
+                </div>
+                <svg viewBox="0 0 600 260" class="pc-toggle-svg">
+                    <line x1="30" y1="230" x2="570" y2="230" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                    <line x1="30" y1="230" x2="30" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                    <text x="300" y="250" text-anchor="middle" fill="#64748b" font-size="11" font-family="Inter, sans-serif">Dimension 1</text>
+                    <text x="14" y="125" text-anchor="middle" fill="#64748b" font-size="11" font-family="Inter, sans-serif" transform="rotate(-90 14 125)">Dimension 2</text>
+
+                    <g id="pc-view-pins" font-family="Inter, sans-serif">
+                        <circle cx="150" cy="80" r="6" fill="#34d399"/><text x="150" y="65" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Tank</text>
+                        <circle cx="280" cy="60" r="6" fill="#34d399"/><text x="280" y="45" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">APC</text>
+                        <circle cx="200" cy="180" r="6" fill="#34d399"/><text x="200" y="200" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Truck</text>
+                        <circle cx="360" cy="160" r="6" fill="#34d399"/><text x="360" y="180" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Jeep</text>
+                        <circle cx="255" cy="120" r="6" fill="#ef4444"/><text x="255" y="105" text-anchor="middle" fill="#f87171" font-size="13" font-weight="700">"Vehicle"??</text>
+                    </g>
+                    <g id="pc-view-clouds" font-family="Inter, sans-serif" style="display:none;">
+                        <circle cx="150" cy="80" r="12" fill="#34d399" fill-opacity="0.35" stroke="#34d399"/><text x="150" y="65" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Tank</text>
+                        <circle cx="280" cy="60" r="12" fill="#34d399" fill-opacity="0.35" stroke="#34d399"/><text x="280" y="45" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">APC</text>
+                        <circle cx="200" cy="180" r="12" fill="#34d399" fill-opacity="0.35" stroke="#34d399"/><text x="200" y="200" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Truck</text>
+                        <circle cx="360" cy="160" r="12" fill="#34d399" fill-opacity="0.35" stroke="#34d399"/><text x="360" y="180" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Jeep</text>
+                        <circle cx="255" cy="120" r="58" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-dasharray="4 3"/>
+                        <text x="255" y="120" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="700">"Vehicle"</text>
+                        <text x="255" y="137" text-anchor="middle" fill="#fbbf24" font-size="10">(uncertain)</text>
+                    </g>
+                </svg>
+                <p id="pc-toggle-caption" class="pc-caption">Traditional embeddings place every entity at a single fixed point — ambiguity has nowhere to go.</p>
+            </div>
+
+            <div class="pc-compare-grid">
+                <div class="pc-compare old">
+                    <h4>Traditional Approach: Fixed Points</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Entities are single coordinates. No notion of confidence. Conflicting evidence is either ignored or averaged into a meaningless midpoint. The model cannot say "I don't know."</p>
+                </div>
+                <div class="pc-compare new">
+                    <h4>PICASO: Probability Clouds</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Every entity is a Gaussian distribution with a <strong>location</strong> (what we think it is) and a <strong>spread</strong> (how sure we are). Conflicting evidence naturally produces wider, more honest clouds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE THEORY -->
+        <section id="theory" style="margin-bottom: 6rem;">
+            <span class="section-title">The Theory — Not Just Engineering</span>
+            <h2 style="font-size: 2.4rem;">Grounded in 25 Years of Cognitive Science.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">Most knowledge-graph embedding papers are pure engineering: pick a vector space, pick a loss function, chase a benchmark number. PICASO starts somewhere else entirely — with cognitive scientist <strong style="color:#fff;">Peter Gärdenfors'</strong> 2000 theory of <em>Conceptual Spaces</em>, which argues that concepts live in geometric spaces as <strong>convex regions</strong>, not as symbols or logic rules. Similarity becomes distance. Categories become regions. A point <em>between</em> "red" and "yellow" is, quite literally, "orange."</p>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">A natural concept forms a convex set: any point between two members also belongs to the category.</p>
+                <div class="pc-eqn">$$ a, b \in C \implies \lambda a + (1-\lambda) b \in C $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> if "orange" is a valid colour and "yellow" is too, then any blend of the two is still a valid colour. Concepts aren't points — they're regions with soft edges, exactly what a Gaussian distribution is.</p>
+            </div>
+
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1rem;">This isn't a new direction for this research line. In 2016, working with Prof. Steven Schockaert, I published <a href="publications.html" style="color:#a5b4fc;">"Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning" (ECAI 2016)</a> and <a href="publications.html" style="color:#a5b4fc;">"Plausible Reasoning based on Qualitative Entity Embeddings" (IJCAI 2016)</a> — treating semantic types as geometric subspaces long before "uncertainty-aware LLMs" was a phrase anyone used. PICASO, with PhD student Ubaid Azam, is that same idea, finally made <em>probabilistic</em>.</p>
+
+            <div class="pc-idea-grid">
+                <div class="card pc-idea-card">
+                    <h4 style="color:#fff;">🎲 Incomplete Knowledge</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">We never observe the full conceptual space — only sparse facts. We need to represent what we know <em>and</em> what we don't.</p>
+                </div>
+                <div class="card pc-idea-card">
+                    <h4 style="color:#fff;">☁️ Gaussians = Soft Convex Regions</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">A Gaussian has high density at the prototype, fading outward — exactly how Gärdenfors describes concepts.</p>
+                </div>
+                <div class="card pc-idea-card">
+                    <h4 style="color:#fff;">🔁 Learning = Posterior Updating</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">New evidence sharpens the Gaussian (more certain) or shifts it (revised belief) — naturally handling evolving knowledge.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" style="margin-bottom: 6rem;">
+            <span class="section-title">How PICASO Works</span>
+            <h2 style="font-size: 2.4rem;">Four Ideas, Made Precise.</h2>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="pc-idea-num">1</div>
+                <h3>Entities as Gaussians</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Each entity is a distribution — the mean is the best-guess position, the variance encodes uncertainty.</p>
+                <div class="pc-eqn">$$ q(e) = \mathcal{N}(\mu_e, \sigma_e^2) $$</div>
+                <p class="pc-plain"><strong>Real-world example:</strong> "Challenger 2 Tank" → a small, tight cloud (we're certain). "Armoured Vehicle" → a large, diffuse cloud (could be almost anything). Small \(\sigma^2\) = confident. Large \(\sigma^2\) = uncertain.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="pc-idea-num">2</div>
+                <h3>Speed Through Geometry</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Bayesian methods are powerful but usually too slow — they rely on sampling millions of simulations. PICASO skips simulation entirely: because clouds are Gaussian, interactions have a direct geometric formula.</p>
+                <div class="pc-eqn">$$ \mu_{pred} = s_r \odot \text{Rot}(\mu_h) + t_r \qquad \sigma^2_{pred} = s_r^2 \odot \sigma_h^2 + \sigma_r^2 $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> to predict a missing fact, PICASO rotates, scales and translates the head entity's cloud. The uncertainty from both entity and relation combine in one formula — no simulation, no sampling. The result is <strong>O(1) time complexity</strong> with respect to graph size: deep-reasoning accuracy at the speed of a standard embedding lookup.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="pc-idea-num">3</div>
+                <h3>Multi-Faceted Geometric Scoring (MGS)</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Not all relationships look the same. PICASO scores every candidate fact through <strong>five geometric lenses</strong> simultaneously, and learns how much to trust each one.</p>
+                <div class="pc-eqn">$$ s(h,r,t) = w_1 s_{geo} + w_2 s_{trans} + w_3 s_{KL} + w_4 s_{bil} + w_5 s_{cpx} $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> \(s_{geo}\) is variance-normalised distance, \(s_{trans}\) is uncertainty-weighted translation, \(s_{KL}\) measures distribution overlap, \(s_{bil}\) captures multiplicative interactions, and \(s_{cpx}\) scores in the complex plane. Hierarchical facts ("frigate <em>is a type of</em> naval vessel") lean on containment; symmetric facts ("UK <em>is ally of</em> France") lean on equality; asymmetric facts ("General X <em>commanded</em> Unit Y") lean on direction. The weights \(w_i\) are learned per relation type — all still in closed form.</p>
+            </div>
+
+            <div class="card">
+                <div class="pc-idea-num">4</div>
+                <h3>Calibrated Uncertainty, Not Bolted On</h3>
+                <p style="color: var(--text-muted);">A dedicated calibration loss ensures that stated confidence aligns with actual accuracy — no post-hoc Platt scaling, no patching after the fact. Uncertainty falls directly out of the Gaussian geometry itself. (Full evidence for this claim is in the <a href="#results" style="color:#a5b4fc;">Results</a> section below.)</p>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section id="results" style="margin-bottom: 6rem;">
+            <span class="section-title">Benchmark Results</span>
+            <h2 style="font-size: 2.4rem;">Surpassing the State of the Art.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">PICASO's core engine — <strong style="color:#fff;">PROCS</strong> (Probabilistic Conceptual Space) — was evaluated on the standard FB15k-237 and WN18RR benchmarks against 12 established baselines, from classic translational embeddings to heavy graph neural networks.</p>
+
+            <div class="grid" style="margin-bottom: 2rem;">
+                <div class="card stat-card">
+                    <span class="stat-value" style="font-size: 2.2rem;">0.417</span>
+                    <span class="stat-label">MRR on FB15k-237 · +15.2% vs. best baseline</span>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-value" style="font-size: 2.2rem;">0.339</span>
+                    <span class="stat-label">Hits@1 · +25.1% vs. best baseline</span>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-value" style="font-size: 2.2rem;">89.0%</span>
+                    <span class="stat-label">Triple Classification Accuracy · +12.6 pts vs. R2D2+</span>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-value" style="font-size: 2.2rem;">0.949</span>
+                    <span class="stat-label">ROC-AUC (FB15k-237) · +9.2 pts vs. R2D2+</span>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 1rem;">Link Prediction: FB15k-237 &amp; WN18RR</h3>
+            <div class="card" style="padding: 2rem;">
+                <div class="pc-table-wrap">
+                    <table class="pc-table">
+                        <thead><tr><th>Model</th><th>Methodology</th><th colspan="4">FB15k-237</th><th colspan="4">WN18RR</th></tr>
+                        <tr><th></th><th></th><th>MRR</th><th>H@1</th><th>H@3</th><th>H@10</th><th>MRR</th><th>H@1</th><th>H@3</th><th>H@10</th></tr></thead>
+                        <tbody>
+                            <tr><td>TransE</td><td>Translational</td><td>.294</td><td>—</td><td>—</td><td>.465</td><td>.226</td><td>—</td><td>—</td><td>.501</td></tr>
+                            <tr><td>RotatE</td><td>Complex Rotation</td><td>.338</td><td>.241</td><td>.375</td><td>.533</td><td>.476</td><td>.428</td><td>.492</td><td>.571</td></tr>
+                            <tr><td>TuckER</td><td>Tensor Factorisation</td><td>.358</td><td>.266</td><td>.394</td><td>.544</td><td>.470</td><td>.443</td><td>.482</td><td>.526</td></tr>
+                            <tr><td>GIE (prev. best)</td><td>Geometric Interaction</td><td>.362</td><td>.271</td><td>.401</td><td>.552</td><td>.491</td><td>.452</td><td>.505</td><td>.575</td></tr>
+                            <tr><td>NBFNet</td><td>Deep Graph Neural Net</td><td>.415</td><td>.321</td><td>.454</td><td>.599</td><td>.551</td><td>.497</td><td>.573</td><td>.666</td></tr>
+                            <tr class="pc-highlight"><td>PROCS (Ours)</td><td>Bayesian Conceptual Space</td><td>.417</td><td>.339</td><td>.457</td><td>.559</td><td>.488</td><td>.445</td><td>.510</td><td>.568</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 1rem;">PROCS surpasses the computationally heavy NBFNet on FB15k-237 in both MRR (0.417 vs. 0.415) and strict top-1 retrieval (0.339 vs. 0.321) — <strong style="color:#fff;">without the overhead of explicit subgraph traversal</strong>, and while additionally providing calibrated uncertainty no baseline above offers natively.</p>
+            </div>
+
+            <h3 style="margin: 2.5rem 0 1rem;">Triple Classification: Is This Fact True?</h3>
+            <div class="card" style="padding: 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Given <em>(NATO, instance of, Military Alliance)</em> — can the model tell if it's true or false?</p>
+                <div class="pc-table-wrap">
+                    <table class="pc-table">
+                        <thead><tr><th>Model</th><th>Accuracy</th><th>PR-AUC</th><th>ROC-AUC</th></tr></thead>
+                        <tbody>
+                            <tr><td>TransE</td><td>67.3%</td><td>0.727</td><td>0.736</td></tr>
+                            <tr><td>DistMult</td><td>73.9%</td><td>0.780</td><td>0.803</td></tr>
+                            <tr><td>R2D2+</td><td>76.4%</td><td>0.865</td><td>0.857</td></tr>
+                            <tr class="pc-highlight"><td>PICASO</td><td>89.0%</td><td>0.951</td><td>0.949</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 1rem;"><strong style="color:#fff;">Operational meaning:</strong> nearly 90% accuracy in flagging logically inconsistent facts. This acts as an automated triage filter — instantly flagging potentially poisoned intelligence for human review.</p>
+            </div>
+
+            <h3 style="margin: 2.5rem 0 1rem;">Ablation Study: What Actually Makes PICASO Work?</h3>
+            <div class="card" style="padding: 2rem;">
+                <div class="pc-table-wrap">
+                    <table class="pc-table">
+                        <thead><tr><th>Variant</th><th>MRR</th><th>Hits@1</th><th>Hits@3</th><th>Hits@10</th></tr></thead>
+                        <tbody>
+                            <tr class="pc-highlight"><td>Full PICASO</td><td>.417</td><td>.339</td><td>.457</td><td>.559</td></tr>
+                            <tr><td>w/o MGS (5 scoring functions)</td><td>.355 (−14.9%)</td><td>.272 (−19.7%)</td><td>.386</td><td>.519</td></tr>
+                            <tr><td>w/o Rotation transforms</td><td>.379 (−9.2%)</td><td>.288</td><td>.428</td><td>.541</td></tr>
+                            <tr><td>w/o Semantic Types</td><td>.425</td><td>.364</td><td>.449</td><td>.539 (−3.6%)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 1rem;"><strong style="color:#fff;">Biggest impact — MGS:</strong> removing the five geometric scoring functions costs 14.9% MRR; this is the core engine. <strong style="color:#fff;">Rotation matters:</strong> phase-based rotation captures directional relationships, −9.2% without it. <strong style="color:#fff;">An honest exception:</strong> dropping semantic-type constraints slightly <em>improves</em> top-1/top-3 ranking, but Hits@10 drops 3.6% — its one clear, if modest, contribution.</p>
+            </div>
+        </section>
+
+        <!-- HONEST CONFIDENCE -->
+        <section style="margin-bottom: 6rem;">
+            <span class="section-title">Honest Confidence</span>
+            <h2 style="font-size: 2.4rem;">Calibrated Uncertainty, Verified.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">The defining advantage of PICASO: when it says "I'm confident," it is more likely to be correct. When it says "I'm uncertain," you should seek human review.</p>
+            <div class="pc-eqn">$$ \text{uncertainty} = \sum \sigma^2_{head} + \sum \sigma^2_{tail} $$</div>
+            <p class="pc-plain" style="max-width: 820px; margin: 0 auto 2rem; text-align:center; border:none;"><strong>Plain English:</strong> uncertainty is how "spread out" both entity clouds are. If both are tight, the model is confident. If either is diffuse, it flags the prediction.</p>
+
+            <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+                <h4 style="margin-bottom: 1rem;">Uncertainty-Stratified Accuracy — FB15k-237 (Hits@1)</h4>
+                <svg viewBox="0 0 620 300" class="pc-chart-svg">
+                    <line x1="30" y1="260" x2="590" y2="260" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                    <line x1="30" y1="260" x2="30" y2="20" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                    <line x1="30" y1="145.3" x2="590" y2="145.3" stroke="#fbbf24" stroke-width="1.4" stroke-dasharray="5 4"/>
+                    <text x="595" y="149" fill="#fbbf24" font-size="11" font-family="Inter, sans-serif">avg 33.9%</text>
+                    <g font-family="Inter, sans-serif">
+                        <rect class="pc-chart-bar" x="40" y="60" width="40" height="200" rx="3"/><text x="60" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">1</text><text x="60" y="52" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">59.1%</text>
+                        <rect class="pc-chart-bar" x="96" y="80.9" width="40" height="179.1" rx="3"/><text x="116" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">2</text><text x="116" y="73" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">52.9%</text>
+                        <rect class="pc-chart-bar" x="152" y="112.4" width="40" height="147.6" rx="3"/><text x="172" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">3</text><text x="172" y="105" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">43.6%</text>
+                        <rect class="pc-chart-bar" x="208" y="103.3" width="40" height="156.7" rx="3"/><text x="228" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">4</text><text x="228" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">46.3%</text>
+                        <rect class="pc-chart-bar" x="264" y="91.8" width="40" height="168.2" rx="3"/><text x="284" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">5</text><text x="284" y="84" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">49.7%</text>
+                        <rect class="pc-chart-bar" x="320" y="86.0" width="40" height="174.0" rx="3"/><text x="340" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">6</text><text x="340" y="78" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">51.4%</text>
+                        <rect class="pc-chart-bar" x="376" y="145.3" width="40" height="114.7" rx="3"/><text x="396" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">7</text><text x="396" y="138" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">33.9%</text>
+                        <rect class="pc-chart-bar" x="432" y="157.1" width="40" height="102.9" rx="3"/><text x="452" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">8</text><text x="452" y="150" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">30.4%</text>
+                        <rect class="pc-chart-bar" x="488" y="123.9" width="40" height="136.1" rx="3"/><text x="508" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">9</text><text x="508" y="116" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">40.2%</text>
+                        <rect class="pc-chart-bar" x="544" y="161.2" width="40" height="98.8" rx="3"/><text x="564" y="255" text-anchor="middle" fill="#94a3b8" font-size="11">10</text><text x="564" y="154" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">29.2%</text>
+                    </g>
+                    <text x="310" y="288" text-anchor="middle" fill="#64748b" font-size="12" font-family="Inter, sans-serif">Uncertainty Bin (1 = most confident, 10 = least confident)</text>
+                </svg>
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 1rem;">Lower-uncertainty bins consistently trend toward higher accuracy. On WN18RR, confident predictions achieve <strong style="color:#fff;">59%</strong> accuracy while uncertain ones drop to <strong style="color:#fff;">15%</strong> — a 4x difference, with no post-hoc calibration applied.</p>
+            </div>
+
+            <div class="pc-compare-grid">
+                <div class="pc-compare new">
+                    <h4>High Confidence</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Query: <em>(Battle of Stalingrad, part of, ??)</em><br>Prediction: World War II ✓<br>Confidence: 92%</p>
+                </div>
+                <div class="pc-compare old">
+                    <h4>Low Confidence</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Query: <em>(Obscure Unit X, country, ??)</em><br>Prediction: Germany ⚠<br>Confidence: 34% — verify!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEFENCE CASE STUDY -->
+        <section id="defence-case" style="margin-bottom: 6rem;">
+            <span class="section-title">Real-World Impact</span>
+            <h2 style="font-size: 2.4rem;">The Defence-Wikidata Knowledge Graph.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Standard benchmarks reward memorisation. In real defence and intelligence applications, the cost of a false positive — hallucinating a link between a military unit and a location — is unacceptable. To test PICASO where it matters, we automatically constructed a novel defence-domain knowledge graph by scanning over <strong style="color:#fff;">63 million Wikidata entities</strong> for anything defence-relevant: military units, battles, weapons systems, treaties, operations, intelligence agencies and personnel.</p>
+
+            <div class="grid" style="margin-bottom: 2.5rem;">
+                <div class="card stat-card"><span class="stat-value" style="font-size: 2rem;">68,826</span><span class="stat-label">Defence Entities</span></div>
+                <div class="card stat-card"><span class="stat-value" style="font-size: 2rem;">143,532</span><span class="stat-label">Relations</span></div>
+                <div class="card stat-card"><span class="stat-value" style="font-size: 2rem;">355</span><span class="stat-label">Relation Types</span></div>
+                <div class="card stat-card"><span class="stat-value" style="font-size: 2rem;">63M+</span><span class="stat-label">Wikidata Entities Scanned</span></div>
+            </div>
+
+            <div class="card" style="padding: 2rem;">
+                <h4 style="margin-bottom: 1rem;">Selective Prediction: Act on What's Reliable</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">3,000 test triples, split into three tiers by model uncertainty:</p>
+                <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="border: 1px solid rgba(52,211,153,0.35); background: rgba(52,211,153,0.06); border-radius: 14px; padding: 1.5rem; text-align:center;">
+                        <span style="font-size: 1.8rem; font-weight: 800; color: #34d399;">45.1%</span>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">High Confidence<br>750 predictions · unc ≤ 1.26</p>
+                    </div>
+                    <div style="border: 1px solid rgba(129,140,248,0.35); background: rgba(129,140,248,0.06); border-radius: 14px; padding: 1.5rem; text-align:center;">
+                        <span style="font-size: 1.8rem; font-weight: 800; color: #818cf8;">52.4%</span>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">Medium Confidence<br>1,500 predictions</p>
+                    </div>
+                    <div style="border: 1px solid rgba(239,68,68,0.35); background: rgba(239,68,68,0.06); border-radius: 14px; padding: 1.5rem; text-align:center;">
+                        <span style="font-size: 1.8rem; font-weight: 800; color: #f87171;">26.3%</span>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">Low Confidence<br>750 predictions · unc ≥ 2.22</p>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">The 18.8-point gap between high- and low-confidence tiers means a decision-maker can act on confident predictions and route uncertain ones to a human analyst — a capability no deterministic baseline offers natively. (The medium tier edging out the high tier is a real, honestly-reported quirk of this sparse, 355-relation-type domain, not a cherry-picked result.)</p>
+            </div>
+        </section>
+
+        <!-- COMPLEMENTING LLMS -->
+        <section id="llms" style="margin-bottom: 6rem;">
+            <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.06)); padding: 3rem;">
+                <span class="section-title">Not a Competitor to LLMs — a Foundation Underneath Them</span>
+                <h2 style="font-size: 2.2rem;">Where Language Models Get Their Confidence From.</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Large language models are extraordinary at fluent generation and at absorbing enormous amounts of world knowledge implicitly. What they are <em>not</em> built to do is give you a calibrated probability that one specific fact is true — and asking one to check is expensive: billions of opaque parameters, prone to confidently hallucinating an answer rather than admitting uncertainty. PICASO isn't trying to replace that generative fluency. It's a fast, calibrated, geometrically verifiable reasoning layer that can sit <em>underneath</em> it.</p>
+
+                <h4 style="color:#fff; margin-bottom: 0.8rem;">Already Demonstrated: Text-Enhanced Entity Initialisation</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">PICASO already uses an LLM to seed its own geometry. <strong style="color:#fff;">Llama 3.2 (3B, run entirely locally)</strong> generated encyclopedic descriptions for 20,607 entities lacking Wikipedia text — combined with 20,808 entities that already had it, for 41,411 entities enriched with text in total. Each description is passed through a sentence-transformer to initialise that entity's Gaussian mean \(\mu_e\), replacing random initialisation with something semantically meaningful.</p>
+                <div class="card" style="background: rgba(0,0,0,0.25); padding: 1.5rem; margin-bottom: 1rem;">
+                    <p style="color:#94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">The Prompt</p>
+                    <p style="color: var(--text-muted); font-size: 0.92rem; font-style: italic; margin-bottom: 1rem;">"You are a factual encyclopedia writer. Combine the given facts into a coherent 2–3 sentence summary. Use ONLY the facts provided." — Name: Treaty of Cherasco · Type: treaty · part of: War of the Mantuan Succession · country: Duchy of Savoy</p>
+                    <p style="color:#94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Output</p>
+                    <p style="color: #fff; font-size: 0.92rem;">"The Treaty of Cherasco was a peace treaty that ended the War of the Mantuan Succession. It involved the Duchy of Savoy…"</p>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">The result wasn't just better accuracy — it <strong style="color:#fff;">improved uncertainty calibration</strong>, with almost no hallucination, entirely on local hardware.</p>
+
+                <h4 style="color:#fff; margin-bottom: 0.8rem;">The Bigger Picture</h4>
+                <p style="color: var(--text-muted); margin-bottom: 0;">An LLM-based agent could query PICASO as an O(1) fact-verification layer before asserting a claim — giving generative AI a principled, geometric way to say "I don't know" instead of hallucinating confidently. This is <a href="publications.html" style="color:#a5b4fc;">Pillar I of my research</a> — probabilistic foundations — doing exactly the job it was designed for: keeping today's language models honest.</p>
+            </div>
+        </section>
+
+        <!-- SEE IT IN ACTION -->
+        <section style="margin-bottom: 6rem;">
+            <span class="section-title">See It In Action</span>
+            <h2 style="font-size: 2.2rem;">From Theory to a Working Analyst Tool.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Beyond the original proposal's scope, PICASO ships as a fully operational GUI for intelligence analysts, and as a pip-installable Python package — real software, not just a paper.</p>
+            <div class="pc-shot-grid">
                 <div>
-                    <span class="tag" style="background: #6366f1; color: #fff;">Featured Project</span>
-                    <h3 style="margin-top: 1rem; font-size: 2.8rem; letter-spacing: -2px;">PICASO</h3>
+                    <div class="pc-figure" data-full="assets/picaso/gui-upload.jpg"><img src="assets/picaso/gui-upload.jpg" alt="PICASO analyst GUI: file upload tab for batch predictions" loading="lazy"></div>
+                    <p class="pc-caption">Batch queries via file upload — ranks all 68,826 candidate entities per query.</p>
                 </div>
-                <span class="tag" style="background: rgba(255,255,255,0.08); color: #fff; border: 1px solid var(--glass-border); align-self: center;">Alan Turing Institute</span>
-            </div>
-            
-            <h4 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.8rem;">Probabilistic Conceptual Spaces Sensemaking under Uncertainty</h4>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.3rem; line-height: 1.7;">Funded by the <strong>Alan Turing Institute’s Defence & Security Programme</strong>, PICASO revolutionizes intelligence analysis by making uncertainty a "first-class citizen." Our <strong>PROCS Engine</strong> replaces brittle, static knowledge graphs with probabilistic clouds, enabling systems to mirror human cognitive reasoning and provide "honest confidence" in high-stakes decision-making.</p>
-            
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                <div style="border-left: 2px solid #6366f1; padding-left: 1.5rem;">
-                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Geometric Efficiency</strong>
-                    <p style="font-size: 1.1rem; color: var(--text-muted);">O(1) time complexity reasoning matching standard embedding speeds.</p>
+                <div>
+                    <div class="pc-figure" data-full="assets/picaso/gui-query.jpg"><img src="assets/picaso/gui-query.jpg" alt="PICASO analyst GUI: manual query tab" loading="lazy"></div>
+                    <p class="pc-caption">Manual query — enter a Wikidata QID or label and a relation, get an instant prediction.</p>
                 </div>
-                <div style="border-left: 2px solid #ec4899; padding-left: 1.5rem;">
-                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Calibrated Risk</strong>
-                    <p style="font-size: 1.1rem; color: var(--text-muted);">Selective prediction models that know exactly when not to trust their outputs.</p>
+                <div>
+                    <div class="pc-figure" data-full="assets/picaso/gui-uncertainty-tab.png"><img src="assets/picaso/gui-uncertainty-tab.png" alt="PICASO analyst GUI: uncertainty-stratified accuracy dashboard" loading="lazy"></div>
+                    <p class="pc-caption">The uncertainty dashboard — the same 45.1% / 52.4% / 26.3% tiers, live.</p>
                 </div>
-                <div style="border-left: 2px solid #a855f7; padding-left: 1.5rem;">
-                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Federated Learning</strong>
-                    <p style="font-size: 1.1rem; color: var(--text-muted);">FLiP methodology reducing memory footprint by 90% for secure collaboration.</p>
-                </div>
-            </div>
-
-            <a href="https://ubaidazam.github.io/PICASO/" target="_blank" class="tag" style="padding: 16px 32px; background: #fff; color: #000; text-decoration: none; font-weight: 800; font-size: 1.1rem;">Explore the PICASO Framework</a>
-        </section>
-
-        <section class="reveal">
-            <span class="section-title">Codebases & Datasets</span>
-            <div class="resource-grid">
-                <!-- Project 1 -->
-                <div class="card resource-card">
-                    <span class="resource-type">Software</span>
-                    <h3>MEmbER</h3>
-                    <p style="color: var(--text-muted); font-size: 1.15rem;">Max-Margin Based Embeddings for Entity Retrieval. A robust framework for learning entity representations in large-scale systems.</p>
-                    <a href="https://github.com/bashthebuilder" class="code-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        Source Code
-                    </a>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="card resource-card">
-                    <span class="resource-type">Model</span>
-                    <h3>CALM Checkpoint</h3>
-                    <p style="color: var(--text-muted); font-size: 1.15rem;">Pre-trained weights for Culturally Self-Aware Language Models, adapted for multi-lingual nuanced environments.</p>
-                    <span class="code-link" style="color: var(--text-muted); cursor: default;">Coming Soon</span>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="card resource-card">
-                    <span class="resource-type">Dataset</span>
-                    <h3>Urban Lifestyles</h3>
-                    <p style="color: var(--text-muted); font-size: 1.15rem;">The Microsoft Research Asia Urban Informatics dataset for modeling temporal mobility and human behavior.</p>
-                    <span class="code-link" style="color: var(--text-muted); cursor: default;">Coming Soon</span>
+                <div>
+                    <div class="pc-figure" data-full="assets/picaso/package-notebook.png"><img src="assets/picaso/package-notebook.png" alt="PICASO pip-installable package running in a notebook" loading="lazy"></div>
+                    <p class="pc-caption"><code>pip install git+https://github.com/ubaidazam/PICASO.git</code> — really pip-installable.</p>
                 </div>
             </div>
         </section>
+
+        <!-- PHASE II -->
+        <section id="phase-two" style="margin-bottom: 6rem;">
+            <span class="section-title">Phase II Vision</span>
+            <h2 style="font-size: 2.4rem;">From Static Uncertainty to Living Intelligence.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Phase I treats each fact as uncertain but frozen in time. Three follow-on work packages extend PICASO from a static, transductive system into one that is temporally-aware, text-grounded and inductive:</p>
+
+            <div class="pc-wp-grid">
+                <div class="card pc-wp-card" style="--c:#818cf8;">
+                    <h4 style="color:#fff;">WP4 · Temporal KG</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Facts have a validity period. Goal: time-conditioned Gaussian distributions that evolve continuously — detailed below as <strong>T-PICASO</strong>.</p>
+                </div>
+                <div class="card pc-wp-card" style="--c:#a855f7;">
+                    <h4 style="color:#fff;">WP5 · Multi-Source Fusion</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Text-init proved the value of language. Goal: text-to-distribution encoders and Bayesian fusion, absorbing textual evidence end-to-end.</p>
+                </div>
+                <div class="card pc-wp-card" style="--c:#ec4899;">
+                    <h4 style="color:#fff;">WP6 · Inductive Reasoning</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">New entities appear constantly in intelligence. Goal: infer about unseen entities from neighbourhood structure — no retraining required.</p>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 2.5rem;">
+                <span class="impact-badge">Target Venue: The Web Conference (WWW) / A*</span>
+                <h3 style="margin-bottom: 0.5rem;">T-PICASO: Continuous-Time Probabilistic Conceptual Spaces</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Extending PICASO via Stochastic Differential Equations. Authors: <strong style="color:#fff;">Ubaid Azam, Shoaib Jameel, and Steven Schockaert</strong> — the same collaboration behind the original 2016 conceptual-space embeddings.</p>
+
+                <h4 style="color:#fff; margin-bottom: 0.6rem;">The Half-Life of Knowledge</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Knowledge graphs typically treat facts as static points. Real knowledge has a mathematical "half-life":</p>
+                <div class="pc-compare-grid" style="margin-bottom: 1.5rem;">
+                    <div class="pc-compare new">
+                        <h4>Geospatial / Tactical</h4>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">At 08:00, a sensor confirms a mobile radar unit at Coordinate A. By 14:00, with no new data, its location is no longer a point — it's a 50-mile probability radius.</p>
+                    </div>
+                    <div class="pc-compare new">
+                        <h4>Semantic Drift</h4>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">In 2020, a political faction sits near "Diplomatic Actor" in the conceptual space. By 2024, through gradual actions, it drifts toward "Paramilitary Group."</p>
+                    </div>
+                </div>
+
+                <h4 style="color:#fff; margin-bottom: 0.6rem;">Two Kinds of Uncertainty, Disentangled</h4>
+                <div class="pc-compare-grid" style="margin-bottom: 1.5rem;">
+                    <div class="pc-compare old">
+                        <h4>Epistemic (Lack of Knowledge)</h4>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">"We have a blurry satellite image — we're 80% sure this is a tank." Static; doesn't change over time unless we get a better camera.</p>
+                    </div>
+                    <div class="pc-compare old">
+                        <h4>Aleatoric (Temporal Decay)</h4>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">"We know exactly what the asset is, but 5 hours have passed since we last saw it." Physically grows as a function of \(\Delta t\).</p>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Existing temporal KG models fall short here: discrete snapshot models (TTransE, CyGNet) fail at interpolation between observations; continuous point models (ATISE, TeRo) have zero volume and cannot represent aleatoric decay; box/region models (BoxE, TBox) have hard edges that break smooth, differentiable optimal transport.</p>
+
+                <h4 style="color:#fff; margin-bottom: 0.6rem;">T-PICASO: Stochastic Probability Clouds in Motion</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Each entity becomes a Gaussian evolving through continuous time via a Stochastic Differential Equation — a learned <strong>drift</strong> (predictable semantic evolution) plus a physical <strong>diffusion</strong> (Brownian-motion-like decay when unobserved):</p>
+                <div class="pc-eqn">$$ d\mathbf{e}(t) = \underbrace{\Pi_{T_e}\big[f_\theta(\mathbf{e}(t),t)\big]dt}_{\text{type-projected drift}} + \underbrace{G_\phi(\mathbf{e}(t),t)\,d\mathbf{W}_t}_{\text{diffusion}} $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> the drift term \(f_\theta\) is a Neural ODE learning predictable trajectories (a leader's gradual shift in policy). The diffusion term \(G_\phi\) is stochastic decay — if an entity isn't observed, the covariance naturally expands, flattening the Gaussian toward maximum uncertainty. The projection operator \(\Pi_{T_e}\) — built directly on the 2016 idea that semantic types are geometric subspaces — stops a "Diplomat" from randomly drifting into "Naval Vessel" space; it can only drift toward "Paramilitary Leader" within the broader "Human Asset" region.</p>
+
+                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Scoring via Optimal Transport</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">To compare two evolved Gaussian clouds, T-PICASO uses the 2-Wasserstein distance — which, for Gaussians, has a beautiful closed form:</p>
+                <div class="pc-eqn">$$ W_2(\mathcal{N}_1,\mathcal{N}_2)^2 = \underbrace{\|\mu_1-\mu_2\|_2^2}_{\text{translation}} + \underbrace{\text{Tr}\Big(\Sigma_1+\Sigma_2-2(\Sigma_1^{1/2}\Sigma_2\Sigma_1^{1/2})^{1/2}\Big)}_{\text{shape / uncertainty overlap}} $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> Term 1 is standard distance between the centres — do these concepts mean the same thing? Term 2 measures covariance overlap — crucially, if the head entity's cloud is highly uncertain (stale data), this term heavily penalises the score. <strong>The model naturally refuses to confidently assert facts based on stale data.</strong> This costs only \(\mathcal{O}(d)\) operations — vastly cheaper than message-passing over a graph neural network.</p>
+
+                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Resolving Contradictions: Wasserstein Barycenters</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">When conflicting reports arrive at the same time (Source A: "Country X." Source B: "border of Y."), naively averaging them creates a false, meaningless midpoint. Instead, T-PICASO computes the Fréchet mean under the Wasserstein metric:</p>
+                <div class="pc-eqn">$$ \mathcal{N}^* = \arg\min_{\mathcal{N}} \sum_{i=1}^k w_i\, W_2^2(\mathcal{N}, \mathcal{N}_i) $$</div>
+                <p class="pc-plain"><strong>Plain English:</strong> approximated efficiently via entropic-regularised optimal transport (Sinkhorn distances), this elegantly merges overlapping reports while <strong>keeping distinct peaks for irreconcilable contradictions</strong> — a geometric way of flagging likely deception rather than quietly averaging it away.</p>
+
+                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Why This Needs Geometric Deep Learning</h4>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Standard deep learning assumes a flat, Euclidean space. The space of Gaussian distributions under the Wasserstein metric is a curved <strong>Wasserstein–Bures manifold</strong> — ordinary gradient descent would pull probability clouds off the manifold entirely, producing invalid matrices (negative variance). Three techniques keep training mathematically valid:</p>
+                <div class="pc-idea-grid" style="margin-bottom: 1.5rem;">
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">Continuous Graph Neural ODEs</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">The drift function is a continuous-depth graph convolution — an entity's trajectory is "pulled" by its temporal neighbours in the graph.</p>
+                    </div>
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">Orthogonal Group Rotations</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">Relations are trained as Givens rotations within \(SO(d)\), preserving the exact volume of the uncertainty radius during every gradient step.</p>
+                    </div>
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">Geodesic Loss Optimisation</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">Gradients follow the shortest curved path on the manifold (the geodesic) rather than a straight Euclidean line, preserving semantic integrity.</p>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Training uses an adversarial margin loss over positive and corrupted (negative) facts:</p>
+                <div class="pc-eqn">$$ \mathcal{L} = -\log \sigma(\gamma - s_{pos}) - \frac{1}{n}\sum_{i=1}^n \log \sigma(s_{neg_i} - \gamma) $$</div>
+
+                <h4 style="color:#fff; margin: 2rem 0 1rem;">Algorithm 1 — Forward Pass &amp; Optimisation of T-PICASO</h4>
+                <div class="pc-algo">
+                    <span class="pc-comment">Require: Temporal KG 𝒢, Neural ODE params θ, SDE params φ, base embeddings μ(t₀), Σ(t₀), type projector Π</span><br>
+                    <span class="pc-kw">while</span> not converged <span class="pc-kw">do</span><br>
+                    &nbsp;&nbsp;Sample true facts (h, r, o, τ) and negatives (h, r, o′, τ)<br>
+                    &nbsp;&nbsp;<span class="pc-comment">// 1. Continuous temporal evolution with type constraints</span><br>
+                    &nbsp;&nbsp;μ_h(τ) ← ODESolve(Π[f_θ], μ_h(t₀), τ − t₀) &nbsp;<span class="pc-comment">▷ type-projected drift</span><br>
+                    &nbsp;&nbsp;Σ_h(τ) ← L_φ(τ) L_φ(τ)ᵀ &nbsp;<span class="pc-comment">▷ predict aleatoric expansion (Cholesky-safe)</span><br>
+                    &nbsp;&nbsp;<span class="pc-comment">// 2. Geometric transformation by the relation</span><br>
+                    &nbsp;&nbsp;μ̃_h(τ) ← Rot_r ⊗ μ_h(τ) + Trans_r<br>
+                    &nbsp;&nbsp;<span class="pc-comment">// 3. Optimal transport scoring</span><br>
+                    &nbsp;&nbsp;s_pos ← −W₂( 𝒩(μ̃_h(τ), Σ_h(τ)), 𝒩(μ_o(τ), Σ_o(τ)) )<br>
+                    &nbsp;&nbsp;s_neg ← −W₂( 𝒩(μ̃_h(τ), Σ_h(τ)), 𝒩(μ_o′(τ), Σ_o′(τ)) )<br>
+                    &nbsp;&nbsp;<span class="pc-comment">// 4. Backpropagation via the Adjoint Sensitivity Method</span><br>
+                    &nbsp;&nbsp;ℒ ← −log σ(γ − s_pos) − Σ log σ(s_neg − γ)<br>
+                    &nbsp;&nbsp;θ, φ ← AdamOptimizer(∇ ℒ)<br>
+                    <span class="pc-kw">end while</span>
+                </div>
+
+                <h4 style="color:#fff; margin: 2rem 0 1rem;">Why This Is a WWW / A* Paper</h4>
+                <div class="pc-idea-grid">
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">1. Theoretical Breakthrough</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">The first framework to bridge Conceptual Spaces with continuous-time SDEs and Optimal Transport.</p>
+                    </div>
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">2. Methodological Novelty</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">No external post-hoc calibration — uncertainty is an intrinsic, physics-driven property of the graph itself.</p>
+                    </div>
+                    <div class="card pc-idea-card">
+                        <h4 style="color:#fff; font-size:1rem;">3. Unprecedented Scalability</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">Expressive, temporal reasoning power of heavy Temporal-GNNs, retaining the O(1) graph-size inference cost of shallow embeddings.</p>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.92rem;"><strong style="color:#fff;">Planned evaluation:</strong> Wikidata-Temporal, ICEWS14/18 and YAGO11k, against discrete (TTransE, CyGNet, RE-NET), continuous-point (ATISE, TeRo) and box/region (BoxE, TBox) baselines — testing time-aware link prediction, temporal validity prediction, and calibrated decay via Expected Calibration Error as the time-gap \(\Delta t\) grows.</p>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS -->
+        <section id="publications" style="margin-bottom: 4rem;">
+            <span class="section-title">Publications &amp; Open Resources</span>
+            <h2 style="font-size: 2.2rem;">From a Three-Month Sprint.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">The project went live at the University of Southampton on 18 December 2025. All three original work packages were completed — and exceeded — within a three-month timeline.</p>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="card" style="padding: 1.8rem;">
+                    <span class="tag">Published · LREC 2026</span>
+                    <h4 style="color:#fff; margin: 0.6rem 0;">FLiP: Lightweight Cross-Lingual Federated Prompt Tuning for Low-Resource Languages</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Imran Razzak, Shoaib Jameel. Privacy-preserving training for sensitive defence data: 16% trainable parameters, 90% GPU memory reduction, zero raw data shared.</p>
+                </div>
+                <div class="card" style="padding: 1.8rem;">
+                    <span class="tag">Under Review · Targeting CIKM 2026</span>
+                    <h4 style="color:#fff; margin: 0.6rem 0;">PROCS: Uncertainty-Aware Knowledge Representation via Conceptual Spaces</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Shoaib Jameel. Submitted as a short paper to SIGIR 2026; now being strengthened with reviewer feedback for resubmission. The core PICASO engine paper.</p>
+                </div>
+                <div class="card" style="padding: 1.8rem;">
+                    <span class="tag">In Preparation · Target: WWW / A*</span>
+                    <h4 style="color:#fff; margin: 0.6rem 0;">T-PICASO: Continuous-Time Probabilistic Conceptual Spaces</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Shoaib Jameel, Steven Schockaert. The temporal SDE extension described above.</p>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card" style="padding: 1.5rem;"><strong style="color:#fff;">💻 Open-Source Code</strong><p style="color: var(--text-muted); font-size: 0.9rem; margin-top:0.5rem;">Full codebase, docs, and training pipelines on GitHub.</p></div>
+                <div class="card" style="padding: 1.5rem;"><strong style="color:#fff;">📦 Dataset Release</strong><p style="color: var(--text-muted); font-size: 0.9rem; margin-top:0.5rem;">68,826 entities, 143,532 triples, 355 relation types — publicly released.</p></div>
+                <div class="card" style="padding: 1.5rem;"><strong style="color:#fff;">🖥️ Analyst GUI</strong><p style="color: var(--text-muted); font-size: 0.9rem; margin-top:0.5rem;">Interactive prototype with file upload, manual query and uncertainty dashboard.</p></div>
+                <div class="card" style="padding: 1.5rem;"><strong style="color:#fff;">📦 Packaged Library</strong><p style="color: var(--text-muted); font-size: 0.9rem; margin-top:0.5rem;"><code>pip install</code>-able for direct integration into other pipelines.</p></div>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 2rem; font-size: 0.95rem;">Also: an invited talk at <strong style="color:#fff;">Cardiff University</strong> (April 2026) on integrating geometric deep learning with Bayesian inference for trustworthy AI, and a feature in the University of Southampton's <em>Re:action</em> research magazine (April 2026 edition).</p>
+        </section>
+
+        <div style="text-align: center; margin-bottom: 4rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://github.com/ubaidazam/PICASO" target="_blank" rel="noopener" class="tag" style="padding: 16px 32px; background: #6366f1; color: white; text-decoration: none; font-size: 1.1rem;">View on GitHub →</a>
+            <a href="publications.html" class="tag" style="padding: 16px 32px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border); font-size: 1.1rem;">See the Research Throughline →</a>
+            <a href="industry.html" class="tag" style="padding: 16px 32px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border); font-size: 1.1rem;">Industry Impact →</a>
+        </div>
     </main>
 
     <footer>
@@ -137,20 +652,104 @@
         </div>
     </footer>
 
+    <div id="pc-lightbox"><img id="pc-lightbox-img" src="" alt=""></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
+        if (window.renderMathInElement) {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false
+            });
         }
-        window.addEventListener("scroll", reveal);
+
+        function reveal() {
+            document.querySelectorAll('.pc-reveal').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('resize', reveal);
         reveal();
+
+        function updateProgress() {
+            const h = document.documentElement;
+            const scrollTop = h.scrollTop || document.body.scrollTop;
+            const scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+            const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            document.getElementById('pc-progress').style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        function runCounters() {
+            document.querySelectorAll('.pc-counter').forEach(el => {
+                const target = parseFloat(el.dataset.target);
+                const decimals = parseInt(el.dataset.decimals || '0', 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = 1300;
+                const start = performance.now();
+                function tick(now) {
+                    const p = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const val = target * eased;
+                    el.textContent = (decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString('en-US')) + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+        let countersStarted = false;
+        function checkCounters() {
+            if (countersStarted) return;
+            const el = document.querySelector('.pc-counter');
+            if (!el) return;
+            if (el.getBoundingClientRect().top < window.innerHeight - 60) { countersStarted = true; runCounters(); }
+        }
+        window.addEventListener('scroll', checkCounters);
+        window.addEventListener('resize', checkCounters);
+        checkCounters();
+
+        // Pins vs Clouds toggle
+        const pcPins = document.getElementById('pc-view-pins');
+        const pcClouds = document.getElementById('pc-view-clouds');
+        const pcCaption = document.getElementById('pc-toggle-caption');
+        document.querySelectorAll('.pc-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.pc-toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const view = btn.dataset.view;
+                pcPins.style.display = view === 'pins' ? 'block' : 'none';
+                pcClouds.style.display = view === 'clouds' ? 'block' : 'none';
+                pcCaption.textContent = view === 'pins'
+                    ? 'Traditional embeddings place every entity at a single fixed point — ambiguity has nowhere to go.'
+                    : 'PICASO models entities as Gaussian clouds — a vague report like "Vehicle" naturally produces a wider distribution.';
+            });
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('pc-lightbox');
+        const lightboxImg = document.getElementById('pc-lightbox-img');
+        document.querySelectorAll('.pc-figure').forEach(fig => {
+            fig.addEventListener('click', () => {
+                const full = fig.dataset.full || fig.querySelector('img').src;
+                lightboxImg.src = full;
+                lightboxImg.alt = fig.querySelector('img').alt;
+                lightbox.classList.add('open');
+            });
+        });
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.pc-reveal').forEach(el => el.classList.add('active'));
+        }
     </script>
     <script src="nav.js"></script>
 </body>
