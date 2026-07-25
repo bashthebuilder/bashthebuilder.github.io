@@ -158,7 +158,7 @@
             <a href="#results">Results</a>
             <a href="#defence-case">Defence Case Study</a>
             <a href="#llms">Complementing LLMs</a>
-            <a href="#phase-two">Phase II</a>
+            <a href="#whats-next">What's Next</a>
             <a href="#publications">Publications</a>
         </div>
 
@@ -482,135 +482,33 @@
             </div>
         </section>
 
-        <!-- PHASE II -->
-        <section id="phase-two" style="margin-bottom: 6rem;">
-            <span class="section-title">Phase II Vision</span>
+        <!-- WHAT'S NEXT -->
+        <section id="whats-next" style="margin-bottom: 6rem;">
+            <span class="section-title">What's Next</span>
             <h2 style="font-size: 2.4rem;">From Static Uncertainty to Living Intelligence.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Phase I treats each fact as uncertain but frozen in time. Three follow-on work packages extend PICASO from a static, transductive system into one that is temporally-aware, text-grounded and inductive:</p>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Phase I treats each fact as uncertain but frozen in time. The next stage of this work — again with Prof. Steven Schockaert, extending the same conceptual-space foundations — moves PICASO from a static, transductive system toward one that is temporally-aware, text-grounded and inductive:</p>
 
             <div class="pc-wp-grid">
                 <div class="card pc-wp-card" style="--c:#818cf8;">
-                    <h4 style="color:#fff;">WP4 · Temporal KG</h4>
-                    <p style="color: var(--text-muted); font-size: 0.92rem;">Facts have a validity period. Goal: time-conditioned Gaussian distributions that evolve continuously — detailed below as <strong>T-PICASO</strong>.</p>
+                    <h4 style="color:#fff;">Temporal Reasoning</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Facts have a validity period — knowledge has a "half-life." The goal is probability clouds that drift and expand continuously over time, rather than staying frozen at a single snapshot.</p>
                 </div>
                 <div class="card pc-wp-card" style="--c:#a855f7;">
-                    <h4 style="color:#fff;">WP5 · Multi-Source Fusion</h4>
-                    <p style="color: var(--text-muted); font-size: 0.92rem;">Text-init proved the value of language. Goal: text-to-distribution encoders and Bayesian fusion, absorbing textual evidence end-to-end.</p>
+                    <h4 style="color:#fff;">Multi-Source Fusion</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Text-initialisation already proved the value of language. The next step fuses structured facts and textual evidence end-to-end, not just at initialisation.</p>
                 </div>
                 <div class="card pc-wp-card" style="--c:#ec4899;">
-                    <h4 style="color:#fff;">WP6 · Inductive Reasoning</h4>
-                    <p style="color: var(--text-muted); font-size: 0.92rem;">New entities appear constantly in intelligence. Goal: infer about unseen entities from neighbourhood structure — no retraining required.</p>
+                    <h4 style="color:#fff;">Inductive Reasoning</h4>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">New entities appear constantly in real intelligence. The goal is to reason about them instantly from their neighbourhood in the graph — no retraining required.</p>
                 </div>
-            </div>
-
-            <div class="card" style="padding: 2.5rem;">
-                <span class="impact-badge">Target Venue: The Web Conference (WWW) / A*</span>
-                <h3 style="margin-bottom: 0.5rem;">T-PICASO: Continuous-Time Probabilistic Conceptual Spaces</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Extending PICASO via Stochastic Differential Equations. Authors: <strong style="color:#fff;">Ubaid Azam, Shoaib Jameel, and Steven Schockaert</strong> — the same collaboration behind the original 2016 conceptual-space embeddings.</p>
-
-                <h4 style="color:#fff; margin-bottom: 0.6rem;">The Half-Life of Knowledge</h4>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Knowledge graphs typically treat facts as static points. Real knowledge has a mathematical "half-life":</p>
-                <div class="pc-compare-grid" style="margin-bottom: 1.5rem;">
-                    <div class="pc-compare new">
-                        <h4>Geospatial / Tactical</h4>
-                        <p style="color: var(--text-muted); font-size: 0.92rem;">At 08:00, a sensor confirms a mobile radar unit at Coordinate A. By 14:00, with no new data, its location is no longer a point — it's a 50-mile probability radius.</p>
-                    </div>
-                    <div class="pc-compare new">
-                        <h4>Semantic Drift</h4>
-                        <p style="color: var(--text-muted); font-size: 0.92rem;">In 2020, a political faction sits near "Diplomatic Actor" in the conceptual space. By 2024, through gradual actions, it drifts toward "Paramilitary Group."</p>
-                    </div>
-                </div>
-
-                <h4 style="color:#fff; margin-bottom: 0.6rem;">Two Kinds of Uncertainty, Disentangled</h4>
-                <div class="pc-compare-grid" style="margin-bottom: 1.5rem;">
-                    <div class="pc-compare old">
-                        <h4>Epistemic (Lack of Knowledge)</h4>
-                        <p style="color: var(--text-muted); font-size: 0.92rem;">"We have a blurry satellite image — we're 80% sure this is a tank." Static; doesn't change over time unless we get a better camera.</p>
-                    </div>
-                    <div class="pc-compare old">
-                        <h4>Aleatoric (Temporal Decay)</h4>
-                        <p style="color: var(--text-muted); font-size: 0.92rem;">"We know exactly what the asset is, but 5 hours have passed since we last saw it." Physically grows as a function of \(\Delta t\).</p>
-                    </div>
-                </div>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Existing temporal KG models fall short here: discrete snapshot models (TTransE, CyGNet) fail at interpolation between observations; continuous point models (ATISE, TeRo) have zero volume and cannot represent aleatoric decay; box/region models (BoxE, TBox) have hard edges that break smooth, differentiable optimal transport.</p>
-
-                <h4 style="color:#fff; margin-bottom: 0.6rem;">T-PICASO: Stochastic Probability Clouds in Motion</h4>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Each entity becomes a Gaussian evolving through continuous time via a Stochastic Differential Equation — a learned <strong>drift</strong> (predictable semantic evolution) plus a physical <strong>diffusion</strong> (Brownian-motion-like decay when unobserved):</p>
-                <div class="pc-eqn">$$ d\mathbf{e}(t) = \underbrace{\Pi_{T_e}\big[f_\theta(\mathbf{e}(t),t)\big]dt}_{\text{type-projected drift}} + \underbrace{G_\phi(\mathbf{e}(t),t)\,d\mathbf{W}_t}_{\text{diffusion}} $$</div>
-                <p class="pc-plain"><strong>Plain English:</strong> the drift term \(f_\theta\) is a Neural ODE learning predictable trajectories (a leader's gradual shift in policy). The diffusion term \(G_\phi\) is stochastic decay — if an entity isn't observed, the covariance naturally expands, flattening the Gaussian toward maximum uncertainty. The projection operator \(\Pi_{T_e}\) — built directly on the 2016 idea that semantic types are geometric subspaces — stops a "Diplomat" from randomly drifting into "Naval Vessel" space; it can only drift toward "Paramilitary Leader" within the broader "Human Asset" region.</p>
-
-                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Scoring via Optimal Transport</h4>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">To compare two evolved Gaussian clouds, T-PICASO uses the 2-Wasserstein distance — which, for Gaussians, has a beautiful closed form:</p>
-                <div class="pc-eqn">$$ W_2(\mathcal{N}_1,\mathcal{N}_2)^2 = \underbrace{\|\mu_1-\mu_2\|_2^2}_{\text{translation}} + \underbrace{\text{Tr}\Big(\Sigma_1+\Sigma_2-2(\Sigma_1^{1/2}\Sigma_2\Sigma_1^{1/2})^{1/2}\Big)}_{\text{shape / uncertainty overlap}} $$</div>
-                <p class="pc-plain"><strong>Plain English:</strong> Term 1 is standard distance between the centres — do these concepts mean the same thing? Term 2 measures covariance overlap — crucially, if the head entity's cloud is highly uncertain (stale data), this term heavily penalises the score. <strong>The model naturally refuses to confidently assert facts based on stale data.</strong> This costs only \(\mathcal{O}(d)\) operations — vastly cheaper than message-passing over a graph neural network.</p>
-
-                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Resolving Contradictions: Wasserstein Barycenters</h4>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">When conflicting reports arrive at the same time (Source A: "Country X." Source B: "border of Y."), naively averaging them creates a false, meaningless midpoint. Instead, T-PICASO computes the Fréchet mean under the Wasserstein metric:</p>
-                <div class="pc-eqn">$$ \mathcal{N}^* = \arg\min_{\mathcal{N}} \sum_{i=1}^k w_i\, W_2^2(\mathcal{N}, \mathcal{N}_i) $$</div>
-                <p class="pc-plain"><strong>Plain English:</strong> approximated efficiently via entropic-regularised optimal transport (Sinkhorn distances), this elegantly merges overlapping reports while <strong>keeping distinct peaks for irreconcilable contradictions</strong> — a geometric way of flagging likely deception rather than quietly averaging it away.</p>
-
-                <h4 style="color:#fff; margin: 2rem 0 0.6rem;">Why This Needs Geometric Deep Learning</h4>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Standard deep learning assumes a flat, Euclidean space. The space of Gaussian distributions under the Wasserstein metric is a curved <strong>Wasserstein–Bures manifold</strong> — ordinary gradient descent would pull probability clouds off the manifold entirely, producing invalid matrices (negative variance). Three techniques keep training mathematically valid:</p>
-                <div class="pc-idea-grid" style="margin-bottom: 1.5rem;">
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">Continuous Graph Neural ODEs</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">The drift function is a continuous-depth graph convolution — an entity's trajectory is "pulled" by its temporal neighbours in the graph.</p>
-                    </div>
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">Orthogonal Group Rotations</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">Relations are trained as Givens rotations within \(SO(d)\), preserving the exact volume of the uncertainty radius during every gradient step.</p>
-                    </div>
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">Geodesic Loss Optimisation</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">Gradients follow the shortest curved path on the manifold (the geodesic) rather than a straight Euclidean line, preserving semantic integrity.</p>
-                    </div>
-                </div>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Training uses an adversarial margin loss over positive and corrupted (negative) facts:</p>
-                <div class="pc-eqn">$$ \mathcal{L} = -\log \sigma(\gamma - s_{pos}) - \frac{1}{n}\sum_{i=1}^n \log \sigma(s_{neg_i} - \gamma) $$</div>
-
-                <h4 style="color:#fff; margin: 2rem 0 1rem;">Algorithm 1 — Forward Pass &amp; Optimisation of T-PICASO</h4>
-                <div class="pc-algo">
-                    <span class="pc-comment">Require: Temporal KG 𝒢, Neural ODE params θ, SDE params φ, base embeddings μ(t₀), Σ(t₀), type projector Π</span><br>
-                    <span class="pc-kw">while</span> not converged <span class="pc-kw">do</span><br>
-                    &nbsp;&nbsp;Sample true facts (h, r, o, τ) and negatives (h, r, o′, τ)<br>
-                    &nbsp;&nbsp;<span class="pc-comment">// 1. Continuous temporal evolution with type constraints</span><br>
-                    &nbsp;&nbsp;μ_h(τ) ← ODESolve(Π[f_θ], μ_h(t₀), τ − t₀) &nbsp;<span class="pc-comment">▷ type-projected drift</span><br>
-                    &nbsp;&nbsp;Σ_h(τ) ← L_φ(τ) L_φ(τ)ᵀ &nbsp;<span class="pc-comment">▷ predict aleatoric expansion (Cholesky-safe)</span><br>
-                    &nbsp;&nbsp;<span class="pc-comment">// 2. Geometric transformation by the relation</span><br>
-                    &nbsp;&nbsp;μ̃_h(τ) ← Rot_r ⊗ μ_h(τ) + Trans_r<br>
-                    &nbsp;&nbsp;<span class="pc-comment">// 3. Optimal transport scoring</span><br>
-                    &nbsp;&nbsp;s_pos ← −W₂( 𝒩(μ̃_h(τ), Σ_h(τ)), 𝒩(μ_o(τ), Σ_o(τ)) )<br>
-                    &nbsp;&nbsp;s_neg ← −W₂( 𝒩(μ̃_h(τ), Σ_h(τ)), 𝒩(μ_o′(τ), Σ_o′(τ)) )<br>
-                    &nbsp;&nbsp;<span class="pc-comment">// 4. Backpropagation via the Adjoint Sensitivity Method</span><br>
-                    &nbsp;&nbsp;ℒ ← −log σ(γ − s_pos) − Σ log σ(s_neg − γ)<br>
-                    &nbsp;&nbsp;θ, φ ← AdamOptimizer(∇ ℒ)<br>
-                    <span class="pc-kw">end while</span>
-                </div>
-
-                <h4 style="color:#fff; margin: 2rem 0 1rem;">Why This Is a WWW / A* Paper</h4>
-                <div class="pc-idea-grid">
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">1. Theoretical Breakthrough</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">The first framework to bridge Conceptual Spaces with continuous-time SDEs and Optimal Transport.</p>
-                    </div>
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">2. Methodological Novelty</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">No external post-hoc calibration — uncertainty is an intrinsic, physics-driven property of the graph itself.</p>
-                    </div>
-                    <div class="card pc-idea-card">
-                        <h4 style="color:#fff; font-size:1rem;">3. Unprecedented Scalability</h4>
-                        <p style="color: var(--text-muted); font-size: 0.88rem;">Expressive, temporal reasoning power of heavy Temporal-GNNs, retaining the O(1) graph-size inference cost of shallow embeddings.</p>
-                    </div>
-                </div>
-                <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.92rem;"><strong style="color:#fff;">Planned evaluation:</strong> Wikidata-Temporal, ICEWS14/18 and YAGO11k, against discrete (TTransE, CyGNet, RE-NET), continuous-point (ATISE, TeRo) and box/region (BoxE, TBox) baselines — testing time-aware link prediction, temporal validity prediction, and calibrated decay via Expected Calibration Error as the time-gap \(\Delta t\) grows.</p>
             </div>
         </section>
 
         <!-- PUBLICATIONS -->
         <section id="publications" style="margin-bottom: 4rem;">
             <span class="section-title">Publications &amp; Open Resources</span>
-            <h2 style="font-size: 2.2rem;">From a Three-Month Sprint.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">The project went live at the University of Southampton on 18 December 2025. All three original work packages were completed — and exceeded — within a three-month timeline.</p>
+            <h2 style="font-size: 2.2rem;">Papers, Code, and What's Public.</h2>
+            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">All three original work packages have been completed and exceeded, with two papers already in the pipeline.</p>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                 <div class="card" style="padding: 1.8rem;">
@@ -624,9 +522,9 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Shoaib Jameel. Submitted as a short paper to SIGIR 2026; now being strengthened with reviewer feedback for resubmission. The core PICASO engine paper.</p>
                 </div>
                 <div class="card" style="padding: 1.8rem;">
-                    <span class="tag">In Preparation · Target: WWW / A*</span>
+                    <span class="tag">In Preparation</span>
                     <h4 style="color:#fff; margin: 0.6rem 0;">T-PICASO: Continuous-Time Probabilistic Conceptual Spaces</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Shoaib Jameel, Steven Schockaert. The temporal SDE extension described above.</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ubaid Azam, Shoaib Jameel, Steven Schockaert. Extends PICASO with the temporal reasoning direction described in <a href="#whats-next" style="color:#a5b4fc;">What's Next</a>.</p>
                 </div>
             </div>
 
