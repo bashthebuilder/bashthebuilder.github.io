@@ -9,11 +9,23 @@ document.addEventListener('DOMContentLoaded', function () {
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
+    function closeMenu() {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    }
+
     links.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-            links.classList.remove('open');
-            toggle.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-        });
+        a.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && links.classList.contains('open')) closeMenu();
     });
 });
