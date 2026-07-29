@@ -53,8 +53,55 @@ body {
     transform: translateY(0);
 }
 
+/* Directional variants, driven by data-reveal in the markup (see reveal.js). */
+.reveal[data-reveal="left"]  { transform: translateX(-38px); }
+.reveal[data-reveal="right"] { transform: translateX(38px); }
+.reveal[data-reveal="scale"] { transform: scale(0.94); }
+.reveal[data-reveal="left"].active,
+.reveal[data-reveal="right"].active,
+.reveal[data-reveal="scale"].active { transform: none; }
+
+/* Animated bar fills — width is set by reveal.js from data-bar. */
+.bar-track { height: 12px; border-radius: 100px; background: rgba(255,255,255,0.05); overflow: hidden; }
+.bar-fill { height: 100%; width: 0; border-radius: 100px; background: var(--accent-liquid); transition: width 1.4s cubic-bezier(0.16, 0.8, 0.3, 1); }
+
+/* Scroll progress indicator — add <div class="scroll-progress"></div> to opt in. */
+.scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0;
+    background: var(--accent-liquid); z-index: 1500;
+    transition: width 0.1s linear;
+}
+
+/* Student/reader feedback pull-quotes (teaching.html). */
+.feedback-quote {
+    position: relative;
+    margin: 0 0 1.5rem;
+    padding: 1.6rem 2rem 1.6rem 4rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-left: 3px solid #6366f1;
+    border-radius: 0 16px 16px 0;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.65;
+}
+.feedback-quote::before {
+    content: '\201C';
+    position: absolute; left: 1.2rem; top: 1.1rem;
+    font-size: 3.2rem; line-height: 1;
+    color: #6366f1; opacity: 0.5;
+    font-style: normal; font-family: Georgia, serif;
+}
+.feedback-quote:last-child { margin-bottom: 0; }
+.feedback-quote cite {
+    display: block; margin-top: 0.9rem;
+    color: #a5b4fc; font-style: normal; font-weight: 700; font-size: 0.92rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+    .bar-fill { transition: none !important; }
 }
 
 /* Liquid Background Effect */
@@ -258,8 +305,8 @@ nav .container {
 
 .hero-content { flex: 1.2; }
 .hero-img {
-    width: 400px;
-    height: 400px;
+    width: 380px;
+    height: 380px;
     border-radius: 32px;
     object-fit: cover;
     border: 1px solid var(--glass-border);

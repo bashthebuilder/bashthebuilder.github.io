@@ -5,25 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching | Shoaib Jameel</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Award-nominated teaching by Dr. Shoaib Jameel at the University of Southampton, leading Machine Learning Technologies and Knowledge Graphs for AI Systems.">
+    <meta name="description" content="Fourteen modules led across five institutions in three countries, a module ranked in the top 1% school-wide, Vice-Chancellor's Award finalist (top 3 of 630), Fellow of the HEA, and the only academic selected from the UK/EU to lecture at Peking University's summer school.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shoaib Jameel">
     <meta property="og:title" content="Teaching | Shoaib Jameel">
-    <meta property="og:description" content="Award-nominated teaching by Dr. Shoaib Jameel at the University of Southampton, leading Machine Learning Technologies and Knowledge Graphs for AI Systems.">
+    <meta property="og:description" content="Fourteen modules, five institutions, three countries. Top 1% module ranking, Vice-Chancellor's Award finalist, Fellow of the HEA, and sole UK/EU selection to lecture at Peking University.">
     <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <meta property="og:url" content="https://bashthebuilder.github.io/teaching.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Teaching | Shoaib Jameel">
-    <meta name="twitter:description" content="Award-nominated teaching by Dr. Shoaib Jameel at the University of Southampton, leading Machine Learning Technologies and Knowledge Graphs for AI Systems.">
+    <meta name="twitter:description" content="Fourteen modules, five institutions, three countries — and the students' own words.">
     <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .tc-hero { padding: 160px 0 60px; }
+        .tc-hero h1 { font-size: 4rem; margin-bottom: 1.8rem; }
+        @media (max-width: 1024px) { .tc-hero h1 { font-size: 2.9rem; } }
+
+        /* Institution rail — one column per place taught, tallest = most modules */
+        .tc-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.2rem; align-items: end; }
+        .tc-col { text-align: center; }
+        .tc-stack { display: flex; flex-direction: column-reverse; gap: 6px; justify-content: flex-end; margin-bottom: 1rem; }
+        .tc-brick {
+            height: 30px; border-radius: 8px;
+            background: linear-gradient(90deg, rgba(99,102,241,.55), rgba(168,85,247,.45));
+            border: 1px solid rgba(129,140,248,.4);
+            transform-origin: bottom;
+            transform: scaleY(0); opacity: 0;
+            transition: transform .6s cubic-bezier(.16,.8,.3,1), opacity .4s ease;
+        }
+        .reveal.active .tc-brick { transform: scaleY(1); opacity: 1; }
+        .tc-brick.lead { background: linear-gradient(90deg, #6366f1, #ec4899); border-color: rgba(236,72,153,.55); }
+        .tc-col-name { color: #fff; font-weight: 800; font-size: 1.02rem; display: block; }
+        .tc-col-meta { color: var(--text-muted); font-size: .88rem; }
+        @media (prefers-reduced-motion: reduce) { .tc-brick { transform: none !important; opacity: 1 !important; } }
+
+        /* Module cards */
+        .tc-mods { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
+        .tc-mod {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 1.9rem; transition: .4s cubic-bezier(.16,.8,.3,1);
+            position: relative; overflow: hidden;
+        }
+        .tc-mod::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent-liquid); transform: scaleX(0); transform-origin: left;
+            transition: transform .5s cubic-bezier(.16,.8,.3,1);
+        }
+        .tc-mod:hover::before { transform: scaleX(1); }
+        .tc-mod:hover { transform: translateY(-7px); background: rgba(255,255,255,.055); }
+        .tc-mod-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #818cf8; font-size: .88rem; font-weight: 700; }
+        .tc-mod h3 { font-size: 1.2rem; margin: .4rem 0 .7rem; letter-spacing: -.3px; }
+        .tc-mod p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin: 0; }
+        .tc-role {
+            display: inline-block; margin-bottom: .8rem; padding: 4px 12px; border-radius: 100px;
+            font-size: .76rem; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
+        }
+        .tc-role-lead { background: rgba(52,211,153,.13); border: 1px solid rgba(52,211,153,.32); color: #34d399; }
+        .tc-role-support { background: rgba(148,163,184,.1); border: 1px solid rgba(148,163,184,.25); color: var(--text-muted); }
+
+        .tc-inst-head {
+            display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+            margin: 3.5rem 0 1.5rem; padding-bottom: .9rem; border-bottom: 1px solid var(--glass-border);
+        }
+        .tc-inst-head h2 { font-size: 1.9rem; margin: 0; letter-spacing: -.8px; }
+        .tc-inst-head span { color: var(--text-muted); font-size: 1rem; font-weight: 600; }
+
+        /* Credential chips */
+        .tc-creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+        .tc-cred {
+            padding: 2rem; border-radius: 20px;
+            background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(236,72,153,.045));
+            border: 1px solid rgba(129,140,248,.26);
+            transition: .4s cubic-bezier(.16,.8,.3,1);
+        }
+        .tc-cred:hover { transform: translateY(-7px); border-color: rgba(251,191,36,.45); }
+        .tc-cred-ico { font-size: 1.8rem; display: block; margin-bottom: .8rem; }
+        .tc-cred h3 { font-size: 1.2rem; margin-bottom: .6rem; letter-spacing: -.3px; }
+        .tc-cred p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .tc-cred p a { color: #a5b4fc; }
+        .tc-cred strong { color: #fff; }
+
+        .tc-pull {
+            padding: 2.4rem 2.8rem; border-radius: 22px;
+            background: linear-gradient(120deg, rgba(99,102,241,.09), rgba(236,72,153,.06));
+            border: 1px solid rgba(129,140,248,.25);
+            font-size: 1.35rem; line-height: 1.55; color: #fff; font-weight: 600;
+        }
+        .tc-pull span { color: #a5b4fc; }
+        @media (max-width: 1024px) { .tc-pull { font-size: 1.15rem; padding: 1.8rem; } }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
-    
+    <div class="scroll-progress"></div>
+
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
@@ -33,61 +112,317 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html" class="active">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
     </nav>
 
-    <main class="container" style="padding-top: 140px;">
-        <section>
+    <main class="container">
+
+        <section class="tc-hero reveal">
             <span class="section-title">Educational Leadership</span>
-            <h2>Creating an engaging environment for learning.</h2>
-            
-            <div class="card">
-                <span class="tag">Award Finalist</span>
-                <h3 style="margin-bottom: 1.5rem;">Vice Chancellor's Awards (Teaching)</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">I believe teaching is most effective when it's interactive and grounded in real-world application. At the <a href="https://www.southampton.ac.uk/" target="_blank" rel="noopener" style="color:#a5b4fc;">University of Southampton</a>, I lead the <strong>Machine Learning Technologies</strong> module, which consistently receives strong student feedback, and <strong>Knowledge Graphs for AI Systems</strong>, which has ranked in the top 1% of modules school-wide.</p>
-            </div>
+            <h1 class="liquid-text">Fourteen modules.<br>Five institutions. Three countries.</h1>
+            <p class="lead">From data structures in Hong Kong to knowledge graphs at Southampton — taught across every level, in every kind of room, for eighteen years.</p>
+        </section>
 
-            <div class="grid">
-                <div class="card">
-                    <a href="https://www.southampton.ac.uk/" target="_blank" rel="noopener" class="tag" style="text-decoration:none;">Southampton</a>
-                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Machine Learning Technologies</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Lead Module on the latest in AI and ML technologies.</p>
-                </div>
-                <div class="card">
-                    <a href="https://www.essex.ac.uk/" target="_blank" rel="noopener" class="tag" style="text-decoration:none;">Essex</a>
-                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Text Analytics</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Achieved exceptional feedback for clarity and industrial relevance.</p>
-                </div>
+        <section class="grid reveal" style="margin-bottom: 5rem;">
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="14">0</span></span>
+                <span class="stat-label">Modules Taught or Led</span>
             </div>
+            <div class="card stat-card">
+                <span class="stat-value">Top 1%</span>
+                <span class="stat-label">Module Ranking, School-Wide</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="630">0</span></span>
+                <span class="stat-label">Applications — I Was Top 3</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="8">0</span></span>
+                <span class="stat-label">Modules I Led Outright</span>
+            </div>
+        </section>
 
-            <div class="card" style="margin-top: 2rem;">
-                <span class="section-title">Student Voice</span>
-                <div class="feedback-quote">
-                    "I really enjoy attending your lecture and prefer this approach to teaching... sharing my opinion and having the class getting more involved gives the lecture a better atmosphere."
-                </div>
-                <div class="feedback-quote">
-                    "You seem more charismatic than almost all of the other lecturers and I think the way you teach is engaging too."
+        <!-- Institution rail -->
+        <section class="reveal" style="margin-bottom: 5rem;">
+            <span class="section-title">Where</span>
+            <h2 style="font-size: 2.3rem;">One brick per module.</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 780px;">Pink bricks are modules I led or convened outright — owning the syllabus, the assessment and the outcome.</p>
+            <div class="card" style="padding: 3rem 2rem 2rem;">
+                <div class="tc-rail">
+                    <div class="tc-col">
+                        <div class="tc-stack">
+                            <div class="tc-brick lead"></div><div class="tc-brick lead"></div><div class="tc-brick"></div>
+                        </div>
+                        <span class="tc-col-name">Southampton</span>
+                        <span class="tc-col-meta">3 modules · 2024–</span>
+                    </div>
+                    <div class="tc-col">
+                        <div class="tc-stack">
+                            <div class="tc-brick lead"></div><div class="tc-brick lead"></div><div class="tc-brick"></div>
+                        </div>
+                        <span class="tc-col-name">Essex</span>
+                        <span class="tc-col-meta">3 modules · 2020–22</span>
+                    </div>
+                    <div class="tc-col">
+                        <div class="tc-stack">
+                            <div class="tc-brick lead"></div><div class="tc-brick lead"></div><div class="tc-brick"></div><div class="tc-brick"></div>
+                        </div>
+                        <span class="tc-col-name">Kent</span>
+                        <span class="tc-col-meta">4 modules · 2017–19</span>
+                    </div>
+                    <div class="tc-col">
+                        <div class="tc-stack">
+                            <div class="tc-brick"></div><div class="tc-brick"></div><div class="tc-brick"></div>
+                        </div>
+                        <span class="tc-col-name">CUHK</span>
+                        <span class="tc-col-meta">3 modules · Hong Kong</span>
+                    </div>
+                    <div class="tc-col">
+                        <div class="tc-stack">
+                            <div class="tc-brick lead"></div>
+                        </div>
+                        <span class="tc-col-name">SMIT</span>
+                        <span class="tc-col-meta">1 workshop · India</span>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Credentials -->
+        <section class="reveal" style="margin-bottom: 5rem;">
+            <span class="section-title">Recognition</span>
+            <h2 style="font-size: 2.3rem;">Judged by panels, not by self-report.</h2>
+            <div class="tc-creds" style="margin-top: 2.5rem;">
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#127942;</span>
+                    <h3>Vice-Chancellor&rsquo;s Award finalist, 2024</h3>
+                    <p>One of <strong>three finalists out of 630 applications</strong> university-wide in the Teaching category at <a href="https://www.southampton.ac.uk/" target="_blank" rel="noopener">Southampton</a> — recognising the teaching work and <a href="competitive-programming.html">Competitive Coding</a>, the competitive-programming society I founded.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#127891;</span>
+                    <h3>Fellow of the HEA</h3>
+                    <p>Postgraduate Certificate in Higher Education awarded, with <strong>Distinction in two of four modules</strong> — the formal UK teaching qualification, not just experience on the job.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#127758;</span>
+                    <h3>The only academic chosen from the UK/EU</h3>
+                    <p><a href="https://english.pku.edu.cn/" target="_blank" rel="noopener">Peking University</a>&rsquo;s Intelligent Computing and Sensing Laboratory invited nominations across UK and EU institutions for its 2019 summer school. Kent submitted me alongside its senior professors. <strong>I was the only academic selected from the entire UK/EU region</strong> — and the most junior name on the list.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#128200;</span>
+                    <h3>Top 1% of modules, school-wide</h3>
+                    <p><strong>Knowledge Graphs for AI Systems</strong> has consistently ranked in the top 1% of all modules across the school — a ranking driven by student support, not by grading generosity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modules by institution -->
+        <section class="reveal" style="margin-bottom: 2rem;">
+            <span class="section-title">The Full Record</span>
+            <h2 style="font-size: 2.3rem;">Every module, every level.</h2>
+        </section>
+
+        <section class="reveal">
+            <div class="tc-inst-head"><h2>University of Southampton</h2><span>2022 – present</span></div>
+            <div class="tc-mods">
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Module Lead</span>
+                    <span class="tc-mod-code">COMP3222 / COMP6246</span>
+                    <h3>Machine Learning Technologies</h3>
+                    <p>Undergraduate and MSc. Built additional pre-recorded lectures and a per-topic Q&amp;A document to help students prepare for exams. Consistently strong feedback.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Module Lead</span>
+                    <span class="tc-mod-code">COM6256</span>
+                    <h3>Knowledge Graphs for AI Systems</h3>
+                    <p>Ranked in the <strong style="color:#fff;">top 1% of modules school-wide</strong>. The syllabus feeds directly from my <a href="resources.html" style="color:#a5b4fc;">Turing/MoD knowledge-graph research</a>.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Teaching Support</span>
+                    <span class="tc-mod-code">GENG0015</span>
+                    <h3>Engineering Foundations</h3>
+                    <p>Foundation-year engineering, for students entering without a standard maths background.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="tc-inst-head"><h2>University of Essex</h2><span>2020 – 2022</span></div>
+            <div class="tc-mods">
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Module Lead</span>
+                    <span class="tc-mod-code">CE807</span>
+                    <h3>Text Analytics</h3>
+                    <p>Excellent student feedback and teaching score. <a href="https://drive.google.com/file/d/1S5xoQOVRjkppus1jlcfoXiVYurx1Uhpj/view?usp=sharing" target="_blank" rel="noopener" style="color:#a5b4fc;">Student comments and scores &rarr;</a></p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Second Module Lead</span>
+                    <span class="tc-mod-code">CE306 / CE706</span>
+                    <h3>Information Retrieval</h3>
+                    <p>Undergraduate and MSc, in the subject of my own doctoral research.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Lab Supervisor</span>
+                    <span class="tc-mod-code">CE299</span>
+                    <h3>Project Module</h3>
+                    <p>Supervising individual student capstone projects — one of which became a <a href="cultural-modelling.html" style="color:#a5b4fc;">published paper</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="tc-inst-head"><h2>University of Kent</h2><span>2017 – 2019 · Medway</span></div>
+            <div class="tc-mods">
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Module Convener</span>
+                    <span class="tc-mod-code">CO334</span>
+                    <h3>People and Computing</h3>
+                    <p>Human-computer interaction. The module that generated most of the student feedback below.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Module Convener</span>
+                    <span class="tc-mod-code">CO547</span>
+                    <h3>Agile Software Development &amp; Security</h3>
+                    <p>Industrial software practice and secure development for final-year undergraduates.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Lecturer</span>
+                    <span class="tc-mod-code">CO639</span>
+                    <h3>Electronic Commerce</h3>
+                    <p>My first-ever lecture at Kent — which prompted an unsolicited student email to another tutor (quoted below).</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Lecturer</span>
+                    <span class="tc-mod-code">CO644</span>
+                    <h3>Semantic Web</h3>
+                    <p>Knowledge representation and linked data — the direct precursor to the knowledge-graph module I now lead.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="tc-inst-head"><h2>The Chinese University of Hong Kong</h2><span>During the PhD</span></div>
+            <div class="tc-mods">
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Teaching Assistant</span>
+                    <span class="tc-mod-code">CSC2100E/F</span>
+                    <h3>Data Structures</h3>
+                    <p>Lectured on computational complexity, pseudocode, searching and sorting. Wrote assignment questions from real-world problems and ran full-syllabus revision classes.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Teaching Assistant</span>
+                    <span class="tc-mod-code">SEEM 3490</span>
+                    <h3>Information Systems Management</h3>
+                    <p>Delivered the information security and cryptography lectures, plus revision classes and project supervision.</p>
+                </div>
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-support">Teaching Assistant</span>
+                    <span class="tc-mod-code">ENGG1100</span>
+                    <h3>Introduction to Engineering</h3>
+                    <p>Supervised students building a self-navigating robotic car, and taught 3D printing and SolidWorks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="tc-inst-head"><h2>Sikkim Manipal Institute of Technology</h2><span>India · as an undergraduate</span></div>
+            <div class="tc-mods">
+                <div class="tc-mod">
+                    <span class="tc-role tc-role-lead">Workshop Organiser</span>
+                    <span class="tc-mod-code">Peer-led</span>
+                    <h3>Functions &amp; Pointers in C</h3>
+                    <p>Ran student workshops on the two topics that defeat most first-year C programmers — while still an undergraduate myself. <a href="undergraduate.html" style="color:#a5b4fc;">Where it started &rarr;</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student voice -->
+        <section class="reveal" style="margin-top: 5rem; margin-bottom: 5rem;">
+            <span class="section-title">Student Voice</span>
+            <h2 style="font-size: 2.3rem;">Unsolicited, and not always flattering.</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 820px;">These arrived by email, unprompted, from students who had nothing to gain. The critical ones are here too — the point of feedback is that you act on it.</p>
+            <div class="card">
+                <div class="feedback-quote">
+                    Afternoon mrs, I would just like to put in a small word of gratitude &amp; say today&rsquo;s lecture felt very engaging&hellip; considering it was his first time lecturing here, he engaged well I believe — he ensured we understood what was briefed in the powerpoints and just made things easier&hellip; I just felt more engaged than usual today.
+                    <cite>&mdash; A student, emailing his own tutor after my first-ever lecture at Kent (CO639)</cite>
+                </div>
+                <div class="feedback-quote">
+                    Congratulations Shoaib! This feedback is from a student who never ever contacts me usually (and he&rsquo;s my tutee!) and has not really been engaging with several courses. We need to observe your teaching rather than the other way around, it seems :)
+                    <cite>&mdash; The tutor who received that email, forwarding it on</cite>
+                </div>
+                <div class="feedback-quote">
+                    I really enjoy attending your lecture and prefer this approach to teaching, however, I feel sometimes it can go off-topic. I enjoy sharing my opinion and having the class getting more involved gives the lecture a better atmosphere.
+                    <cite>&mdash; CO334, People and Computing &mdash; the criticism I acted on</cite>
+                </div>
+                <div class="feedback-quote">
+                    You seem more charismatic than almost all of the other lecturers and I think the way you teach is engaging too. The only feedback i can give is not about you but is infact about the module being a little basic.
+                    <cite>&mdash; CO334, People and Computing</cite>
+                </div>
+                <div class="feedback-quote">
+                    I really like your style of teaching. The idea of a discussion first gets you thinking and the slides afterwards cement it in your mind. The only negative I would say is you ask too much if your teaching style is okay.
+                    <cite>&mdash; A mature student, CO639 &mdash; fair, and I stopped asking</cite>
+                </div>
+                <div class="feedback-quote">
+                    Just wanted to say I loved the lecture today! And your methods have helped us a lot. Thank you!
+                    <cite>&mdash; Final-year student, Semantic Web (CO644), 2019</cite>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 5rem;">
+            <div class="tc-pull">
+                Two students told me the same thing in different words: <span>discuss first, then show the slides.</span> That one piece of student feedback reshaped how I teach every module since.
+            </div>
+        </section>
+
+        <!-- Beyond the timetable -->
+        <section class="reveal" style="margin-bottom: 4rem;">
+            <span class="section-title">Beyond the Timetable</span>
+            <h2 style="font-size: 2.3rem;">The teaching work that isn&rsquo;t on a timetable.</h2>
+            <div class="tc-creds" style="margin-top: 2.5rem;">
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#129513;</span>
+                    <h3>Founded a student society from zero</h3>
+                    <p><a href="competitive-programming.html">Competitive Coding</a> — trained students for ICPC, UKIEPC and NWERC, secured dedicated funding from the Head of School, and led teams to international contests. I also sit on competition juries and set problems.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#129309;</span>
+                    <h3>Covering when colleagues couldn&rsquo;t</h3>
+                    <p>Took over Java tutorials when a staff member resigned mid-term; lectures for a colleague on paternity leave; a final-year project group during a sabbatical; and the entire undergraduate admissions portfolio at short notice. Unglamorous, and exactly the job.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#128218;</span>
+                    <h3>Doctoral supervision at scale</h3>
+                    <p><a href="students.html">17 doctoral researchers</a> supervised, plus four embedded research engineers — including a Doctoral College Director&rsquo;s Award winner and a Microsoft Research PhD Fellow.</p>
+                </div>
+                <div class="tc-cred">
+                    <span class="tc-cred-ico">&#127891;</span>
+                    <h3>Curriculum design beyond my own institution</h3>
+                    <p>Invited member of the <strong>Board of Studies</strong> for Computer Science at <a href="https://adaniuni.ac.in/" target="_blank" rel="noopener">Adani University</a>, India, shaping a national CS curriculum — and external examiner on PhD theses in the UK and India.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
+            <p>&copy; 2026 Shoaib Jameel &middot; University of Southampton</p>
         </div>
     </footer>
+
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

@@ -20,9 +20,60 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Jargon decoder — same translation used on ai-leadership.html. */
+        .ind-decoder {
+            margin: 2.5rem 0 0; padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.04));
+            border: 1px solid rgba(129,140,248,.28); border-radius: 24px;
+        }
+        .ind-decoder-head { display: flex; gap: 1.4rem; align-items: flex-start; margin-bottom: 2.2rem; }
+        .ind-decoder-ico {
+            flex-shrink: 0; width: 46px; height: 46px; border-radius: 14px;
+            background: rgba(129,140,248,.16); border: 1px solid rgba(129,140,248,.35);
+            display: grid; place-items: center; color: #a5b4fc; font-size: 1.5rem; font-weight: 700;
+        }
+        .ind-decoder-head h3 { font-size: 1.5rem; margin-bottom: .4rem; letter-spacing: -.5px; }
+        .ind-decoder-head p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+        .ind-decoder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .ind-decode {
+            padding: 1.8rem; border-radius: 18px;
+            background: rgba(8,10,15,.35); border: 1px solid var(--glass-border);
+            transition: .35s cubic-bezier(.16,.8,.3,1);
+        }
+        .ind-decode:hover { border-color: rgba(129,140,248,.45); transform: translateY(-5px); }
+        .ind-uk {
+            display: inline-block; padding: 5px 14px; border-radius: 8px;
+            background: rgba(148,163,184,.12); border: 1px solid rgba(148,163,184,.28);
+            color: #cbd5e1; font-size: .95rem; font-weight: 800;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+        .ind-eq { display: block; color: var(--text-muted); font-size: .85rem; font-weight: 600; margin: .7rem 0 .35rem; }
+        .ind-ind {
+            display: inline-block; padding: 6px 16px; border-radius: 8px;
+            background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.32);
+            color: #34d399; font-size: 1.02rem; font-weight: 800; margin-bottom: 1.1rem;
+        }
+        .ind-decode p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin: 0; }
+        .ind-decode p strong { color: #fff; }
+        .ind-decode p a { color: #a5b4fc; }
+
+        /* Sector rail */
+        .ind-sectors { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+        .ind-sector {
+            padding: 1.5rem 1.2rem; border-radius: 16px; text-align: center;
+            background: rgba(255,255,255,.03); border: 1px solid var(--glass-border);
+            transition: .35s cubic-bezier(.16,.8,.3,1);
+        }
+        .ind-sector:hover { transform: translateY(-6px); border-color: rgba(129,140,248,.5); background: rgba(255,255,255,.06); }
+        .ind-sector-ico { font-size: 1.7rem; display: block; margin-bottom: .6rem; }
+        .ind-sector-name { color: #fff; font-weight: 800; font-size: 1rem; display: block; margin-bottom: .2rem; }
+        .ind-sector-org { color: var(--text-muted); font-size: .88rem; }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -33,15 +84,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html" class="active">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -52,21 +103,49 @@
         <section class="reveal">
             <span class="section-title">Industry &amp; Government Engagement</span>
             <h1 class="liquid-text" style="font-size: 3.6rem; letter-spacing: -2px; margin-bottom: 1.5rem;">Research That Ships.</h1>
-            <p class="lead" style="max-width: 900px;">I run a deliberate dual-track career: academic research as the space for fundamental, unconstrained R&amp;D, paired with concurrent industry and government partnerships as the vehicle for putting that research into live, funded, real-world delivery. Most of the engagements below were delivered through UK <strong>Knowledge Transfer Partnerships (KTPs)</strong> — a UK government scheme that embeds a university academic, as Principal Investigator or Co-Investigator, directly inside a company to lead a funded R&amp;D project — alongside direct industry roles, innovation vouchers, and cross-sector public-sector platforms.</p>
+            <p class="lead" style="max-width: 900px;">A deliberate dual track: academic research for the unconstrained R&amp;D, concurrent industry and government partnerships to put it into live, funded delivery. <strong style="color:#fff;">Fourteen engagements. Nine reached production.</strong></p>
+
+            <div class="ind-decoder">
+                <div class="ind-decoder-head">
+                    <span class="ind-decoder-ico">&#8644;</span>
+                    <div>
+                        <h3>If you hire in industry, read this first.</h3>
+                        <p>Most of what follows was delivered through UK schemes with their own vocabulary. Here is the translation.</p>
+                    </div>
+                </div>
+                <div class="ind-decoder-grid">
+                    <div class="ind-decode">
+                        <span class="ind-uk">KTP</span><span class="ind-eq">is an</span><span class="ind-ind">Embedded R&amp;D Programme</span>
+                        <p>A <strong>Knowledge Transfer Partnership</strong>: <a href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">Innovate UK</a> co-funds a multi-year R&amp;D programme run inside a company. The company part-pays, so it is a <strong>paying customer with a commercial stake</strong> — and a funding body audits delivery in parallel.</p>
+                    </div>
+                    <div class="ind-decode">
+                        <span class="ind-uk">KTP Associate</span><span class="ind-eq">is a</span><span class="ind-ind">Research Engineer</span>
+                        <p>A <strong>full-time salaried engineer</strong>, MSc or PhD level, recruited onto the project and <strong>embedded in the partner company&rsquo;s own team</strong> for two to three years. Not a student, not an intern. I ran the recruitment, held the budget line and set their technical direction.</p>
+                    </div>
+                    <div class="ind-decode">
+                        <span class="ind-uk">PI / Co-I</span><span class="ind-eq">is the</span><span class="ind-ind">Accountable Programme Owner</span>
+                        <p><strong>Principal / Co-Investigator</strong> is a grant-holding designation, not a job title. The PI is who the money is awarded to and who answers if it fails — owning budget, hiring, roadmap and risk. Nearest equivalent: <strong>Programme Director</strong>.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="grid reveal" style="margin: 3rem 0 4rem;">
             <div class="card stat-card">
-                <span class="stat-value">14</span>
+                <span class="stat-value"><span class="counter" data-count="14">0</span></span>
                 <span class="stat-label">Industry &amp; Government Engagements</span>
             </div>
             <div class="card stat-card">
-                <span class="stat-value">9</span>
+                <span class="stat-value"><span class="counter" data-count="9">0</span></span>
                 <span class="stat-label">Deployed to Live Production</span>
             </div>
             <div class="card stat-card">
-                <span class="stat-value">3</span>
+                <span class="stat-value"><span class="counter" data-count="3">0</span></span>
                 <span class="stat-label">Continents (Europe, N. America, Asia)</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="1.87" data-pre="£" data-post="M" data-dec="2">£0M</span></span>
+                <span class="stat-label">R&amp;D Budget Directed</span>
             </div>
         </section>
 
@@ -113,6 +192,22 @@
             </div>
         </section>
 
+        <section class="reveal" style="margin-bottom: 3rem;">
+            <span class="section-title">Reach</span>
+            <h2 style="font-size: 2.2rem;">Eight sectors, one operating model.</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 820px;">No single employer gives you defence, telecoms, legal, finance, retail, property, policing and publishing at the same time. That breadth is the reason for the academic seat.</p>
+            <div class="ind-sectors">
+                <div class="ind-sector"><span class="ind-sector-ico">&#128737;</span><span class="ind-sector-name">Defence</span><span class="ind-sector-org">MoD &middot; Turing</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#128225;</span><span class="ind-sector-name">Telecoms</span><span class="ind-sector-org">BT</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#9878;</span><span class="ind-sector-name">Legal</span><span class="ind-sector-org">Wyser</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#127974;</span><span class="ind-sector-name">Finance</span><span class="ind-sector-org">Neotas</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#128722;</span><span class="ind-sector-name">Retail</span><span class="ind-sector-org">eBay</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#127959;</span><span class="ind-sector-name">Property</span><span class="ind-sector-org">Mersea Homes</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#128680;</span><span class="ind-sector-name">Policing</span><span class="ind-sector-org">Met Police</span></div>
+                <div class="ind-sector"><span class="ind-sector-ico">&#128214;</span><span class="ind-sector-name">Publishing</span><span class="ind-sector-org">Thomson Reuters</span></div>
+            </div>
+        </section>
+
         <section class="reveal" style="margin-bottom: 2.5rem;">
             <span class="section-title">Jump to an Engagement</span>
             <div class="quick-nav">
@@ -141,7 +236,7 @@
 
         <section class="reveal" style="margin-bottom: 4rem;">
 
-            <details class="acc-item" id="wyser">
+            <details class="acc-item" id="wyser" open>
                 <summary>
                     <div class="acc-summary-text">
                         <h3>Wyser — Agentic AI for the Legal Domain</h3>
@@ -163,7 +258,7 @@
                 </div>
             </details>
 
-            <details class="acc-item" id="neotas">
+            <details class="acc-item" id="neotas" open>
                 <summary>
                     <div class="acc-summary-text">
                         <h3>Neotas — Enhanced Due-Diligence Platform</h3>
@@ -190,7 +285,7 @@
                 </div>
             </details>
 
-            <details class="acc-item" id="bt">
+            <details class="acc-item" id="bt" open>
                 <summary>
                     <div class="acc-summary-text">
                         <h3>BT (British Telecom) — Customer Interaction Optimisation</h3>
@@ -261,7 +356,7 @@
                 </div>
             </details>
 
-            <details class="acc-item" id="picaso">
+            <details class="acc-item" id="picaso" open>
                 <summary>
                     <div class="acc-summary-text">
                         <h3>PICASO — AI Platform for the Ministry of Defence</h3>
@@ -457,7 +552,7 @@
             <div class="card">
                 <div class="pub-item">
                     <h3 style="font-size: 1.3rem;">eBay — Top 3 Leaders Choice Award (2021)</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 0.8rem;">Selected by eBay's executive leadership team as a Top 3 Leaders Choice Award winner out of 2,000+ corporate submissions globally, for breakthrough work on AI-driven Gen Z onboarding (multi-modal hypergraphs for click-through-rate prediction). Also nominated for Best Paper at CIKM 2021 and won the ACS Digital Disruptors Award 2022.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 0.8rem;">Selected by eBay's executive leadership team as a Top 3 Leaders Choice Award winner out of 2,000+ corporate submissions globally, for breakthrough work on AI-driven Gen Z onboarding (multi-modal hypergraphs for click-through-rate prediction). Also nominated for Best Paper at CIKM 2021 and won the ACS Digital Disruptors Award Winner 2022.</p>
                     <a href="https://www.bandt.com.au/reaching-gen-z-a-new-tool-for-marketers/" target="_blank" rel="noopener" class="tag" style="text-decoration:none;">Media coverage →</a>
                 </div>
                 <div class="pub-item">
@@ -511,20 +606,8 @@
     </footer>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

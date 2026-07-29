@@ -57,9 +57,39 @@
             background-clip: padding-box, border-box;
         }
     </style>
+    <style>
+        /* Homepage story beats — replaces the old prose "My Story" section. */
+        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+        .story-beat {
+            display: block; text-decoration: none;
+            padding: 2rem 1.8rem; border-radius: 22px;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            transition: 0.4s cubic-bezier(0.16, 0.8, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        .story-beat::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent-liquid); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16, 0.8, 0.3, 1);
+        }
+        .story-beat:hover::before { transform: scaleX(1); }
+        .story-beat:hover { transform: translateY(-8px); background: rgba(255,255,255,0.055); border-color: rgba(129,140,248,0.45); }
+        .story-year {
+            display: inline-block; margin-bottom: 0.9rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.88rem; font-weight: 800; letter-spacing: 1px;
+            color: #818cf8; padding: 4px 12px; border-radius: 8px;
+            background: rgba(99,102,241,0.13); border: 1px solid rgba(99,102,241,0.3);
+        }
+        .story-beat h3 { font-size: 1.22rem; margin-bottom: 0.8rem; letter-spacing: -0.4px; color: #fff; }
+        .story-beat p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.6; margin-bottom: 1.1rem; }
+        .story-beat strong { color: #fff; }
+        .story-go { color: #a5b4fc; font-weight: 700; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
     
     <nav>
         <div class="container nav-container">
@@ -70,15 +100,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -87,11 +117,12 @@
     <main class="container">
         <section class="hero reveal">
             <div class="hero-content">
-                <h1 class="liquid-text">Turning AI Theory into Industrial Reality.</h1>
-                <p class="lead">I'm an Associate Professor and AI Strategist focused on building production-grade intelligent systems that solve complex global challenges.</p>
+                <h1 class="liquid-text">I direct AI programmes that ship.</h1>
+                <p class="lead">Associate Professor at Southampton and AI Strategist. I've built AI capability from zero in <strong style="color:#fff;">five organisations</strong> &mdash; a Ministry of Defence intelligence platform, BT, a regulated finance platform at 98% accuracy, one of the first agentic legal-AI systems, and a GenAI start-up joined at its founding.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://www.linkedin.com/in/shoaib-jameel-13751325/" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">Connect on LinkedIn</a>
-                    <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Google Scholar</a>
+                    <a href="ai-leadership.html" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">How I lead &amp; strategise &rarr;</a>
+                    <a href="industry.html" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">What shipped</a>
+                    <a href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" target="_blank" rel="noopener" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Google Scholar</a>
                 </div>
             </div>
             <img src="Shoaib_Profile_ID.jpg" alt="Shoaib Jameel" class="hero-img">
@@ -121,16 +152,16 @@
 
         <section class="grid reveal" style="margin-bottom: 4rem;">
             <div class="card stat-card">
-                <span class="stat-value">100+</span>
-                <span class="stat-label">Publications in Top Venues</span>
+                <span class="stat-value"><span class="counter" data-count="90" data-post="+">0</span></span>
+                <span class="stat-label">Peer-Reviewed Publications</span>
             </div>
             <div class="card stat-card">
-                <span class="stat-value">£1M+</span>
-                <span class="stat-label">Grants Directed</span>
+                <span class="stat-value"><span class="counter" data-count="1.87" data-pre="£" data-post="M" data-dec="2">£0M</span></span>
+                <span class="stat-label">AI R&amp;D Budget Directed</span>
             </div>
             <div class="card stat-card">
                 <span class="stat-value">Top 1%</span>
-                <span class="stat-label">Teaching Rank</span>
+                <span class="stat-label">Module Ranking, School-Wide</span>
             </div>
         </section>
 
@@ -157,13 +188,36 @@
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="card">
-                <span class="section-title">My Story</span>
-                <h2>A human pursuit of intelligent systems.</h2>
-                <p style="margin-bottom: 2rem; color: var(--text-muted);">I've always believed that the most elegant algorithms are the ones that work in the real world. My journey started in India, where I was driven by a fascination with how machines could parse the nuance of human language. Landing national headlines for my early search algorithms as an undergraduate was the first sign that this was more than just an academic interest.</p>
-                <p style="margin-bottom: 2rem; color: var(--text-muted);">That path led me through the high-pressure labs of Hong Kong and eventually to the UK. I've been fortunate to lead multi-million pound research grants that don't just result in papers, but in deployed software at places like <a href="https://www.bt.com/about/bt" target="_blank" rel="noopener" style="color:#a5b4fc;">BT</a> and <a href="https://www.ebay.com/" target="_blank" rel="noopener" style="color:#a5b4fc;">eBay</a>. I treat every project as a bridge between a lab breakthrough and a human solution.</p>
-                <p style="color: var(--text-muted);">Today, when I'm not in front of a lecture hall at the <a href="https://www.southampton.ac.uk/" target="_blank" rel="noopener" style="color:#a5b4fc;">University of Southampton</a> or mentoring my PhD students, I'm working with global organizations to ensure AI is built responsibly, ethically, and—most importantly—with a clear purpose.</p>
+        <!-- Four beats, one per era. Replaces the old three-paragraph narrative:
+             same story, a quarter of the words, and every claim links to its evidence. -->
+        <section class="reveal" style="margin-bottom: 4rem;">
+            <span class="section-title">The Short Version</span>
+            <h2>Four moments, eighteen years.</h2>
+            <div class="story-grid">
+                <a class="story-beat" href="undergraduate.html">
+                    <span class="story-year">2008</span>
+                    <h3>A search engine, on a front page</h3>
+                    <p>Built <em>ThinkSearch</em> as an undergraduate in India. The <strong>Hindustan Times</strong> ran it on the front page. I have worked on retrieval ever since.</p>
+                    <span class="story-go">The origin story &rarr;</span>
+                </a>
+                <a class="story-beat" href="thesis.html">
+                    <span class="story-year">2014</span>
+                    <h3>A bet on word order</h3>
+                    <p>My Hong Kong doctorate argued word order and document structure matter, against the bag-of-words consensus. <strong>Transformers later proved it.</strong></p>
+                    <span class="story-go">The thesis, and the Mario story &rarr;</span>
+                </a>
+                <a class="story-beat" href="industry.html">
+                    <span class="story-year">2017&ndash;24</span>
+                    <h3>Research that reached production</h3>
+                    <p>Directed <strong>£1.87M</strong> of AI R&amp;D into live systems at BT, Neotas, Wyser and Mersea Homes &mdash; and owned the technical direction of a GenAI start-up.</p>
+                    <span class="story-go">Fourteen engagements &rarr;</span>
+                </a>
+                <a class="story-beat" href="resources.html">
+                    <span class="story-year">Now</span>
+                    <h3>Teaching machines to doubt</h3>
+                    <p>For the <strong>Ministry of Defence</strong>, with the Alan Turing Institute: AI that knows when <em>not</em> to trust its own answer. Shipped open source.</p>
+                    <span class="story-go">Inside the programme &rarr;</span>
+                </a>
             </div>
         </section>
 
@@ -192,16 +246,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="visitors" class="reveal" style="margin-top: 4rem; text-align: center;">
-            <div class="card">
-                <span class="section-title">Visitor Statistics</span>
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Connecting with the global research community.</p>
-                <div style="display: flex; justify-content: center; overflow: hidden; border-radius: 16px;">
-                    <a href="https://info.flagcounter.com/uS3h"><img src="https://s11.flagcounter.com/count2/uS3h/bg_1A1C1E/txt_94A3B8/border_1A1C1E/columns_4/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -211,20 +255,6 @@
     </footer>
 
     <script>
-        // Scroll Reveal Logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Initial check
 
         const AUTHOR_LINKS = {
             "Abdulrahman Abdullah Alalawi": "https://dblp.org/pid/405/9239",
@@ -481,6 +511,7 @@
 
         updatePaper();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

@@ -92,15 +92,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html" class="active">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -111,7 +111,7 @@
         <!-- Hero / Philosophy -->
         <section class="reveal" style="margin-bottom: 3rem;">
             <span class="section-title">The Mentorship Record</span>
-            <h2 class="liquid-text" style="font-size: 3rem;">Architecting Minds for Global Leadership.</h2>
+            <h1 class="liquid-text" style="font-size: 3rem; letter-spacing: -2px;">Architecting Minds for Global Leadership.</h1>
             <div class="card" style="margin-top: 2rem;">
                 <p style="margin-bottom: 2rem;">My role as a mentor goes beyond standard academic supervision; I see myself as a <span class="highlight-text">technical architect for future careers</span>. I train my students in the deep rigours of mathematical modelling, scientific programming, and robust experimental design. Below is the full record — not a highlight reel — of everyone I've supervised as PhD students, Masters students, and KTP Associates: what they built, where it was published, and where they are now.</p>
                 <div class="grid">
@@ -571,17 +571,6 @@
         document.getElementById('ms-ktp-grid').innerHTML = KTP.map(renderJourneyCard).join('');
         document.getElementById('ms-cohort-strip').innerHTML = COHORT_ONLY.map(n => `<span class="ms-cohort-pill"><strong>${esc(n)}</strong> · PhD Student</span>`).join('');
 
-        // ---------------- Scroll reveal ----------------
-        function reveal() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 100) el.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('resize', reveal);
-        reveal();
-
         // ---------------- Scroll progress ----------------
         function updateProgress() {
             const h = document.documentElement;
@@ -673,6 +662,7 @@
             document.querySelectorAll('svg').forEach(svg => { if (svg.pauseAnimations) svg.pauseAnimations(); });
         }
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

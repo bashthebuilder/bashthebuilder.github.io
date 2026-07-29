@@ -133,6 +133,7 @@
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -143,22 +144,22 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html" class="active">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
     </nav>
 
     <main class="container" style="padding-top: 160px;">
-        <section class="thesis-hero">
+        <section class="thesis-hero reveal">
             <a href="https://www.cuhk.edu.hk/" target="_blank" rel="noopener" class="thesis-badge" style="text-decoration:none;">CUHK Doctoral Research</a>
             <h1 style="background: none; -webkit-text-fill-color: #fff; margin-bottom: 1rem;">Latent Probabilistic Topic Discovery for Text Documents</h1>
             <p style="font-size: 1.2rem; color: #fff; opacity: 0.9; margin-bottom: 2rem;">Incorporating Segment Structure and Word Order.</p>
@@ -169,7 +170,7 @@
         </section>
 
         <!-- The Story -->
-        <section style="margin-bottom: 4rem;">
+        <section class="reveal" style="margin-bottom: 4rem;">
             <span class="section-title">Where the Idea Came From</span>
             <h2 style="font-size: 2.4rem;">A Game, a Cliff, and a Question About Reading.</h2>
             <div class="card story-card">
@@ -180,7 +181,7 @@
         </section>
 
         <!-- Interactive Terrain -->
-        <section style="margin-bottom: 4rem;">
+        <section class="reveal" style="margin-bottom: 4rem;">
             <span class="section-title">Play It: The Difficulty Terrain</span>
             <h2 style="font-size: 2.4rem;">Farther cliffs, higher cliffs, harder reading.</h2>
             <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 800px;">Each ledge below is a sentence. Click a ledge — or use the controls — to make the explorer jump to it. The height and distance of the jump map directly onto how much cognitive load that sentence demands from a reader.</p>
@@ -224,7 +225,7 @@
             </div>
         </section>
 
-        <section class="grid" style="margin-bottom: 4rem;">
+        <section class="grid reveal" style="margin-bottom: 4rem;">
             <div class="card">
                 <span class="section-title">The Innovation</span>
                 <h3>Pioneering Word Order Modeling.</h3>
@@ -238,7 +239,7 @@
         </section>
 
         <!-- The paper that started it all -->
-        <section style="margin-bottom: 4rem;">
+        <section class="reveal" style="margin-bottom: 4rem;">
             <div class="card paper-origin-card">
                 <div style="flex: 1; min-width: 280px;">
                     <span class="section-title" style="color: #fbbf24;">The Paper That Started It All</span>
@@ -250,7 +251,7 @@
             </div>
         </section>
 
-        <section style="margin-bottom: 4rem;">
+        <section class="reveal" style="margin-bottom: 4rem;">
             <div class="card">
                 <span class="section-title">Novelty & Contributions</span>
                 <ul style="list-style: none; color: var(--text-muted);">
@@ -355,21 +356,8 @@
         renderPlatforms();
         drawArcs();
         jumpTo(0);
-
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

@@ -79,6 +79,7 @@
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -89,15 +90,15 @@
                 <a href="timeline.html" class="active">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -157,7 +158,7 @@
             { year: "Aug 2024", cat: "academic", title: "Promoted to Associate Professor", note: "<a href=\"https://www.southampton.ac.uk/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">University of Southampton</a>, Electronics and Computer Science." },
             { year: "2023–2024", cat: "industry", title: "Director of Engineering & Chief Scientist, Bezoku", note: "Architected a commercial generative AI product end to end for the US market — fine-tuned SLMs, Kubernetes/Docker production deployment. <a href=\"https://bezoku.ai/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Bezoku →</a>" },
             { year: "May 2022", cat: "academic", title: "Lecturer, <a href=\"https://www.southampton.ac.uk/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit;\">University of Southampton</a>", note: "Moved to Southampton's Electronics and Computer Science department, continuing through July 2024." },
-            { year: "2022", cat: "award", title: "Best KTP Project (SME) 2022 & ACS Digital Disruptors Award", note: "<a href=\"https://www.merseahomes.co.uk/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Mersea Homes</a> KTP wins national recognition; the eBay hypergraph work wins the <a href=\"https://ia.acs.org.au/article/2022/acs-names-digital-disruptor-awards-2022-winners-.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">ACS Digital Disruptors Award</a>." },
+            { year: "2022", cat: "award", title: "Best KTP Project (SME) 2022 &amp; ACS Digital Disruptors Award Winner", note: "<a href=\"https://www.merseahomes.co.uk/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Mersea Homes</a> KTP wins national recognition; the eBay hypergraph work wins the <a href=\"https://ia.acs.org.au/article/2022/acs-names-digital-disruptor-awards-2022-winners-.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">ACS Digital Disruptors Award</a>." },
             { year: "2022", cat: "award", title: "Royal Society Pairing Scheme", note: "Selected to advise UK Government policymakers on National AI Regulation & Governance in Education, paired with a <a href=\"https://www.gov.uk/government/organisations/home-office\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">UK Home Office</a> official. <a href=\"https://royalsociety.org/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Royal Society →</a>" },
             { year: "Sept 2022", cat: "industry", title: "Wyser KTP begins", note: "One of the first agentic AI systems for the legal domain — built before MCP servers existed. £400k <a href=\"https://www.ukri.org/councils/innovate-uk/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Innovate UK</a> Smart Grant. <a href=\"https://www.wyserai.com/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">Wyser →</a>" },
             { year: "2021", cat: "award", title: "eBay Top 3 Leaders' Choice Award", note: "Multi-modal hypergraph work for Gen Z onboarding selected out of 2,000+ global corporate submissions; also nominated for <a href=\"https://www.cikmconference.org/\" target=\"_blank\" rel=\"noopener\" style=\"color:#a5b4fc;\">CIKM</a> Best Paper." },
@@ -237,6 +238,7 @@
         tlLegend.innerHTML = CATS.map(c => `<div class="tl-legend-item"><span class="tl-legend-dot" style="background:${c.color};"></span>${c.label}</div>`).join('');
         document.getElementById('tl-filters').insertAdjacentElement('beforebegin', tlLegend);
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

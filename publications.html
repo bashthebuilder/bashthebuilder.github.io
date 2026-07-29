@@ -159,15 +159,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html" class="active">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -178,7 +178,7 @@
         <!-- Hero -->
         <section style="text-align: center; margin-bottom: 4rem;" class="reveal">
             <span class="section-title">Fifteen-Plus Years, One Throughline</span>
-            <h2 style="font-size: 3rem;" class="liquid-text">A Question That Kept Getting Bigger.</h2>
+            <h1 style="font-size: 3rem; letter-spacing: -2px;" class="liquid-text">A Question That Kept Getting Bigger.</h1>
             <p class="lead" style="margin: 0 auto 2rem;">It started with a simple, almost stubborn idea: can a machine know how confident it should be? That question about uncertainty never left — it just found new places to live: in word embeddings, in hypergraphs running inside eBay's production stack, in retinal scans, and now in whether a language model understands the culture of the person talking to it.</p>
         </section>
 
@@ -488,16 +488,6 @@
             document.querySelectorAll('svg').forEach(svg => { if (svg.pauseAnimations) svg.pauseAnimations(); });
         }
 
-        // Generic reveal-on-scroll
-        function reveal() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 120) el.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('resize', reveal);
-
         // Throughline era cards + citation cards (own classes, own trigger margin)
         function revealSmall() {
             document.querySelectorAll('.rp-era, .rp-cite-card').forEach(el => {
@@ -603,6 +593,7 @@
         updateProgress();
         checkCounters();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

@@ -3,34 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Press & Public Voice | Shoaib Jameel</title>
+    <title>Press &amp; Public Voice | Shoaib Jameel</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Media coverage and public commentary from Dr. Shoaib Jameel on AI ethics, digital health, and algorithmic bias — featured in Forbes, BBC Radio 4, and The Conversation.">
+    <meta name="description" content="Media coverage of Shoaib Jameel's research — Forbes on oculomics, BBC Radio 4 on emoji embeddings, The Conversation on algorithmic bias, The Sun on AI songwriting, and a Hindustan Times feature as an undergraduate in 2008.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shoaib Jameel">
-    <meta property="og:title" content="Press & Public Voice | Shoaib Jameel">
-    <meta property="og:description" content="Media coverage and public commentary from Dr. Shoaib Jameel on AI ethics, digital health, and algorithmic bias — featured in Forbes, BBC Radio 4, and The Conversation.">
+    <meta property="og:title" content="Press &amp; Public Voice | Shoaib Jameel">
+    <meta property="og:description" content="Eighteen years of coverage — from a Hindustan Times feature in 2008 to Forbes in 2025.">
     <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <meta property="og:url" content="https://bashthebuilder.github.io/press.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Press & Public Voice | Shoaib Jameel">
-    <meta name="twitter:description" content="Media coverage and public commentary from Dr. Shoaib Jameel on AI ethics, digital health, and algorithmic bias — featured in Forbes, BBC Radio 4, and The Conversation.">
+    <meta name="twitter:title" content="Press &amp; Public Voice | Shoaib Jameel">
+    <meta name="twitter:description" content="Eighteen years of coverage — from a Hindustan Times feature in 2008 to Forbes in 2025.">
     <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        .press-item { margin-bottom: 3rem; display: flex; gap: 2rem; align-items: flex-start; }
-        .press-logo { width: 120px; height: 120px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem; color: #fff; border: 1px solid var(--glass-border); flex-shrink: 0; }
-        .press-content h3 { margin-bottom: 0.5rem; }
-        .press-link { color: #818cf8; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        @media (max-width: 768px) { .press-item { flex-direction: column; } }
+        .pr-hero { padding: 160px 0 50px; }
+        .pr-hero h1 { font-size: 4rem; margin-bottom: 1.8rem; }
+        @media (max-width: 1024px) { .pr-hero h1 { font-size: 2.9rem; } }
+
+        .pr-item {
+            display: flex; gap: 2rem; align-items: flex-start;
+            padding: 2rem; border-radius: 22px;
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
+            margin-bottom: 1.4rem; transition: .4s cubic-bezier(.16,.8,.3,1);
+            position: relative; overflow: hidden;
+        }
+        .pr-item::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: var(--accent-liquid); transform: scaleY(0); transform-origin: top;
+            transition: transform .5s cubic-bezier(.16,.8,.3,1);
+        }
+        .pr-item:hover::before { transform: scaleY(1); }
+        .pr-item:hover { transform: translateX(6px); background: rgba(255,255,255,.05); border-color: rgba(129,140,248,.4); }
+
+        .pr-logo {
+            width: 116px; height: 116px; flex-shrink: 0;
+            border-radius: 16px; display: grid; place-items: center;
+            font-weight: 900; font-size: 1.3rem; letter-spacing: -.5px; text-align: center;
+            line-height: 1.15; padding: .5rem; color: #fff;
+            border: 1px solid rgba(255,255,255,.14);
+            transition: transform .4s cubic-bezier(.16,.8,.3,1);
+        }
+        .pr-item:hover .pr-logo { transform: scale(1.05) rotate(-2deg); }
+        .pr-body { flex: 1; min-width: 0; }
+        .pr-body h3 { font-size: 1.35rem; margin: .5rem 0 .6rem; letter-spacing: -.4px; }
+        .pr-body p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem; }
+        .pr-meta { color: var(--text-muted); font-size: .85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .pr-link { color: #a5b4fc; text-decoration: none; font-weight: 700; font-size: .98rem; }
+        .pr-link:hover { color: #fff; text-decoration: underline; }
+        .pr-nolink { color: var(--text-muted); font-size: .95rem; font-style: italic; }
+        .pr-sep { color: var(--text-muted); }
+        @media (max-width: 768px) {
+            .pr-item { flex-direction: column; }
+            .pr-logo { width: 100%; height: 84px; }
+        }
+
+        .pr-yearhead {
+            display: flex; align-items: baseline; gap: 1.2rem; flex-wrap: wrap;
+            margin: 3.5rem 0 1.5rem; padding-bottom: .8rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .pr-yearhead h2 { font-size: 1.8rem; margin: 0; letter-spacing: -.8px; }
+        .pr-yearhead span { color: var(--text-muted); font-size: .98rem; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
-    
+    <div class="scroll-progress"></div>
+
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
@@ -40,79 +84,195 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html" class="active">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
     </nav>
 
-    <main class="container" style="padding-top: 160px;">
-        <section>
-            <span class="section-title">Media & Thought Leadership</span>
-            <h2>Shaping the Public AI Narrative.</h2>
-            <p class="lead" style="margin-bottom: 4rem;">I regularly contribute my expertise to global media outlets, helping the public and policymakers navigate the complexities of AI ethics, health tech, and digital transformation.</p>
+    <main class="container">
 
-            <div class="card">
-                <!-- Forbes -->
-                <div class="press-item">
-                    <div class="press-logo" style="background: #000;">Forbes</div>
-                    <div class="press-content">
-                        <span class="tag">Featured Insight</span>
-                        <h3>AI as a Gateway to Whole-Body Wellness</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Expert commentary on our work in Oculomics—using non-invasive eye exams as a window into systemic health biomarkers.</p>
-                        <a href="https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" class="press-link">Read on Forbes →</a>
-                    </div>
-                </div>
+        <section class="pr-hero reveal">
+            <span class="section-title">Press &amp; Public Voice</span>
+            <h1 class="liquid-text">Eighteen years of being asked to explain it.</h1>
+            <p class="lead">From a national newspaper feature as an undergraduate in 2008 to Forbes in 2025 — the times the work was picked up by someone other than me.</p>
+        </section>
 
-                <!-- BBC -->
-                <div class="press-item">
-                    <div class="press-logo" style="background: #B00000;">BBC</div>
-                    <div class="press-content">
-                        <span class="tag">Radio Appearance</span>
-                        <h3>Emojional: The Logic of Emoji Embeddings</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Discussion on BBC Radio 4 regarding the mathematical modeling of emotional communication in digital spaces.</p>
-                        <span class="press-link" style="opacity: 0.6; cursor: default;">No archive link available</span>
-                    </div>
-                </div>
+        <section class="grid reveal" style="margin-bottom: 4rem;">
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="9">0</span></span>
+                <span class="stat-label">Media Features</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="18">0</span></span>
+                <span class="stat-label">Years of Coverage</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value">4</span>
+                <span class="stat-label">Countries</span>
+            </div>
+        </section>
 
-                <!-- The Conversation -->
-                <div class="press-item">
-                    <div class="press-logo" style="background: #E03E3E; color: #fff;">TC</div>
-                    <div class="press-content">
-                        <span class="tag">Public Discourse</span>
-                        <h3>Twitter’s Algorithm & Political Bias</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">An analysis of algorithmic fairness and the unintended political leanings of social media recommendation systems.</p>
-                        <a href="https://theconversation.com/twitters-algorithm-favours-the-political-right-a-recent-study-finds-175154" class="press-link">Read Article →</a>
-                    </div>
-                </div>
+        <!-- ===================== 2025 ===================== -->
+        <section class="reveal">
+            <div class="pr-yearhead"><h2>2025</h2><span>Healthcare AI</span></div>
 
-                <!-- The Sun -->
-                <div class="press-item">
-                    <div class="press-logo" style="background: #EF3E23;">The Sun</div>
-                    <div class="press-content">
-                        <span class="tag">AI Innovation</span>
-                        <h3>AI-Driven Content Generation</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Coverage of our work on AI lyrics generation and the future of computational creativity.</p>
-                        <a href="https://www.thesun.co.uk/tech/23184161/ai-creates-first-love-song/" class="press-link">Read Feature →</a>
-                    </div>
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #000;">Forbes</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Featured Insight &middot; November 2025</span>
+                    <h3>AI Makes Eye Exams a Gateway to Whole-Body Wellness</h3>
+                    <p>William Haseltine&rsquo;s Forbes column featured our oculomics survey as a healthcare-AI breakthrough — using non-invasive retinal imaging as a window into systemic health biomarkers.</p>
+                    <a class="pr-link" href="https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" target="_blank" rel="noopener">Read on Forbes &rarr;</a>
                 </div>
             </div>
         </section>
+
+        <!-- ===================== 2023 ===================== -->
+        <section class="reveal">
+            <div class="pr-yearhead"><h2>2023</h2><span>Generative AI, before it was everywhere</span></div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #EF3E23;">The Sun</div>
+                <div class="pr-body">
+                    <span class="pr-meta">National Press &middot; July 2023</span>
+                    <h3>&ldquo;AI Creates First Love Song&rdquo;</h3>
+                    <p>Coverage of our work on AI lyric generation and computational creativity — reported while generative AI was still a novelty rather than a news category.</p>
+                    <a class="pr-link" href="https://www.thesun.co.uk/tech/23184161/ai-creates-first-love-song/" target="_blank" rel="noopener">Read in The Sun &rarr;</a>
+                    <span class="pr-sep">&nbsp;·&nbsp;</span>
+                    <a class="pr-link" href="https://www.southampton.ac.uk/news/2023/07/love-letters-with-ai.page" target="_blank" rel="noopener">University release &rarr;</a>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #FF8000;">TR<br>Labs</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Invited Talk &middot; 2023</span>
+                    <h3>Contextualised Attention Embeddings at Thomson Reuters Labs</h3>
+                    <p>Invited to speak at both the London and India research labs. Thomson Reuters&rsquo; own ML engineering blog wrote the talk up.</p>
+                    <a class="pr-link" href="https://medium.com/tr-labs-ml-engineering-blog/a-talk-on-contextualized-attention-embeddings-by-professor-shoaib-jameel-5e68e3bb12f1" target="_blank" rel="noopener">Read the TR Labs write-up &rarr;</a>
+                    <span class="pr-sep">&nbsp;·&nbsp;</span>
+                    <a class="pr-link" href="industry.html#thomsonreuters">The collaboration &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 2021–2022 ===================== -->
+        <section class="reveal">
+            <div class="pr-yearhead"><h2>2021 &ndash; 2022</h2><span>Industry partnerships and algorithmic accountability</span></div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #B00000;">BBC<br>R4</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Radio Appearance &middot; BBC Radio 4</span>
+                    <h3>Emojional: The Logic of Emoji Embeddings</h3>
+                    <p>BBC Radio 4 approached us about <em>Emojional</em>, a paper on the mathematical modelling of emotional communication in digital spaces — <strong style="color:#fff;">authored by a final-year undergraduate</strong> I supervised.</p>
+                    <span class="pr-nolink">Broadcast segment &mdash; no public archive link available.</span>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #E03E3E;">The<br>Conversation</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Public Discourse &middot; 2021</span>
+                    <h3>Twitter&rsquo;s Algorithm Favours the Political Right</h3>
+                    <p>My own write-up analysing algorithmic fairness and the unintended political leanings of social-media recommendation systems.</p>
+                    <a class="pr-link" href="https://theconversation.com/twitters-algorithm-favours-the-political-right-a-recent-study-finds-175154" target="_blank" rel="noopener">Read the article &rarr;</a>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #0B6E4F;">B&amp;T</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Trade Press, Australia &middot; 2022</span>
+                    <h3>&ldquo;Reaching Gen Z: A New Tool for Marketers&rdquo;</h3>
+                    <p>Trade coverage of the eBay multi-modal hypergraph work — selected by eBay&rsquo;s global leadership as a <strong style="color:#fff;">Top 3 Leaders&rsquo; Choice Award winner from 2,000+ submissions</strong>, and an ACS Digital Disruptors Award winner.</p>
+                    <a class="pr-link" href="https://www.bandt.com.au/reaching-gen-z-a-new-tool-for-marketers/" target="_blank" rel="noopener">Read in B&amp;T &rarr;</a>
+                    <span class="pr-sep">&nbsp;·&nbsp;</span>
+                    <a class="pr-link" href="https://dl.acm.org/doi/10.1145/3459637.3482327" target="_blank" rel="noopener">The paper &rarr;</a>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #2E4A7D;">Essex<br>News</div>
+                <div class="pr-body">
+                    <span class="pr-meta">University Press &middot; June 2021</span>
+                    <h3>RoleCatcher: Helping Our Students</h3>
+                    <p>How an Innovation Voucher partnership with FinTex Ltd. built a CV-matching engine with automatic cover-letter generation — <em>while LLMs were still in their infancy</em>.</p>
+                    <a class="pr-link" href="https://www.essex.ac.uk/news/2021/06/25/rolecatcher-helping-our-students" target="_blank" rel="noopener">Read the story &rarr;</a>
+                    <span class="pr-sep">&nbsp;·&nbsp;</span>
+                    <a class="pr-link" href="industry.html#rolecatcher">The engagement &rarr;</a>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #4A5568;">Gazette</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Regional Press &middot; 2021</span>
+                    <h3>Twitter Research Shows Rise in Pandemic Depression</h3>
+                    <p>Coverage of our work mining community depression dynamics on social media during COVID-19 — subsequently published in IEEE Transactions on Computational Social Systems.</p>
+                    <a class="pr-link" href="https://www.gazette-news.co.uk/news/19068066.twitter-research-university-essex-shows-increase-depression-pandemic/" target="_blank" rel="noopener">Read the article &rarr;</a>
+                </div>
+            </div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #1A365D;">Horus<br>KTP</div>
+                <div class="pr-body">
+                    <span class="pr-meta">Partnership Announcement &middot; November 2021</span>
+                    <h3>Horus Security Consultancy Partners with Essex</h3>
+                    <p>The launch of the security-intelligence partnership. The research engineer I recruited onto it went on to a Data Scientist role at 3 UK.</p>
+                    <a class="pr-link" href="https://www.essex.ac.uk/news/2021/11/30/horus-security-consultancy-partners-with-university-of-essex" target="_blank" rel="noopener">Read the announcement &rarr;</a>
+                    <span class="pr-sep">&nbsp;·&nbsp;</span>
+                    <a class="pr-link" href="industry.html#horus">The engagement &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 2008 ===================== -->
+        <section class="reveal">
+            <div class="pr-yearhead"><h2>2008</h2><span>The first one</span></div>
+
+            <div class="pr-item">
+                <div class="pr-logo" style="background: #C8102E;">Times<br>of India</div>
+                <div class="pr-body">
+                    <span class="pr-meta">National Press, India &middot; Front Page</span>
+                    <h3>&ldquo;World logs into local lad&rsquo;s search engine&rdquo;</h3>
+                    <p>Reporter Animesh Bisoee interviewed me one-to-one for <strong style="color:#fff;">the Hindustan Times</strong> about <em>ThinkSearch</em>, the localised search engine I built as an undergraduate. It ran in my city&rsquo;s edition in August 2008. Eighteen years later, I still work on retrieval.</p>
+                    <a class="pr-link" href="undergraduate.html">See the clipping and the story &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin: 4rem 0;">
+            <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
+                <span class="section-title">For Journalists</span>
+                <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">Available for comment.</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 800px;">I comment on AI governance and regulation, uncertainty and trust in AI systems, healthcare AI, retrieval and language models, and university&ndash;industry technology transfer. Email is the fastest route.</p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Email me</a>
+                    <a href="cv.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Full CV &amp; credentials</a>
+                    <a href="ai-leadership.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Background &amp; remit</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
+            <p>&copy; 2026 Shoaib Jameel &middot; University of Southampton</p>
         </div>
     </footer>
+
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

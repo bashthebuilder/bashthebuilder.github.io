@@ -88,6 +88,7 @@
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -98,15 +99,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html" class="active">SIGCompete</a>
+                <a href="competitive-programming.html" class="active">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -205,25 +206,6 @@
     </footer>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-            document.querySelectorAll(".cp-podium-item").forEach(function(el) {
-                var top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 100) {
-                    el.classList.add("in-view");
-                }
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
 
         // Animated count-up for stat numbers, triggered once each becomes visible
         const counted = new WeakSet();
@@ -252,6 +234,7 @@
         window.addEventListener("scroll", animateCounters);
         animateCounters();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

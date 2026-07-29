@@ -22,19 +22,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ---------- Scroll progress bar ---------- */
-        .al-progress {
-            position: fixed; top: 0; left: 0; height: 3px; width: 0;
-            background: var(--accent-liquid); z-index: 1500;
-            transition: width 0.1s linear;
-        }
-
         /* ---------- Reveal, with directional + staggered variants ---------- */
         .al-rev { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1); }
-        .al-rev.in { opacity: 1; transform: none; }
+        .al-rev.active { opacity: 1; transform: none; }
         .al-rev-l { opacity: 0; transform: translateX(-36px); transition: opacity .9s cubic-bezier(.16,.8,.3,1), transform .9s cubic-bezier(.16,.8,.3,1); }
-        .al-rev-l.in { opacity: 1; transform: none; }
+        .al-rev-l.active { opacity: 1; transform: none; }
         .al-rev-scale { opacity: 0; transform: scale(.94); transition: opacity .7s ease, transform .7s cubic-bezier(.16,.8,.3,1); }
-        .al-rev-scale.in { opacity: 1; transform: none; }
+        .al-rev-scale.active { opacity: 1; transform: none; }
         @media (prefers-reduced-motion: reduce) {
             .al-rev, .al-rev-l, .al-rev-scale { transition: none !important; opacity: 1 !important; transform: none !important; }
             .al-bar-fill, .al-orbit, .al-pulse, .al-shimmer { animation: none !important; transition: none !important; }
@@ -219,7 +213,7 @@
         .al-row-name { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin-bottom: .45rem; }
         .al-row-name em { color: var(--text-muted); font-style: normal; font-weight: 500; font-size: .9rem; }
         .al-bar { height: 12px; border-radius: 100px; background: rgba(255,255,255,.05); overflow: hidden; }
-        .al-bar-fill {
+        .al-bar .bar-fill {
             height: 100%; width: 0; border-radius: 100px;
             transition: width 1.4s cubic-bezier(.16,.8,.3,1);
         }
@@ -324,7 +318,7 @@
 </head>
 <body>
     <div class="liquid-bg"></div>
-    <div class="al-progress" id="al-progress"></div>
+    <div class="scroll-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -335,15 +329,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html">PICASO</a>
+                <a href="resources.html">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html" class="active">AI Leadership</a>
             </div>
         </div>
@@ -362,23 +356,23 @@
 
             <div class="al-counters">
                 <div class="al-count-card al-rev-scale">
-                    <span class="al-count-num" data-count="1.87" data-pre="£" data-post="M" data-dec="2">£0M</span>
+                    <span class="al-count-num counter" data-count="1.87" data-pre="£" data-post="M" data-dec="2">£0M</span>
                     <span class="al-count-lbl">AI R&amp;D budget directed as PI / Co-I</span>
                 </div>
                 <div class="al-count-card al-rev-scale">
-                    <span class="al-count-num" data-count="12">0</span>
+                    <span class="al-count-num counter" data-count="12">0</span>
                     <span class="al-count-lbl">Competitively won grants held</span>
                 </div>
                 <div class="al-count-card al-rev-scale">
-                    <span class="al-count-num" data-count="5">0</span>
+                    <span class="al-count-num counter" data-count="5">0</span>
                     <span class="al-count-lbl">Organisations where AI capability was built from zero</span>
                 </div>
                 <div class="al-count-card al-rev-scale">
-                    <span class="al-count-num" data-count="17">0</span>
+                    <span class="al-count-num counter" data-count="17">0</span>
                     <span class="al-count-lbl">Doctoral researchers supervised into industry</span>
                 </div>
                 <div class="al-count-card al-rev-scale">
-                    <span class="al-count-num" data-count="3">0</span>
+                    <span class="al-count-num counter" data-count="3">0</span>
                     <span class="al-count-lbl">Organisations inside one team I lead (MoD · Turing · Southampton)</span>
                 </div>
             </div>
@@ -583,7 +577,7 @@
                         <li><strong>Scaled effectiveness across teams I didn&rsquo;t own.</strong> At BT, the models I directed cut annotation time <strong>90%</strong> across a <strong>50+ person</strong> data science organisation. Leadership there meant changing how a large team worked, with no authority over its org chart. <a href="industry.html#bt">Detail &rarr;</a></li>
                         <li><strong>17 doctoral researchers</strong> supervised, including a <strong>Doctoral College Director&rsquo;s Award 2026</strong> winner (Ubaid Azam) and the first Portuguese PhD student ever awarded a <strong>Microsoft Research PhD Fellowship</strong> (António Correia). <a href="students.html">Where they are now &rarr;</a></li>
                         <li><strong>Placement is the KPI.</strong> Alumni are at <a href="https://www.bt.com/about/bt" target="_blank" rel="noopener">BT</a>, <a href="https://www.huawei.com/en/huawei-research" target="_blank" rel="noopener">Huawei Research</a>, <a href="https://www.lloydsbank.com/" target="_blank" rel="noopener">Lloyds Bank</a> and <a href="https://www.three.co.uk/" target="_blank" rel="noopener">3 UK</a>, and one is now an Assistant Professor at an IIT in Gujarat. On the BT programme, the research engineer I recruited was hired permanently by BT on the strength of the delivered work — which ended the project ten months early.</li>
-                        <li><strong>Built an organisation from nothing, twice over:</strong> founded <a href="competitive-programming.html">SIGCompete</a> at Southampton, secured dedicated funding from the Head of School, and led student teams to international competition.</li>
+                        <li><strong>Built an organisation from nothing, twice over:</strong> founded <a href="competitive-programming.html">Competitive Coding</a> at Southampton, secured dedicated funding from the Head of School, and led student teams to international competition.</li>
                     </ul>
                 </div>
 
@@ -692,7 +686,7 @@
                         <span class="al-call-yr">2021 · THE CALL</span>
                         <div class="al-call-h">&ldquo;Recommendation needs images and structure together.&rdquo;</div>
                         <p class="al-call-body">Co-designed the methodology and technical direction for a multi-modal hypergraph click-through model with eBay Research America, fusing visual and structural signals when most production ranking was still tabular. <a href="https://dl.acm.org/doi/10.1145/3459637.3482327" target="_blank" rel="noopener">CIKM 2021</a></p>
-                        <span class="al-verdict">&#10003; Top 3 of 2,000+ eBay submissions · Best Paper nominee · ACS Digital Disruptors finalist</span>
+                        <span class="al-verdict">&#10003; Top 3 of 2,000+ eBay submissions · Best Paper nominee · ACS Digital Disruptors Award winner</span>
                     </div>
                     <div class="al-call hit al-rev-l">
                         <span class="al-call-yr">2022 · THE CALL</span>
@@ -856,55 +850,7 @@
     </footer>
 
     <script>
-        /* ---------- Scroll progress ---------- */
-        const alProg = document.getElementById('al-progress');
-        function alProgress() {
-            const h = document.documentElement;
-            const max = h.scrollHeight - h.clientHeight;
-            alProg.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
-        }
 
-        /* ---------- Reveal on scroll ---------- */
-        const alRevEls = document.querySelectorAll('.al-rev, .al-rev-l, .al-rev-scale');
-        if ('IntersectionObserver' in window) {
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((e, i) => {
-                    if (e.isIntersecting) {
-                        setTimeout(() => e.target.classList.add('in'), Math.min(i * 70, 350));
-                        io.unobserve(e.target);
-                    }
-                });
-            }, { rootMargin: '0px 0px -80px 0px' });
-            alRevEls.forEach(el => io.observe(el));
-        } else {
-            alRevEls.forEach(el => el.classList.add('in'));
-        }
-
-        /* ---------- Count-up numbers ---------- */
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function alCountUp(el) {
-            const target = parseFloat(el.dataset.count);
-            const dec = parseInt(el.dataset.dec || '0', 10);
-            const pre = el.dataset.pre || '';
-            const post = el.dataset.post || '';
-            if (reduceMotion) { el.textContent = pre + target.toFixed(dec) + post; return; }
-            const dur = 1500, t0 = performance.now();
-            function step(now) {
-                const p = Math.min((now - t0) / dur, 1);
-                const eased = 1 - Math.pow(1 - p, 3);
-                el.textContent = pre + (target * eased).toFixed(dec) + post;
-                if (p < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-        }
-        if ('IntersectionObserver' in window) {
-            const cio = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if (e.isIntersecting) { alCountUp(e.target); cio.unobserve(e.target); } });
-            }, { threshold: 0.5 });
-            document.querySelectorAll('.al-count-num').forEach(el => cio.observe(el));
-        } else {
-            document.querySelectorAll('.al-count-num').forEach(alCountUp);
-        }
 
         /* ---------- Tabs ---------- */
         document.querySelectorAll('.al-tab').forEach(btn => {
@@ -937,29 +883,12 @@
             <div class="al-row">
                 <div>
                     <div class="al-row-name">${g.name} &nbsp;<em>${g.fund}</em></div>
-                    <div class="al-bar"><div class="al-bar-fill ${g.pi ? 'al-bar-pi' : 'al-bar-co'}" data-w="${(g.k / alMax) * 100}"></div></div>
+                    <div class="al-bar"><div class="bar-fill ${g.pi ? 'al-bar-pi' : 'al-bar-co'}" data-bar="${(g.k / alMax) * 100}"></div></div>
                 </div>
                 <div class="al-row-val">£${g.k >= 100 ? Math.round(g.k) : g.k}k</div>
             </div>`).join('');
-
-        function alFillBars() {
-            document.querySelectorAll('.al-bar-fill').forEach((el, i) => {
-                setTimeout(() => { el.style.width = el.dataset.w + '%'; }, reduceMotion ? 0 : i * 90);
-            });
-        }
-        if ('IntersectionObserver' in window) {
-            const bio = new IntersectionObserver((entries) => {
-                if (entries.some(e => e.isIntersecting)) { alFillBars(); bio.disconnect(); }
-            }, { threshold: 0.15 });
-            bio.observe(ledger);
-        } else {
-            alFillBars();
-        }
-
-        window.addEventListener('scroll', alProgress, { passive: true });
-        window.addEventListener('resize', alProgress);
-        alProgress();
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>

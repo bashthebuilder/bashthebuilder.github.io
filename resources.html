@@ -106,15 +106,15 @@
                 <a href="timeline.html">Timeline</a>
                 <a href="publications.html">Research</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
-                <a href="resources.html" class="active">PICASO</a>
+                <a href="resources.html" class="active">Defence AI</a>
                 <a href="press.html">Press</a>
                 <a href="industry.html">Industry Impact</a>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
-                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
                 <a href="cv.html">CV</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="undergraduate.html">Origins</a>
+                <a href="undergraduate.html">Early Work</a>
                 <a href="ai-leadership.html">AI Leadership</a>
             </div>
         </div>
@@ -553,7 +553,7 @@
         </div>
     </footer>
 
-    <div id="pc-lightbox"><img id="pc-lightbox-img" src="" alt=""></div>
+    <div id="pc-lightbox"><img id="pc-lightbox-img" src="" alt="" loading="lazy"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -567,16 +567,6 @@
                 throwOnError: false
             });
         }
-
-        function reveal() {
-            document.querySelectorAll('.pc-reveal').forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 100) el.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('resize', reveal);
-        reveal();
 
         function updateProgress() {
             const h = document.documentElement;
@@ -652,6 +642,7 @@
             document.querySelectorAll('.pc-reveal').forEach(el => el.classList.add('active'));
         }
     </script>
+    <script src="reveal.js"></script>
     <script src="nav.js"></script>
 </body>
 </html>
