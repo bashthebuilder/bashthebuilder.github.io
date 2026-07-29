@@ -6,6 +6,7 @@
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
     --nav-height: 100px;
+    --nav-width: 260px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,42 +69,53 @@ body {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-/* Navigation */
+/* Navigation — a persistent left sidebar, so every item is visible with zero
+   clicks/taps/scrolling. Collapses to a top bar + animated dropdown only below
+   900px, where there isn't room for a full-height rail alongside content. */
 nav {
-    height: var(--nav-height);
-    background: rgba(8, 10, 15, 0.7);
-    backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--glass-border);
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background: rgba(8, 10, 15, 0.7);
+    backdrop-filter: blur(25px);
+    border-right: 1px solid var(--glass-border);
+    overflow-y: auto;
     z-index: 1000;
 }
 
 nav .container {
-    max-width: 1560px;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 2.5rem 1.5rem 2rem;
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     height: 100%;
-    position: relative;
+    gap: 2rem;
 }
 
 .nav-logo {
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #fff;
     text-decoration: none;
     letter-spacing: -1px;
+    line-height: 1.2;
 }
 
-/* Nav is always a vertical, animated dropdown — regardless of screen size — so no
-   item is ever hidden behind horizontal overflow on a wide-but-crowded nav bar. */
+@keyframes navItemIn {
+    from { opacity: 0; transform: translateX(-18px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
 .nav-toggle {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -130,63 +142,90 @@ nav .container {
 .nav-links {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    background: rgba(8, 10, 15, 0.98);
-    backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--glass-border);
-    max-height: calc(100vh - var(--nav-height));
-    overflow-x: hidden;
+    align-items: stretch;
+    gap: 0.15rem;
+    width: 100%;
+    flex: 1;
     overflow-y: auto;
-    white-space: normal;
-    padding: 0.5rem 0;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-14px);
-    transition: opacity 0.28s cubic-bezier(0.15, 0.45, 0.35, 1), transform 0.28s cubic-bezier(0.15, 0.45, 0.35, 1), visibility 0.28s;
-}
-.nav-links.open {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
 }
 
 .nav-links a {
     width: 100%;
-    padding: 16px 2rem;
+    padding: 12px 16px;
+    border-radius: 12px;
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    opacity: 0;
-    transform: translateX(-16px);
-    transition: opacity 0.32s ease, transform 0.32s ease, color 0.3s, background 0.3s;
+    transition: color 0.25s, background 0.25s, transform 0.25s;
+    animation: navItemIn 0.5s cubic-bezier(0.16, 0.8, 0.3, 1) both;
 }
-.nav-links.open a { opacity: 1; transform: translateX(0); }
-.nav-links.open a:nth-child(1)  { transition-delay: 0.02s; }
-.nav-links.open a:nth-child(2)  { transition-delay: 0.05s; }
-.nav-links.open a:nth-child(3)  { transition-delay: 0.08s; }
-.nav-links.open a:nth-child(4)  { transition-delay: 0.11s; }
-.nav-links.open a:nth-child(5)  { transition-delay: 0.14s; }
-.nav-links.open a:nth-child(6)  { transition-delay: 0.17s; }
-.nav-links.open a:nth-child(7)  { transition-delay: 0.20s; }
-.nav-links.open a:nth-child(8)  { transition-delay: 0.23s; }
-.nav-links.open a:nth-child(9)  { transition-delay: 0.26s; }
-.nav-links.open a:nth-child(10) { transition-delay: 0.29s; }
-.nav-links.open a:nth-child(11) { transition-delay: 0.32s; }
-.nav-links.open a:nth-child(12) { transition-delay: 0.35s; }
-.nav-links.open a:nth-child(13) { transition-delay: 0.38s; }
-.nav-links.open a:nth-child(14) { transition-delay: 0.41s; }
-.nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.05); }
+.nav-links a:nth-child(1)  { animation-delay: 0.04s; }
+.nav-links a:nth-child(2)  { animation-delay: 0.08s; }
+.nav-links a:nth-child(3)  { animation-delay: 0.12s; }
+.nav-links a:nth-child(4)  { animation-delay: 0.16s; }
+.nav-links a:nth-child(5)  { animation-delay: 0.20s; }
+.nav-links a:nth-child(6)  { animation-delay: 0.24s; }
+.nav-links a:nth-child(7)  { animation-delay: 0.28s; }
+.nav-links a:nth-child(8)  { animation-delay: 0.32s; }
+.nav-links a:nth-child(9)  { animation-delay: 0.36s; }
+.nav-links a:nth-child(10) { animation-delay: 0.40s; }
+.nav-links a:nth-child(11) { animation-delay: 0.44s; }
+.nav-links a:nth-child(12) { animation-delay: 0.48s; }
+.nav-links a:nth-child(13) { animation-delay: 0.52s; }
+.nav-links a:nth-child(14) { animation-delay: 0.56s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.07); transform: translateX(4px); }
 
 @media (prefers-reduced-motion: reduce) {
-    .nav-links, .nav-links a { transition: none !important; transform: none !important; }
+    .nav-links a { animation: none !important; transform: none !important; }
+}
+
+/* Below 900px there's no room for a full-height rail next to real content —
+   fall back to a compact top bar with a tap-to-open, still-animated dropdown. */
+@media (max-width: 900px) {
+    nav {
+        width: 100%;
+        height: var(--nav-height);
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        overflow: visible;
+    }
+    nav .container {
+        max-width: 1560px;
+        padding: 0 2rem;
+    }
+    .nav-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+    }
+    .nav-toggle { display: flex; }
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        flex: none;
+        background: rgba(8, 10, 15, 0.98);
+        backdrop-filter: blur(25px);
+        border-bottom: 1px solid var(--glass-border);
+        max-height: calc(100vh - var(--nav-height));
+        padding: 0.5rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 16px 2rem; border-radius: 0; }
+    .nav-links a:hover, .nav-links a.active { transform: none; }
+}
+
+/* Shift page content clear of the sidebar; footer.container catches the closing div. */
+@media (min-width: 901px) {
+    main.container,
+    footer .container {
+        margin-left: calc(var(--nav-width) + 3rem);
+        margin-right: auto;
+    }
 }
 
 /* Hero Section */
