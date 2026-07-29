@@ -264,9 +264,22 @@
             document.getElementById('pub-list').innerHTML = filtered.map(p => `
                 <div class="pub-entry">
                     <div class="pub-entry-title">${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</div>
-                    <div class="pub-entry-venue"><span class="pub-entry-kind">${esc(p.kind)}${p.year ? ' ' + esc(p.year) : ''}</span>${esc(p.venue)}</div>
+                    <div class="pub-entry-venue"><span class="pub-entry-kind">${esc(p.kind)}${p.year ? ' ' + esc(p.year) : ''}</span>${linkEntities(esc(p.venue))}</div>
                 </div>
             `).join('');
+        }
+
+        // Link well-known organisation names inside otherwise-escaped venue text
+        const ENTITY_LINKS = [
+            ["Thomson Reuters Labs", "https://www.thomsonreuters.com/"],
+            ["eBay", "https://www.ebay.com/"],
+            ["BT (formerly British Telecom)", "https://www.bt.com/about/bt"],
+        ];
+        function linkEntities(html) {
+            ENTITY_LINKS.forEach(([name, url]) => {
+                html = html.split(name).join(`<a href="${url}" target="_blank" rel="noopener" style="color:#a5b4fc;">${name}</a>`);
+            });
+            return html;
         }
 
         document.getElementById('pub-search').addEventListener('input', (e) => {
