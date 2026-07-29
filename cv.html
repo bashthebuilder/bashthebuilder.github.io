@@ -91,12 +91,23 @@
 
         .cv-section ul li { font-size: 1.1rem !important; margin-bottom: 0.7rem !important; }
 
+        /* Scroll progress + animated counters, matching the pattern used elsewhere on the site */
+        .cv-progress { position: fixed; top: var(--nav-height); left: 0; height: 3px; width: 0%; background: var(--accent-liquid); z-index: 999; transition: width 0.12s linear; }
+        @media (min-width: 901px) { .cv-progress { top: 0; left: var(--nav-width); } }
+        .cv-counter { font-variant-numeric: tabular-nums; }
+
+        /* A little life in the hover states — this is a CV, not a static document */
+        .cv-item { transition: transform 0.3s ease, border-color 0.3s ease; }
+        .cv-item:hover { transform: translateX(8px); border-left-color: #818cf8; }
+        .snapshot-card { transition: transform 0.3s ease, border-color 0.3s ease; }
+        .snapshot-card:hover { transform: translateY(-6px); border-color: rgba(129, 140, 248, 0.4); }
+
         /* Print: a plain black-on-white resume, not the dark glass theme. */
         @media print {
-            .liquid-bg, nav, footer, .cv-print-hide { display: none !important; }
+            .liquid-bg, nav, footer, .cv-print-hide, .cv-progress { display: none !important; }
             body { background: #fff !important; color: #111 !important; font-size: 11pt; line-height: 1.4; }
             main.container { margin: 0 !important; padding-top: 0.5rem !important; max-width: 100% !important; }
-            h1, h2, h3, .liquid-text {
+            h1, h2, h3, .liquid-text, .stat-value {
                 background: none !important;
                 -webkit-text-fill-color: #111 !important;
                 color: #111 !important;
@@ -125,6 +136,7 @@
 </head>
 <body>
     <div class="liquid-bg"></div>
+    <div class="cv-progress" id="cv-progress"></div>
 
     <nav>
         <div class="container nav-container">
@@ -149,15 +161,37 @@
     </nav>
 
     <main class="container" style="padding-top: 160px;">
-        <section class="cv-section reveal" style="margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
-            <div>
-                <span class="section-title">Full Academic Record</span>
-                <h2 class="liquid-text" style="font-size: 3rem; margin-bottom: 0;">Curriculum Vitae.</h2>
+        <section class="cv-section reveal" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+                <div>
+                    <span class="section-title">Full Academic Record</span>
+                    <h2 class="liquid-text" style="font-size: 3rem; margin-bottom: 0.75rem;">Curriculum Vitae.</h2>
+                    <p class="lead" style="margin-bottom: 0; max-width: 640px;">Eighteen years, four universities, two continents — the whole record, one document.</p>
+                </div>
+                <a href="ShoaibJameel_CV.pdf" class="tag cv-print-hide" style="background: #6366f1; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 1.05rem;">Download CV (PDF) →</a>
             </div>
-            <a href="ShoaibJameel_CV.pdf" class="tag cv-print-hide" style="background: #6366f1; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 1.05rem;">Download CV (PDF) →</a>
+
+            <div class="grid" style="margin-top: 2.5rem;">
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value"><span class="cv-counter" data-target="97">0</span></span>
+                    <span class="stat-label">Publications</span>
+                </div>
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value"><span class="cv-counter" data-target="18">0</span></span>
+                    <span class="stat-label">Years Active (2008&ndash;2026)</span>
+                </div>
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value"><span class="cv-counter" data-target="4">0</span></span>
+                    <span class="stat-label">Universities Worked At</span>
+                </div>
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value"><span class="cv-counter" data-target="14">0</span></span>
+                    <span class="stat-label">Invited Talks</span>
+                </div>
+            </div>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Research Interests</span>
             <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">Click any interest below to see the papers I've published in that area.</p>
             <div class="card">
@@ -203,7 +237,7 @@
             </div>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Work Experience</span>
             
             <div class="cv-item">
@@ -239,7 +273,7 @@
             </div>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Education</span>
             
             <div class="cv-item">
@@ -258,7 +292,7 @@
             </div>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Invited Talks</span>
             <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">A selection of invited lectures and panel appearances across academia and industry.</p>
 
@@ -289,21 +323,21 @@
             </div>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Professional Service &amp; Reviewing</span>
             <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Peer review and editorial service across the top venues in AI, NLP, and information retrieval.</p>
 
-            <section class="grid" style="margin-bottom: 3rem;">
-                <div class="card stat-card">
-                    <span class="stat-value" style="font-size: 2.2rem;">19</span>
+            <section class="grid reveal" style="margin-bottom: 3rem;">
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value" style="font-size: 2.2rem;"><span class="cv-counter" data-target="19">0</span></span>
                     <span class="stat-label">Journals Reviewed</span>
                 </div>
-                <div class="card stat-card">
-                    <span class="stat-value" style="font-size: 2.2rem;">24</span>
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value" style="font-size: 2.2rem;"><span class="cv-counter" data-target="24">0</span></span>
                     <span class="stat-label">Programme Committee Venues</span>
                 </div>
-                <div class="card stat-card">
-                    <span class="stat-value" style="font-size: 2.2rem;">3</span>
+                <div class="card stat-card snapshot-card">
+                    <span class="stat-value" style="font-size: 2.2rem;"><span class="cv-counter" data-target="3">0</span></span>
                     <span class="stat-label">Reviewer Distinctions</span>
                 </div>
             </section>
@@ -431,7 +465,7 @@
             </details>
         </section>
 
-        <section class="cv-section">
+        <section class="cv-section reveal">
             <span class="section-title">Technical Skills</span>
             <div class="card">
                 <div style="margin-bottom: 2rem;">
@@ -698,6 +732,55 @@
             const count = (PUBS_BY_TAG[t.dataset.tag] || []).length;
             t.querySelector('.ri-count').innerText = count;
         });
+
+        // ---------------- Scroll reveal ----------------
+        function reveal() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('resize', reveal);
+        reveal();
+
+        // ---------------- Scroll progress ----------------
+        function updateProgress() {
+            const h = document.documentElement;
+            const scrollTop = h.scrollTop || document.body.scrollTop;
+            const scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+            const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            document.getElementById('cv-progress').style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // ---------------- Stat counters ----------------
+        function runCounters() {
+            document.querySelectorAll('.cv-counter').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const duration = 1200;
+                const start = performance.now();
+                function tick(now) {
+                    const p = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(target * eased);
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+        let cvCountersStarted = false;
+        function checkCounters() {
+            if (cvCountersStarted) return;
+            const el = document.querySelector('.cv-counter');
+            if (!el) return;
+            if (el.getBoundingClientRect().top < window.innerHeight - 60) { cvCountersStarted = true; runCounters(); }
+        }
+        window.addEventListener('scroll', checkCounters);
+        window.addEventListener('resize', checkCounters);
+        checkCounters();
     </script>
     <script src="nav.js"></script>
 </body>

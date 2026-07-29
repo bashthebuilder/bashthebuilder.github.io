@@ -53,6 +53,10 @@ body {
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
 /* Liquid Background Effect */
 .liquid-bg {
     position: fixed;
