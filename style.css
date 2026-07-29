@@ -15,11 +15,31 @@ body {
     font-family: 'Inter', -apple-system, sans-serif;
     background: var(--bg-dark);
     color: var(--text-primary);
-    line-height: 1.8;
-    font-size: 1.3rem; /* Significantly Increased */
+    line-height: 1.7;
+    font-size: 1.3rem; /* 20.8px — deliberately generous */
     overflow-x: hidden;
     min-height: 100vh;
 }
+
+/* Reading measure.
+   The content column is ~1070–1140px on a laptop once the 260px sidebar is
+   subtracted, which put prose at 87–109 characters per line — well past the
+   45–75 that is comfortable to read. The column stays wide (the stat grids,
+   tables and diagrams need it); prose is capped instead. 64ch lands at ~70
+   characters, because a "0" glyph is wider than the average lowercase letter. */
+p, li, blockquote, dd, figcaption { max-width: 64ch; }
+
+/* A capped block would otherwise sit hard against the left edge of any
+   centred section, so re-centre prose wherever its container is centred. */
+[style*="text-align: center"] p,
+[style*="text-align:center"] p,
+[style*="text-align: center"] li,
+.stat-card p, .stat-card li,
+.pc-caption p, .pc-eqn p, .ug-caption p, .cm-caption p,
+.tc-col p, .cp-podium-item p { margin-inline: auto; }
+
+/* Opt-out for prose that must span a full-width layout cell. */
+.measure-full { max-width: none !important; }
 
 /* Liquid Text Animation */
 .liquid-text {
@@ -566,4 +586,19 @@ footer {
     h2 { font-size: 2.6rem; }
     .hero-img { width: 320px; height: 320px; }
     .card { padding: 2.5rem; }
+}
+
+/* Phones. At 20.8px inside a 2rem-padded 390px viewport the measure drops to
+   ~31 characters, which is too tight; trimming the gutters and the body size
+   brings it back to a comfortable ~38. Headings are rescaled to match, since
+   the desktop scale overflows a narrow column. */
+@media (max-width: 600px) {
+    body { font-size: 1.15rem; }
+    .container { padding: 0 1.25rem; }
+    h1 { font-size: 2.5rem; letter-spacing: -1.5px; }
+    h2 { font-size: 1.9rem; letter-spacing: -1px; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 1.2rem; }
+    .lead { font-size: 1.2rem; }
+    .card { padding: 1.75rem; border-radius: 20px; }
+    .stat-value { font-size: 2.6rem; }
 }

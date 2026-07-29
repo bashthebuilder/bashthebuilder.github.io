@@ -169,7 +169,7 @@
         <section id="problem" style="margin: 4rem 0 6rem;">
             <span class="section-title">The Problem</span>
             <h2 style="font-size: 2.4rem;">Why AI Needs to Know What It Doesn't Know.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">Intelligence analysts face a paradox: the data they need is vast, ambiguous and often contradictory — yet the computational tools they rely on demand certainty. Real-world analysis is challenged by volume, variety, velocity and veracity. Analysts build mental models that <em>weigh</em> information by how uncertain it is, and revise beliefs as evidence arrives. A standard knowledge-graph embedding cannot do this: every entity is a single fixed coordinate — one pin on a map. When one source reports an entity is "in a foreign country" and another says "near the border", the system has no principled way to reconcile two vague, non-overlapping statements.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">Intelligence analysts face a paradox: the data they need is vast, ambiguous and often contradictory — yet the computational tools they rely on demand certainty. Real-world analysis is challenged by volume, variety, velocity and veracity. Analysts build mental models that <em>weigh</em> information by how uncertain it is, and revise beliefs as evidence arrives. A standard knowledge-graph embedding cannot do this: every entity is a single fixed coordinate — one pin on a map. When one source reports an entity is "in a foreign country" and another says "near the border", the system has no principled way to reconcile two vague, non-overlapping statements.</p>
 
             <div class="card" style="padding: 2.5rem;">
                 <h3 style="text-align:center; margin-bottom: 0.5rem;">Click to Toggle: Pins vs. Clouds</h3>
@@ -220,7 +220,7 @@
         <section id="theory" style="margin-bottom: 6rem;">
             <span class="section-title">The Theory — Not Just Engineering</span>
             <h2 style="font-size: 2.4rem;">Grounded in 25 Years of Cognitive Science.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">Most knowledge-graph embedding papers are pure engineering: pick a vector space, pick a loss function, chase a benchmark number. PICASO starts somewhere else entirely — with cognitive scientist <strong style="color:#fff;">Peter Gärdenfors'</strong> 2000 theory of <em>Conceptual Spaces</em>, which argues that concepts live in geometric spaces as <strong>convex regions</strong>, not as symbols or logic rules. Similarity becomes distance. Categories become regions. A point <em>between</em> "red" and "yellow" is, quite literally, "orange."</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">Most knowledge-graph embedding papers are pure engineering: pick a vector space, pick a loss function, chase a benchmark number. PICASO starts somewhere else entirely — with cognitive scientist <strong style="color:#fff;">Peter Gärdenfors'</strong> 2000 theory of <em>Conceptual Spaces</em>, which argues that concepts live in geometric spaces as <strong>convex regions</strong>, not as symbols or logic rules. Similarity becomes distance. Categories become regions. A point <em>between</em> "red" and "yellow" is, quite literally, "orange."</p>
 
             <div class="card" style="margin-bottom: 2rem;">
                 <p style="color: var(--text-muted); margin-bottom: 1rem;">A natural concept forms a convex set: any point between two members also belongs to the category.</p>
@@ -228,7 +228,7 @@
                 <p class="pc-plain"><strong>Plain English:</strong> if "orange" is a valid colour and "yellow" is too, then any blend of the two is still a valid colour. Concepts aren't points — they're regions with soft edges, exactly what a Gaussian distribution is.</p>
             </div>
 
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1rem;">This isn't a new direction for this research line. In 2016, working with <a href="https://profiles.cardiff.ac.uk/staff/schockaerts1" target="_blank" rel="noopener" style="color:#a5b4fc;">Prof. Steven Schockaert</a>, I published <a href="publications.html" style="color:#a5b4fc;">"Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning" (ECAI 2016)</a> and <a href="publications.html" style="color:#a5b4fc;">"Plausible Reasoning based on Qualitative Entity Embeddings" (IJCAI 2016)</a> — treating semantic types as geometric subspaces long before "uncertainty-aware LLMs" was a phrase anyone used. PICASO, with PhD student <a href="https://ubaidazam.github.io/" target="_blank" rel="noopener" style="color:#a5b4fc;">Ubaid Azam</a>, is that same idea, finally made <em>probabilistic</em>.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1rem;">This isn't a new direction for this research line. In 2016, working with <a href="https://profiles.cardiff.ac.uk/staff/schockaerts1" target="_blank" rel="noopener" style="color:#a5b4fc;">Prof. Steven Schockaert</a>, I published <a href="publications.html" style="color:#a5b4fc;">"Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning" (ECAI 2016)</a> and <a href="publications.html" style="color:#a5b4fc;">"Plausible Reasoning based on Qualitative Entity Embeddings" (IJCAI 2016)</a> — treating semantic types as geometric subspaces long before "uncertainty-aware LLMs" was a phrase anyone used. PICASO, with PhD student <a href="https://ubaidazam.github.io/" target="_blank" rel="noopener" style="color:#a5b4fc;">Ubaid Azam</a>, is that same idea, finally made <em>probabilistic</em>.</p>
 
             <div class="pc-idea-grid">
                 <div class="card pc-idea-card">
@@ -286,7 +286,7 @@
         <section id="results" style="margin-bottom: 6rem;">
             <span class="section-title">Benchmark Results</span>
             <h2 style="font-size: 2.4rem;">Surpassing the State of the Art.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">PICASO's core engine — <strong style="color:#fff;">PROCS</strong> (Probabilistic Conceptual Space) — was evaluated on the standard FB15k-237 and WN18RR benchmarks against 12 established baselines, from classic translational embeddings to heavy graph neural networks.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">PICASO's core engine — <strong style="color:#fff;">PROCS</strong> (Probabilistic Conceptual Space) — was evaluated on the standard FB15k-237 and WN18RR benchmarks against 12 established baselines, from classic translational embeddings to heavy graph neural networks.</p>
 
             <div class="grid" style="margin-bottom: 2rem;">
                 <div class="card stat-card">
@@ -364,9 +364,9 @@
         <section style="margin-bottom: 6rem;">
             <span class="section-title">Honest Confidence</span>
             <h2 style="font-size: 2.4rem;">Calibrated Uncertainty, Verified.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 1.5rem;">The defining advantage of PICASO: when it says "I'm confident," it is more likely to be correct. When it says "I'm uncertain," you should seek human review.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">The defining advantage of PICASO: when it says "I'm confident," it is more likely to be correct. When it says "I'm uncertain," you should seek human review.</p>
             <div class="pc-eqn">$$ \text{uncertainty} = \sum \sigma^2_{head} + \sum \sigma^2_{tail} $$</div>
-            <p class="pc-plain" style="max-width: 820px; margin: 0 auto 2rem; text-align:center; border:none;"><strong>Plain English:</strong> uncertainty is how "spread out" both entity clouds are. If both are tight, the model is confident. If either is diffuse, it flags the prediction.</p>
+            <p class="pc-plain" style="max-width: 64ch; margin: 0 auto 2rem; text-align:center; border:none;"><strong>Plain English:</strong> uncertainty is how "spread out" both entity clouds are. If both are tight, the model is confident. If either is diffuse, it flags the prediction.</p>
 
             <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
                 <h4 style="margin-bottom: 1rem;">Uncertainty-Stratified Accuracy — FB15k-237 (Hits@1)</h4>
@@ -408,7 +408,7 @@
         <section id="defence-case" style="margin-bottom: 6rem;">
             <span class="section-title">Real-World Impact</span>
             <h2 style="font-size: 2.4rem;">The Defence-Wikidata Knowledge Graph.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Standard benchmarks reward memorisation. In real defence and intelligence applications, the cost of a false positive — hallucinating a link between a military unit and a location — is unacceptable. To test PICASO where it matters, we automatically constructed a novel defence-domain knowledge graph by scanning over <strong style="color:#fff;">63 million Wikidata entities</strong> for anything defence-relevant: military units, battles, weapons systems, treaties, operations, intelligence agencies and personnel.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">Standard benchmarks reward memorisation. In real defence and intelligence applications, the cost of a false positive — hallucinating a link between a military unit and a location — is unacceptable. To test PICASO where it matters, we automatically constructed a novel defence-domain knowledge graph by scanning over <strong style="color:#fff;">63 million Wikidata entities</strong> for anything defence-relevant: military units, battles, weapons systems, treaties, operations, intelligence agencies and personnel.</p>
 
             <div class="grid" style="margin-bottom: 2.5rem;">
                 <div class="card stat-card"><span class="stat-value" style="font-size: 2rem;">68,826</span><span class="stat-label">Defence Entities</span></div>
@@ -464,7 +464,7 @@
         <section style="margin-bottom: 6rem;">
             <span class="section-title">See It In Action</span>
             <h2 style="font-size: 2.2rem;">From Theory to a Working Analyst Tool.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Beyond the original proposal's scope, PICASO ships as a fully operational GUI for intelligence analysts, and as a pip-installable Python package — real software, not just a paper.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">Beyond the original proposal's scope, PICASO ships as a fully operational GUI for intelligence analysts, and as a pip-installable Python package — real software, not just a paper.</p>
             <div class="pc-shot-grid">
                 <div>
                     <div class="pc-figure" data-full="assets/picaso/gui-upload.jpg"><img src="assets/picaso/gui-upload.jpg" alt="PICASO analyst GUI: file upload tab for batch predictions" loading="lazy"></div>
@@ -489,7 +489,7 @@
         <section id="whats-next" style="margin-bottom: 6rem;">
             <span class="section-title">What's Next</span>
             <h2 style="font-size: 2.4rem;">From Static Uncertainty to Living Intelligence.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">Phase I treats each fact as uncertain but frozen in time. The next stage of this work — again with Prof. Steven Schockaert, extending the same conceptual-space foundations — moves PICASO from a static, transductive system toward one that is temporally-aware, text-grounded and inductive:</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">Phase I treats each fact as uncertain but frozen in time. The next stage of this work — again with Prof. Steven Schockaert, extending the same conceptual-space foundations — moves PICASO from a static, transductive system toward one that is temporally-aware, text-grounded and inductive:</p>
 
             <div class="pc-wp-grid">
                 <div class="card pc-wp-card" style="--c:#818cf8;">
@@ -511,7 +511,7 @@
         <section id="publications" style="margin-bottom: 4rem;">
             <span class="section-title">Publications &amp; Open Resources</span>
             <h2 style="font-size: 2.2rem;">Papers, Code, and What's Public.</h2>
-            <p style="color: var(--text-muted); max-width: 820px; margin-bottom: 2rem;">All three original work packages have been completed and exceeded, with two papers already in the pipeline.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">All three original work packages have been completed and exceeded, with two papers already in the pipeline.</p>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                 <div class="card" style="padding: 1.8rem;">
