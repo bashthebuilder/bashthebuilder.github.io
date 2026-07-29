@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Leadership &amp; Strategy | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Why 'AI Leader and Strategist' — the evidence. £1.87M of AI R&amp;D budget directed across 12 awards, AI capability built from zero in five organisations, 17 doctoral researchers and embedded engineers hired and led, and a record of calling the technical direction early.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="AI Leadership &amp; Strategy | Shoaib Jameel">
+    <meta property="og:description" content="Not a defence of a title — a description of the work. £1.87M directed, five organisations' AI capability built from zero, three organisations in one team, and the technical calls made early.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/ai-leadership.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Leadership &amp; Strategy | Shoaib Jameel">
+    <meta name="twitter:description" content="Why 'AI Leader and Strategist' — with the budgets, the teams, the risks and the calls, all linked to primary sources.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- Scroll progress bar ---------- */
+        .al-progress {
+            position: fixed; top: 0; left: 0; height: 3px; width: 0;
+            background: var(--accent-liquid); z-index: 1500;
+            transition: width 0.1s linear;
+        }
+
+        /* ---------- Reveal, with directional + staggered variants ---------- */
+        .al-rev { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1); }
+        .al-rev.in { opacity: 1; transform: none; }
+        .al-rev-l { opacity: 0; transform: translateX(-36px); transition: opacity .9s cubic-bezier(.16,.8,.3,1), transform .9s cubic-bezier(.16,.8,.3,1); }
+        .al-rev-l.in { opacity: 1; transform: none; }
+        .al-rev-scale { opacity: 0; transform: scale(.94); transition: opacity .7s ease, transform .7s cubic-bezier(.16,.8,.3,1); }
+        .al-rev-scale.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .al-rev, .al-rev-l, .al-rev-scale { transition: none !important; opacity: 1 !important; transform: none !important; }
+            .al-bar-fill, .al-orbit, .al-pulse, .al-shimmer { animation: none !important; transition: none !important; }
+        }
+
+        /* ---------- Hero ---------- */
+        .al-hero { padding: 170px 0 70px; }
+        .al-eyebrow {
+            display: inline-flex; align-items: center; gap: .7rem;
+            padding: 8px 20px; border-radius: 100px;
+            background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.35);
+            color: #a5b4fc; font-size: .95rem; font-weight: 700; margin-bottom: 2rem;
+        }
+        .al-dot { width: 8px; height: 8px; border-radius: 50%; background: #818cf8; animation: alPulse 2s ease-in-out infinite; }
+        @keyframes alPulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(129,140,248,.5); } 50% { opacity: .5; box-shadow: 0 0 0 8px rgba(129,140,248,0); } }
+        .al-hero h1 { font-size: 4.4rem; margin-bottom: 2rem; }
+        .al-answer {
+            font-size: 1.45rem; line-height: 1.65; color: var(--text-muted);
+            max-width: 900px; border-left: 4px solid #6366f1; padding-left: 2rem; margin-bottom: 3rem;
+        }
+        .al-answer strong { color: #fff; font-weight: 700; }
+
+        /* ---------- Counter strip ---------- */
+        .al-counters {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem; margin-bottom: 2rem;
+        }
+        .al-count-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 2rem 1.5rem; text-align: center;
+            position: relative; overflow: hidden; transition: .35s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-count-card::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.06) 50%, transparent 70%);
+            transform: translateX(-100%);
+        }
+        .al-count-card:hover { transform: translateY(-8px); border-color: rgba(129,140,248,.5); background: rgba(255,255,255,.05); }
+        .al-count-card:hover::after { animation: alShimmer 1s ease; }
+        @keyframes alShimmer { to { transform: translateX(100%); } }
+        .al-count-num {
+            display: block; font-size: 2.9rem; font-weight: 900; letter-spacing: -2px;
+            background: var(--accent-liquid); -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; line-height: 1.1;
+        }
+        .al-count-lbl { color: var(--text-muted); font-size: .95rem; font-weight: 600; line-height: 1.4; margin-top: .5rem; display: block; }
+
+        /* ---------- Objection cards (flip-style reveal) ---------- */
+        .al-obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .al-obj {
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
+            border-radius: 22px; padding: 2.2rem; position: relative;
+            transition: .4s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-obj:hover { transform: translateY(-6px); border-color: rgba(236,72,153,.4); background: rgba(255,255,255,.045); }
+        .al-obj-q {
+            font-size: 1.25rem; font-weight: 800; color: #fff; line-height: 1.45;
+            margin-bottom: 1.2rem; padding-left: 2.2rem; position: relative;
+        }
+        .al-obj-q::before {
+            content: '?'; position: absolute; left: 0; top: -2px;
+            width: 26px; height: 26px; border-radius: 8px;
+            background: rgba(236,72,153,.15); color: #f472b6;
+            display: grid; place-items: center; font-size: 1rem; font-weight: 900;
+        }
+        .al-obj-a { color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; }
+        .al-obj-a strong { color: #fff; }
+        .al-obj-a a { color: #a5b4fc; }
+        .al-obj-tag {
+            display: inline-block; margin-top: 1.2rem; padding: 5px 14px; border-radius: 100px;
+            background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.3);
+            color: #34d399; font-size: .82rem; font-weight: 700;
+        }
+
+        /* ---------- Jargon decoder ---------- */
+        .al-decoder {
+            margin-top: 2rem; padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.04));
+            border: 1px solid rgba(129,140,248,.28); border-radius: 24px;
+        }
+        .al-decoder-head { display: flex; gap: 1.4rem; align-items: flex-start; margin-bottom: 2.2rem; }
+        .al-decoder-ico {
+            flex-shrink: 0; width: 46px; height: 46px; border-radius: 14px;
+            background: rgba(129,140,248,.16); border: 1px solid rgba(129,140,248,.35);
+            display: grid; place-items: center; color: #a5b4fc; font-size: 1.5rem; font-weight: 700;
+        }
+        .al-decoder-head h3 { font-size: 1.5rem; margin-bottom: .4rem; letter-spacing: -.5px; }
+        .al-decoder-head p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+        .al-decoder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .al-decode {
+            padding: 1.8rem; border-radius: 18px;
+            background: rgba(8,10,15,.35); border: 1px solid var(--glass-border);
+            transition: .35s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-decode:hover { border-color: rgba(129,140,248,.45); transform: translateY(-5px); }
+        .al-decode-uk {
+            display: inline-block; padding: 5px 14px; border-radius: 8px;
+            background: rgba(148,163,184,.12); border: 1px solid rgba(148,163,184,.28);
+            color: #cbd5e1; font-size: .95rem; font-weight: 800;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+        .al-decode-eq { display: block; color: var(--text-muted); font-size: .85rem; font-weight: 600; margin: .7rem 0 .35rem; }
+        .al-decode-ind {
+            display: inline-block; padding: 6px 16px; border-radius: 8px;
+            background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.32);
+            color: #34d399; font-size: 1.02rem; font-weight: 800; margin-bottom: 1.1rem;
+        }
+        .al-decode-note { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .al-decode-note strong { color: #fff; }
+        .al-decode-note a { color: #a5b4fc; }
+
+        /* ---------- Section headers ---------- */
+        .al-sec { margin-bottom: 6.5rem; }
+        .al-sec-head { margin-bottom: 3rem; }
+        .al-sec-head h2 { font-size: 3rem; margin-bottom: 1.2rem; }
+        .al-sec-head p { color: var(--text-muted); font-size: 1.3rem; max-width: 820px; }
+        .al-part-badge {
+            display: inline-block; font-size: .85rem; font-weight: 900; letter-spacing: 3px;
+            text-transform: uppercase; color: #ec4899; margin-bottom: 1rem;
+        }
+
+        /* ---------- Why-academia tiles ---------- */
+        .al-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+        .al-tile {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 22px; padding: 2.2rem; transition: .4s cubic-bezier(.16,.8,.3,1);
+            position: relative; overflow: hidden;
+        }
+        .al-tile::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent-liquid); transform: scaleX(0); transform-origin: left;
+            transition: transform .5s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-tile:hover::before { transform: scaleX(1); }
+        .al-tile:hover { transform: translateY(-8px); background: rgba(255,255,255,.05); }
+        .al-tile-ico { font-size: 1.9rem; margin-bottom: 1rem; display: block; }
+        .al-tile h3 { font-size: 1.3rem; margin-bottom: .9rem; letter-spacing: -.3px; }
+        .al-tile p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.6; }
+        .al-tile p a { color: #a5b4fc; }
+        .al-tile strong { color: #fff; }
+
+        /* ---------- Pull quote ---------- */
+        .al-pull {
+            margin: 3rem 0 0; padding: 2.5rem 3rem;
+            background: linear-gradient(120deg, rgba(99,102,241,.09), rgba(236,72,153,.06));
+            border: 1px solid rgba(129,140,248,.25); border-radius: 24px;
+            font-size: 1.5rem; line-height: 1.55; color: #fff; font-weight: 600;
+        }
+        .al-pull span { color: #a5b4fc; }
+
+        /* ---------- Tabs: what leaders actually do ---------- */
+        .al-tabs { display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .al-tab {
+            cursor: pointer; padding: 12px 24px; border-radius: 100px;
+            background: rgba(255,255,255,.04); border: 1px solid var(--glass-border);
+            color: var(--text-muted); font-family: inherit; font-size: 1rem; font-weight: 700;
+            transition: .3s;
+        }
+        .al-tab:hover { color: #fff; border-color: #818cf8; }
+        .al-tab.on { background: rgba(99,102,241,.2); border-color: #818cf8; color: #fff; }
+        .al-panel { display: none; animation: alPanelIn .5s cubic-bezier(.16,.8,.3,1); }
+        .al-panel.on { display: block; }
+        @keyframes alPanelIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .al-panel-head { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: .6rem; letter-spacing: -.5px; }
+        .al-panel-sub { color: #f472b6; font-size: 1rem; font-weight: 700; margin-bottom: 1.8rem; }
+        .al-ev { list-style: none; }
+        .al-ev li {
+            position: relative; padding-left: 2.2rem; margin-bottom: 1.3rem;
+            color: var(--text-muted); font-size: 1.08rem; line-height: 1.6;
+        }
+        .al-ev li::before {
+            content: ''; position: absolute; left: 0; top: .55rem;
+            width: 10px; height: 10px; border-radius: 3px;
+            background: var(--accent-liquid);
+        }
+        .al-ev li strong { color: #fff; }
+        .al-ev li a { color: #a5b4fc; }
+
+        /* ---------- Budget ledger bars ---------- */
+        .al-ledger { display: flex; flex-direction: column; gap: .9rem; }
+        .al-row { display: grid; grid-template-columns: minmax(0,1fr) 90px; gap: 1.5rem; align-items: center; }
+        .al-row-name { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin-bottom: .45rem; }
+        .al-row-name em { color: var(--text-muted); font-style: normal; font-weight: 500; font-size: .9rem; }
+        .al-bar { height: 12px; border-radius: 100px; background: rgba(255,255,255,.05); overflow: hidden; }
+        .al-bar-fill {
+            height: 100%; width: 0; border-radius: 100px;
+            transition: width 1.4s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-bar-pi { background: linear-gradient(90deg, #6366f1, #a855f7); }
+        .al-bar-co { background: linear-gradient(90deg, #475569, #64748b); }
+        .al-row-val { text-align: right; font-weight: 800; color: #fff; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+        .al-key { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .al-key span { display: inline-flex; align-items: center; gap: .6rem; color: var(--text-muted); font-size: .95rem; font-weight: 600; }
+        .al-swatch { width: 26px; height: 10px; border-radius: 100px; display: inline-block; }
+        .al-total {
+            margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;
+        }
+        .al-total-lbl { color: var(--text-muted); font-size: 1.05rem; font-weight: 600; }
+        .al-total-val { font-size: 2.6rem; font-weight: 900; letter-spacing: -2px; background: var(--accent-liquid); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ---------- Calls timeline (strategist) ---------- */
+        .al-calls { position: relative; padding-left: 2.6rem; }
+        .al-calls::before {
+            content: ''; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px;
+            background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+        }
+        .al-call { position: relative; margin-bottom: 2.8rem; }
+        .al-call::before {
+            content: ''; position: absolute; left: -2.6rem; top: .45rem;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: #080a0f; border: 3px solid #818cf8; box-sizing: border-box;
+        }
+        .al-call.hit::before { border-color: #34d399; box-shadow: 0 0 0 5px rgba(52,211,153,.12); }
+        .al-call-yr { color: #818cf8; font-size: .95rem; font-weight: 800; letter-spacing: 1px; }
+        .al-call-h { font-size: 1.35rem; font-weight: 800; color: #fff; margin: .3rem 0 .8rem; letter-spacing: -.4px; }
+        .al-call-body { color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; }
+        .al-call-body a { color: #a5b4fc; }
+        .al-verdict {
+            display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem;
+            padding: 6px 16px; border-radius: 100px;
+            background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.28);
+            color: #34d399; font-size: .88rem; font-weight: 800;
+        }
+
+        /* ---------- Decision cards ---------- */
+        .al-dec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.5rem; }
+        .al-dec {
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 2rem; transition: .4s cubic-bezier(.16,.8,.3,1);
+        }
+        .al-dec:hover { transform: translateY(-6px); border-color: rgba(129,140,248,.45); }
+        .al-dec-kind {
+            font-size: .78rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+            color: #f472b6; display: block; margin-bottom: .8rem;
+        }
+        .al-dec h4 { font-size: 1.15rem; color: #fff; font-weight: 800; margin-bottom: .9rem; line-height: 1.4; }
+        .al-dec p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .al-dec p a { color: #a5b4fc; }
+        .al-dec strong { color: #fff; }
+
+        /* ---------- Governance chips ---------- */
+        .al-chips { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .al-chip {
+            display: block; text-decoration: none;
+            padding: 1.4rem 1.8rem; border-radius: 18px;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            transition: .35s cubic-bezier(.16,.8,.3,1); flex: 1 1 280px;
+        }
+        .al-chip:hover { transform: translateY(-5px) scale(1.01); border-color: rgba(251,191,36,.4); background: rgba(255,255,255,.05); }
+        .al-chip-t { color: #fff; font-weight: 800; font-size: 1.08rem; display: block; margin-bottom: .35rem; }
+        .al-chip-s { color: var(--text-muted); font-size: .95rem; }
+
+        /* ---------- Verify grid ---------- */
+        .al-verify { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+        .al-vcard {
+            display: block; text-decoration: none; padding: 1.8rem;
+            border-radius: 18px; background: rgba(255,255,255,.03);
+            border: 1px solid var(--glass-border); transition: .35s;
+        }
+        .al-vcard:hover { background: rgba(99,102,241,.12); border-color: #818cf8; transform: translateY(-5px); }
+        .al-vcard-t { color: #fff; font-weight: 800; font-size: 1.1rem; display: block; margin-bottom: .4rem; }
+        .al-vcard-s { color: var(--text-muted); font-size: .95rem; }
+        .al-vcard-arrow { color: #818cf8; font-weight: 800; }
+
+        /* ---------- Operating-model diagram ---------- */
+        .al-diagram { width: 100%; height: auto; max-width: 900px; margin: 0 auto; display: block; }
+        .al-diagram text { font-family: 'Inter', sans-serif; }
+        .al-orbit { transform-origin: 450px 200px; animation: alSpin 40s linear infinite; }
+        @keyframes alSpin { to { transform: rotate(360deg); } }
+        .al-node-box { fill: rgba(255,255,255,.04); stroke: rgba(255,255,255,.16); }
+        .al-flow { stroke: #818cf8; stroke-width: 1.6; fill: none; opacity: .55; stroke-dasharray: 6 6; animation: alDash 2.4s linear infinite; }
+        @keyframes alDash { to { stroke-dashoffset: -24; } }
+
+        @media (max-width: 1024px) {
+            .al-hero h1 { font-size: 3.1rem; }
+            .al-answer { font-size: 1.25rem; padding-left: 1.4rem; }
+            .al-sec-head h2 { font-size: 2.3rem; }
+            .al-pull { font-size: 1.25rem; padding: 2rem; }
+            .al-total-val { font-size: 2rem; }
+        }
+        @media (max-width: 600px) {
+            .al-row { grid-template-columns: minmax(0,1fr) 74px; gap: .9rem; }
+            .al-count-num { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+    <div class="al-progress" id="al-progress"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="publications.html">Research</a>
+                <a href="cultural-modelling.html">Cultural AI</a>
+                <a href="resources.html">PICASO</a>
+                <a href="press.html">Press</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="competitive-programming.html">SIGCompete</a>
+                <a href="cv.html">CV</a>
+                <a href="thesis.html">Thesis</a>
+                <a href="undergraduate.html">Origins</a>
+                <a href="ai-leadership.html" class="active">AI Leadership</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ============================== HERO ============================== -->
+        <section class="al-hero">
+            <span class="al-eyebrow al-rev"><span class="al-dot"></span> A fair question, answered with evidence</span>
+            <h1 class="al-rev liquid-text">Why &ldquo;AI Leader<br>and Strategist&rdquo;?</h1>
+            <p class="al-answer al-rev">
+                Because for the last decade I have been the person who decides <strong>what gets built, by whom, with whose money, and at what risk</strong> — across five organisations, from a <a href="https://www.gov.uk/government/organisations/ministry-of-defence" target="_blank" rel="noopener">Ministry of Defence</a> intelligence platform to a GenAI start-up joined at its founding.
+                My job title says Associate Professor. My job, in practice, has been to direct AI programmes. Below is the ledger.
+            </p>
+
+            <div class="al-counters">
+                <div class="al-count-card al-rev-scale">
+                    <span class="al-count-num" data-count="1.87" data-pre="£" data-post="M" data-dec="2">£0M</span>
+                    <span class="al-count-lbl">AI R&amp;D budget directed as PI / Co-I</span>
+                </div>
+                <div class="al-count-card al-rev-scale">
+                    <span class="al-count-num" data-count="12">0</span>
+                    <span class="al-count-lbl">Competitively won grants held</span>
+                </div>
+                <div class="al-count-card al-rev-scale">
+                    <span class="al-count-num" data-count="5">0</span>
+                    <span class="al-count-lbl">Organisations where AI capability was built from zero</span>
+                </div>
+                <div class="al-count-card al-rev-scale">
+                    <span class="al-count-num" data-count="17">0</span>
+                    <span class="al-count-lbl">Doctoral researchers supervised into industry</span>
+                </div>
+                <div class="al-count-card al-rev-scale">
+                    <span class="al-count-num" data-count="3">0</span>
+                    <span class="al-count-lbl">Organisations inside one team I lead (MoD · Turing · Southampton)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== OBJECTIONS ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">Start here</span>
+                <h2>The three objections.</h2>
+                <p>If you doubt the title, it is almost certainly one of these. Each one is a reasonable challenge, so each one gets a direct answer.</p>
+            </div>
+            <div class="al-obj-grid">
+                <div class="al-obj al-rev">
+                    <div class="al-obj-q">&ldquo;You&rsquo;re an academic. Academics advise; they don&rsquo;t lead.&rdquo;</div>
+                    <p class="al-obj-a">In the UK, a funded <strong>Knowledge Transfer Partnership</strong> or Innovate UK Smart Grant makes the academic the accountable owner: you hold the budget, hire the engineer, set the roadmap, and answer to both a funding body <em>and</em> a paying company. I have held that seat <strong>four times</strong>, at <a href="industry.html#neotas">Neotas</a>, <a href="industry.html#bt">BT</a>, <a href="industry.html#wyser">Wyser</a> and <a href="industry.html#mersea">Mersea Homes</a>.</p>
+                    <span class="al-obj-tag">Dual accountability, not advice</span>
+                </div>
+                <div class="al-obj al-rev">
+                    <div class="al-obj-q">&ldquo;Did you actually write the code?&rdquo;</div>
+                    <p class="al-obj-a">On the funded engagements, largely <strong>no — and that was the point</strong>. The build sat with the <strong>full-time research engineers</strong> I recruited, funded and directed, embedded inside the partner company. My deliverables were the technical roadmap, the budget split between staff and compute, the risk calls, and the hiring decisions. <strong>That is the leadership work</strong>; it is what the money was for.</p>
+                    <span class="al-obj-tag">Direction was the deliverable</span>
+                </div>
+                <div class="al-obj al-rev">
+                    <div class="al-obj-q">&ldquo;Papers aren&rsquo;t outcomes. What actually shipped?&rdquo;</div>
+                    <p class="al-obj-a">A <strong>98%-accuracy</strong> classification model in regulated financial due diligence; a transformer model live inside BT&rsquo;s production systems cutting annotation time <strong>90%</strong>; one of the first agentic legal-AI systems, <strong>18 months ahead</strong> of the market; a defence knowledge-graph platform shipped <strong>open source</strong> with a live analyst GUI. <a href="industry.html">See the engagements &rarr;</a></p>
+                    <span class="al-obj-tag">Production, not prototypes</span>
+                </div>
+            </div>
+
+            <!-- Jargon decoder: three UK-specific terms translated into industry equivalents -->
+            <div class="al-decoder al-rev">
+                <div class="al-decoder-head">
+                    <span class="al-decoder-ico">&#8644;</span>
+                    <div>
+                        <h3>Three UK terms, translated.</h3>
+                        <p>UK research funding has its own vocabulary. If you hire in industry, here is what these actually mean on an org chart.</p>
+                    </div>
+                </div>
+                <div class="al-decoder-grid">
+                    <div class="al-decode">
+                        <span class="al-decode-uk">KTP Associate</span>
+                        <span class="al-decode-eq">is a</span>
+                        <span class="al-decode-ind">Research Engineer</span>
+                        <p class="al-decode-note">A <strong>full-time, salaried engineer</strong> — usually MSc or PhD level — recruited onto the project and <strong>embedded inside the partner company&rsquo;s own team</strong> for the duration, typically two to three years. Not a student, not an intern, not a placement. I ran the recruitment, held their budget line, and set their technical direction; the company gave them a desk and a production codebase. Several were hired permanently by the partner at the end.</p>
+                    </div>
+                    <div class="al-decode">
+                        <span class="al-decode-uk">KTP</span>
+                        <span class="al-decode-eq">is an</span>
+                        <span class="al-decode-ind">Embedded R&amp;D Programme</span>
+                        <p class="al-decode-note">A <strong>Knowledge Transfer Partnership</strong>: a government co-funded scheme (<a href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">Innovate UK</a>) where a company part-pays for a multi-year R&amp;D programme run inside its business. The company is a <strong>paying customer with a commercial stake</strong>, so delivery is judged on what shipped — and there is a funding body auditing it in parallel.</p>
+                    </div>
+                    <div class="al-decode">
+                        <span class="al-decode-uk">PI / Co-I</span>
+                        <span class="al-decode-eq">is the</span>
+                        <span class="al-decode-ind">Accountable Programme Owner</span>
+                        <p class="al-decode-note"><strong>Principal / Co-Investigator</strong> is a grant-holding designation, not a job title. The PI is the person the money is awarded to and the person answerable if it fails: they own the budget, the hiring, the roadmap and the risk register. The nearest industry equivalent is a <strong>Programme Director or Head of AI R&amp;D</strong> for that workstream.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== WHY ACADEMIA ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">First, the obvious question</span>
+                <h2>Why I stayed in academia.</h2>
+                <p>Not because industry didn&rsquo;t call. Because the academic seat is the only one that let me run AI R&amp;D across many companies at once, on horizons no quarterly roadmap would fund.</p>
+            </div>
+
+            <div class="al-tiles">
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#9201;</span>
+                    <h3>The bet horizon</h3>
+                    <p>My <a href="thesis.html">doctoral thesis</a> argued that word order and segment structure materially improve text models — years before transformers proved it at scale. <strong>No product roadmap funds a five-year bet.</strong> A research programme does.</p>
+                </div>
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#128279;</span>
+                    <h3>The access</h3>
+                    <p>In one decade: defence (<a href="resources.html">MoD</a>), telecoms (BT), legal (Wyser), regulated finance (Neotas), retail (eBay), property (Mersea), policing (Met Police), and government policy. <strong>No single employer gives you all eight at once.</strong></p>
+                </div>
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#128176;</span>
+                    <h3>The mechanism</h3>
+                    <p>The UK deliberately built Knowledge Transfer Partnerships and Smart Grants so that academics <em>hold real industrial budgets and hire their own engineers</em>. That mechanism is why my leadership record is <strong>£1.87M</strong> across twelve awards rather than a line on someone else&rsquo;s org chart.</p>
+                </div>
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#127793;</span>
+                    <h3>The compounding asset</h3>
+                    <p>Products depreciate; people don&rsquo;t. <a href="students.html">17 doctoral researchers</a> and four embedded engineers now sit at BT, Huawei Research, Lloyds, 3 UK and IIT Gujarat. <strong>Building the talent supply is leverage no single build gives you.</strong></p>
+                </div>
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#128269;</span>
+                    <h3>The adversarial audit</h3>
+                    <p>Every claim on this site survived anonymous peer review at <strong><a href="https://neurips.cc/" target="_blank" rel="noopener">NeurIPS</a>, <a href="https://aaai.org/conference/aaai/" target="_blank" rel="noopener">AAAI</a>, <a href="https://www.aclweb.org/portal/" target="_blank" rel="noopener">ACL</a> and <a href="https://sigir.org/" target="_blank" rel="noopener">SIGIR</a></strong>. In industry, a bad AI decision hides behind an NDA for years. In academia it is torn apart in eight weeks — which makes for better decisions.</p>
+                </div>
+                <div class="al-tile al-rev">
+                    <span class="al-tile-ico">&#9878;</span>
+                    <h3>And it wasn&rsquo;t a fallback</h3>
+                    <p>I held <strong>Director of Engineering &amp; Chief Scientist at <a href="industry.html#bezoku">Bezoku</a></strong> concurrently with the academic post, owning the entire technical direction of a GenAI start-up from its founding stage. Staying was a choice, made while doing the other thing.</p>
+                </div>
+            </div>
+
+            <div class="al-pull al-rev">
+                Academia gave me the freedom to invent. Industry gave me the freedom to build it for real — <span>with real budgets, real regulators and real users.</span> I refused to pick one, and the record is the argument for that choice.
+            </div>
+        </section>
+
+        <!-- ============================== OPERATING MODEL DIAGRAM ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">How it actually works</span>
+                <h2>One operating model, eleven organisations.</h2>
+                <p>The funding label changes. The seat never does: I define the problem, hold the budget, hire the builders, own the risk, and answer to the customer.</p>
+            </div>
+            <div class="card al-rev-scale" style="padding: 3rem 2rem;">
+                <svg class="al-diagram" viewBox="0 0 900 400" role="img" aria-label="Diagram: the central AI programme direction role connects funding bodies, engineering delivery, and commercial customers.">
+                    <defs>
+                        <linearGradient id="alCore" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#6366f1"/><stop offset="50%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- flows -->
+                    <path class="al-flow" d="M190 90 C 300 90, 330 170, 380 195"/>
+                    <path class="al-flow" d="M190 310 C 300 310, 330 230, 380 205"/>
+                    <path class="al-flow" d="M520 195 C 570 170, 600 90, 710 90"/>
+                    <path class="al-flow" d="M520 205 C 570 230, 600 310, 710 310"/>
+
+                    <!-- inputs -->
+                    <g>
+                        <rect class="al-node-box" x="20" y="52" width="170" height="76" rx="14"/>
+                        <text x="105" y="82" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">Funding bodies</text>
+                        <text x="105" y="105" text-anchor="middle" fill="#94a3b8" font-size="12.5">Innovate UK · Turing · GCRF</text>
+                    </g>
+                    <g>
+                        <rect class="al-node-box" x="20" y="272" width="170" height="76" rx="14"/>
+                        <text x="105" y="302" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">Talent pipeline</text>
+                        <text x="105" y="325" text-anchor="middle" fill="#94a3b8" font-size="12.5">PhDs · research engineers</text>
+                    </g>
+
+                    <!-- core -->
+                    <g class="al-orbit">
+                        <circle cx="450" cy="200" r="106" fill="none" stroke="rgba(129,140,248,0.22)" stroke-width="1.5" stroke-dasharray="4 10"/>
+                    </g>
+                    <circle cx="450" cy="200" r="88" fill="url(#alCore)" opacity="0.16"/>
+                    <circle cx="450" cy="200" r="88" fill="none" stroke="url(#alCore)" stroke-width="2"/>
+                    <text x="450" y="186" text-anchor="middle" fill="#fff" font-size="16" font-weight="900">Programme</text>
+                    <text x="450" y="209" text-anchor="middle" fill="#fff" font-size="16" font-weight="900">direction</text>
+                    <text x="450" y="234" text-anchor="middle" fill="#a5b4fc" font-size="12">budget · roadmap · risk</text>
+
+                    <!-- outputs -->
+                    <g>
+                        <rect class="al-node-box" x="710" y="52" width="170" height="76" rx="14"/>
+                        <text x="795" y="82" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">Production systems</text>
+                        <text x="795" y="105" text-anchor="middle" fill="#94a3b8" font-size="12.5">live, with real users</text>
+                    </g>
+                    <g>
+                        <rect class="al-node-box" x="710" y="272" width="170" height="76" rx="14"/>
+                        <text x="795" y="302" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">Commercial assets</text>
+                        <text x="795" y="325" text-anchor="middle" fill="#94a3b8" font-size="12.5">IP · patents · market lead</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ============================== PART 1: LEADERSHIP ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="al-part-badge">Component 1</span>
+                <h2>AI Leadership.</h2>
+                <p>Strip the job titles away and leadership is a short list of verbs: fund, hire, direct, de-risk, govern, hand over. Pick any one — here is the named, linked evidence.</p>
+            </div>
+
+            <div class="al-tabs al-rev" role="tablist">
+                <button class="al-tab on" data-tab="budget" role="tab">Budget authority</button>
+                <button class="al-tab" data-tab="people" role="tab">Hiring &amp; teams</button>
+                <button class="al-tab" data-tab="risk" role="tab">Risk &amp; hard calls</button>
+                <button class="al-tab" data-tab="crossorg" role="tab">Cross-organisational</button>
+                <button class="al-tab" data-tab="govern" role="tab">Governance</button>
+                <button class="al-tab" data-tab="succession" role="tab">Succession</button>
+            </div>
+
+            <div class="card al-rev" style="padding: 3rem;">
+                <div class="al-panel on" id="tab-budget">
+                    <div class="al-panel-head">I held the money, and decided where it went.</div>
+                    <div class="al-panel-sub">£1.87M across twelve competitively won awards — six as Principal Investigator.</div>
+                    <ul class="al-ev">
+                        <li><strong>Neotas — £350k, Principal Investigator.</strong> Owned the end-to-end P&amp;L, the <strong>split of budget between staff and compute</strong>, and the 1–3 year technology roadmap for the AI function of a 30+ person company across the UK and India — partnering directly with the Founder and two regional managers. <a href="industry.html#neotas">Engagement detail &rarr;</a></li>
+                        <li><strong>Wyser — £400k <a href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">Innovate UK</a> Smart Grant, PI.</strong> My largest single award; I wrote the proposal and directed the build of an agentic legal-reasoning system to market. <a href="industry.html#wyser">Detail &rarr;</a></li>
+                        <li><strong>PICASO — £140k <a href="https://www.turing.ac.uk/" target="_blank" rel="noopener">Alan Turing Institute</a>, PI.</strong> Set technical direction <em>and</em> budget priorities across three institutions simultaneously. <a href="resources.html">Project deep-dive &rarr;</a></li>
+                        <li><strong>I write the proposals that create the budgets.</strong> On the £230k travel-safety programme I authored the complete work package and delivery plan; on the <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/" target="_blank" rel="noopener">Microsoft Research Asia</a> award I designed the model, wrote the technical proposal, and presented it to the Microsoft judging panel myself.</li>
+                        <li><strong>Non-cash resourcing too:</strong> won a dedicated <strong><a href="https://developer.nvidia.com/higher-education-and-research" target="_blank" rel="noopener">NVIDIA</a> Academic Hardware Grant</strong> (Quadro RTX6000) to resource the multi-modal programme's compute — because a roadmap without GPUs is a wish.</li>
+                    </ul>
+                </div>
+
+                <div class="al-panel" id="tab-people">
+                    <div class="al-panel-head">I hire the builders, then get out of their way.</div>
+                    <div class="al-panel-sub">Recruitment and line management, not just mentorship.</div>
+                    <ul class="al-ev">
+                        <li><strong>Directly recruited and hired full-time research engineers</strong> (the KTP Associate role — see the translation above) across four industry partnerships, each embedded inside the partner company for two to three years. I ran the selection, the onboarding into the business, and the day-to-day technical direction thereafter.</li>
+                        <li><strong>Scaled effectiveness across teams I didn&rsquo;t own.</strong> At BT, the models I directed cut annotation time <strong>90%</strong> across a <strong>50+ person</strong> data science organisation. Leadership there meant changing how a large team worked, with no authority over its org chart. <a href="industry.html#bt">Detail &rarr;</a></li>
+                        <li><strong>17 doctoral researchers</strong> supervised, including a <strong>Doctoral College Director&rsquo;s Award 2026</strong> winner (Ubaid Azam) and the first Portuguese PhD student ever awarded a <strong>Microsoft Research PhD Fellowship</strong> (António Correia). <a href="students.html">Where they are now &rarr;</a></li>
+                        <li><strong>Placement is the KPI.</strong> Alumni are at <a href="https://www.bt.com/about/bt" target="_blank" rel="noopener">BT</a>, <a href="https://www.huawei.com/en/huawei-research" target="_blank" rel="noopener">Huawei Research</a>, <a href="https://www.lloydsbank.com/" target="_blank" rel="noopener">Lloyds Bank</a> and <a href="https://www.three.co.uk/" target="_blank" rel="noopener">3 UK</a>, and one is now an Assistant Professor at an IIT in Gujarat. On the BT programme, the research engineer I recruited was hired permanently by BT on the strength of the delivered work — which ended the project ten months early.</li>
+                        <li><strong>Built an organisation from nothing, twice over:</strong> founded <a href="competitive-programming.html">SIGCompete</a> at Southampton, secured dedicated funding from the Head of School, and led student teams to international competition.</li>
+                    </ul>
+                </div>
+
+                <div class="al-panel" id="tab-risk">
+                    <div class="al-panel-head">I own the failures, the pivots and the things that go wrong.</div>
+                    <div class="al-panel-sub">A portfolio of twelve awards is a portfolio of twelve risk positions.</div>
+                    <ul class="al-ev">
+                        <li><strong>A £230k programme was withdrawn mid-flight</strong> when the partner company took COVID-era financial losses. I don&rsquo;t hide it: running a portfolio means some positions close early, and the discipline is protecting the people and the salvageable work when they do.</li>
+                        <li><strong>Regulatory risk, handled with the regulators&rsquo; own teams.</strong> On both Neotas and BT I worked directly with corporate Legal and Compliance functions on regulatory standards, joint University–Corporate IP, and <strong>executed patent filings</strong> — in KYC/AML and telecoms, two of the least forgiving compliance environments in the UK.</li>
+                        <li><strong>I build risk into the models themselves.</strong> <a href="resources.html">PROCS</a>, which I designed for the Ministry of Defence, replaces point estimates with calibrated probability so the system can <strong>flag when not to trust its own output</strong> — 45.1% vs 26.3% Hits@1 on high- versus low-confidence predictions. For a defence analyst, knowing the machine&rsquo;s uncertainty <em>is</em> the deliverable.</li>
+                        <li><strong>Data-governance risk by design.</strong> FLiP (LREC 2026) lets partners train collaboratively with <strong>zero raw data crossing organisational boundaries</strong> — 16% trainable parameters, 90% less GPU memory, compatible with differential-privacy regimes. That is an architecture chosen to satisfy an information-governance constraint, not a benchmark.</li>
+                        <li><strong>Validation against reality, not test sets.</strong> Neotas ran <strong>live A/B testing with real users</strong> and tracked post-deployment revenue impact. Cross-cultural work was reviewed by questionnaire panels across India, Japan, China, Italy and the Middle East.</li>
+                    </ul>
+                </div>
+
+                <div class="al-panel" id="tab-crossorg">
+                    <div class="al-panel-head">Three organisations, one team, one roadmap.</div>
+                    <div class="al-panel-sub">The hardest leadership problem: authority you have to earn, not assert.</div>
+                    <ul class="al-ev">
+                        <li><strong>PICASO</strong> spans the <strong>Ministry of Defence</strong> (the end customer), the <strong>Alan Turing Institute</strong>, and the <strong>University of Southampton</strong> — delivered under the Turing&rsquo;s Defence &amp; Security Programme and a <a href="https://www.gchq.gov.uk/" target="_blank" rel="noopener">GCHQ</a> framework agreement. I set technical direction and budget priorities across all three. <a href="resources.html">See PICASO &rarr;</a></li>
+                        <li><strong>Shipped, not shelved:</strong> a public GitHub repository, a pip-installable <code>pypicaso</code> package, and a live analyst GUI. A defence knowledge graph of <strong>68,826 entities and 143,532 relations</strong> across 355 relation types was built to support it.</li>
+                        <li><strong>Internationally distributed delivery</strong> at Neotas across UK and India headquarters, and a research programme evaluated across <strong>five countries</strong>.</li>
+                        <li><strong>Set direction inside someone else&rsquo;s research lab:</strong> co-designed the experimental methodology and technical direction with a scientist at <strong><a href="https://innovation.ebayinc.com/" target="_blank" rel="noopener">eBay Research America</a></strong>; eBay&rsquo;s global leadership selected the work as a <strong>Top 3 Leaders&rsquo; Choice Award</strong> winner out of <strong>2,000+ submissions</strong>. <a href="https://dl.acm.org/doi/10.1145/3459637.3482327" target="_blank" rel="noopener">CIKM 2021 paper &rarr;</a></li>
+                        <li><strong>Cross-institution research leadership</strong> also with <a href="industry.html#thomsonreuters">Thomson Reuters Labs</a> (London and India), INESC TEC (Portugal), and Microsoft Research Asia.</li>
+                    </ul>
+                </div>
+
+                <div class="al-panel" id="tab-govern">
+                    <div class="al-panel-head">I&rsquo;m in the rooms where the rules get written.</div>
+                    <div class="al-panel-sub">Selected, not appointed — by the Royal Society, the UN, and by peer election.</div>
+                    <ul class="al-ev">
+                        <li><strong><a href="https://royalsociety.org/current-topics/science-policy/pairing-scheme/" target="_blank" rel="noopener">Royal Society</a> Pairing Scheme 2022.</strong> One of a small national cohort of scientists selected to be paired with a Whitehall civil servant (Home Office) to inform government policy-making on science and AI. <a href="https://www.essex.ac.uk/news/2022/04/22/scientist-selected-for-royal-society-pairing-scheme" target="_blank" rel="noopener">Announcement &rarr;</a></li>
+                        <li><strong><a href="https://www.undp.org/" target="_blank" rel="noopener">United Nations Development Programme</a>.</strong> Selected through a <strong>global open competition</strong> to lead a team on <em>Re-imagining Trust and Safety for AI</em>. <a href="https://www.undp.org/digital/ai-trust-and-safety" target="_blank" rel="noopener">UNDP programme &rarr;</a></li>
+                        <li><strong>Associate Editor, <a href="https://www.iospress.com/catalog/journals/ai-communications" target="_blank" rel="noopener">AI Communications</a></strong>; Guest Editor, <a href="https://www.ieeesmc.org/publications/ieee-transactions-on-computational-social-systems/" target="_blank" rel="noopener">IEEE Transactions on Computational Social Systems</a>; Distinguished Review Board, <a href="https://dl.acm.org/journal/tweb" target="_blank" rel="noopener">ACM Transactions on the Web</a>.</li>
+                        <li><strong>Senior Programme Committee</strong> for <a href="https://aaai.org/conference/aaai/" target="_blank" rel="noopener">AAAI</a> (2024–26), <a href="https://2025.ieeeicassp.org/" target="_blank" rel="noopener">ICASSP</a> 2025, <a href="https://www.ecai2025.org/" target="_blank" rel="noopener">ECAI</a> (2023–25), IJCNN 2025 and <a href="https://aclrollingreview.org/" target="_blank" rel="noopener">ACL Rolling Review</a> — the seat that decides what counts as credible AI work at the field&rsquo;s top venues.</li>
+                        <li><strong>Curriculum and institutional strategy:</strong> invited member of the <strong>Board of Studies</strong> for Computer Science at <a href="https://adaniuni.ac.in/" target="_blank" rel="noopener">Adani University</a>, India; Visiting Fellow at the <a href="https://www.essex.ac.uk/" target="_blank" rel="noopener">University of Essex</a>; Deputy Appeals Officer and PhD progress panel member at Southampton.</li>
+                    </ul>
+                </div>
+
+                <div class="al-panel" id="tab-succession">
+                    <div class="al-panel-head">The test of a leader is what happens when they step back.</div>
+                    <div class="al-panel-sub">Deliberately giving away a £230k lead role.</div>
+                    <ul class="al-ev">
+                        <li><strong>I wrote the whole thing, then handed over the lead.</strong> On the £230k automated travel-safety-alerts programme I authored the complete work package and delivery plan and was set to lead as PI. I stepped back to Co-PI so that <strong>a colleague could hold their first PI role</strong>. Developing another leader was worth more than another line on my CV.</li>
+                        <li><strong>Systems outlive the funding.</strong> Every production system — BT&rsquo;s internal environment, Neotas&rsquo; classifier, Mersea&rsquo;s platform, Wyser&rsquo;s reasoning engine — kept running after its grant closed.</li>
+                        <li><strong>Handovers to the public, not just successors:</strong> PICASO shipped open source with a package and GUI so analysts can use it without me in the room.</li>
+                        <li><strong>Covering when others can&rsquo;t</strong> — taking over lectures, tutorials, final-year project supervision and the entire undergraduate admissions portfolio at short notice when colleagues left or went on leave. Unglamorous, and exactly the job.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== LEDGER ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">The receipt</span>
+                <h2>Every pound, named.</h2>
+                <p>Twelve competitively won awards. Six as Principal Investigator, six as Co-Investigator or Co-PI. Nothing here is a share of someone else&rsquo;s grant.</p>
+            </div>
+            <div class="card al-rev" style="padding: 3rem;">
+                <div class="al-key">
+                    <span><i class="al-swatch al-bar-pi"></i> Principal Investigator</span>
+                    <span><i class="al-swatch al-bar-co"></i> Co-Investigator / Co-PI</span>
+                </div>
+                <div class="al-ledger" id="al-ledger"></div>
+                <div class="al-total">
+                    <span class="al-total-lbl">UK-denominated total directed as PI or Co-I</span>
+                    <span class="al-total-val">£1.87M</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-top: 1.5rem;">
+                    Plus internationally denominated awards not counted above: <strong style="color:#fff;">HKD 692,894</strong> (Hong Kong RGC General Research Fund, Co-I) and <strong style="color:#fff;">USD 20,000</strong> (Microsoft Research Asia Urban Informatics Fund, Co-I), an <strong style="color:#fff;">NVIDIA Academic Hardware Grant</strong> (in-kind compute), and a three-year <strong style="color:#fff;">BT–Essex doctoral scholarship</strong> held as PI and main supervisor.
+                    <a href="cv.html" style="color:#a5b4fc;">Full grant record in the CV &rarr;</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================== PART 2: STRATEGIST ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="al-part-badge">Component 2</span>
+                <h2>AI Strategist.</h2>
+                <p>Leadership is executing well. Strategy is choosing the right thing to execute <em>before</em> the market agrees with you. The only honest test is a track record of early calls that later turned out right.</p>
+            </div>
+
+            <div class="card al-rev" style="padding: 3.5rem 3rem;">
+                <div class="al-calls">
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2013 – 2014 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;Word order and document structure will matter.&rdquo;</div>
+                        <p class="al-call-body">At the time, mainstream text models threw word order away. My <a href="thesis.html">doctoral thesis</a> proved that modelling word order and segment structure measurably improves text models, against the prevailing bag-of-words consensus.</p>
+                        <span class="al-verdict">&#10003; Vindicated by the sequence-aware attention in every transformer and LLM since</span>
+                    </div>
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2016 – 2017 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;A word is a region, not a point.&rdquo;</div>
+                        <p class="al-call-body">While the field standardised on point vectors, I argued that words should occupy <em>regions</em> and <em>densities</em> in space to capture vagueness and hierarchy — matching Skip-gram on standard tasks while beating unsupervised baselines on hypernym detection (<a href="https://aclanthology.org/K17-1014.pdf" target="_blank" rel="noopener">CoNLL 2017</a>), and later outperforming GloVe outright (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/4624" target="_blank" rel="noopener">AAAI 2019</a>).</p>
+                        <span class="al-verdict">&#10003; The same geometric idea now underpins my MoD uncertainty work</span>
+                    </div>
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2020 – 2021 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;Generation will do the paperwork.&rdquo;</div>
+                        <p class="al-call-body">Directed the RoleCatcher CV-matching build for a start-up and added <strong>automatic cover-letter generation</strong> — <em>while LLMs were still in their infancy</em>. The company grew on it and the university–industry story was picked up by national media. <a href="industry.html#rolecatcher">Detail &rarr;</a></p>
+                        <span class="al-verdict">&#10003; Now a standard feature of every hiring platform</span>
+                    </div>
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2021 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;Recommendation needs images and structure together.&rdquo;</div>
+                        <p class="al-call-body">Co-designed the methodology and technical direction for a multi-modal hypergraph click-through model with eBay Research America, fusing visual and structural signals when most production ranking was still tabular. <a href="https://dl.acm.org/doi/10.1145/3459637.3482327" target="_blank" rel="noopener">CIKM 2021</a></p>
+                        <span class="al-verdict">&#10003; Top 3 of 2,000+ eBay submissions · Best Paper nominee · ACS Digital Disruptors finalist</span>
+                    </div>
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2022 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;Agents, for law, now.&rdquo;</div>
+                        <p class="al-call-body">Won £400k and directed one of the first <strong>agentic AI reasoning systems</strong> for the legal domain — built before Model Context Protocol existed and well ahead of mainstream agentic adoption. <a href="industry.html#wyser">Detail &rarr;</a></p>
+                        <span class="al-verdict">&#10003; Delivered an 18-month first-to-market advantage</span>
+                    </div>
+                    <div class="al-call al-rev-l">
+                        <span class="al-call-yr">2025 – PRESENT · THE CALL</span>
+                        <div class="al-call-h">&ldquo;The bottleneck is no longer accuracy. It&rsquo;s knowing when the model is wrong.&rdquo;</div>
+                        <p class="al-call-body">While the market optimises benchmark scores, I bet the MoD programme on <strong>calibrated uncertainty and selective prediction</strong>: a system that declines to answer is deployable in defence; a confident, wrong one is not. <a href="resources.html">See PICASO &rarr;</a></p>
+                        <span class="al-verdict" style="background:rgba(129,140,248,.1); border-color:rgba(129,140,248,.3); color:#a5b4fc;">&#9679; Live bet — shipped open source, judge it yourself</span>
+                    </div>
+                    <div class="al-call hit al-rev-l">
+                        <span class="al-call-yr">2021 – 2025 · THE CALL</span>
+                        <div class="al-call-h">&ldquo;Models will need to be culturally self-aware.&rdquo;</div>
+                        <p class="al-call-body">Directed a four-year, three-grant multi-modal programme on cultural fit in generated content — starting in 2021, long before cultural alignment became a mainstream evaluation concern. <a href="cultural-modelling.html">Programme page &rarr;</a></p>
+                        <span class="al-verdict">&#10003; Culminated in CALM at <strong>NeurIPS 2025</strong>, as senior author</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== DECISIONS ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">Strategy in practice</span>
+                <h2>Five decisions, and what they cost.</h2>
+                <p>Calling the direction is only half of it. The other half is picking one option and living with the trade-off — which is what these five actually were.</p>
+            </div>
+            <div class="al-dec-grid">
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">Technology pivot</span>
+                    <h4>Abandoned a working classical-vision pipeline for diffusion models.</h4>
+                    <p>Phase 1 of the <a href="cultural-modelling.html">cultural programme</a> worked (Mask R-CNN, DeepFace, OpenPose). It was also a dead end for quality. I retired it and moved Phase 2 to Stable Diffusion with CLIP embeddings and cross-attention control. <strong>Sunk cost is not a strategy.</strong></p>
+                </div>
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">Cost / latency trade-off</span>
+                    <h4>Chose closed-form geometry over sampling-based Bayesian inference.</h4>
+                    <p>For <a href="resources.html">PROCS</a> I picked diagonal Gaussians with <strong>O(1) inference</strong> via direct geometric formulas instead of slower sampling methods — matching computationally heavier models like NBFNet while adding uncertainty estimates. <strong>Chosen for deployability, not elegance.</strong></p>
+                </div>
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">Constraint-led architecture</span>
+                    <h4>Designed for information governance first, accuracy second.</h4>
+                    <p>Defence and finance partners cannot pool raw data — so FLiP moves only compact prompt vectors across boundaries: <strong>16% trainable parameters, 90% less GPU memory</strong>, differential-privacy compatible. <strong>The constraint became the architecture.</strong></p>
+                </div>
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">Portfolio strategy</span>
+                    <h4>Ran eight sectors in parallel instead of specialising in one.</h4>
+                    <p>Defence, telecoms, legal, finance, retail, property, policing, publishing. It costs depth in any single vertical. It buys pattern recognition across all of them — and it is why <strong>five separate organisations</strong> could be taken from zero AI capability to production.</p>
+                </div>
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">People over credit</span>
+                    <h4>Gave away the PI role on a £230k grant I had written.</h4>
+                    <p>I authored the full work package, then stepped back to Co-PI to let a colleague hold their first programme-owner role. <strong>Reads as a loss on paper. It was capacity building</strong> — and honest about my own load across other funded programmes.</p>
+                </div>
+                <div class="al-dec al-rev">
+                    <span class="al-dec-kind">Sequencing</span>
+                    <h4>Chained three grants into one programme rather than chasing three papers.</h4>
+                    <p>GCRF, then an NVIDIA hardware grant, then the Royal Society Pairing Scheme — <strong>all funding one continuous research line</strong> over four years, evaluated across five countries. That sequencing is what produced a NeurIPS paper instead of three disconnected outputs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== GOVERNANCE / RECOGNITION ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">Independent validation</span>
+                <h2>Other people&rsquo;s judgement, not mine.</h2>
+                <p>Every item below was awarded by a selection panel, a leadership team, or a competitive global call.</p>
+            </div>
+            <div class="al-chips">
+                <a class="al-chip al-rev" href="https://www.undp.org/digital/ai-trust-and-safety" target="_blank" rel="noopener">
+                    <span class="al-chip-t">United Nations Development Programme</span>
+                    <span class="al-chip-s">Team lead on AI Trust &amp; Safety — selected via global competition</span>
+                </a>
+                <a class="al-chip al-rev" href="https://www.essex.ac.uk/news/2022/04/22/scientist-selected-for-royal-society-pairing-scheme" target="_blank" rel="noopener">
+                    <span class="al-chip-t">Royal Society Pairing Scheme 2022</span>
+                    <span class="al-chip-s">Paired with the Home Office to inform UK policy-making</span>
+                </a>
+                <a class="al-chip al-rev" href="https://www.bandt.com.au/reaching-gen-z-a-new-tool-for-marketers/" target="_blank" rel="noopener">
+                    <span class="al-chip-t">eBay Top 3 Leaders&rsquo; Choice Award</span>
+                    <span class="al-chip-s">Chosen by eBay&rsquo;s global leadership from 2,000+ submissions</span>
+                </a>
+                <a class="al-chip al-rev" href="https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" target="_blank" rel="noopener">
+                    <span class="al-chip-t">Featured in Forbes</span>
+                    <span class="al-chip-s">Retinal-imaging AI named a healthcare breakthrough</span>
+                </a>
+                <a class="al-chip al-rev" href="https://arxiv.org/abs/2601.03483" target="_blank" rel="noopener">
+                    <span class="al-chip-t">NeurIPS 2025 — senior author</span>
+                    <span class="al-chip-s">CALM: the culmination of a four-year directed programme</span>
+                </a>
+                <a class="al-chip al-rev" href="competitive-programming.html">
+                    <span class="al-chip-t">Vice-Chancellor&rsquo;s Awards finalist</span>
+                    <span class="al-chip-s">Top 3 of 630 applications, Southampton 2024</span>
+                </a>
+                <a class="al-chip al-rev" href="industry.html#mersea">
+                    <span class="al-chip-t">Best KTP Project (SME) 2022</span>
+                    <span class="al-chip-s">National award for the Mersea Homes partnership</span>
+                </a>
+                <a class="al-chip al-rev" href="https://www.essex.ac.uk/research/recognition/celebrating-our-researchers" target="_blank" rel="noopener">
+                    <span class="al-chip-t">Outstanding Early-Career Researcher</span>
+                    <span class="al-chip-s">Faculty of Science &amp; Health, University of Essex 2021</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================== VERIFY ============================== -->
+        <section class="al-sec">
+            <div class="al-sec-head al-rev">
+                <span class="section-title">Don&rsquo;t take my word for it</span>
+                <h2>Check the primary sources.</h2>
+                <p>Every claim on this page traces to a grant record, a peer-reviewed paper, a public repository or a third-party announcement. Here is where to look.</p>
+            </div>
+            <div class="al-verify">
+                <a class="al-vcard al-rev" href="industry.html">
+                    <span class="al-vcard-t">Industry Impact <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">Fourteen engagements, with roles, budgets, durations and outcomes</span>
+                </a>
+                <a class="al-vcard al-rev" href="resources.html">
+                    <span class="al-vcard-t">PICASO / MoD <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">The defence programme, its benchmarks and open-source release</span>
+                </a>
+                <a class="al-vcard al-rev" href="cultural-modelling.html">
+                    <span class="al-vcard-t">Cultural AI programme <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">Four years, three grants, five countries, one NeurIPS paper</span>
+                </a>
+                <a class="al-vcard al-rev" href="students.html">
+                    <span class="al-vcard-t">Mentorship <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">Who I hired and supervised, and where they went</span>
+                </a>
+                <a class="al-vcard al-rev" href="cv.html">
+                    <span class="al-vcard-t">Full CV <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">The complete grant, service and publication record</span>
+                </a>
+                <a class="al-vcard al-rev" href="timeline.html">
+                    <span class="al-vcard-t">Timeline <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">Everything above, in the order it actually happened</span>
+                </a>
+                <a class="al-vcard al-rev" href="thesis.html">
+                    <span class="al-vcard-t">Doctoral thesis <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">The 2014 argument that transformers later proved</span>
+                </a>
+                <a class="al-vcard al-rev" href="https://scholar.google.co.uk/citations?user=gyy0YOIAAAAJ" target="_blank" rel="noopener">
+                    <span class="al-vcard-t">Google Scholar <span class="al-vcard-arrow">&rarr;</span></span>
+                    <span class="al-vcard-s">90+ publications, 1,200+ citations, h-index 18</span>
+                </a>
+            </div>
+
+            <div class="al-pull al-rev" style="margin-top: 3.5rem;">
+                Titles are a shorthand. <span>The work is the argument</span> — and all of it is linked above, so you can decide for yourself.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shoaib Jameel &middot; University of Southampton</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ---------- Scroll progress ---------- */
+        const alProg = document.getElementById('al-progress');
+        function alProgress() {
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            alProg.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        }
+
+        /* ---------- Reveal on scroll ---------- */
+        const alRevEls = document.querySelectorAll('.al-rev, .al-rev-l, .al-rev-scale');
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((e, i) => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => e.target.classList.add('in'), Math.min(i * 70, 350));
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -80px 0px' });
+            alRevEls.forEach(el => io.observe(el));
+        } else {
+            alRevEls.forEach(el => el.classList.add('in'));
+        }
+
+        /* ---------- Count-up numbers ---------- */
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function alCountUp(el) {
+            const target = parseFloat(el.dataset.count);
+            const dec = parseInt(el.dataset.dec || '0', 10);
+            const pre = el.dataset.pre || '';
+            const post = el.dataset.post || '';
+            if (reduceMotion) { el.textContent = pre + target.toFixed(dec) + post; return; }
+            const dur = 1500, t0 = performance.now();
+            function step(now) {
+                const p = Math.min((now - t0) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = pre + (target * eased).toFixed(dec) + post;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        if ('IntersectionObserver' in window) {
+            const cio = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { alCountUp(e.target); cio.unobserve(e.target); } });
+            }, { threshold: 0.5 });
+            document.querySelectorAll('.al-count-num').forEach(el => cio.observe(el));
+        } else {
+            document.querySelectorAll('.al-count-num').forEach(alCountUp);
+        }
+
+        /* ---------- Tabs ---------- */
+        document.querySelectorAll('.al-tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.al-tab').forEach(b => b.classList.remove('on'));
+                document.querySelectorAll('.al-panel').forEach(p => p.classList.remove('on'));
+                btn.classList.add('on');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('on');
+            });
+        });
+
+        /* ---------- Funding ledger ---------- */
+        const alGrants = [
+            { name: 'Wyser — automated employment law &amp; industrial relations', fund: 'Innovate UK Smart Grant', k: 400, pi: true },
+            { name: 'Neotas — AI due diligence (NLP + image analysis)', fund: 'Innovate UK KTP', k: 350, pi: true },
+            { name: 'Mersea Homes — integrated smart site platform', fund: 'Innovate UK KTP', k: 250, pi: false },
+            { name: 'Automating travel safety alerts', fund: 'Innovate UK KTP — work package authored by me', k: 230, pi: false },
+            { name: 'AI-embedded CPD tracker', fund: 'Innovate UK KTP — withdrawn mid-project (COVID)', k: 230, pi: false },
+            { name: 'PICASO — sensemaking under uncertainty for the MoD', fund: 'Alan Turing Institute', k: 140, pi: true },
+            { name: 'BT — optimising AI customer interactions', fund: 'Innovate UK KTP', k: 123, pi: false },
+            { name: 'VR + NLP for the London Metropolitan Police', fund: 'Met Police Seed Projects Grant', k: 50, pi: false },
+            { name: 'Cultural modelling — multi-modal image style transfer', fund: 'Global Challenges Research Fund', k: 36.5, pi: true },
+            { name: 'NG-CrAI — next-gen crowd-AI for scientific discovery', fund: 'INESC TEC Internal Seed Projects', k: 35.9, pi: false },
+            { name: 'DistillJob — personalised distillation of job search', fund: 'Web Science Institute Stimulus Fund', k: 15, pi: true },
+            { name: 'RoleCatcher — AI CV matching for FinTex Ltd.', fund: 'Essex Innovation Voucher', k: 10, pi: true }
+        ];
+        const alMax = 400;
+        const ledger = document.getElementById('al-ledger');
+        ledger.innerHTML = alGrants.map(g => `
+            <div class="al-row">
+                <div>
+                    <div class="al-row-name">${g.name} &nbsp;<em>${g.fund}</em></div>
+                    <div class="al-bar"><div class="al-bar-fill ${g.pi ? 'al-bar-pi' : 'al-bar-co'}" data-w="${(g.k / alMax) * 100}"></div></div>
+                </div>
+                <div class="al-row-val">£${g.k >= 100 ? Math.round(g.k) : g.k}k</div>
+            </div>`).join('');
+
+        function alFillBars() {
+            document.querySelectorAll('.al-bar-fill').forEach((el, i) => {
+                setTimeout(() => { el.style.width = el.dataset.w + '%'; }, reduceMotion ? 0 : i * 90);
+            });
+        }
+        if ('IntersectionObserver' in window) {
+            const bio = new IntersectionObserver((entries) => {
+                if (entries.some(e => e.isIntersecting)) { alFillBars(); bio.disconnect(); }
+            }, { threshold: 0.15 });
+            bio.observe(ledger);
+        } else {
+            alFillBars();
+        }
+
+        window.addEventListener('scroll', alProgress, { passive: true });
+        window.addEventListener('resize', alProgress);
+        alProgress();
+    </script>
+    <script src="nav.js"></script>
+</body>
+</html>
