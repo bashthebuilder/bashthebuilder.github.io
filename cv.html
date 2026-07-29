@@ -90,6 +90,37 @@
         }
 
         .cv-section ul li { font-size: 1.1rem !important; margin-bottom: 0.7rem !important; }
+
+        /* Print: a plain black-on-white resume, not the dark glass theme. */
+        @media print {
+            .liquid-bg, nav, footer, .cv-print-hide { display: none !important; }
+            body { background: #fff !important; color: #111 !important; font-size: 11pt; line-height: 1.4; }
+            main.container { margin: 0 !important; padding-top: 0.5rem !important; max-width: 100% !important; }
+            h1, h2, h3, .liquid-text {
+                background: none !important;
+                -webkit-text-fill-color: #111 !important;
+                color: #111 !important;
+            }
+            .section-title { color: #444 !important; }
+            .card {
+                background: #fff !important;
+                border: 1px solid #ccc !important;
+                backdrop-filter: none !important;
+                box-shadow: none !important;
+                padding: 1.25rem !important;
+                break-inside: avoid;
+            }
+            .cv-item { border-left-color: #ccc !important; break-inside: avoid; }
+            .cv-date { color: #333 !important; }
+            .cv-title { color: #111 !important; }
+            .cv-org, p, li { color: #333 !important; }
+            .tag, .ri-tag, .impact-badge, .cv-highlight, .pub-entry-kind {
+                background: none !important;
+                border: 1px solid #999 !important;
+                color: #222 !important;
+            }
+            a { color: #111 !important; text-decoration: underline; }
+        }
     </style>
 </head>
 <body>
@@ -123,7 +154,7 @@
                 <span class="section-title">Full Academic Record</span>
                 <h2 class="liquid-text" style="font-size: 3rem; margin-bottom: 0;">Curriculum Vitae.</h2>
             </div>
-            <a href="ShoaibJameel_CV.pdf" class="tag" style="background: #6366f1; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 1.05rem;">Download CV (PDF) →</a>
+            <a href="ShoaibJameel_CV.pdf" class="tag cv-print-hide" style="background: #6366f1; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 1.05rem;">Download CV (PDF) →</a>
         </section>
 
         <section class="cv-section">

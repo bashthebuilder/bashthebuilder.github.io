@@ -69,6 +69,22 @@ body {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
+/* Accessibility: hidden until keyboard-focused, then jumps above everything else */
+.skip-link {
+    position: fixed;
+    top: -60px;
+    left: 1rem;
+    background: #6366f1;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    z-index: 2000;
+    transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
 /* Navigation — a persistent left sidebar, so every item is visible with zero
    clicks/taps/scrolling. Collapses to a top bar + animated dropdown only below
    900px, where there isn't room for a full-height rail alongside content. */

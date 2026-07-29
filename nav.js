@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var main = document.querySelector('main');
+    if (main) {
+        if (!main.id) main.id = 'main-content';
+        var skip = document.createElement('a');
+        skip.href = '#' + main.id;
+        skip.className = 'skip-link';
+        skip.textContent = 'Skip to content';
+        skip.addEventListener('click', function () {
+            main.setAttribute('tabindex', '-1');
+            main.focus();
+        });
+        document.body.insertBefore(skip, document.body.firstChild);
+    }
+
     var toggle = document.querySelector('.nav-toggle');
     var links = document.querySelector('.nav-links');
     if (!toggle || !links) return;
