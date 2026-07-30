@@ -92,6 +92,35 @@
             .pc-reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
         }
     </style>
+    <style>
+        /* Human-vs-machine contrast, replacing a 102-word paragraph. */
+        .pc-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 2rem; }
+        @media (max-width: 800px) { .pc-contrast { grid-template-columns: 1fr; } }
+        .pc-contrast-col {
+            padding: 1.8rem 2rem; border-radius: 20px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.025);
+            transition: 0.4s cubic-bezier(0.16, 0.8, 0.3, 1);
+        }
+        .pc-contrast-col:hover { transform: translateY(-6px); }
+        .pc-contrast-human { border-color: rgba(52,211,153,0.32); }
+        .pc-contrast-human:hover { border-color: rgba(52,211,153,0.6); }
+        .pc-contrast-machine { border-color: rgba(239,68,68,0.28); }
+        .pc-contrast-machine:hover { border-color: rgba(239,68,68,0.55); }
+        .pc-contrast-tag {
+            display: inline-block; margin-bottom: 1.1rem; padding: 5px 14px; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .pc-contrast-human .pc-contrast-tag { background: rgba(52,211,153,0.13); color: #34d399; }
+        .pc-contrast-machine .pc-contrast-tag { background: rgba(239,68,68,0.12); color: #f87171; }
+        .pc-contrast-col ul { list-style: none; }
+        .pc-contrast-col li {
+            position: relative; padding-left: 1.7rem; margin-bottom: 0.75rem;
+            color: var(--text-muted); font-size: 1.02rem; line-height: 1.55;
+        }
+        .pc-contrast-col li:last-child { margin-bottom: 0; }
+        .pc-contrast-human li::before { content: '\2713'; position: absolute; left: 0; color: #34d399; font-weight: 800; }
+        .pc-contrast-machine li::before { content: '\2715'; position: absolute; left: 0; color: #f87171; font-weight: 800; }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -169,14 +198,38 @@
         <section id="problem" style="margin: 4rem 0 6rem;">
             <span class="section-title">The Problem</span>
             <h2 style="font-size: 2.4rem;">Why AI Needs to Know What It Doesn't Know.</h2>
-            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">Intelligence analysts face a paradox: the data they need is vast, ambiguous and often contradictory — yet the computational tools they rely on demand certainty. Real-world analysis is challenged by volume, variety, velocity and veracity. Analysts build mental models that <em>weigh</em> information by how uncertain it is, and revise beliefs as evidence arrives. A standard knowledge-graph embedding cannot do this: every entity is a single fixed coordinate — one pin on a map. When one source reports an entity is "in a foreign country" and another says "near the border", the system has no principled way to reconcile two vague, non-overlapping statements.</p>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">Analysts work with data that is vast, ambiguous and often contradictory. Their tools demand certainty. <strong style="color:#fff;">That mismatch is the whole problem.</strong></p>
+
+            <!-- The paradox as a two-column contrast: faster to grasp than the
+                 paragraph it replaces, and it sets up the pins/clouds demo below. -->
+            <div class="pc-contrast">
+                <div class="pc-contrast-col pc-contrast-human">
+                    <span class="pc-contrast-tag">How an analyst thinks</span>
+                    <ul>
+                        <li>Weighs each source by how much it can be trusted</li>
+                        <li>Holds two conflicting reports at once</li>
+                        <li>Revises the picture as evidence arrives</li>
+                        <li>Knows the difference between <em>likely</em> and <em>confirmed</em></li>
+                    </ul>
+                </div>
+                <div class="pc-contrast-col pc-contrast-machine">
+                    <span class="pc-contrast-tag">What a standard embedding does</span>
+                    <ul>
+                        <li>Stores every entity as one fixed coordinate</li>
+                        <li>Cannot represent a contradiction at all</li>
+                        <li>Answers with the same confidence either way</li>
+                        <li>Has no way to say <em>&ldquo;I don&rsquo;t know&rdquo;</em></li>
+                    </ul>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">One source says an entity is &ldquo;in a foreign country&rdquo;. Another says &ldquo;near the border&rdquo;. A single pin on a map cannot hold both.</p>
 
             <div class="card" style="padding: 2.5rem;">
                 <h3 style="text-align:center; margin-bottom: 0.5rem;">Click to Toggle: Pins vs. Clouds</h3>
                 <p style="text-align:center; color: var(--text-muted); margin-bottom: 1.5rem;">Four vehicle types are known precisely. A vague report just says <em>"a vehicle."</em></p>
-                <div class="pc-toggle-btns">
-                    <button class="pc-toggle-btn active" data-view="pins">Fixed Pins (Traditional)</button>
-                    <button class="pc-toggle-btn" data-view="clouds">Probability Clouds (PICASO)</button>
+                <div class="pc-toggle-btns" role="group" aria-label="Embedding representation">
+                    <button class="pc-toggle-btn active" data-view="pins" aria-pressed="true">Fixed Pins (Traditional)</button>
+                    <button class="pc-toggle-btn" data-view="clouds" aria-pressed="false">Probability Clouds (PICASO)</button>
                 </div>
                 <svg viewBox="0 0 600 260" class="pc-toggle-svg">
                     <line x1="30" y1="230" x2="570" y2="230" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
@@ -614,7 +667,7 @@
         document.querySelectorAll('.pc-toggle-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.pc-toggle-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
                 const view = btn.dataset.view;
                 pcPins.style.display = view === 'pins' ? 'block' : 'none';
                 pcClouds.style.display = view === 'clouds' ? 'block' : 'none';

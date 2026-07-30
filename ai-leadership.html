@@ -547,17 +547,17 @@
                 <p>Strip the job titles away and leadership is a short list of verbs: fund, hire, direct, de-risk, govern, hand over. Pick any one — here is the named, linked evidence.</p>
             </div>
 
-            <div class="al-tabs al-rev" role="tablist">
-                <button class="al-tab on" data-tab="budget" role="tab">Budget authority</button>
-                <button class="al-tab" data-tab="people" role="tab">Hiring &amp; teams</button>
-                <button class="al-tab" data-tab="risk" role="tab">Risk &amp; hard calls</button>
-                <button class="al-tab" data-tab="crossorg" role="tab">Cross-organisational</button>
-                <button class="al-tab" data-tab="govern" role="tab">Governance</button>
-                <button class="al-tab" data-tab="succession" role="tab">Succession</button>
+            <div class="al-tabs al-rev" role="tablist" aria-label="Leadership evidence categories">
+                <button class="al-tab on" data-tab="budget" role="tab" id="tabbtn-budget" aria-selected="true" aria-controls="tab-budget" tabindex="0">Budget authority</button>
+                <button class="al-tab" data-tab="people" role="tab" id="tabbtn-people" aria-selected="false" aria-controls="tab-people" tabindex="-1">Hiring &amp; teams</button>
+                <button class="al-tab" data-tab="risk" role="tab" id="tabbtn-risk" aria-selected="false" aria-controls="tab-risk" tabindex="-1">Risk &amp; hard calls</button>
+                <button class="al-tab" data-tab="crossorg" role="tab" id="tabbtn-crossorg" aria-selected="false" aria-controls="tab-crossorg" tabindex="-1">Cross-organisational</button>
+                <button class="al-tab" data-tab="govern" role="tab" id="tabbtn-govern" aria-selected="false" aria-controls="tab-govern" tabindex="-1">Governance</button>
+                <button class="al-tab" data-tab="succession" role="tab" id="tabbtn-succession" aria-selected="false" aria-controls="tab-succession" tabindex="-1">Succession</button>
             </div>
 
             <div class="card al-rev" style="padding: 3rem;">
-                <div class="al-panel on" id="tab-budget">
+                <div class="al-panel on" id="tab-budget" role="tabpanel" aria-labelledby="tabbtn-budget">
                     <div class="al-panel-head">I held the money, and decided where it went.</div>
                     <div class="al-panel-sub">£1.87M across twelve competitively won awards — six as Principal Investigator.</div>
                     <ul class="al-ev">
@@ -569,7 +569,7 @@
                     </ul>
                 </div>
 
-                <div class="al-panel" id="tab-people">
+                <div class="al-panel" id="tab-people" role="tabpanel" aria-labelledby="tabbtn-people" hidden>
                     <div class="al-panel-head">I hire the builders, then get out of their way.</div>
                     <div class="al-panel-sub">Recruitment and line management, not just mentorship.</div>
                     <ul class="al-ev">
@@ -581,7 +581,7 @@
                     </ul>
                 </div>
 
-                <div class="al-panel" id="tab-risk">
+                <div class="al-panel" id="tab-risk" role="tabpanel" aria-labelledby="tabbtn-risk" hidden>
                     <div class="al-panel-head">I own the failures, the pivots and the things that go wrong.</div>
                     <div class="al-panel-sub">A portfolio of twelve awards is a portfolio of twelve risk positions.</div>
                     <ul class="al-ev">
@@ -593,7 +593,7 @@
                     </ul>
                 </div>
 
-                <div class="al-panel" id="tab-crossorg">
+                <div class="al-panel" id="tab-crossorg" role="tabpanel" aria-labelledby="tabbtn-crossorg" hidden>
                     <div class="al-panel-head">Three organisations, one team, one roadmap.</div>
                     <div class="al-panel-sub">The hardest leadership problem: authority you have to earn, not assert.</div>
                     <ul class="al-ev">
@@ -605,7 +605,7 @@
                     </ul>
                 </div>
 
-                <div class="al-panel" id="tab-govern">
+                <div class="al-panel" id="tab-govern" role="tabpanel" aria-labelledby="tabbtn-govern" hidden>
                     <div class="al-panel-head">I&rsquo;m in the rooms where the rules get written.</div>
                     <div class="al-panel-sub">Selected, not appointed — by the Royal Society, the UN, and by peer election.</div>
                     <ul class="al-ev">
@@ -617,7 +617,7 @@
                     </ul>
                 </div>
 
-                <div class="al-panel" id="tab-succession">
+                <div class="al-panel" id="tab-succession" role="tabpanel" aria-labelledby="tabbtn-succession" hidden>
                     <div class="al-panel-head">The test of a leader is what happens when they step back.</div>
                     <div class="al-panel-sub">Deliberately giving away a £230k lead role.</div>
                     <ul class="al-ev">
@@ -853,12 +853,26 @@
 
 
         /* ---------- Tabs ---------- */
-        document.querySelectorAll('.al-tab').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.al-tab').forEach(b => b.classList.remove('on'));
-                document.querySelectorAll('.al-panel').forEach(p => p.classList.remove('on'));
-                btn.classList.add('on');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('on');
+        const alTabs = Array.from(document.querySelectorAll('.al-tab'));
+        function alSelect(btn) {
+            alTabs.forEach(b => {
+                const on = b === btn;
+                b.classList.toggle('on', on);
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+                b.tabIndex = on ? 0 : -1;
+                const panel = document.getElementById('tab-' + b.dataset.tab);
+                panel.classList.toggle('on', on);
+                panel.hidden = !on;
+            });
+        }
+        alTabs.forEach((btn, i) => {
+            btn.addEventListener('click', () => alSelect(btn));
+            btn.addEventListener('keydown', e => {
+                const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+                if (!d) return;
+                e.preventDefault();
+                const next = alTabs[(i + d + alTabs.length) % alTabs.length];
+                alSelect(next); next.focus();
             });
         });
 

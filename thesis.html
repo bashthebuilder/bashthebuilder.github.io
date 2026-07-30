@@ -130,6 +130,33 @@
         .paper-origin-card { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
         .paper-origin-card .doi-tag { color: var(--text-muted); font-size: 0.95rem; }
     </style>
+    <style>
+        /* Numbered story beats — replaces three dense paragraphs with three
+           claims, each stated before it is explained. */
+        .story-beats { display: grid; gap: 1.2rem; }
+        .story-beat-item {
+            display: flex; gap: 1.5rem; align-items: flex-start;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 22px; padding: 2rem 2.2rem;
+            transition: 0.4s cubic-bezier(0.16, 0.8, 0.3, 1);
+        }
+        .story-beat-item:hover { transform: translateX(6px); border-color: rgba(129,140,248,0.45); background: rgba(255,255,255,0.05); }
+        .story-beat-num {
+            flex-shrink: 0; width: 44px; height: 44px; border-radius: 14px;
+            display: grid; place-items: center;
+            background: rgba(99,102,241,0.16); border: 1px solid rgba(129,140,248,0.4);
+            color: #a5b4fc; font-weight: 900; font-size: 1.2rem;
+        }
+        .story-beat-item h3 { font-size: 1.45rem; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+        .story-beat-item p { color: var(--text-muted); margin-bottom: 0.8rem; }
+        .story-beat-punch {
+            color: #fff !important; font-weight: 700; margin-bottom: 0 !important;
+            border-left: 3px solid #6366f1; padding-left: 1rem;
+        }
+        @media (max-width: 700px) {
+            .story-beat-item { flex-direction: column; gap: 1rem; padding: 1.6rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -173,10 +200,33 @@
         <section class="reveal" style="margin-bottom: 4rem;">
             <span class="section-title">Where the Idea Came From</span>
             <h2 style="font-size: 2.4rem;">A Game, a Cliff, and a Question About Reading.</h2>
-            <div class="card story-card">
-                <p>Long before "technical difficulty" was a term in a peer-reviewed paper, it was a plumber jumping between platforms. Growing up playing <strong>Super Mario</strong>, I noticed something every player learns instinctively: not all jumps are equal. A gap between two nearby, low ledges is trivial. But make the next platform <em>farther away</em>, or put it <em>higher up</em>, and suddenly the jump demands real precision — more speed, a longer run-up, better timing. Distance and height, combined, are what make a jump hard.</p>
-                <p>Years later, as a PhD student thinking about how people read, that same picture came back to me. Reading a document isn't so different from crossing that terrain. Some sentences are short hops between familiar, everyday words — easy footing. Others force the reader to leap across a wide gap between unfamiliar concepts, or up onto a ledge of dense, technical vocabulary that demands far more cognitive effort to land on safely. The <strong>farther apart two ideas are conceptually, and the "higher" the vocabulary sits above everyday language</strong>, the harder the reader has to work to get from one to the next — exactly like a harder jump in the game.</p>
-                <p>That single idea — that a document could be modelled as a <strong>terrain</strong>, where technical difficulty has both a "height" and a "distance," and that ranking text by difficulty means measuring how hard the jumps across it are — became my first CIKM paper, and the seed that grew into my entire PhD research on latent, structure-aware topic models. The interactive terrain below is my attempt to make that mental picture playable.</p>
+            <!-- Three beats instead of three dense paragraphs: the observation,
+                 the transfer, the result. Each states its claim before explaining it. -->
+            <div class="story-beats">
+                <div class="story-beat-item">
+                    <span class="story-beat-num">1</span>
+                    <div>
+                        <h3>Not all jumps are equal.</h3>
+                        <p>Growing up on <strong>Super Mario</strong>, every player learns this without being told. Two nearby, low ledges? Trivial. Move the platform <em>farther away</em> or <em>higher up</em> and it suddenly demands real precision.</p>
+                        <p class="story-beat-punch">Distance and height are what make a jump hard.</p>
+                    </div>
+                </div>
+                <div class="story-beat-item">
+                    <span class="story-beat-num">2</span>
+                    <div>
+                        <h3>Reading is the same terrain.</h3>
+                        <p>Some sentences are short hops between everyday words. Others make you leap a wide gap between unfamiliar concepts, or climb onto a ledge of dense technical vocabulary.</p>
+                        <p class="story-beat-punch">Conceptual distance and vocabulary height are what make text hard.</p>
+                    </div>
+                </div>
+                <div class="story-beat-item">
+                    <span class="story-beat-num">3</span>
+                    <div>
+                        <h3>So model the document as terrain.</h3>
+                        <p>Rank text by difficulty by measuring how hard the jumps across it are. That became my <a href="https://dl.acm.org/doi/10.1145/2063576.2063872" target="_blank" rel="noopener">first CIKM paper</a> — and the seed of an entire PhD on structure-aware topic models.</p>
+                        <p class="story-beat-punch">Play the terrain below. It is that mental picture, made literal.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -207,9 +257,9 @@
             </div>
 
             <div class="terrain-controls">
-                <button class="terrain-btn" id="btn-prev" onclick="stepTerrain(-1)">◂ Easier Jump</button>
-                <button class="terrain-btn" id="btn-next" onclick="stepTerrain(1)">Harder Jump ▸</button>
-                <button class="terrain-btn" onclick="jumpTo(0)">↺ Restart</button>
+                <button class="terrain-btn" id="btn-prev" onclick="stepTerrain(-1)" aria-label="Step to an easier sentence">◂ Easier Jump</button>
+                <button class="terrain-btn" id="btn-next" onclick="stepTerrain(1)" aria-label="Step to a harder sentence">Harder Jump ▸</button>
+                <button class="terrain-btn" onclick="jumpTo(0)" aria-label="Restart the terrain walk">↺ Restart</button>
             </div>
 
             <div id="terrain-panel" class="card">
