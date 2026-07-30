@@ -50,6 +50,31 @@
         .ug-evi-dl { margin-top: 0.6rem; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem; }
         .ug-evi-dl:hover { color: #a5b4fc; }
     </style>
+    <style>
+        /* Animated cluster: the scheduling problem the thesis solved. */
+        .ug-cluster { margin: 1.5rem 0 2rem; padding: 1.5rem; border-radius: 22px;
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border); }
+        .ug-cluster svg { width: 100%; height: auto; font-family: 'Inter', sans-serif; display: block; }
+        .ug-cl-btns { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+        .ug-cl-btn { padding: 9px 18px; border-radius: 100px; border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,.04); color: var(--text-muted); font-weight: 700;
+            font-size: .9rem; cursor: pointer; font-family: inherit; transition: .25s; }
+        .ug-cl-btn:hover { color: #fff; border-color: #818cf8; }
+        .ug-cl-btn.active { background: rgba(99,102,241,.2); border-color: #818cf8; color: #fff; }
+        .ugc-src { fill: #94a3b8; font-size: 12px; font-weight: 700; }
+        .ugc-hub { fill: rgba(99,102,241,.22); stroke: #818cf8; stroke-width: 2; }
+        .ugc-hublab { fill: #fff; font-size: 13px; font-weight: 800; }
+        .ugc-node rect:first-child { fill: rgba(255,255,255,.04); stroke: rgba(255,255,255,.16); }
+        .ugc-node text { fill: #cbd5e1; font-size: 12.5px; font-weight: 700; }
+        .ugc-node.hot rect:first-child { stroke: #f87171; fill: rgba(239,68,68,.12); }
+        .ugc-load { fill: #34d399; transition: width .45s ease, fill .3s ease; }
+        .ugc-node.hot .ugc-load { fill: #f87171; }
+        .ugc-wire { stroke: rgba(129,140,248,.28); stroke-width: 1.5; fill: none; }
+        .ugc-packet { fill: #fbbf24; filter: drop-shadow(0 0 6px rgba(251,191,36,.8)); }
+        .ugc-verdict { font-size: 13px; font-weight: 800; }
+        .ugc-cap { color: var(--text-muted); font-size: 1rem; margin-top: 1rem; max-width: 62ch; }
+        @media (prefers-reduced-motion: reduce) { .ugc-packet { display: none; } }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -192,6 +217,36 @@
                 <span class="tag">Scales from 1 to 255 CPUs</span>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Its most cited-by-itself contribution: rather than lock the shared central database file while it updates — which would stall the load balancer under heavier cluster sizes — the design routes reads and writes through two separate sockets instead, avoiding file locking entirely. A second contribution, <em>non-repetitive CPU selection</em>, stops every request piling onto whichever single node looked least busy at the last 30-second update, by projecting each candidate node's CPU usage forward before assigning the next task.</p>
+            <!-- The stale-snapshot problem, animated. Toggling between the two
+                 modes shows the herd effect and the fix in about four seconds. -->
+            <div class="ug-cluster">
+                <div class="ug-cl-btns" role="group" aria-label="Scheduling strategy">
+                    <button class="ug-cl-btn active" data-mode="naive" aria-pressed="true">Least-loaded, from a 30s-old snapshot</button>
+                    <button class="ug-cl-btn" data-mode="fixed" aria-pressed="false">Non-repetitive CPU selection</button>
+                </div>
+                <svg viewBox="0 0 720 300" role="img" aria-label="Animation contrasting naive least-loaded scheduling, where every task piles onto one node, with non-repetitive selection, which spreads tasks evenly.">
+                    <text class="ugc-src" x="42" y="150">incoming<tspan x="42" dy="17">tasks</tspan></text>
+                    <circle class="ugc-hub" cx="150" cy="146" r="26"/>
+                    <text class="ugc-hublab" x="150" y="151" text-anchor="middle">LB</text>
+
+                    <g id="ugc-nodes">
+                        <g class="ugc-node" data-n="0"><rect x="420" y="30"  width="150" height="46" rx="11"/><text x="436" y="52">node 1</text><rect class="ugc-load" x="436" y="60" width="0" height="7" rx="3.5"/></g>
+                        <g class="ugc-node" data-n="1"><rect x="420" y="90"  width="150" height="46" rx="11"/><text x="436" y="112">node 2</text><rect class="ugc-load" x="436" y="120" width="0" height="7" rx="3.5"/></g>
+                        <g class="ugc-node" data-n="2"><rect x="420" y="150" width="150" height="46" rx="11"/><text x="436" y="172">node 3</text><rect class="ugc-load" x="436" y="180" width="0" height="7" rx="3.5"/></g>
+                        <g class="ugc-node" data-n="3"><rect x="420" y="210" width="150" height="46" rx="11"/><text x="436" y="232">node 4</text><rect class="ugc-load" x="436" y="240" width="0" height="7" rx="3.5"/></g>
+                    </g>
+
+                    <path class="ugc-wire" d="M176,146 C300,146 320,53  420,53"/>
+                    <path class="ugc-wire" d="M176,146 C300,146 320,113 420,113"/>
+                    <path class="ugc-wire" d="M176,146 C300,146 320,173 420,173"/>
+                    <path class="ugc-wire" d="M176,146 C300,146 320,233 420,233"/>
+
+                    <circle class="ugc-packet" id="ugc-packet" cx="150" cy="146" r="7"/>
+                    <text class="ugc-verdict" id="ugc-verdict" x="596" y="285" text-anchor="end"></text>
+                </svg>
+                <p class="ugc-cap" id="ugc-cap">Every task is sent to whichever node looked idlest 30 seconds ago &mdash; so they all pile onto the same one, and it saturates while three sit idle.</p>
+            </div>
+
             <div class="ms-links" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
                 <a href="http://www.ijcee.org/papers/035.pdf" target="_blank" rel="noopener" class="tag" style="text-decoration:none;">Publisher Copy (IJCEE) →</a>
                 <a href="evidence/undergraduate-work/Jameel-CPU-Load-Balancing-IJCEE-2009.pdf" target="_blank" class="tag" style="text-decoration:none;" rel="noopener">Local Mirror (PDF) →</a>
@@ -269,6 +324,84 @@
             });
         });
         lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    </script>
+    <script>
+    (function () {
+        const svg = document.querySelector('.ug-cluster svg');
+        if (!svg) return;
+        const packet  = document.getElementById('ugc-packet');
+        const verdict = document.getElementById('ugc-verdict');
+        const cap     = document.getElementById('ugc-cap');
+        const nodes   = Array.from(svg.querySelectorAll('.ugc-node'));
+        const loads   = nodes.map(n => n.querySelector('.ugc-load'));
+        const NODE_Y  = [53, 113, 173, 233];
+        const reduce  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        let mode = 'naive', load = [0, 0, 0, 0], sent = 0, timer = null;
+        const COPY = {
+            naive: 'Every task is sent to whichever node looked idlest 30 seconds ago \u2014 so they all pile onto the same one, and it saturates while three sit idle.',
+            fixed: 'Each candidate\u2019s load is projected forward before the task is assigned, so the same node is never chosen twice in a row. The cluster fills evenly.'
+        };
+
+        function paint() {
+            loads.forEach((el, i) => {
+                el.setAttribute('width', Math.min(load[i], 10) / 10 * 118);
+                nodes[i].classList.toggle('hot', load[i] >= 8);
+            });
+            const spread = Math.max(...load) - Math.min(...load);
+            verdict.textContent = mode === 'naive'
+                ? (sent > 3 ? 'node 1 saturated \u00b7 3 nodes idle' : '')
+                : (sent > 3 ? 'load spread evenly \u00b7 no node saturated' : '');
+            verdict.setAttribute('fill', mode === 'naive' ? '#f87171' : '#34d399');
+        }
+
+        function pick() {
+            if (mode === 'naive') return 0;             // stale snapshot always names the same node
+            let best = 0;                                // project forward, then choose
+            for (let i = 1; i < 4; i++) if (load[i] < load[best]) best = i;
+            return best;
+        }
+
+        function fly() {
+            const i = pick();
+            if (reduce) { load[i]++; sent++; paint(); return; }
+            packet.style.transition = 'none';
+            packet.setAttribute('cx', 150); packet.setAttribute('cy', 146);
+            requestAnimationFrame(() => {
+                packet.style.transition = 'cx .55s ease-in-out, cy .55s ease-in-out';
+                packet.setAttribute('cx', 420); packet.setAttribute('cy', NODE_Y[i]);
+            });
+            setTimeout(() => { load[i]++; sent++; paint(); }, 560);
+        }
+
+        function reset() { load = [0, 0, 0, 0]; sent = 0; paint(); }
+
+        function run() {
+            clearInterval(timer);
+            reset();
+            fly();
+            timer = setInterval(() => { if (sent >= 12) reset(); fly(); }, 900);
+        }
+
+        document.querySelectorAll('.ug-cl-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ug-cl-btn').forEach(b => {
+                    b.classList.remove('active'); b.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true');
+                mode = btn.dataset.mode;
+                cap.textContent = COPY[mode];
+                run();
+            });
+        });
+
+        // only animate while the figure is on screen
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(es => es.forEach(e => {
+                if (e.isIntersecting) run(); else clearInterval(timer);
+            }), { threshold: .25 }).observe(svg);
+        } else { run(); }
+    })();
     </script>
     <script src="reveal.js"></script>
     <script src="nav.js"></script>
