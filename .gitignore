@@ -34,3 +34,8 @@ Desktop.ini
 # Scratch
 *.bak
 *.tmp
+
+# Local working material that is not part of the published site.
+# Anchored with a leading slash on purpose: core.ignorecase is true on macOS,
+# so a bare "PICASO/" would also match the site's own assets/picaso/ directory.
+/PICASO/
