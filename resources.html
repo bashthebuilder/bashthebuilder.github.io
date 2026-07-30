@@ -121,6 +121,29 @@
         .pc-contrast-human li::before { content: '\2713'; position: absolute; left: 0; color: #34d399; font-weight: 800; }
         .pc-contrast-machine li::before { content: '\2715'; position: absolute; left: 0; color: #f87171; font-weight: 800; }
     </style>
+    <style>
+        /* Selective-prediction gap figure. */
+        .pc-gap-fig { margin: 2rem 0 2.5rem; padding: 1.5rem; border-radius: 22px;
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border); }
+        .pc-gap-fig svg { width: 100%; height: auto; font-family: 'Inter', sans-serif; display: block; }
+        .pcg-title { fill: #e2e8f0; font-size: 15px; font-weight: 700; }
+        .pcg-axis { stroke: rgba(255,255,255,.16); }
+        .pcg-bar { transform: scaleY(0); transform-box: fill-box; transform-origin: bottom center;
+            transition: transform .9s cubic-bezier(.16,.8,.3,1); transition-delay: var(--d,0s); }
+        .active .pcg-bar, .pc-reveal.active .pcg-bar { transform: scaleY(1); }
+        .pcg-hi { fill: #34d399; }
+        .pcg-lo { fill: #64748b; }
+        .pcg-val { fill: #fff; font-size: 25px; font-weight: 900; text-anchor: middle; }
+        .pcg-val-lo { fill: #cbd5e1; }
+        .pcg-lab { fill: #94a3b8; font-size: 12.5px; font-weight: 600; }
+        .pcg-lab-hi { fill: #34d399; font-weight: 800; }
+        .pcg-lab-lo { fill: #94a3b8; font-weight: 800; }
+        .pcg-gapline { stroke: #fbbf24; stroke-width: 1.6; stroke-dasharray: 3 3; }
+        .pcg-gaptxt { fill: #fbbf24; font-size: 19px; font-weight: 900; }
+        .pcg-gapsub { fill: #fbbf24; font-size: 10.5px; font-weight: 700; }
+        .pcg-caption { color: var(--text-muted); font-size: 1rem; margin: 1.2rem auto 0; max-width: 62ch; text-align: center; }
+        @media (prefers-reduced-motion: reduce) { .pcg-bar { transform: scaleY(1) !important; } }
+    </style>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -418,6 +441,32 @@
             <span class="section-title">Honest Confidence</span>
             <h2 style="font-size: 2.4rem;">Calibrated Uncertainty, Verified.</h2>
             <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 1.5rem;">The defining advantage of PICASO: when it says "I'm confident," it is more likely to be correct. When it says "I'm uncertain," you should seek human review.</p>
+
+            <!-- The selective-prediction gap: the single number that makes the
+                 system deployable, drawn rather than described. -->
+            <div class="pc-gap-fig">
+                <svg viewBox="0 0 760 260" role="img" aria-label="When PICASO is confident it is right 45.1% of the time; when uncertain, 26.3%. An 18.8 point gap.">
+                    <text class="pcg-title" x="380" y="24" text-anchor="middle">Hits@1 accuracy, split by the model&#8217;s own confidence</text>
+                    <line class="pcg-axis" x1="150" y1="210" x2="700" y2="210"/>
+                    <!-- confident -->
+                    <rect class="pcg-bar pcg-hi" x="230" y="60" width="120" height="150" rx="10" style="--d:.15s"/>
+                    <text class="pcg-val" x="290" y="88">45.1%</text>
+                    <text class="pcg-lab" x="290" y="234" text-anchor="middle">When it says</text>
+                    <text class="pcg-lab pcg-lab-hi" x="290" y="250" text-anchor="middle">&#8220;I&#8217;m confident&#8221;</text>
+                    <!-- uncertain -->
+                    <rect class="pcg-bar pcg-lo" x="470" y="123" width="120" height="87" rx="10" style="--d:.35s"/>
+                    <text class="pcg-val pcg-val-lo" x="530" y="151">26.3%</text>
+                    <text class="pcg-lab" x="530" y="234" text-anchor="middle">When it says</text>
+                    <text class="pcg-lab pcg-lab-lo" x="530" y="250" text-anchor="middle">&#8220;I&#8217;m not sure&#8221;</text>
+                    <!-- the gap -->
+                    <line class="pcg-gapline" x1="390" y1="60" x2="430" y2="60"/>
+                    <line class="pcg-gapline" x1="410" y1="60" x2="410" y2="123"/>
+                    <line class="pcg-gapline" x1="390" y1="123" x2="430" y2="123"/>
+                    <text class="pcg-gaptxt" x="410" y="97" text-anchor="middle">18.8</text>
+                    <text class="pcg-gapsub" x="410" y="112" text-anchor="middle">points</text>
+                </svg>
+                <p class="pcg-caption">That gap is the whole product. A model that is wrong <em>and knows it</em> can hand the case to an analyst; a confidently wrong one cannot.</p>
+            </div>
             <div class="pc-eqn">$$ \text{uncertainty} = \sum \sigma^2_{head} + \sum \sigma^2_{tail} $$</div>
             <p class="pc-plain" style="max-width: 64ch; margin: 0 auto 2rem; text-align:center; border:none;"><strong>Plain English:</strong> uncertainty is how "spread out" both entity clouds are. If both are tight, the model is confident. If either is diffuse, it flags the prediction.</p>
 

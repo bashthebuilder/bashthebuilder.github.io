@@ -303,6 +303,29 @@
         .al-flow { stroke: #818cf8; stroke-width: 1.6; fill: none; opacity: .55; stroke-dasharray: 6 6; animation: alDash 2.4s linear infinite; }
         @keyframes alDash { to { stroke-dashoffset: -24; } }
 
+        /* Lead-time chart: bar length is the gap between calling something and
+           the field agreeing, so "early" is a length rather than an adjective. */
+        .al-calls-svg { width: 100%; height: auto; font-family: 'Inter', sans-serif; display: block; }
+        .al-c-grid { stroke: rgba(255,255,255,.07); }
+        .al-c-yr { fill: #64748b; font-size: 12px; font-weight: 700; }
+        .al-c-lab { fill: #e2e8f0; font-size: 13px; font-weight: 700; }
+        .al-c-note { fill: #34d399; font-size: 11.5px; font-weight: 600; }
+        .al-c-live { fill: #a5b4fc; font-size: 11.5px; font-weight: 700; }
+        .al-c-foot { fill: #94a3b8; font-size: 12.5px; font-style: italic; }
+        .al-c-gap {
+            transform: scaleX(0); transform-box: fill-box; transform-origin: left center;
+            transition: transform .8s cubic-bezier(.16,.8,.3,1); transition-delay: var(--d,0s);
+        }
+        .al-c-dot { fill: #6366f1; stroke: #080a0f; stroke-width: 2; opacity: 0; transition: opacity .4s ease; transition-delay: var(--d,0s); }
+        .al-c-hit { fill: #34d399; stroke: #080a0f; stroke-width: 2; opacity: 0; transition: opacity .4s ease; transition-delay: var(--d,0s); }
+        .active .al-c-gap { transform: scaleX(1); }
+        .active .al-c-dot, .active .al-c-hit { opacity: 1; }
+        @media (prefers-reduced-motion: reduce) {
+            .al-c-gap { transform: scaleX(1) !important; }
+            .al-c-dot, .al-c-hit { opacity: 1 !important; }
+        }
+        @media (max-width: 760px) { .al-calls-svg { min-width: 660px; } }
+
         @media (max-width: 1024px) {
             .al-hero h1 { font-size: 3.1rem; }
             .al-answer { font-size: 1.25rem; padding-left: 1.4rem; }
@@ -660,6 +683,63 @@
                 <span class="al-part-badge">Component 2</span>
                 <h2>AI Strategist.</h2>
                 <p>Leadership is executing well. Strategy is choosing the right thing to execute <em>before</em> the market agrees with you. The only honest test is a track record of early calls that later turned out right.</p>
+            </div>
+
+            <div class="card al-rev" style="padding: 3rem 2rem 2rem;">
+                <svg class="al-calls-svg" viewBox="0 0 1000 414" role="img" aria-label="Chart showing when each technical call was made and how many years later the field caught up.">
+                <defs><linearGradient id="gapGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs>
+                <line class="al-c-grid" x1="301" y1="52" x2="301" y2="354"/>
+                <text class="al-c-yr" x="301" y="44" text-anchor="middle">2012</text>
+                <line class="al-c-grid" x1="403" y1="52" x2="403" y2="354"/>
+                <text class="al-c-yr" x="403" y="44" text-anchor="middle">2014</text>
+                <line class="al-c-grid" x1="505" y1="52" x2="505" y2="354"/>
+                <text class="al-c-yr" x="505" y="44" text-anchor="middle">2016</text>
+                <line class="al-c-grid" x1="607" y1="52" x2="607" y2="354"/>
+                <text class="al-c-yr" x="607" y="44" text-anchor="middle">2018</text>
+                <line class="al-c-grid" x1="709" y1="52" x2="709" y2="354"/>
+                <text class="al-c-yr" x="709" y="44" text-anchor="middle">2020</text>
+                <line class="al-c-grid" x1="811" y1="52" x2="811" y2="354"/>
+                <text class="al-c-yr" x="811" y="44" text-anchor="middle">2022</text>
+                <line class="al-c-grid" x1="913" y1="52" x2="913" y2="354"/>
+                <text class="al-c-yr" x="913" y="44" text-anchor="middle">2024</text>
+                <line class="al-c-grid" x1="1015" y1="52" x2="1015" y2="354"/>
+                <text class="al-c-yr" x="1015" y="44" text-anchor="middle">2026</text>
+                <text class="al-c-lab" x="236" y="79" text-anchor="end">Word order matters</text>
+                <rect class="al-c-gap" x="352" y="68" width="204" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.0s"/>
+                <circle class="al-c-dot" cx="352" cy="74" r="7" style="--d:0.0s"/>
+                <circle class="al-c-hit" cx="556" cy="74" r="5.5" style="--d:0.5s"/>
+                <text class="al-c-note" x="569" y="78">Transformers &#183; 4 yrs later</text>
+                <text class="al-c-lab" x="236" y="119" text-anchor="end">Words as regions</text>
+                <rect class="al-c-gap" x="556" y="108" width="204" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.09s"/>
+                <circle class="al-c-dot" cx="556" cy="114" r="7" style="--d:0.09s"/>
+                <circle class="al-c-hit" cx="760" cy="114" r="5.5" style="--d:0.59s"/>
+                <text class="al-c-note" x="773" y="118">Box / density embeddings &#183; 4 yrs later</text>
+                <text class="al-c-lab" x="236" y="159" text-anchor="end">Generation does paperwork</text>
+                <rect class="al-c-gap" x="709" y="148" width="153" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.18s"/>
+                <circle class="al-c-dot" cx="709" cy="154" r="7" style="--d:0.18s"/>
+                <circle class="al-c-hit" cx="862" cy="154" r="5.5" style="--d:0.6799999999999999s"/>
+                <text class="al-c-note" x="875" y="158">LLM writing tools &#183; 3 yrs later</text>
+                <text class="al-c-lab" x="236" y="199" text-anchor="end">Image + structure fusion</text>
+                <rect class="al-c-gap" x="760" y="188" width="102" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.27s"/>
+                <circle class="al-c-dot" cx="760" cy="194" r="7" style="--d:0.27s"/>
+                <circle class="al-c-hit" cx="862" cy="194" r="5.5" style="--d:0.77s"/>
+                <text class="al-c-note" x="875" y="198">Multimodal ranking &#183; 2 yrs later</text>
+                <text class="al-c-lab" x="236" y="239" text-anchor="end">Agents, for law</text>
+                <rect class="al-c-gap" x="811" y="228" width="102" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.36s"/>
+                <circle class="al-c-dot" cx="811" cy="234" r="7" style="--d:0.36s"/>
+                <circle class="al-c-hit" cx="913" cy="234" r="5.5" style="--d:0.86s"/>
+                <text class="al-c-note" x="926" y="238">Agentic AI mainstream &#183; 2 yrs later</text>
+                <text class="al-c-lab" x="236" y="279" text-anchor="end">Culturally aware models</text>
+                <rect class="al-c-gap" x="760" y="268" width="204" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.44999999999999996s"/>
+                <circle class="al-c-dot" cx="760" cy="274" r="7" style="--d:0.44999999999999996s"/>
+                <circle class="al-c-hit" cx="964" cy="274" r="5.5" style="--d:0.95s"/>
+                <text class="al-c-note" x="977" y="278">Cultural alignment &#183; 4 yrs later</text>
+                <text class="al-c-lab" x="236" y="319" text-anchor="end">Knowing when it's wrong</text>
+                <rect class="al-c-gap" x="964" y="308" width="81.59999999999991" height="12" rx="6" fill="url(#gapGrad)" style="--d:0.54s"/>
+                <circle class="al-c-dot" cx="964" cy="314" r="7" style="--d:0.54s"/>
+                <text class="al-c-live" x="1055.6" y="318">Still ahead</text>
+                <text class="al-c-foot" x="250" y="388">Each bar is the gap between making the call and the field agreeing. Average lead: 3.2 years.</text>
+                </svg>
             </div>
 
             <div class="card al-rev" style="padding: 3.5rem 3rem;">
