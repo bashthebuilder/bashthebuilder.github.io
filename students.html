@@ -81,15 +81,15 @@
     <style>
         /* Mentorship flow. Bands are proportional to headcount and draw in
            after the source and destination nodes settle. */
-        .ms-flow { width: 100%; height: auto; font-family: 'Inter', sans-serif; display: block; min-width: 680px; }
+        .ms-flow { width: 100%; height: auto; font-family: 'Inter', sans-serif; display: block; min-width: 780px; }
         .ms-node { opacity: 0; transition: opacity .5s ease; transition-delay: var(--d,0s); }
         .ms-band { opacity: 0; transition: opacity .7s ease; transition-delay: var(--d,0s); }
         .ms-band:hover { opacity: .95 !important; }
         .reveal.active .ms-node { opacity: .92; }
         .reveal.active .ms-band { opacity: .62; }
-        .ms-n-lab { fill: #fff; font-size: 13.5px; font-weight: 800; pointer-events: none; }
-        .ms-n-num { fill: rgba(255,255,255,.85); font-size: 15px; font-weight: 900; pointer-events: none; }
-        .ms-n-sub { fill: #94a3b8; font-size: 11px; font-weight: 600; }
+        .ms-n-lab { fill: #f1f5f9; font-size: 14px; font-weight: 800; pointer-events: none; }
+        .ms-n-lab-sm { fill: #f1f5f9; font-size: 12.5px; font-weight: 700; pointer-events: none; }
+        .ms-n-sub { fill: #94a3b8; font-size: 11.5px; font-weight: 600; pointer-events: none; }
         .ms-f-head { fill: #e2e8f0; font-size: 15px; font-weight: 800; }
         .ms-f-foot { fill: #94a3b8; font-size: 12.5px; font-style: italic; }
         .ms-flow-scroll { overflow-x: auto; }
@@ -244,55 +244,50 @@
             <span class="section-title">Where They Went</span>
             <h2 style="font-size: 2.3rem;">Twenty-two people, four destinations.</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 64ch;">Band thickness is headcount. The point of a lab is not the papers it produces — it is the people who leave it.</p>
-            <div class="card" style="padding: 2.5rem 1.5rem;">
-                <svg class="ms-flow" viewBox="0 0 960 430" role="img" aria-label="Flow diagram: 22 researchers and engineers, and where each group went — industry, academia, further study, or still in the lab.">
+            <div class="card" style="padding: 2.5rem 1rem; overflow-x: auto;">
+                <svg class="ms-flow" viewBox="0 0 1150 470" role="img" aria-label="Flow diagram: 22 researchers and engineers I supervised, and where each group went — industry, academia, further doctoral study, or still in the lab.">
                 <defs>
-                <linearGradient id="msg00" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".55"/><stop offset="100%" stop-color="#34d399" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg01" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".55"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg02" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".55"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg03" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".55"/><stop offset="100%" stop-color="#475569" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg10" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".55"/><stop offset="100%" stop-color="#34d399" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg11" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".55"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg12" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".55"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg13" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".55"/><stop offset="100%" stop-color="#475569" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg20" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".55"/><stop offset="100%" stop-color="#34d399" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg21" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".55"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg22" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".55"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".55"/></linearGradient>
-                <linearGradient id="msg23" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".55"/><stop offset="100%" stop-color="#475569" stop-opacity=".55"/></linearGradient>
+                <linearGradient id="msg00" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".6"/><stop offset="100%" stop-color="#34d399" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg01" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".6"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg02" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".6"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg03" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity=".6"/><stop offset="100%" stop-color="#475569" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg10" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".6"/><stop offset="100%" stop-color="#34d399" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg11" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".6"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg12" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".6"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg13" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7" stop-opacity=".6"/><stop offset="100%" stop-color="#475569" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg20" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".6"/><stop offset="100%" stop-color="#34d399" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg21" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".6"/><stop offset="100%" stop-color="#818cf8" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg22" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".6"/><stop offset="100%" stop-color="#fbbf24" stop-opacity=".6"/></linearGradient>
+                <linearGradient id="msg23" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#334155" stop-opacity=".6"/><stop offset="100%" stop-color="#475569" stop-opacity=".6"/></linearGradient>
                 </defs>
-                <path class="ms-band" d="M270,60.0 C465.0,60.0 465.0,60.0 660,60.0 L660,89.1 C465.0,89.1 465.0,89.1 270,89.1 Z" fill="url(#msg00)" style="--d:0.35s"><title>2 people</title></path>
-                <path class="ms-band" d="M270,89.1 C465.0,89.1 465.0,132.2 660,132.2 L660,204.9 C465.0,204.9 465.0,161.8 270,161.8 Z" fill="url(#msg01)" style="--d:0.43999999999999995s"><title>5 people</title></path>
-                <path class="ms-band" d="M270,175.8 C465.0,175.8 465.0,89.1 660,89.1 L660,118.2 C465.0,118.2 465.0,204.9 270,204.9 Z" fill="url(#msg10)" style="--d:0.53s"><title>2 people</title></path>
-                <path class="ms-band" d="M270,204.9 C465.0,204.9 465.0,204.9 660,204.9 L660,219.5 C465.0,219.5 465.0,219.5 270,219.5 Z" fill="url(#msg11)" style="--d:0.62s"><title>1 person</title></path>
-                <path class="ms-band" d="M270,219.5 C465.0,219.5 465.0,233.5 660,233.5 L660,248.0 C465.0,248.0 465.0,234.0 270,234.0 Z" fill="url(#msg12)" style="--d:0.71s"><title>1 person</title></path>
-                <path class="ms-band" d="M270,248.0 C465.0,248.0 465.0,262.0 660,262.0 L660,422.0 C465.0,422.0 465.0,408.0 270,408.0 Z" fill="url(#msg23)" style="--d:0.7999999999999999s"><title>11 people</title></path>
-                <rect class="ms-node" x="60" y="60.0" width="210" height="101.8" rx="9" fill="#6366f1" style="--d:0.0s"/>
-                <text class="ms-n-lab" x="74" y="108.9">Graduated PhD &amp; Masters</text>
-                <text class="ms-n-num" x="74" y="126.9">7</text>
-                <rect class="ms-node" x="60" y="175.8" width="210" height="58.2" rx="9" fill="#a855f7" style="--d:0.09s"/>
-                <text class="ms-n-lab" x="74" y="202.9">Research engineers</text>
-                <text class="ms-n-num" x="74" y="220.9">4</text>
-                <rect class="ms-node" x="60" y="248.0" width="210" height="160.0" rx="9" fill="#334155" style="--d:0.18s"/>
-                <text class="ms-n-lab" x="74" y="326.0">Current cohort</text>
-                <text class="ms-n-num" x="74" y="344.0">11</text>
-                <rect class="ms-node" x="660" y="60.0" width="240" height="58.2" rx="9" fill="#34d399" style="--d:0.2s"/>
-                <text class="ms-n-lab" x="674" y="87.1">Industry R&amp;D</text>
-                <text class="ms-n-num" x="674" y="105.1">4</text>
-                <text class="ms-n-sub" x="674" y="132.2">Huawei &#183; BT &#183; 3 UK &#183; Lloyds</text>
-                <rect class="ms-node" x="660" y="132.2" width="240" height="87.3" rx="9" fill="#818cf8" style="--d:0.29000000000000004s"/>
-                <text class="ms-n-lab" x="674" y="173.8">Academia &amp; research</text>
-                <text class="ms-n-num" x="674" y="191.8">6</text>
-                <text class="ms-n-sub" x="674" y="233.5">IIT &#183; CUHK &#183; UTS &#183; INESC &#183; Essex &#183; London</text>
-                <rect class="ms-node" x="660" y="233.5" width="240" height="14.5" rx="9" fill="#fbbf24" style="--d:0.38s"/>
-                <text class="ms-n-lab" x="674" y="238.7">Further doctoral study</text>
-                <text class="ms-n-num" x="674" y="256.7">1</text>
-                <text class="ms-n-sub" x="674" y="262.0">Southampton</text>
-                <rect class="ms-node" x="660" y="262.0" width="240" height="160.0" rx="9" fill="#475569" style="--d:0.47000000000000003s"/>
-                <text class="ms-n-lab" x="674" y="340.0">Still in the lab</text>
-                <text class="ms-n-num" x="674" y="358.0">11</text>
-                <text class="ms-n-sub" x="674" y="436.0">current PhD researchers</text>
-                <text class="ms-f-head" x="60" y="36">22 researchers and engineers I recruited or supervised</text>
-                <text class="ms-f-foot" x="60" y="418">Band thickness is headcount. Eleven have finished and moved on; eleven are still with me.</text>
+                <path class="ms-band" d="M272,88.0 C481.0,88.0 481.0,76.0 690,76.0 L690,101.6 C481.0,101.6 481.0,113.6 272,113.6 Z" fill="url(#msg00)" style="--d:0.4s"><title>2 people</title></path>
+                <path class="ms-band" d="M272,113.6 C481.0,113.6 481.0,151.3 690,151.3 L690,215.4 C481.0,215.4 481.0,177.7 272,177.7 Z" fill="url(#msg01)" style="--d:0.49s"><title>5 people</title></path>
+                <path class="ms-band" d="M272,201.7 C481.0,201.7 481.0,101.6 690,101.6 L690,127.3 C481.0,127.3 481.0,227.4 272,227.4 Z" fill="url(#msg10)" style="--d:0.5800000000000001s"><title>2 people</title></path>
+                <path class="ms-band" d="M272,227.4 C481.0,227.4 481.0,215.4 690,215.4 L690,228.2 C481.0,228.2 481.0,240.2 272,240.2 Z" fill="url(#msg11)" style="--d:0.67s"><title>1 person</title></path>
+                <path class="ms-band" d="M272,240.2 C481.0,240.2 481.0,252.2 690,252.2 L690,265.0 C481.0,265.0 481.0,253.0 272,253.0 Z" fill="url(#msg12)" style="--d:0.76s"><title>1 person</title></path>
+                <path class="ms-band" d="M272,277.0 C481.0,277.0 481.0,289.0 690,289.0 L690,430.0 C481.0,430.0 481.0,418.0 272,418.0 Z" fill="url(#msg23)" style="--d:0.85s"><title>11 people</title></path>
+                <rect class="ms-node" x="250" y="88.0" width="22" height="89.7" rx="5" fill="#6366f1" style="--d:0.0s"><title>Graduated PhD x Masters: 7</title></rect>
+                <text class="ms-n-lab" x="234" y="128.9" text-anchor="end">Graduated PhD &amp; Masters</text>
+                <text class="ms-n-sub" x="234" y="147.9" text-anchor="end">7 &#183; moved on</text>
+                <rect class="ms-node" x="250" y="201.7" width="22" height="51.3" rx="5" fill="#a855f7" style="--d:0.09s"><title>Research engineers: 4</title></rect>
+                <text class="ms-n-lab" x="234" y="223.4" text-anchor="end">Research engineers</text>
+                <text class="ms-n-sub" x="234" y="242.4" text-anchor="end">4 &#183; KTP &amp; postdoc</text>
+                <rect class="ms-node" x="250" y="277.0" width="22" height="141.0" rx="5" fill="#334155" style="--d:0.18s"><title>Current cohort: 11</title></rect>
+                <text class="ms-n-lab" x="234" y="343.5" text-anchor="end">Current cohort</text>
+                <text class="ms-n-sub" x="234" y="362.5" text-anchor="end">11 &#183; still with me</text>
+                <rect class="ms-node" x="690" y="76.0" width="22" height="51.3" rx="5" fill="#34d399" style="--d:0.2s"><title>Industry RxD: 4</title></rect>
+                <text class="ms-n-lab" x="728" y="97.6" text-anchor="start">Industry R&amp;D</text>
+                <text class="ms-n-sub" x="728" y="116.6" text-anchor="start">4 &#183; Huawei &#183; BT &#183; 3&#160;UK &#183; Lloyds</text>
+                <rect class="ms-node" x="690" y="151.3" width="22" height="76.9" rx="5" fill="#818cf8" style="--d:0.29000000000000004s"><title>Academia x research: 6</title></rect>
+                <text class="ms-n-lab" x="728" y="185.7" text-anchor="start">Academia &amp; research</text>
+                <text class="ms-n-sub" x="728" y="204.7" text-anchor="start">6 &#183; IIT &#183; CUHK &#183; UTS &#183; INESC &#183; Essex</text>
+                <rect class="ms-node" x="690" y="252.2" width="22" height="12.8" rx="5" fill="#fbbf24" style="--d:0.38s"><title>Further doctoral study: 1</title></rect>
+                <text class="ms-n-lab-sm" x="728" y="262.6" text-anchor="start">Further doctoral study &#183; 1 &#183; Southampton</text>
+                <rect class="ms-node" x="690" y="289.0" width="22" height="141.0" rx="5" fill="#475569" style="--d:0.47000000000000003s"><title>Still in the lab: 11</title></rect>
+                <text class="ms-n-lab" x="728" y="355.5" text-anchor="start">Still in the lab</text>
+                <text class="ms-n-sub" x="728" y="374.5" text-anchor="start">11 &#183; current PhD researchers</text>
+                <text class="ms-f-head" x="575.0" y="34" text-anchor="middle">22 researchers and engineers I recruited or supervised</text>
+                <text class="ms-f-foot" x="575.0" y="456" text-anchor="middle">Band thickness is headcount. Eleven have finished and moved on; eleven are still with me.</text>
                 </svg>
             </div>
         </section>
