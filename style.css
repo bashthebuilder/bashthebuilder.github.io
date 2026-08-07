@@ -261,6 +261,7 @@ nav .container {
 .nav-links a:nth-child(12) { animation-delay: 0.48s; }
 .nav-links a:nth-child(13) { animation-delay: 0.52s; }
 .nav-links a:nth-child(14) { animation-delay: 0.56s; }
+.nav-links a:nth-child(15) { animation-delay: 0.60s; }
 .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.07); transform: translateX(4px); }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTh &mdash; My Thoughts | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="MyTh — My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="MyTh &mdash; My Thoughts | Shoaib Jameel">
+    <meta property="og:description" content="Numbered, dated essays on research, universities, technology — and whatever else is worth an argument.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/myth.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MyTh &mdash; My Thoughts | Shoaib Jameel">
+    <meta name="twitter:description" content="Numbered, dated essays on research, universities, technology — and whatever else is worth an argument.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .my-hero { padding: 160px 0 0; }
+        .my-hero h1 { font-size: 4.2rem; margin-bottom: 1.6rem; }
+        .my-hero .lead { margin-bottom: 0; }
+        @media (max-width: 1024px) { .my-hero h1 { font-size: 2.9rem; } }
+
+        /* The wordmark: MyTh, with the two capitals doing the explaining. */
+        .my-mark { font-weight: 900; letter-spacing: -2px; }
+        .my-mark em { font-style: normal; color: var(--text-muted); font-weight: 700; }
+
+        .my-about {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem; margin: 2.5rem 0 3.5rem;
+        }
+        .my-about div {
+            padding: 1.4rem 1.6rem; border-radius: 18px;
+            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
+        }
+        .my-about h2 {
+            font-size: .78rem; text-transform: uppercase; letter-spacing: 2px;
+            color: #818cf8; margin: 0 0 .5rem; font-weight: 800;
+        }
+        .my-about p { font-size: .98rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+
+        /* Toolbar above the list */
+        .my-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem;
+            padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);
+        }
+        .my-count { color: var(--text-muted); font-size: .92rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* ---------- The MyTh entry ---------- */
+        .myth {
+            position: relative; overflow: hidden;
+            background: rgba(255,255,255,.025);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px; margin-bottom: 1.5rem;
+            scroll-margin-top: 130px;
+            transition: border-color .4s, background .4s;
+        }
+        .myth:hover { border-color: rgba(129,140,248,.38); background: rgba(255,255,255,.04); }
+        .myth[open] { border-color: rgba(129,140,248,.45); background: rgba(255,255,255,.04); }
+        .myth::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: var(--accent-liquid);
+            transform: scaleY(0); transform-origin: top;
+            transition: transform .5s cubic-bezier(.16,.8,.3,1);
+        }
+        .myth[open]::before, .myth:hover::before { transform: scaleY(1); }
+
+        .myth > summary {
+            cursor: pointer; list-style: none;
+            display: grid; grid-template-columns: auto 1fr auto;
+            gap: 1.6rem; align-items: start;
+            padding: 2rem 2.4rem;
+        }
+        .myth > summary::-webkit-details-marker { display: none; }
+        .myth > summary:focus-visible { outline: 2px solid #818cf8; outline-offset: -4px; border-radius: 24px; }
+
+        .myth-no {
+            font-size: 1.55rem; font-weight: 900; letter-spacing: -1px;
+            background: var(--accent-liquid);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1.1; padding-top: .15rem; white-space: nowrap;
+        }
+        .myth-no small { display: block; font-size: .62rem; letter-spacing: 2px; -webkit-text-fill-color: var(--text-muted); font-weight: 800; }
+
+        .myth-head h3 { font-size: 1.6rem; margin: 0 0 .55rem; letter-spacing: -.6px; line-height: 1.25; }
+        .myth-dek { color: var(--text-muted); font-size: 1.02rem; line-height: 1.55; margin: 0 0 .9rem; max-width: 62ch; }
+        .myth-meta { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+        .myth-meta .tag { margin: 0; font-size: .78rem; padding: 4px 12px; }
+        .myth-date { color: var(--text-muted); font-size: .82rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+
+        .myth-chev {
+            flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+            display: grid; place-items: center; font-size: 1.5rem; font-weight: 300;
+            color: #a5b4fc; background: rgba(99,102,241,.12); border: 1px solid var(--glass-border);
+            transition: transform .35s cubic-bezier(.16,.8,.3,1), background .3s;
+        }
+        .myth[open] .myth-chev { transform: rotate(45deg); background: rgba(99,102,241,.25); }
+
+        .myth-body { padding: 0 2.4rem 2.6rem; border-top: 1px solid var(--glass-border); padding-top: 2.2rem; }
+        .myth-body > p { color: #cbd5e1; margin-bottom: 1.35rem; font-size: 1.12rem; line-height: 1.75; }
+        .myth-body h4 {
+            font-size: 1.32rem; font-weight: 800; letter-spacing: -.4px;
+            margin: 2.8rem 0 1.1rem; color: #fff;
+        }
+        .myth-body h4::before {
+            content: attr(data-n); color: #818cf8; font-size: .82rem;
+            font-weight: 800; letter-spacing: 2px; display: block; margin-bottom: .35rem;
+        }
+        .myth-body ul { margin: 0 0 1.4rem 1.3rem; }
+        .myth-body li { color: #cbd5e1; margin-bottom: .6rem; font-size: 1.08rem; line-height: 1.7; }
+        .myth-body strong { color: #fff; }
+        .myth-body a { color: #a5b4fc; }
+
+        /* Inline citation markers */
+        .cit {
+            font-size: .68em; font-weight: 800; vertical-align: super; line-height: 0;
+            text-decoration: none; color: #a5b4fc; padding: 0 1px;
+            border-bottom: none;
+        }
+        .cit:hover, .cit:focus { color: #fff; }
+        .cit::before { content: '['; }
+        .cit::after { content: ']'; }
+
+        /* Key-numbers strip inside an entry */
+        .myth-figs {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem; margin: 2rem 0 2.4rem;
+        }
+        .myth-fig {
+            padding: 1.3rem 1.4rem; border-radius: 16px;
+            background: rgba(99,102,241,.07); border: 1px solid rgba(129,140,248,.22);
+        }
+        .myth-fig b {
+            display: block; font-size: 2.4rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1;
+            background: var(--accent-liquid);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .myth-fig span { display: block; color: var(--text-muted); font-size: .88rem; font-weight: 600; line-height: 1.4; margin-top: .3rem; max-width: none; }
+
+        .myth-pull {
+            margin: 2.2rem 0; padding: 1.5rem 0 1.5rem 2rem;
+            border-left: 3px solid #ec4899;
+            font-size: 1.35rem; font-weight: 600; line-height: 1.5;
+            color: #fff; letter-spacing: -.3px; max-width: 52ch;
+        }
+
+        /* Sources */
+        .myth-src { margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid var(--glass-border); }
+        .myth-src h4 { margin-top: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: 2.5px; color: #6366f1; }
+        .myth-src ol { margin: 0; padding-left: 1.6rem; }
+        .myth-src li {
+            color: var(--text-muted); font-size: .95rem; line-height: 1.55;
+            margin-bottom: .75rem; max-width: 78ch; scroll-margin-top: 140px;
+        }
+        .myth-src li:target { color: #fff; }
+        .myth-src a { color: #a5b4fc; word-break: break-word; }
+        .myth-src cite { font-style: italic; color: #cbd5e1; }
+
+        .myth-foot {
+            margin-top: 1.6rem; font-size: .9rem; color: var(--text-muted);
+            font-style: italic; max-width: 78ch;
+        }
+
+        @media (max-width: 768px) {
+            .myth > summary { grid-template-columns: 1fr auto; gap: .9rem 1rem; padding: 1.6rem; }
+            .myth-no { grid-column: 1 / -1; font-size: 1.25rem; }
+            .myth-head h3 { font-size: 1.28rem; }
+            .myth-body { padding: 1.8rem 1.6rem 2rem; }
+            .myth-pull { font-size: 1.12rem; padding-left: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="undergraduate.html">Early Work</a>
+                <a href="thesis.html">Thesis</a>
+                <a href="publications.html">Research</a>
+                <a href="cultural-modelling.html">Cultural AI</a>
+                <a href="resources.html">Defence AI</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="ai-leadership.html">AI Leadership</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
+                <a href="press.html">Press</a>
+                <a href="myth.html" class="active">MyTh</a>
+                <a href="cv.html">CV</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="my-hero reveal">
+            <span class="section-title">MyTh &middot; My Thoughts</span>
+            <h1><span class="liquid-text my-mark">MyTh</span></h1>
+            <p class="lead">Short for <strong style="color:#fff;">My Thoughts</strong>. Numbered, dated, and argued in public &mdash; research, universities, technology, policy, and anything else that will not leave me alone. Where I make a factual claim, I cite where it came from.</p>
+        </section>
+
+        <section class="my-about reveal" data-reveal-delay="80">
+            <div>
+                <h2>What this is</h2>
+                <p>One thought per entry, numbered <strong style="color:#fff;">MyTh 001</strong> onwards. Click a title to read it. Nothing is ever renumbered.</p>
+            </div>
+            <div>
+                <h2>House rule</h2>
+                <p>Every number, quote and claim carries a citation to a named source. If I am wrong, the source is right there for you to check.</p>
+            </div>
+            <div>
+                <h2>Whose views</h2>
+                <p>Mine alone, written in a personal capacity. Not the position of the University of Southampton or any body I sit on.</p>
+            </div>
+            <div>
+                <h2>Corrections</h2>
+                <p>Email me and I will correct the text and say what changed. Arguments welcome; I would rather be corrected than quoted approvingly.</p>
+            </div>
+        </section>
+
+        <div class="my-bar reveal">
+            <span class="my-count"><span class="counter" data-count="1">0</span> thought published</span>
+            <div style="display:flex; gap:.6rem;">
+                <button class="filter-pill" id="expandAll" type="button">Expand all</button>
+                <button class="filter-pill" id="collapseAll" type="button">Collapse all</button>
+            </div>
+        </div>
+
+        <!-- ============================ MyTh 001 ============================ -->
+        <details class="myth reveal" id="myth-001">
+            <summary>
+                <span class="myth-no"><small>MYTH</small>001</span>
+                <span class="myth-head">
+                    <h3>The Four Squeezes: what is actually happening to academic life</h3>
+                    <p class="myth-dek">A wage that has lost a fifth of its value, a student market that grew and shrank at the same time, a machine that now writes and marks, and a generation quietly recalculating whether any of it is worth it. Three of those four are worse than the headlines say. One is better.</p>
+                    <span class="myth-meta">
+                        <span class="myth-date">7 August 2026</span>
+                        <span class="tag">Higher education</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Policy</span>
+                        <span class="tag">~10 min read</span>
+                    </span>
+                </span>
+                <span class="myth-chev" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="myth-body">
+                <p>I have worked in universities on both sides of the world, and I have never known a year in which so many good academics were quietly asking whether they should still be doing this. Not because the work stopped being interesting &mdash; it did not &mdash; but because four separate pressures arrived at once and started interacting. Individually each is survivable. Together they change what the job <em>is</em>.</p>
+
+                <p>What follows is an attempt to be accurate rather than cathartic. Some of it is grimmer than the sector admits. One part of it is genuinely better than the discourse allows, and I will say so plainly, because a critique that cannot register good news is just a mood.</p>
+
+                <div class="myth-figs">
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="20" data-post="%">0</span></b>
+                        <span>Real-terms fall in university staff pay since 2009, on UCU's modelling<a class="cit" href="#s1-7">7</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="124">0</span></b>
+                        <span>English providers &mdash; 45% &mdash; projected to run a deficit in 2025&ndash;26<a class="cit" href="#s1-3">3</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="95" data-post="%">0</span></b>
+                        <span>Students who now use generative AI in at least one way<a class="cit" href="#s1-2">2</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="45" data-post="%">0</span></b>
+                        <span>Students rating their course good value &mdash; a ten-year high<a class="cit" href="#s1-1">1</a></span>
+                    </div>
+                </div>
+
+                <h4 data-n="SQUEEZE ONE">The wage that quietly halved its ambition</h4>
+
+                <p>Start with the least glamorous number in the sector. The 2025&ndash;26 national pay round opened with a &ldquo;full and final&rdquo; offer of <strong>1.4%</strong>.<a class="cit" href="#s1-6">6</a> The 2026&ndash;27 round improved on it: <strong>2%</strong> from 1 August 2026, against a union claim of 3% plus RPI &mdash; roughly 7%, or £3,000, whichever was greater. Universities in difficulty may defer even that award by up to eleven months, without back pay.<a class="cit" href="#s1-5">5</a></p>
+
+                <p>Set 2% against the prices actually being paid. CPI ran at 3.3% in the twelve months to March 2026, easing to 2.6% by June.<a class="cit" href="#s1-9">9</a> Average private rent across the UK rose 3.3% over the year to June 2026, to £1,388 a month &mdash; and 6.3% in the North East, where several of the universities making the deepest cuts happen to sit.<a class="cit" href="#s1-10">10</a> A 2% award in that environment is not a pay rise that feels small. It is a pay cut that has been given a nicer name.</p>
+
+                <p>Do that for fifteen years and you get the number the sector has learned to skim past: UCU's modelling puts the cumulative real-terms fall in university staff pay at around <strong>20% since 2009</strong>.<a class="cit" href="#s1-7">7</a> Employers dispute the deflator &mdash; the figure is smaller on CPI than on RPI &mdash; but nobody seriously argues the direction. A fifth of the value of the job has gone, one &ldquo;affordable in the circumstances&rdquo; settlement at a time.</p>
+
+                <div class="myth-pull">A 2% award against 3.3% rent inflation is not a small pay rise. It is a pay cut with better manners.</div>
+
+                <p>The consequence is not that academics are poor in any absolute sense. It is that the <em>trade</em> has changed. The old bargain was: accept below-market pay, receive in exchange security, autonomy, and time to think. Two of those three are now being withdrawn while the pay term stays where it is. UCU counts more than 15,000 job cuts across the sector in the current round of restructures.<a class="cit" href="#s1-8">8</a> HESA recorded the number of academic staff in UK higher education <strong>falling for the first time</strong> in 2024&ndash;25 &mdash; 244,755 full-time-equivalent posts, down about 1%.<a class="cit" href="#s1-12">12</a><a class="cit" href="#s1-13">13</a> And 29% of academic staff &mdash; 69,875 people &mdash; remain on fixed-term contracts, with a further 57,365 on &ldquo;atypical&rdquo; ones.<a class="cit" href="#s1-11">11</a></p>
+
+                <p>The generational effect is the part that worries me most. Wonkhe's read of the same data shows the share of academics under 35 sliding from nearly a third a decade ago to roughly a quarter today.<a class="cit" href="#s1-13">13</a> You do not notice a missing cohort in the year it fails to arrive. You notice it fifteen years later, when there is nobody to hand the field to.</p>
+
+                <h4 data-n="SQUEEZE TWO">&ldquo;Falling student numbers&rdquo; is the wrong description of a real problem</h4>
+
+                <p>Here is where I part company with the standard account. Domestic demand for UK higher education is not falling. In the 2026 admissions cycle, <strong>338,940</strong> UK 18-year-olds applied by the January deadline, up 4.8% on the previous year, with total applicants reaching 619,360.<a class="cit" href="#s1-16">16</a> The Office for Students estimated UK undergraduate entrants up 3.1% for 2025&ndash;26.<a class="cit" href="#s1-3">3</a> On the raw headcount, more young people want a degree than ever.</p>
+
+                <p>Two things are nevertheless true at the same time, and the sector's finances live in the gap between them.</p>
+
+                <ul>
+                    <li><strong>The growth is below forecast, and forecasts had already been spent.</strong> That 3.1% rise came against sector plans assuming 4.1%.<a class="cit" href="#s1-3">3</a> A percentage point of shortfall on a fee-funded budget is not a rounding error; it is a hiring freeze.</li>
+                    <li><strong>The students who actually subsidise the system are the ones leaving.</strong> International recruitment, not domestic, is where the collapse is. UK study-visa issuance is well below its 2023 peak,<a class="cit" href="#s1-19">19</a> and applications have fallen off a cliff again: the Home Office received roughly a third fewer sponsored-study applications from main applicants in early 2026 than in the same months of 2025.<a class="cit" href="#s1-20">20</a> HESA recorded a 6% fall in international enrolments, and in a BUILA survey 42 of 69 responding universities &mdash; 61% &mdash; reported postgraduate commencements down for September 2025.<a class="cit" href="#s1-18">18</a></li>
+                </ul>
+
+                <p>Domestic fees do not cover the cost of teaching a domestic student, so a British undergraduate is, in accounting terms, a loss. The cap was frozen at £9,000&ndash;£9,250 for most of a decade while prices rose; it reached £9,535 for 2025&ndash;26 and £9,790 for 2026&ndash;27, now indexed to inflation for providers meeting quality conditions.<a class="cit" href="#s1-21">21</a><a class="cit" href="#s1-22">22</a> Indexing from a base that already lost roughly a fifth of its value does not restore the fifth. It just stops the bleeding at the current wound size.</p>
+
+                <p>So the true sentence is not &ldquo;fewer students&rdquo;. It is: <strong>record domestic demand for a product sold below cost, minus the international students whose fees closed the gap.</strong> The result is what the OfS now reports with striking calm &mdash; 124 English providers, 45% of those analysed, projected to run a deficit in 2025&ndash;26, and nearly one in six holding less than 30 days of liquidity.<a class="cit" href="#s1-3">3</a> The 2026 report has that easing only slightly, to 41% in deficit the following year.<a class="cit" href="#s1-4">4</a> This is a policy choice about migration and fee regulation that has been reclassified as a management problem for individual vice-chancellors.</p>
+
+                <p>And the demographic reprieve is temporary. The current bulge of UK 18-year-olds peaks around 2030. What follows is a smaller cohort arriving into a sector that will by then have cut the capacity it is now cutting.</p>
+
+                <h4 data-n="SQUEEZE THREE">The machine that writes, and now marks, and now reviews</h4>
+
+                <p>I work on language models. I am not going to pretend to be a neutral observer, and I am not going to perform alarm I do not feel. But the speed of what happened to academic practice in three years deserves to be stated without euphemism.</p>
+
+                <p>Among UK undergraduates, <strong>95% now use generative AI in at least one way</strong>, and 94% use it for assessed work &mdash; against 66% and 51% respectively just two years earlier. The share pasting AI-generated text directly into submitted work has gone from 3% to 8% to <strong>12%</strong> in three annual surveys.<a class="cit" href="#s1-2">2</a> Two-thirds of students say assessment on their course has already changed significantly because of it.</p>
+
+                <p>The instinct is to call this a cheating problem. I think that is a category error, and a self-flattering one. If a task can be completed to a passing standard by a general-purpose model in nine seconds, the interesting question is not who used the model. It is what we thought we were measuring. A great deal of what universities assess turns out to have been a proxy for effort rather than a measure of understanding, and the proxy has just been commoditised. That is uncomfortable, but it is diagnostic information we were never going to get any other way.</p>
+
+                <p>What genuinely troubles me is the supply side, where the same tool is being used by people who are supposed to be doing the judging. At ICLR 2026 &mdash; one of the largest machine-learning conferences in the world, in my own field &mdash; detection analysis flagged about <strong>21% of roughly 76,000 peer reviews as fully AI-generated</strong>, with researchers reporting hallucinated citations and confidently wrong objections in reviews of their work.<a class="cit" href="#s1-14">14</a><a class="cit" href="#s1-15">15</a> Peer review is not a bureaucratic formality. It is the only mechanism by which the literature distinguishes itself from a very large pile of assertions.</p>
+
+                <div class="myth-pull">Students using AI to write is a curriculum problem. Reviewers using AI to judge is an epistemology problem.</div>
+
+                <p>There is a grim symmetry to it. We are exhorting students to use these tools responsibly while a fifth of the reviews in a flagship venue are generated by them. The academic who outsources a review has usually not become lazy; they have been asked to referee eight papers in a semester in which their department shed a fifth of its staff. Squeeze one produces squeeze three. That is the part the &ldquo;AI in education&rdquo; conversation keeps missing: the misuse is a workload symptom before it is an ethics failure.</p>
+
+                <p>And students notice the asymmetry. Sixty-eight per cent say AI skills are essential for the world they are entering; fewer than half &mdash; 48% &mdash; think their teaching staff are helping them build those skills.<a class="cit" href="#s1-2">2</a> That gap is a straightforward indictment, and it is ours, not theirs.</p>
+
+                <h4 data-n="SQUEEZE FOUR">What a degree is now worth &mdash; and the surprise in the data</h4>
+
+                <p>Here is the good news I promised, and I want to give it its full weight rather than a grudging clause.</p>
+
+                <p>In the 2026 Student Academic Experience Survey &mdash; 10,065 full-time undergraduates &mdash; <strong>45% rated their course good or very good value for money, up from 37% a year earlier and the highest figure in over a decade</strong>. Sixty-six per cent are happy with their choice of course and institution, up from 56%. The proportion who have considered withdrawing fell to 22%, the lowest in recent years.<a class="cit" href="#s1-1">1</a> After a decade in which &ldquo;value for money&rdquo; was the stick used to beat the sector, students themselves have started answering the question more warmly. Anyone arguing that undergraduates have lost faith in universities is arguing against the evidence.</p>
+
+                <p>But look at what those same students are doing with their week. Sixty-five per cent are in paid employment during term, averaging nearly 14 hours. Their total weekly commitment &mdash; study plus work &mdash; is 44.2 hours, against a national average working week of 36.6.<a class="cit" href="#s1-1">1</a> Full-time study is no longer full-time study. It is a full-time degree with a part-time job welded onto it, because maintenance support does not meet the rent.</p>
+
+                <p>Meanwhile the destination is getting harder to reach. The Department for Science, Innovation and Technology's own snapshot puts the UK hiring rate down <strong>14% year-on-year</strong> to April 2026, with 30 of 38 tracked entry-level occupations in decline &mdash; accountant &minus;29%, graphic designer &minus;28%, software engineer &minus;27%. The steepest falls are concentrated precisely in information-processing roles.<a class="cit" href="#s1-17">17</a> To their credit, the authors state explicitly that this &ldquo;should not be considered causal evidence of AI's impact&rdquo;; the labour market has several things wrong with it at once, and disentangling them honestly is not yet possible.<a class="cit" href="#s1-17">17</a> I would rather cite that caveat than write the headline everyone wants.</p>
+
+                <p>Put the two findings together and you get something more interesting than either alone. Students value the experience <em>more</em> than they did, while the economic case for it looks <em>worse</em> than it did. That combination should demolish the framing that has governed English higher education policy for fifteen years &mdash; that a degree is an individual investment purchased for a private financial return, and that a course is failing if its graduate salary premium is thin. Students are telling us, with their satisfaction scores and their 14 hours of shift work, that they are buying something else as well. The policy machinery has no column for it.</p>
+
+                <h4 data-n="WHAT I THINK">Four squeezes, one system</h4>
+
+                <p>What makes 2026 different is not the severity of any one pressure but the fact that they now feed each other. Deficits produce redundancies. Redundancies produce workload. Workload produces the AI shortcut &mdash; in marking, in reviewing, in the parts of the job nobody defends in public. Degraded teaching and degraded review erode the thing a university actually sells, which is credible judgement. And an institution whose judgement is not credible has no answer at all for the eighteen-year-old asking why they should spend £9,790 a year plus three years of foregone earnings on it.</p>
+
+                <p>I do not have a five-point plan, and I distrust essays that end with one. But I hold three things fairly firmly.</p>
+
+                <ul>
+                    <li><strong>The funding model is the root cause, and it is a political choice.</strong> A regulated fee below the cost of provision, cross-subsidised by an international market that immigration policy then suppressed, is not a market failure. It is a design. Everything downstream &mdash; the redundancies, the 2% offers, the mergers &mdash; follows from refusing to say out loud who pays for teaching.</li>
+                    <li><strong>AI is not the crisis; it is the contrast agent.</strong> It shows up wherever the system was already weak. Assessment that measured effort rather than understanding. Peer review sustained by unpaid goodwill that austerity had already exhausted. The tool did not create either gap. It made both impossible to keep ignoring.</li>
+                    <li><strong>Students are more loyal to universities than universities' funders are.</strong> The value-for-money numbers went <em>up</em> in the worst financial year the sector has had. That is not a mandate for complacency; it is a mandate we are in danger of squandering.</li>
+                </ul>
+
+                <p>I remain in this job, for what it is worth, and I would still recommend it &mdash; with a candour I would not have needed a decade ago. The work is as good as it ever was. It is the conditions around the work that have been quietly renegotiated, in fifteen annual instalments, by people who never had to describe the cumulative effect in a single sentence.</p>
+
+                <p>So here is the single sentence: <strong>we have spent fifteen years asking universities to do more, for less, for more people, and we are now surprised that the arithmetic caught up.</strong></p>
+
+                <div class="myth-src">
+                    <h4>Sources</h4>
+                    <ol>
+                        <li id="s1-1">Jonathan Neves, Rose Stephenson and Charlotte Armstrong, <cite>Student Academic Experience Survey 2026</cite>, Higher Education Policy Institute &amp; Advance HE, 11 June 2026 (10,065 full-time undergraduates). <a href="https://www.hepi.ac.uk/reports/the-student-academic-experience-survey-2026/" target="_blank" rel="noopener">hepi.ac.uk</a></li>
+                        <li id="s1-2">Rose Stephenson and Charlotte Armstrong, <cite>Student Generative AI Survey 2026</cite>, Higher Education Policy Institute (sponsored by Kortext), 12 March 2026 (1,054 full-time UK undergraduates, fieldwork December 2025). <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">hepi.ac.uk</a></li>
+                        <li id="s1-3">Office for Students, <cite>Significant challenges continue to face higher education finances &ndash; with nearly half facing deficits in 2025&ndash;26</cite>, 20 November 2025. <a href="https://www.officeforstudents.org.uk/news-blog-and-events/press-and-media/significant-challenges-continue-to-face-higher-education-finances-with-nearly-half-facing-deficits-in-2025-26/" target="_blank" rel="noopener">officeforstudents.org.uk</a></li>
+                        <li id="s1-4">Office for Students, <cite>Financial sustainability of higher education providers in England 2026</cite>, 14 May 2026 (republished 15 June 2026 with corrections). <a href="https://www.officeforstudents.org.uk/publications/financial-sustainability-of-higher-education-providers-in-england-2026/" target="_blank" rel="noopener">officeforstudents.org.uk</a></li>
+                        <li id="s1-5">&ldquo;UK university staff offered pay rise of 2 per cent&rdquo;, <cite>Times Higher Education</cite>, 18 May 2026. <a href="https://www.timeshighereducation.com/news/uk-university-staff-offered-pay-rise-2-cent" target="_blank" rel="noopener">timeshighereducation.com</a></li>
+                        <li id="s1-6">&ldquo;University staff offered 1.4% pay increase&rdquo;, <cite>Research Professional News</cite>, 2025. <a href="https://www.researchprofessionalnews.com/rr-news-uk-universities-2025-5-university-workers-offered-1-4-per-cent-pay-increase/" target="_blank" rel="noopener">researchprofessionalnews.com</a></li>
+                        <li id="s1-7">University and College Union, <cite>University staff pay cut by 20%, new figures show</cite>. UCU's pay modeller, measured against RPI from 2009. <a href="https://www.ucu.org.uk/article/11830/University-staff-pay-cut-by-20-new-figures-show" target="_blank" rel="noopener">ucu.org.uk</a></li>
+                        <li id="s1-8">University and College Union, <cite>New analysis shows over 15,000 university job cuts as UCU launches UK-wide strike ballot</cite>. <a href="https://www.ucu.org.uk/article/14220/New-analysis-shows-over-15000-university-job-cuts-as-UCU-launches-UK-wide-strike-ballot" target="_blank" rel="noopener">ucu.org.uk</a></li>
+                        <li id="s1-9">Office for National Statistics, <cite>Consumer price inflation, UK: June 2026</cite> (CPI +2.6% in the 12 months to June 2026; +3.3% to March 2026). <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/june2026" target="_blank" rel="noopener">ons.gov.uk</a></li>
+                        <li id="s1-10">Office for National Statistics, <cite>Private rent and house prices, UK: July 2026</cite> (average UK private rent £1,388, +3.3% in the 12 months to June 2026; North East +6.3%). <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/july2026" target="_blank" rel="noopener">ons.gov.uk</a></li>
+                        <li id="s1-11">Higher Education Statistics Agency, <cite>Higher Education Staff Statistics: UK, 2024/25</cite> (SB274), 19 February 2026. <a href="https://www.hesa.ac.uk/news/19-02-2026/sb274-higher-education-staff-statistics" target="_blank" rel="noopener">hesa.ac.uk</a></li>
+                        <li id="s1-12">Higher Education Statistics Agency, <cite>Number of academic staff in UK higher education falls for the first time</cite>, 19 February 2026. <a href="https://www.hesa.ac.uk/news/19-02-2026/number-academic-staff-uk-he-falls-for-first-time" target="_blank" rel="noopener">hesa.ac.uk</a></li>
+                        <li id="s1-13">David Kernohan, <cite>HESA Spring 2026: Staff</cite>, Wonkhe, 20 February 2026 (244,755 academic non-atypical FTE, down ~1%; under-35 share down from ~a third a decade ago to ~a quarter). <a href="https://wonkhe.com/blogs/hesa-spring-2026-staff/" target="_blank" rel="noopener">wonkhe.com</a></li>
+                        <li id="s1-14">&ldquo;Major AI conference flooded with peer reviews written fully by AI&rdquo;, <cite>Nature</cite> news, December 2025. <a href="https://www.nature.com/articles/d41586-025-03506-6" target="_blank" rel="noopener">nature.com</a></li>
+                        <li id="s1-15">Pangram Labs, <cite>Pangram predicts 21% of ICLR reviews are AI-generated</cite> (analysis of ICLR 2026 reviews). <a href="https://www.pangram.com/blog/pangram-predicts-21-of-iclr-reviews-are-ai-generated" target="_blank" rel="noopener">pangram.com</a></li>
+                        <li id="s1-16">UCAS, <cite>Growing 18-year-old population pushes UK university applicant numbers higher</cite> (2026 cycle, 14 January deadline: 338,940 UK 18-year-olds, +4.8%; 619,360 total applicants). <a href="https://www.ucas.com/corporate/news-and-key-documents/news/growing-18-year-old-population-pushes-uk-university-applicant-numbers-higher" target="_blank" rel="noopener">ucas.com</a></li>
+                        <li id="s1-17">Department for Science, Innovation &amp; Technology, <cite>A snapshot of entry-level hiring in the UK</cite>, GOV.UK, 8 June 2026. <a href="https://www.gov.uk/government/publications/entry-level-hiring-in-the-uk-a-snapshot/a-snapshot-of-entry-level-hiring-in-the-uk" target="_blank" rel="noopener">gov.uk</a></li>
+                        <li id="s1-18">ICEF Monitor, <cite>UK universities bracing for a further decline in international enrolments</cite>, May 2026 (HESA &minus;6% international enrolments; BUILA survey of 69 universities). <a href="https://monitor.icef.com/2026/05/uk-universities-bracing-for-a-further-decline-in-international-enrolments/" target="_blank" rel="noopener">monitor.icef.com</a></li>
+                        <li id="s1-19">The PIE News, <cite>UK study visa issuance falls</cite>. <a href="https://thepienews.com/uk-study-visa-issuance-falls-32/" target="_blank" rel="noopener">thepienews.com</a></li>
+                        <li id="s1-20">ApplyBoard, <cite>Early 2026 visa data reveals how much demand has softened for studying in the UK</cite> (Home Office sponsored-study main applications down ~33% January&ndash;April 2026 year on year). <a href="https://www.applyboard.com/applyinsights-article/q1-26-uk-student-visa-data" target="_blank" rel="noopener">applyboard.com</a></li>
+                        <li id="s1-21">House of Commons Library, <cite>Tuition fees in England: history, debates and international comparisons</cite> (CBP-10155). <a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10155/" target="_blank" rel="noopener">commonslibrary.parliament.uk</a></li>
+                        <li id="s1-22">Pinsent Masons, <cite>University fees to rise year-on-year in England from 2026</cite>. <a href="https://www.pinsentmasons.com/out-law/news/university-fees-rise-year-on-year-england-2026" target="_blank" rel="noopener">pinsentmasons.com</a></li>
+                    </ol>
+                    <p class="myth-foot">Figures are quoted as published by the sources above and were checked on 7 August 2026. Where employers and unions use different inflation measures &mdash; RPI versus CPI &mdash; I have said so rather than picking the larger number. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
+                </div>
+            </div>
+        </details>
+
+        <section class="reveal" style="margin: 4rem 0;">
+            <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
+                <span class="section-title">Next</span>
+                <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">MyTh 002 is being argued with itself.</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 64ch;">These arrive when a thought is finished rather than on a schedule. If you want to disagree with one &mdash; particularly if you have better data &mdash; that is the most useful thing you can send me.</p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Argue with me</a>
+                    <a href="publications.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">The peer-reviewed version</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shoaib Jameel &middot; University of Southampton</p>
+        </div>
+    </footer>
+
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script>
+    (function () {
+        'use strict';
+        var entries = document.querySelectorAll('details.myth');
+
+        document.getElementById('expandAll').addEventListener('click', function () {
+            entries.forEach(function (d) { d.open = true; });
+        });
+        document.getElementById('collapseAll').addEventListener('click', function () {
+            entries.forEach(function (d) { d.open = false; });
+        });
+
+        /* Deep links: #myth-001 opens that entry; a #s1-4 source link opens the
+           entry that contains it before the browser tries to scroll to it. */
+        function openFromHash() {
+            var hash = window.location.hash;
+            if (!hash || hash.length < 2) return;
+            var el;
+            try { el = document.querySelector(hash); } catch (e) { return; }
+            if (!el) return;
+            var host = el.closest('details.myth');
+            if (host) {
+                host.open = true;
+                el.scrollIntoView({ block: 'start' });
+            }
+        }
+        window.addEventListener('hashchange', openFromHash);
+        openFromHash();
+    })();
+    </script>
+</body>
+</html>
