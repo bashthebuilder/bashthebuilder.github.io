@@ -141,7 +141,10 @@
             background: var(--accent-liquid);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .myth-fig span { display: block; color: var(--text-muted); font-size: .88rem; font-weight: 600; line-height: 1.4; margin-top: .3rem; max-width: none; }
+        /* Direct child only: the counter <span> lives inside the <b> above and must
+           keep the display size and gradient fill, not the label styling. */
+        .myth-fig > span { display: block; color: var(--text-muted); font-size: .88rem; font-weight: 600; line-height: 1.4; margin-top: .3rem; max-width: none; }
+        .myth-fig b span { font: inherit; color: inherit; }
 
         .myth-pull {
             margin: 2.2rem 0; padding: 1.5rem 0 1.5rem 2rem;
@@ -232,7 +235,7 @@
         </section>
 
         <div class="my-bar reveal">
-            <span class="my-count"><span class="counter" data-count="1">0</span> thought published</span>
+            <span class="my-count"><span class="counter" data-count="2">0</span> thoughts published</span>
             <div style="display:flex; gap:.6rem;">
                 <button class="filter-pill" id="expandAll" type="button">Expand all</button>
                 <button class="filter-pill" id="collapseAll" type="button">Collapse all</button>
@@ -391,10 +394,135 @@
             </div>
         </details>
 
+        <!-- ============================ MyTh 002 ============================ -->
+        <details class="myth reveal" id="myth-002">
+            <summary>
+                <span class="myth-no"><small>MYTH</small>002</span>
+                <span class="myth-head">
+                    <h3>The Default Human</h3>
+                    <p class="myth-dek">A model trained mostly on one slice of the world does not learn that slice as a culture. It learns it as neutrality, and everything else as deviation. But &ldquo;make it less Western&rdquo; turns out to be a worse answer than it sounds &mdash; and the field cannot yet measure whether it worked.</p>
+                    <span class="myth-meta">
+                        <span class="myth-date">7 August 2026</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Culture</span>
+                        <span class="tag">My research</span>
+                        <span class="tag">~9 min read</span>
+                    </span>
+                </span>
+                <span class="myth-chev" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="myth-body">
+                <p>In 2021 I was given £36,500 by the Global Challenges Research Fund to work on a problem that sounded, at the time, faintly eccentric: could a machine automatically redraw a children&rsquo;s picture book for a different culture?<a class="cit" href="#s2-1">1</a> Not translate it. Redraw it. A child in Kerala reading a story set in a British seaside town does not know what a fish-and-chip shop is; a child in Yorkshire does not know a dosa stall. Publishers already solve this by hand, with an illustrator, one book at a time, which is why it reaches almost none of the world&rsquo;s languages.</p>
+
+                <p>Five years later the same question has a fashionable name &mdash; cultural alignment &mdash; and everyone has an opinion about it. So here is mine, which is less comfortable than the one you would expect from someone who has spent six years on this.</p>
+
+                <div class="myth-figs">
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="15">0</span>&times;</b>
+                        <span>Difference in tokens needed for the same text across languages<a class="cit" href="#s2-3">3</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="200">0</span>+</b>
+                        <span>Languages measured, with non-Latin scripts paying 3&ndash;5&times;<a class="cit" href="#s2-4">4</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="1.5" data-dec="1">0</span>m</b>
+                        <span>Nahuatl speakers, against 1.52 billion for English<a class="cit" href="#s2-5">5</a></span>
+                    </div>
+                    <div class="myth-fig">
+                        <b><span class="counter" data-count="4" data-post="%">0</span></b>
+                        <span>More human-rights-violating output from less Western-aligned models<a class="cit" href="#s2-6">6</a></span>
+                    </div>
+                </div>
+
+                <h4 data-n="ONE">The tax you pay for your alphabet</h4>
+
+                <p>Start with the least arguable part, because it is arithmetic rather than politics.</p>
+
+                <p>Language models do not read characters. They read tokens, and the tokenizer that produces them is fitted to whatever the model saw most. English got the efficient encoding. Everything else got what was left. Petrov and colleagues measured this properly and found that the same text, translated, can take up to <strong>15 times</strong> as many tokens depending on the language it is written in.<a class="cit" href="#s2-3">3</a> A later study across more than 200 languages found non-Latin scripts and morphologically rich languages routinely paying three to five times the English rate.<a class="cit" href="#s2-4">4</a></p>
+
+                <p>That is not an aesthetic complaint. Tokens are the unit of billing, the unit of latency, and the unit of memory. So a speaker of an unlucky language pays more money for the same answer, waits longer to receive it, and can fit less of their problem into the model&rsquo;s context before it starts forgetting the beginning.<a class="cit" href="#s2-3">3</a> The same query, the same model, the same day &mdash; and a structurally worse service, priced higher, for the people least able to absorb either.</p>
+
+                <div class="myth-pull">Before the model has understood anything, it has already decided your language is expensive.</div>
+
+                <p>I find this the most clarifying fact in the whole debate, because nobody chose it. No committee decided that Telugu speakers should pay a premium. It fell out of an engineering decision about compression, made by people optimising for the corpus in front of them. Which is exactly how this kind of bias usually arrives: not as prejudice, but as a default that nobody had a reason to question.</p>
+
+                <h4 data-n="TWO">Data, not speakers, decides who the model serves</h4>
+
+                <p>The obvious assumption is that big languages are well served and small ones are not. It is wrong, and the counterexample is instructive.</p>
+
+                <p>Stanford&rsquo;s work on the language divide points out that Swahili has roughly 200 million speakers but too little digitised text for models to learn from properly, while Welsh &mdash; with a fraction of that number &mdash; does comparatively well, because it has been documented, digitised and institutionally preserved for decades.<a class="cit" href="#s2-5">5</a> Models work well for the 1.52 billion people who speak English, less well for 97 million Vietnamese speakers, and worse again for the 1.5 million who speak Nahuatl.<a class="cit" href="#s2-5">5</a></p>
+
+                <p>So the variable is not how many people speak your language. It is how much of your language someone bothered to write down in a machine-readable form, and whether anyone funded that. Which means the map of who AI serves well is, to an uncomfortable degree, a map of historical investment in linguistic infrastructure &mdash; colonial, national, academic. The model inherits that map without ever being told it is a map.</p>
+
+                <h4 data-n="THREE">Whose values got called &ldquo;alignment&rdquo;</h4>
+
+                <p>Now the harder claim. A model trained overwhelmingly on one part of the world does not represent that part as <em>a</em> culture. It represents it as the absence of culture &mdash; the neutral case, from which everything else is a departure requiring a modifier. Ask for a wedding and you get one specific wedding. Ask for a family, a breakfast, a professional, a beautiful house, and the defaults have a postcode.</p>
+
+                <p>The literature calls this WEIRD &mdash; Western, Educated, Industrialised, Rich, Democratic &mdash; borrowing a term Henrich, Heine and Norenzayan coined in 2010, when psychology noticed that its findings about &ldquo;human nature&rdquo; rested on samples drawn overwhelmingly from Western university undergraduates &mdash; among, as they put it, &ldquo;the least representative populations one could find for generalizing about humans&rdquo;.<a class="cit" href="#s2-9">9</a><a class="cit" href="#s2-6">6</a> The parallel is close enough to be embarrassing. A discipline generalising from an unrepresentative sample, and calling the result universal, is not a new failure mode. We have simply automated it and put it behind an API.</p>
+
+                <p>What makes the word <em>alignment</em> worth pausing on is that it names a destination without naming it. Aligned to what? The honest answer, most of the time, is: to the preferences of the annotators who were hired, under the guidelines they were given, at the companies that could afford to run the process. That is a legitimate thing to optimise for. It is not a neutral thing, and the vocabulary invites us to forget the difference.</p>
+
+                <h4 data-n="FOUR">The finding that ruins the easy version of this argument</h4>
+
+                <p>Here is where I part company with most people who agree with me so far.</p>
+
+                <p>If the problem is Western defaults, the obvious fix is less Western default. Zhou, Constantinides and Quercia tested that directly across GPT-3.5, GPT-4, Llama-3, BLOOM and Qwen. Models with <em>lower</em> alignment to WEIRD values did produce more culturally varied responses &mdash; and were also <strong>2&ndash;4% more likely to generate output that violated human rights</strong>, particularly on gender and equality. The examples are not subtle: endorsements of the ideas that a man who cannot father children is not a real man, or that a husband should always know where his wife is.<a class="cit" href="#s2-6">6</a></p>
+
+                <p>I do not think this vindicates the current defaults, and I want to be careful here, because that is exactly how the finding will be used. Human rights are not a Western cultural preference, and treating them as one is a move with a long and disreputable history. But it does demolish the lazy formulation &mdash; that cultural representativeness is straightforwardly good and Western skew is straightforwardly bad. Sometimes a model reproducing local majority opinion faithfully is a model reproducing something a great many people in that locality are fighting against.</p>
+
+                <div class="myth-pull">&ldquo;Represent every culture accurately&rdquo; and &ldquo;never endorse the subjugation of women&rdquo; are both good goals. They are not always the same goal.</div>
+
+                <p>Anyone selling you a clean answer to that has not read the tension carefully. I certainly do not have one. What I have is the conviction that the trade-off should be visible and argued about, rather than resolved silently in a guidelines document by whoever happens to be writing it.</p>
+
+                <h4 data-n="FIVE">And we cannot currently tell whether any of it works</h4>
+
+                <p>The methodological news is worse than the political news.</p>
+
+                <p>Most cultural alignment evaluation works by giving the model survey questions &mdash; typically from instruments like the World Values Survey &mdash; and comparing its answers to a country&rsquo;s human responses. Khan, Casper and Hadfield-Menell examined the three assumptions this rests on, and found all three fail.<a class="cit" href="#s2-7">7</a> Cultural alignment is <strong>not stable</strong>: response shifts caused by trivial changes in question formatting frequently exceed the actual differences between cultures. It is <strong>not extrapolable</strong>: alignment measured on a few dimensions predicts alignment on held-out dimensions about as well as chance. And it is <strong>not steerable</strong>: prompting a model to adopt a culture produces erratic patterns that no human population resembles.</p>
+
+                <p>Read that again, because it undercuts a great deal of published work, including work I am sympathetic to. If reformatting your question moves the result more than swapping Japan for Germany does, then you are not measuring a property of the model. You are measuring your own questionnaire. A field cannot claim to have reduced cultural bias using an instrument that unreliable, and the honest position is that many confident claims in this area &mdash; in both directions &mdash; are currently unsupported.</p>
+
+                <h4 data-n="WHAT I THINK">Self-awareness, not substitution</h4>
+
+                <p>Six years on the same problem has moved me from the position most people start at to one that sounds duller and is, I think, correct.</p>
+
+                <p>The goal is not to find the right culture to encode. There isn&rsquo;t one, the attempt to pick one is how we got here, and the evidence suggests that swapping the default out wholesale trades one set of harms for another. The goal is for the system to know that it is standing somewhere &mdash; that its defaults are defaults, that the person in front of it may not share them, and that this is a thing to be established rather than assumed. That is the argument behind <em>CALM: Culturally Self-Aware Language Models</em>, which we published at NeurIPS last year,<a class="cit" href="#s2-2">2</a> and it is the same instinct as the picture-book problem: not &ldquo;what should this child&rsquo;s story be&rdquo;, but &ldquo;does the system know whose story it is telling&rdquo;.</p>
+
+                <p>Three things follow, and none of them are technical.</p>
+
+                <ul>
+                    <li><strong>The tokenizer tax is the easiest win and nobody is taking it.</strong> It is a measurable, unambiguous, purely engineering inequity that makes AI more expensive for the world&rsquo;s poorer speakers. It requires no philosophy to fix. It persists because the people paying it are not the people in the room.</li>
+                    <li><strong>Digitisation is cultural policy, and it is being done by accident.</strong> Whether your grandchildren&rsquo;s language works with these systems is being decided now, by who funds corpus-building. Swahili and Welsh should be the standing example in every ministerial briefing on AI. It almost never is.</li>
+                    <li><strong>Fix the measurements before trusting any claim, including mine.</strong> On the current evidence, &ldquo;our model is culturally aligned&rdquo; is not a verifiable statement. Until the evaluations are robust, that phrase belongs in scare quotes &mdash; on marketing copy, on benchmark leaderboards, and in my own papers.</li>
+                </ul>
+
+                <p>When UNESCO's statistics institute last put a headline number on this, in 2017, it counted 617 million children and adolescents not reaching minimum proficiency in reading and mathematics.<a class="cit" href="#s2-8">8</a> It is an old figure and I quote it with that caveat, but it is the one that was in front of me at the start, and it is why I began on picture books rather than benchmarks, and it is the thing I try to keep in view when this subject becomes an argument about definitions. Somewhere in that number is a child who would read more if the story looked like somewhere they had been. Whether the technology of this decade reaches them is not going to be settled by a leaderboard.</p>
+
+                <div class="myth-src">
+                    <h4>Sources</h4>
+                    <ol>
+                        <li id="s2-1">Global Challenges Research Fund, <cite>Automatically Geo-Localising Reading Material Digital Artwork for Increased Reader Engagement</cite>, £36,500, January&ndash;July 2021, Principal Investigator: Shoaib Jameel. Compute supplied under an NVIDIA Academic Hardware Grant (Quadro RTX6000). Project detail and primary documents: <a href="cultural-modelling.html">the cultural AI paper trail</a>.</li>
+                        <li id="s2-2">Lingzhi Shen, Xiaohao Cai, Yunfei Long, Imran Razzak, Guanming Chen and Shoaib Jameel, <cite>CALM: Culturally Self-Aware Language Models</cite>, Thirty-Ninth Conference on Neural Information Processing Systems (NeurIPS 2025); arXiv:2601.03483. <a href="https://arxiv.org/abs/2601.03483" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://neurips.cc/virtual/2025/poster/120260" target="_blank" rel="noopener">NeurIPS poster</a> &middot; <a href="publications.html">research page</a>.</li>
+                        <li id="s2-3">Aleksandar Petrov, Emanuele La Malfa, Philip H. S. Torr and Adel Bibi, <cite>Language Model Tokenizers Introduce Unfairness Between Languages</cite>, NeurIPS 2023; arXiv:2305.15425. Reports tokenization length differences of up to 15&times; between languages, and identifies cost, latency and context length as the three resulting disadvantages. <a href="https://arxiv.org/abs/2305.15425" target="_blank" rel="noopener">arxiv.org</a></li>
+                        <li id="s2-4">Hailay Kidu Teklehaymanot and Wolfgang Nejdl, <cite>Tokenization Disparities as Infrastructure Bias: How Subword Systems Create Inequities in LLM Access and Efficiency</cite>, arXiv:2510.12389, 14 October 2025. Over 200 languages; non-Latin and morphologically complex languages show relative tokenization costs 3&ndash;5&times; higher. <a href="https://arxiv.org/abs/2510.12389" target="_blank" rel="noopener">arxiv.org</a></li>
+                        <li id="s2-5">&ldquo;How AI is leaving non-English speakers behind&rdquo;, <cite>Stanford Report</cite>, May 2025, interviewing Sanmi Koyejo on a Stanford Institute for Human-Centered AI policy white paper. Source of the English/Vietnamese/Nahuatl comparison and the Swahili/Welsh contrast. <a href="https://news.stanford.edu/stories/2025/05/digital-divide-ai-llms-exclusion-non-english-speakers-research" target="_blank" rel="noopener">news.stanford.edu</a></li>
+                        <li id="s2-6">Ke Zhou, Marios Constantinides and Daniele Quercia, <cite>Should LLMs Be WEIRD? Exploring WEIRDness and Human Rights in Large Language Models</cite>, Proceedings of the AAAI/ACM Conference on AI, Ethics and Society (AIES-25), 2025. Tested GPT-3.5, GPT-4, Llama-3, BLOOM and Qwen; models less aligned to WEIRD values were 2&ndash;4% more likely to produce outputs violating human rights, especially on gender and equality. Preprint: arXiv:2508.19269. <a href="https://ojs.aaai.org/index.php/AIES/article/view/36761" target="_blank" rel="noopener">ojs.aaai.org</a> &middot; <a href="https://arxiv.org/abs/2508.19269" target="_blank" rel="noopener">arxiv.org</a></li>
+                        <li id="s2-7">Ariba Khan, Stephen Casper and Dylan Hadfield-Menell, <cite>Randomness, Not Representation: The Unreliability of Evaluating Cultural Alignment in LLMs</cite>, ACM Conference on Fairness, Accountability and Transparency (FAccT &rsquo;25), Athens, June 2025; arXiv:2503.08688, 11 March 2025. Finds cultural alignment is not stable across presentation formats, not extrapolable to held-out dimensions, and not steerable by prompting. <a href="https://arxiv.org/abs/2503.08688" target="_blank" rel="noopener">arxiv.org</a></li>
+                        <li id="s2-8">UNESCO Institute for Statistics, <cite>617 million children and adolescents not getting the minimum in reading and math</cite>, 21 September 2017. Note that the figure covers reading <em>and</em> mathematics, not reading alone, and that it is the 2017 release rather than a current estimate. <a href="https://www.unesco.org/en/articles/617-million-children-and-adolescents-not-getting-minimum-reading-and-math" target="_blank" rel="noopener">unesco.org</a></li>
+                        <li id="s2-9">Joseph Henrich, Steven J. Heine and Ara Norenzayan, <cite>The weirdest people in the world?</cite>, <cite>Behavioral and Brain Sciences</cite> 33(2&ndash;3), 2010, pp. 61&ndash;83. Origin of the WEIRD acronym. <a href="https://pubmed.ncbi.nlm.nih.gov/20550733/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov</a></li>
+                    </ol>
+                    <p class="myth-foot">Every paper cited above was opened and checked against its primary source on 7 August 2026 &mdash; titles, authors, venues, years and figures &mdash; and an independent AI fact-check was run in parallel as a second opinion. Two things were fixed before publication as a result: the UNESCO figure was originally described as covering reading alone and quoted as if current, when it covers reading and mathematics and dates from 2017; and the CALM citation originally omitted its authors. The Stanford Report piece was read via the Internet Archive, as the original blocks automated access. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
+                    <p class="myth-foot">Declared interest: sources 1, 2 and 8 relate to my own funded research, and this entry argues for a position I have published on. Read it accordingly.</p>
+                </div>
+            </div>
+        </details>
+
         <section class="reveal" style="margin: 4rem 0;">
             <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
                 <span class="section-title">Next</span>
-                <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">MyTh 002 is being argued with itself.</h2>
+                <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">MyTh 003 is being argued with itself.</h2>
                 <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 64ch;">These arrive when a thought is finished rather than on a schedule. If you want to disagree with one &mdash; particularly if you have better data &mdash; that is the most useful thing you can send me.</p>
                 <div style="display:flex; gap:1rem; flex-wrap:wrap;">
                     <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Argue with me</a>
