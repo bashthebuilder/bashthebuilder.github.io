@@ -408,9 +408,15 @@ def update_sitemap(entries):
         f'\n  <url><loc>{SITE}/myth-{e["number"]}.html</loc>'
         f'<lastmod>{e["iso"][:10]}</lastmod><priority>0.7</priority></url>'
         for e in entries)
-    src = src.replace(f'<url><loc>{SITE}/myth.html</loc><priority>0.6</priority></url>',
-                      f'<url><loc>{SITE}/myth.html</loc><priority>0.8</priority></url>{lines}')
-    open(path, "w").write(src)
+    # Match the index line whatever priority it currently carries, so that
+    # rebuilding is idempotent rather than silently dropping the entries.
+    new, n = re.subn(r'<url><loc>' + re.escape(SITE) + r'/myth\.html</loc>'
+                     r'<priority>[\d.]+</priority></url>',
+                     f'<url><loc>{SITE}/myth.html</loc><priority>0.8</priority></url>{lines}',
+                     src)
+    if n != 1:
+        sys.exit(f"error: expected 1 myth.html line in sitemap.xml, found {n}")
+    open(path, "w").write(new)
     return len(entries)
 
 
