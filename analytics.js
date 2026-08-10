@@ -1,12 +1,9 @@
 /* Analytics — GoatCounter.
  *
- * TO SWITCH ON: create a site at https://www.goatcounter.com/, then replace
- * YOURCODE below with your subdomain. If your dashboard is at
- * shoaib.goatcounter.com, the value is 'shoaib'. That is the only edit needed;
- * every page already loads this file.
+ * Dashboard: https://shoaibjameel123.goatcounter.com/
  *
- * Until then this is inert — no script is loaded and no request is made, so
- * there are no failed lookups in visitors' browsers.
+ * SITE below is the subdomain of that dashboard. Setting it back to 'YOURCODE'
+ * switches analytics off entirely — no script loaded, no request made.
  *
  * GoatCounter sets no cookies and collects no personal data, so no consent
  * banner is required. It counts page views, referrers and rough location.
@@ -14,7 +11,7 @@
 (function () {
     'use strict';
 
-    var SITE = 'YOURCODE';
+    var SITE = 'shoaibjameel123';
 
     if (SITE === 'YOURCODE') { return; }
 

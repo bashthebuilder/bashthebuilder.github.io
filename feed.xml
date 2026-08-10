@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>MyTh — My Thoughts</title>
   <subtitle>Numbered, dated essays by Shoaib Jameel on research, universities, technology — and whatever else is worth an argument.</subtitle>

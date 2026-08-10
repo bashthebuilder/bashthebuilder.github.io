@@ -128,7 +128,7 @@
 
         <div class="my-bar reveal">
             <span class="my-count"><span class="counter" data-count="4">0</span> thoughts published</span>
-            <a class="filter-pill" href="feed.xml">Subscribe by RSS</a>
+            <a class="filter-pill" href="#subscribe">Subscribe</a>
         </div>
 
         <a class="myth myth-card reveal" href="myth-004.html" id="myth-004">
@@ -197,14 +197,27 @@
             <span class="myth-chev" aria-hidden="true">&rarr;</span>
         </a>
 
-        <section class="reveal" style="margin: 4rem 0;">
+        <section class="reveal" id="subscribe" style="margin: 4rem 0 2rem; scroll-margin-top: 130px;">
+            <div class="card">
+                <span class="section-title">Subscribe</span>
+                <h2 style="font-size: 1.9rem; margin-bottom: .8rem;">New entries, delivered without an email address.</h2>
+                <p style="color: var(--text-muted); max-width: 68ch; margin-bottom: 1.6rem;">MyTh publishes a <strong style="color:#fff;">web feed</strong>. Paste the address below into any feed reader and new entries arrive automatically &mdash; no account, no email address, and no way for me to know who is reading. There is no mailing list and there are no comments; this is the whole subscription mechanism.</p>
+                <div class="feed-copy">
+                    <input type="text" id="feed-url" readonly value="https://bashthebuilder.github.io/feed.xml" aria-label="Feed address">
+                    <button type="button" id="feed-copy-btn">Copy</button>
+                </div>
+                <p style="color: var(--text-muted); font-size: .95rem; margin: 0;">Readers that take it: <a href="https://netnewswire.com/" target="_blank" rel="noopener" style="color:#a5b4fc;">NetNewsWire</a> (free), <a href="https://feedly.com/" target="_blank" rel="noopener" style="color:#a5b4fc;">Feedly</a>, <a href="https://www.inoreader.com/" target="_blank" rel="noopener" style="color:#a5b4fc;">Inoreader</a>, <a href="https://reederapp.com/" target="_blank" rel="noopener" style="color:#a5b4fc;">Reeder</a>. You can also <a href="feed.xml" style="color:#a5b4fc;">open the feed itself</a> &mdash; browsers no longer read feeds natively, so that page explains what it is rather than showing you markup.</p>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin: 2rem 0 4rem;">
             <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
                 <span class="section-title">Next</span>
                 <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">MyTh 005 is being argued with itself.</h2>
                 <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 64ch;">These arrive when a thought is finished rather than on a schedule. If you want to disagree with one &mdash; particularly if you have better data &mdash; that is the most useful thing you can send me.</p>
                 <div style="display:flex; gap:1rem; flex-wrap:wrap;">
                     <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Argue with me</a>
-                    <a href="feed.xml" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Subscribe by RSS</a>
+                    <a href="#subscribe" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Subscribe</a>
                     <a href="publications.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">The peer-reviewed version</a>
                 </div>
             </div>
@@ -227,6 +240,24 @@
         'use strict';
         var m = /^#myth-(\d+)$/.exec(window.location.hash);
         if (m) { window.location.replace('myth-' + m[1] + '.html'); }
+
+        var btn = document.getElementById('feed-copy-btn');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                var input = document.getElementById('feed-url');
+                input.select();
+                input.setSelectionRange(0, 999);
+                var done = function () {
+                    btn.textContent = 'Copied';
+                    setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(input.value).then(done, function () {});
+                } else {
+                    try { document.execCommand('copy'); done(); } catch (e) {}
+                }
+            });
+        }
     })();
     </script>
     <script src="analytics.js"></script>
