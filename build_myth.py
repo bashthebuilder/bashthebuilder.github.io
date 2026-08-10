@@ -92,7 +92,7 @@ def rewrite_crossrefs(body):
     return re.sub(r'href="#myth-(\d+)"', r'href="myth-\1.html"', body)
 
 
-def meta_tags(title, desc, url, *, article=None):
+def meta_tags(title, desc, url, *, article=None, image=OG_IMAGE):
     t = [
         f'    <title>{title}</title>',
         '    <link rel="icon" type="image/svg+xml" href="favicon.svg">',
@@ -103,12 +103,15 @@ def meta_tags(title, desc, url, *, article=None):
         '    <meta property="og:site_name" content="Shoaib Jameel">',
         f'    <meta property="og:title" content="{title}">',
         f'    <meta property="og:description" content="{desc}">',
-        f'    <meta property="og:image" content="{OG_IMAGE}">',
+        f'    <meta property="og:image" content="{image}">',
+        '    <meta property="og:image:width" content="1200">',
+        '    <meta property="og:image:height" content="630">',
+        f'    <meta property="og:image:alt" content="{html.escape(strip_tags(title), quote=True)}">',
         f'    <meta property="og:url" content="{url}">',
         '    <meta name="twitter:card" content="summary_large_image">',
         f'    <meta name="twitter:title" content="{title}">',
         f'    <meta name="twitter:description" content="{desc}">',
-        f'    <meta name="twitter:image" content="{OG_IMAGE}">',
+        f'    <meta name="twitter:image" content="{image}">',
     ]
     if article:
         t += [
@@ -118,7 +121,7 @@ def meta_tags(title, desc, url, *, article=None):
     return "\n".join(t)
 
 
-def jsonld(entry, url):
+def jsonld(entry, url, image):
     data = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -130,7 +133,7 @@ def jsonld(entry, url):
                    "email": EMAIL, "url": SITE + "/index.html"},
         "publisher": {"@type": "Person", "name": AUTHOR},
         "mainEntityOfPage": {"@type": "WebPage", "@id": url},
-        "image": OG_IMAGE,
+        "image": image,
         "keywords": ", ".join(entry["tags"]),
         "isPartOf": {"@type": "Blog", "name": "MyTh — My Thoughts",
                      "@id": SITE + "/myth.html"},
@@ -147,6 +150,7 @@ def build_entry_page(entry, newer, older):
     url = f"{SITE}/myth-{num}.html"
     title = f'MyTh {num} &middot; {entry["title"]} | Shoaib Jameel'
     desc = html.escape(strip_tags(entry["dek"])[:300], quote=True)
+    card = f"{SITE}/assets/og/myth-{num}.png"
     body = rewrite_crossrefs(entry["body"])
     body = "\n".join(("            " + l) if l.strip() else l for l in body.split("\n"))
 
@@ -166,13 +170,13 @@ def build_entry_page(entry, newer, older):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{meta_tags(title, desc, url, article=entry)}
+{meta_tags(title, desc, url, article=entry, image=card)}
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="myth.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-{jsonld(entry, url)}
+{jsonld(entry, url, card)}
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -425,6 +429,14 @@ def main():
     for name, text in (("myth.html", build_index(entries)), ("feed.xml", build_feed(entries))):
         open(os.path.join(ROOT, name), "w").write(text)
         print(f"  {name:<16} {os.path.getsize(os.path.join(ROOT, name)):>7,} bytes")
+
+    try:
+        import build_og
+        print()
+        build_og.main()
+        print()
+    except SystemExit as e:
+        print(f"  (OG cards skipped: {e})")
 
     n = update_sitemap(entries)
     print(f"  sitemap.xml      {n} MyTh entries listed")
