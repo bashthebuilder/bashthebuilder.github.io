@@ -43,3 +43,6 @@ Desktop.ini
 # Third-party student work: held back pending the authors' permission.
 # Same leading-slash anchoring rationale as /PICASO/ above.
 /Anastasia Reports/
+
+# Cached third-party sources for build_tokenizer_tax.py (refetchable).
+/.cache/

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tokenizer Tax &mdash; what your language costs to say | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate" type="application/atom+xml" title="MyTh &mdash; My Thoughts" href="feed.xml">
+    <meta name="description" content="The same sentence, translated, costs up to nine times more tokens depending on the language it is written in. A measured, reproducible demonstration using Article 1 of the Universal Declaration of Human Rights across 19 languages and two tokenizers.">
+    <link rel="canonical" href="https://bashthebuilder.github.io/tokenizer-tax.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="The Tokenizer Tax &mdash; what your language costs to say">
+    <meta property="og:description" content="The same sentence, translated, costs up to nine times more tokens depending on the language. Measured across 19 languages and two tokenizers, with the data published.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/tokenizer-tax.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Tokenizer Tax &mdash; what your language costs to say">
+    <meta name="twitter:description" content="The same sentence, translated, costs up to nine times more tokens depending on the language. Measured, with the data published.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Two categorical series. Validated with the data-viz six checks against
+           the dark chart surface: lightness band, chroma floor, CVD separation
+           (worst adjacent ΔE 32.2 protan), normal-vision floor, contrast. */
+        :root {
+            --series-cl: #6366f1;   /* cl100k_base — GPT-3.5 / GPT-4 */
+            --series-o2: #d97706;   /* o200k_base  — GPT-4o and later */
+            --chart-surface: #0d1018;
+            --ink-1: #f1f5f9;
+            --ink-2: #cbd5e1;
+            --ink-3: #94a3b8;
+            --grid: rgba(255,255,255,.09);
+        }
+
+        .tt-hero { padding: 150px 0 0; }
+        .tt-hero h1 { font-size: 3.6rem; letter-spacing: -2px; line-height: 1.08; margin-bottom: 1.4rem; }
+        .tt-hero .lead { max-width: 68ch; }
+        @media (max-width: 900px) { .tt-hero h1 { font-size: 2.4rem; } }
+
+        .tt-key {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem; margin: 2.5rem 0 3rem;
+        }
+        .tt-key div {
+            padding: 1.4rem 1.6rem; border-radius: 16px;
+            background: rgba(99,102,241,.07); border: 1px solid rgba(129,140,248,.22);
+        }
+        .tt-key b {
+            display: block; font-size: 2.5rem; font-weight: 900; letter-spacing: -1.5px;
+            line-height: 1.05; color: var(--ink-1);
+        }
+        .tt-key > div > span { display: block; color: var(--ink-3); font-size: .9rem; line-height: 1.45; margin-top: .35rem; }
+        .tt-key span span { display: inline; margin: 0; font-size: inherit; }
+
+        /* ---------- Chart ---------- */
+        .tt-chart-card { background: var(--chart-surface); border: 1px solid var(--glass-border); border-radius: 24px; padding: 2rem 2.2rem 1.6rem; }
+        .tt-bar-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+        .tt-bar-head h2 { font-size: 1.35rem; margin: 0 0 .3rem; }
+        .tt-bar-head p { color: var(--ink-3); font-size: .9rem; margin: 0; }
+
+        /* Controls sit in one row above the chart. */
+        .tt-controls { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-bottom: 1.6rem; }
+        .tt-toggle { display: inline-flex; border: 1px solid var(--glass-border); border-radius: 100px; overflow: hidden; }
+        .tt-toggle button {
+            background: none; border: 0; cursor: pointer; padding: 9px 18px;
+            color: var(--ink-3); font: inherit; font-size: .88rem; font-weight: 700;
+            transition: background .2s, color .2s;
+        }
+        .tt-toggle button[aria-pressed="true"] { background: rgba(255,255,255,.09); color: var(--ink-1); }
+        .tt-toggle button:focus-visible { outline: 2px solid #818cf8; outline-offset: -2px; }
+
+        .tt-legend { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-left: auto; align-items: center; }
+        .tt-legend span { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink-2); font-size: .86rem; font-weight: 600; }
+        .tt-swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+
+        .tt-rows { display: grid; gap: 10px; }
+        .tt-row {
+            display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center;
+            padding: 3px 4px; border-radius: 10px; cursor: pointer;
+            background: none; border: 0; text-align: left; font: inherit; width: 100%;
+        }
+        .tt-row:hover, .tt-row:focus-visible { background: rgba(255,255,255,.04); outline: none; }
+        .tt-row.is-open { background: rgba(255,255,255,.05); }
+        .tt-lang { color: var(--ink-2); font-size: .92rem; font-weight: 600; line-height: 1.25; }
+        .tt-lang small { display: block; color: var(--ink-3); font-size: .72rem; font-weight: 500; margin-top: 1px; }
+
+        /* 2px surface gap between the paired bars; 4px rounded data-ends. */
+        .tt-bars { display: grid; gap: 2px; }
+        .tt-bar-track { position: relative; height: 15px; }
+        .tt-bar {
+            position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0;
+            width: 0; transition: width .7s cubic-bezier(.16,.8,.3,1);
+        }
+        .tt-bar.cl { background: var(--series-cl); }
+        .tt-bar.o2 { background: var(--series-o2); }
+        .tt-val {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: .74rem; font-weight: 700; color: var(--ink-3);
+            white-space: nowrap; padding-left: 8px; transition: left .7s cubic-bezier(.16,.8,.3,1);
+        }
+
+        .tt-axis { display: flex; justify-content: space-between; margin: 12px 16% 0 164px; color: var(--ink-3); font-size: .74rem; }
+        .tt-note { color: var(--ink-3); font-size: .82rem; margin-top: 1.2rem; font-style: italic; }
+
+        /* Expanded detail under a row */
+        .tt-detail {
+            grid-column: 1 / -1; margin: 2px 0 8px; padding: 1.1rem 1.3rem;
+            border-radius: 12px; background: rgba(255,255,255,.03);
+            border: 1px solid var(--glass-border);
+        }
+        .tt-detail p.tt-text { color: var(--ink-1); font-size: 1.02rem; line-height: 1.6; margin: 0 0 .9rem; }
+        .tt-detail p.tt-text[dir="rtl"] { text-align: right; }
+        .tt-detail dl { display: flex; gap: 1.8rem; flex-wrap: wrap; margin: 0; }
+        .tt-detail dt { color: var(--ink-3); font-size: .72rem; text-transform: uppercase; letter-spacing: 1.4px; font-weight: 800; }
+        .tt-detail dd { color: var(--ink-1); font-size: 1.15rem; font-weight: 800; margin: .2rem 0 0; }
+
+        /* ---------- Cost panel ---------- */
+        .tt-cost { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.6rem; }
+        @media (max-width: 780px) { .tt-cost { grid-template-columns: 1fr; } }
+        .tt-field { margin-bottom: 1.2rem; }
+        .tt-field label { display: block; color: var(--ink-3); font-size: .76rem; text-transform: uppercase; letter-spacing: 1.4px; font-weight: 800; margin-bottom: .5rem; }
+        .tt-field input[type=range] { width: 100%; accent-color: #6366f1; }
+        .tt-field input[type=number], .tt-field select {
+            width: 100%; padding: 10px 14px; border-radius: 10px; color: var(--ink-1);
+            background: rgba(255,255,255,.05); border: 1px solid var(--glass-border); font: inherit;
+        }
+        .tt-out { display: grid; gap: .8rem; }
+        .tt-out div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .8rem; border-bottom: 1px solid var(--glass-border); }
+        .tt-out span { color: var(--ink-3); font-size: .92rem; }
+        .tt-out b { color: var(--ink-1); font-size: 1.5rem; font-weight: 800; letter-spacing: -.5px; }
+        .tt-out b.hi { color: #fca5a5; }
+
+        /* ---------- Table view ---------- */
+        .tt-tablewrap { overflow-x: auto; margin-top: 1.4rem; }
+        table.tt-table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: .92rem; }
+        .tt-table th, .tt-table td { padding: .6rem .9rem; text-align: right; border-top: 1px solid var(--glass-border); color: var(--ink-2); }
+        .tt-table th:first-child, .tt-table td:first-child { text-align: left; }
+        .tt-table thead th { color: var(--ink-3); font-size: .7rem; letter-spacing: 1.4px; text-transform: uppercase; }
+        .tt-table tbody th { color: var(--ink-1); font-weight: 700; text-align: left; }
+
+        [hidden] { display: none !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tt-bar, .tt-val { transition: none; }
+        }
+        @media (max-width: 700px) {
+            .tt-row { grid-template-columns: 108px 1fr; gap: 10px; }
+            .tt-lang { font-size: .82rem; }
+            .tt-axis { margin-left: 118px; }
+            .tt-chart-card { padding: 1.4rem 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+    <div class="scroll-progress"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="undergraduate.html">Early Work</a>
+                <a href="thesis.html">Thesis</a>
+                <a href="publications.html">Research</a>
+                <a href="cultural-modelling.html">Cultural AI</a>
+                <a href="resources.html">Defence AI</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="ai-leadership.html">AI Leadership</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
+                <a href="press.html">Press</a>
+                <a href="myth.html">MyTh</a>
+                <a href="cv.html">CV</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="tt-hero reveal">
+            <span class="section-title">Interactive &middot; Measured on this page</span>
+            <h1 class="liquid-text">The Tokenizer Tax</h1>
+            <p class="lead">Language models do not read characters. They read <strong style="color:#fff;">tokens</strong>, and the tokenizer that produces them was fitted to whatever the model saw most of &mdash; which was English. So the same sentence, saying the same thing, costs a different amount depending on the language it happens to be written in. Tokens are the unit of billing, the unit of latency, and the unit of memory. Here is what that costs, measured.</p>
+        </section>
+
+        <section class="tt-key reveal" data-reveal-delay="60">
+            <div><b id="k-max">&mdash;</b><span>Most expensive language here, against English, on GPT&#8209;4's tokenizer</span></div>
+            <div><b id="k-langs">&mdash;</b><span>Languages measured, spanning <span id="k-scripts">&mdash;</span> writing systems</span></div>
+            <div><b id="k-eng">&mdash;</b><span>Tokens for the English passage &mdash; the baseline everything is divided by</span></div>
+            <div><b id="k-improve">&mdash;</b><span>Languages where the newer tokenizer cut the tax by half or more</span></div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 3rem;">
+            <div class="tt-chart-card">
+                <div class="tt-bar-head">
+                    <div>
+                        <h2>One sentence, nineteen languages</h2>
+                        <p id="tt-sub">Article 1 of the Universal Declaration of Human Rights &mdash; the same meaning in every row.</p>
+                    </div>
+                </div>
+
+                <div class="tt-controls">
+                    <div class="tt-toggle" role="group" aria-label="Sort order">
+                        <button type="button" id="sort-tokens" aria-pressed="true">Most tokens first</button>
+                        <button type="button" id="sort-alpha" aria-pressed="false">A&ndash;Z</button>
+                    </div>
+                    <div class="tt-toggle" role="group" aria-label="View">
+                        <button type="button" id="view-chart" aria-pressed="true">Chart</button>
+                        <button type="button" id="view-table" aria-pressed="false">Table</button>
+                    </div>
+                    <div class="tt-legend">
+                        <span><i class="tt-swatch" style="background:var(--series-cl)"></i> cl100k_base &middot; GPT&#8209;4</span>
+                        <span><i class="tt-swatch" style="background:var(--series-o2)"></i> o200k_base &middot; GPT&#8209;4o</span>
+                    </div>
+                </div>
+
+                <div id="tt-chart">
+                    <div class="tt-rows" id="tt-rows"></div>
+                    <div class="tt-axis"><span>0 tokens</span><span id="tt-axis-max"></span></div>
+                    <p class="tt-note">Select any language to read the passage it was measured on. Bar length is the token count; the number at the end is that count and its multiple of English.</p>
+                </div>
+
+                <div id="tt-table-view" hidden>
+                    <div class="tt-tablewrap">
+                        <table class="tt-table">
+                            <thead>
+                                <tr><th scope="col">Language</th><th scope="col">Script</th><th scope="col">Characters</th><th scope="col">cl100k_base</th><th scope="col">&times; English</th><th scope="col">o200k_base</th><th scope="col">&times; English</th></tr>
+                            </thead>
+                            <tbody id="tt-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 3.5rem;">
+            <div class="card">
+                <span class="section-title">What it costs you</span>
+                <h2 style="font-size: 1.9rem; margin-bottom: .6rem;">The same product, priced differently by alphabet.</h2>
+                <p style="color: var(--text-muted); max-width: 68ch; margin-bottom: 1.6rem;">Set your own usage and your provider's price. This is arithmetic on the measured token counts above, not a quote from any vendor &mdash; and it is the same request, answered the same way, for a user who happens to write in a different script.</p>
+                <div class="tt-cost">
+                    <div>
+                        <div class="tt-field">
+                            <label for="f-lang">Language</label>
+                            <select id="f-lang"></select>
+                        </div>
+                        <div class="tt-field">
+                            <label for="f-req">Requests per day: <span id="f-req-out" style="color:#fff">10,000</span></label>
+                            <input type="range" id="f-req" min="100" max="1000000" step="100" value="10000">
+                        </div>
+                        <div class="tt-field">
+                            <label for="f-price">Price per million input tokens (£)</label>
+                            <input type="number" id="f-price" min="0" step="0.01" value="2.50">
+                        </div>
+                        <div class="tt-field">
+                            <label for="f-ctx">Context window (thousand tokens)</label>
+                            <input type="number" id="f-ctx" min="1" step="1" value="128">
+                        </div>
+                    </div>
+                    <div class="tt-out">
+                        <div><span>Annual cost, English</span><b id="o-eng">&mdash;</b></div>
+                        <div><span>Annual cost, <span id="o-name">&mdash;</span></span><b id="o-lang" class="hi">&mdash;</b></div>
+                        <div><span>Extra paid for the same sentences</span><b id="o-diff" class="hi">&mdash;</b></div>
+                        <div><span>Copies of the passage that fit in context</span><b id="o-ctx">&mdash;</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 3.5rem;">
+            <span class="section-title">The part that complicates it</span>
+            <h2 style="font-size: 2rem; margin-bottom: 1.2rem;">The newer tokenizer fixed this. For some people.</h2>
+            <p style="color: var(--text-muted); max-width: 70ch; margin-bottom: 1.2rem;">Compare the two bars in each row. Moving from <code>cl100k_base</code> to <code>o200k_base</code> &mdash; roughly, from GPT&#8209;4 to GPT&#8209;4o &mdash; cut Hindi's tax from <strong style="color:#fff;">5.5&times; to 1.6&times;</strong>, Bengali's from 6.4&times; to 1.7&times;, and Telugu's from 8.5&times; to 2.4&times;. That is a real and substantial repair, and it deserves saying plainly.</p>
+            <p style="color: var(--text-muted); max-width: 70ch; margin-bottom: 1.2rem;">Now look at Amharic: <strong style="color:#fff;">9.2&times; to 6.2&times;</strong>. Nahuatl: 2.7&times; to 2.5&times;. Vietnamese: 4.1&times; to 3.4&times;. The languages that got the repair are the ones with large digitised corpora and commercially interesting speaker bases. The ones still paying are, broadly, the ones that were already underserved &mdash; which is the same pattern that produced the tax in the first place, one iteration later.</p>
+            <p style="color: var(--text-muted); max-width: 70ch;">I argue the wider case in <a href="myth-002.html" style="color:#a5b4fc;">MyTh 002, <em>The Default Human</em></a>. The short version: nobody chose this. It fell out of an engineering decision about compression, made by people optimising for the corpus in front of them &mdash; which is how this kind of bias usually arrives.</p>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 3.5rem;">
+            <div class="card">
+                <span class="section-title">Method, and what this is not</span>
+                <h2 style="font-size: 1.6rem; margin-bottom: 1.2rem;">How these numbers were made.</h2>
+                <ul style="color: var(--text-muted); line-height: 1.75; margin: 0 0 1.4rem 1.2rem; max-width: 74ch;">
+                    <li><strong style="color:#fff;">The passage</strong> is Article 1 of the Universal Declaration of Human Rights, in professional translations from the Unicode UDHR in XML project. It is public domain and genuinely parallel &mdash; every row says the same thing &mdash; so a difference in token count is a difference in encoding, not in content.</li>
+                    <li><strong style="color:#fff;">The tokenizers</strong> are OpenAI's <code>cl100k_base</code> (GPT&#8209;3.5, GPT&#8209;4) and <code>o200k_base</code> (GPT&#8209;4o and later), run locally through <code>tiktoken</code>. Other model families use different tokenizers and will give different numbers; the pattern, not the exact figure, is the point.</li>
+                    <li><strong style="color:#fff;">The multiplier</strong> is that language's token count divided by English's, per tokenizer.</li>
+                    <li><strong style="color:#fff;">The data is published.</strong> <a href="assets/tokenizer-tax.json" style="color:#a5b4fc;">Download the JSON</a> or read <a href="https://github.com/bashthebuilder/bashthebuilder.github.io/blob/main/build_tokenizer_tax.py" target="_blank" rel="noopener" style="color:#a5b4fc;">the script that generated it</a> and re-run it yourself.</li>
+                </ul>
+                <p style="color: var(--text-muted); max-width: 74ch; margin-bottom: 1rem;"><strong style="color:#fff;">What this is not:</strong> a rigorous corpus study. It is one short paragraph of formal legal register. Translations legitimately differ in length, some languages here have several standard orthographies, and a single passage cannot capture how a tokenizer behaves across a language. Treat it as a demonstration of a finding, not the finding itself.</p>
+                <p style="color: var(--text-muted); max-width: 74ch;">The finding itself is Petrov, La Malfa, Torr and Bibi, <em>Language Model Tokenizers Introduce Unfairness Between Languages</em> (NeurIPS 2023), which measured this properly across a parallel corpus and reports differences of up to 15&times;, together with the three consequences that follow &mdash; cost, latency, and how much of your problem fits in context. <a href="https://arxiv.org/abs/2305.15425" target="_blank" rel="noopener" style="color:#a5b4fc;">arxiv.org/abs/2305.15425</a></p>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin: 3rem 0 4rem;">
+            <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
+                <span class="section-title">More of this</span>
+                <h2 style="font-size: 1.8rem; margin-bottom: 1.2rem;">If the numbers are wrong, I would rather know.</h2>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <a href="myth-002.html" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Read MyTh 002</a>
+                    <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Tell me it's wrong</a>
+                    <a href="cultural-modelling.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">The research behind it</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shoaib Jameel &middot; University of Southampton</p>
+        </div>
+    </footer>
+
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script>
+    (function () {
+        'use strict';
+        var DATA = null, sortBy = 'tokens', open = null;
+        var rows = document.getElementById('tt-rows');
+        var tbody = document.getElementById('tt-tbody');
+        var fmtInt = function (n) { return n.toLocaleString('en-GB'); };
+        var money = function (n) {
+            return '£' + (n >= 1000 ? Math.round(n).toLocaleString('en-GB')
+                                    : n.toFixed(2));
+        };
+        var esc = function (s) {
+            return String(s).replace(/[&<>"]/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+            });
+        };
+
+        function ordered() {
+            var l = DATA.languages.slice();
+            if (sortBy === 'alpha') l.sort(function (a, b) { return a.name.localeCompare(b.name); });
+            else l.sort(function (a, b) { return b.cl100k - a.cl100k; });
+            return l;
+        }
+
+        function draw() {
+            var list = ordered();
+            var max = Math.max.apply(null, list.map(function (d) { return d.cl100k; }));
+            document.getElementById('tt-axis-max').textContent = fmtInt(max) + ' tokens';
+            rows.innerHTML = '';
+
+            list.forEach(function (d) {
+                var btn = document.createElement('button');
+                btn.className = 'tt-row' + (open === d.code ? ' is-open' : '');
+                btn.type = 'button';
+                btn.setAttribute('aria-expanded', open === d.code ? 'true' : 'false');
+                btn.innerHTML =
+                    '<span class="tt-lang">' + esc(d.name) + '<small>' + esc(d.script) + '</small></span>' +
+                    '<span class="tt-bars">' +
+                        '<span class="tt-bar-track"><i class="tt-bar cl"></i>' +
+                            '<span class="tt-val">' + fmtInt(d.cl100k) + ' &middot; ' + d.x_cl100k + '&times;</span></span>' +
+                        '<span class="tt-bar-track"><i class="tt-bar o2"></i>' +
+                            '<span class="tt-val">' + fmtInt(d.o200k) + ' &middot; ' + d.x_o200k + '&times;</span></span>' +
+                    '</span>';
+                btn.title = d.name + ' — ' + fmtInt(d.cl100k) + ' tokens on cl100k_base ('
+                          + d.x_cl100k + '× English), ' + fmtInt(d.o200k) + ' on o200k_base ('
+                          + d.x_o200k + '×), from ' + fmtInt(d.chars) + ' characters.';
+                btn.addEventListener('click', function () {
+                    open = (open === d.code) ? null : d.code;
+                    draw();
+                });
+                rows.appendChild(btn);
+
+                var bars = btn.querySelectorAll('.tt-bar');
+                var vals = btn.querySelectorAll('.tt-val');
+                [d.cl100k, d.o200k].forEach(function (v, i) {
+                    /* 84%, not 100%: the value label sits at the data-end and
+                       must not run past the edge of the card. */
+                    var pct = (v / max) * 84;
+                    requestAnimationFrame(function () {
+                        bars[i].style.width = pct + '%';
+                        vals[i].style.left = pct + '%';
+                    });
+                });
+
+                if (open === d.code) {
+                    var det = document.createElement('div');
+                    det.className = 'tt-detail';
+                    det.innerHTML =
+                        '<p class="tt-text"' + (d.rtl ? ' dir="rtl"' : '') + ' lang="' + esc(d.code) + '">' + esc(d.text) + '</p>' +
+                        '<dl>' +
+                            '<div><dt>Characters</dt><dd>' + fmtInt(d.chars) + '</dd></div>' +
+                            '<div><dt>cl100k_base</dt><dd>' + fmtInt(d.cl100k) + ' <span style="font-size:.8rem;color:var(--ink-3)">(' + d.x_cl100k + '&times;)</span></dd></div>' +
+                            '<div><dt>o200k_base</dt><dd>' + fmtInt(d.o200k) + ' <span style="font-size:.8rem;color:var(--ink-3)">(' + d.x_o200k + '&times;)</span></dd></div>' +
+                            '<div><dt>Tokens per character</dt><dd>' + (d.cl100k / d.chars).toFixed(2) + '</dd></div>' +
+                        '</dl>';
+                    rows.appendChild(det);
+                }
+            });
+        }
+
+        function drawTable() {
+            tbody.innerHTML = ordered().map(function (d) {
+                return '<tr><th scope="row">' + esc(d.name) + '</th><td style="text-align:left">' + esc(d.script) + '</td>' +
+                       '<td>' + fmtInt(d.chars) + '</td><td>' + fmtInt(d.cl100k) + '</td><td>' + d.x_cl100k + '&times;</td>' +
+                       '<td>' + fmtInt(d.o200k) + '</td><td>' + d.x_o200k + '&times;</td></tr>';
+            }).join('');
+        }
+
+        function keyFigures() {
+            var worst = DATA.languages.reduce(function (a, b) { return b.x_cl100k > a.x_cl100k ? b : a; });
+            var scripts = {};
+            DATA.languages.forEach(function (d) { scripts[d.script] = 1; });
+            var halved = DATA.languages.filter(function (d) {
+                return d.x_cl100k > 1 && d.x_o200k <= d.x_cl100k / 2;
+            }).length;
+            document.getElementById('k-max').textContent = worst.x_cl100k + '×';
+            document.getElementById('k-langs').textContent = DATA.languages.length;
+            document.getElementById('k-scripts').textContent = Object.keys(scripts).length;
+            document.getElementById('k-eng').textContent = DATA.baseline.cl100k;
+            document.getElementById('k-improve').textContent = halved;
+            document.getElementById('tt-sub').innerHTML =
+                esc(DATA.passage) + ' &mdash; the same meaning in every row. Measured ' + esc(DATA.generated) + '.';
+        }
+
+        /* ---------- Cost panel ---------- */
+        var fLang = document.getElementById('f-lang'), fReq = document.getElementById('f-req'),
+            fPrice = document.getElementById('f-price'), fCtx = document.getElementById('f-ctx');
+
+        function cost() {
+            var d = DATA.languages.filter(function (x) { return x.code === fLang.value; })[0];
+            if (!d) { return; }
+            var perDay = +fReq.value, price = +fPrice.value || 0, ctx = (+fCtx.value || 1) * 1000;
+            var yr = function (tok) { return (tok * perDay * 365 / 1e6) * price; };
+            var eng = yr(DATA.baseline.cl100k), mine = yr(d.cl100k);
+            document.getElementById('f-req-out').textContent = fmtInt(perDay);
+            document.getElementById('o-eng').textContent = money(eng);
+            document.getElementById('o-name').textContent = d.name;
+            document.getElementById('o-lang').textContent = money(mine);
+            document.getElementById('o-diff').textContent = money(mine - eng);
+            document.getElementById('o-ctx').textContent =
+                fmtInt(Math.floor(ctx / d.cl100k)) + ' vs ' + fmtInt(Math.floor(ctx / DATA.baseline.cl100k)) + ' in English';
+        }
+
+        function bindToggle(aId, bId, onA, onB) {
+            var a = document.getElementById(aId), b = document.getElementById(bId);
+            function set(isA) {
+                a.setAttribute('aria-pressed', isA ? 'true' : 'false');
+                b.setAttribute('aria-pressed', isA ? 'false' : 'true');
+                (isA ? onA : onB)();
+            }
+            a.addEventListener('click', function () { set(true); });
+            b.addEventListener('click', function () { set(false); });
+        }
+
+        fetch('assets/tokenizer-tax.json')
+            .then(function (r) { return r.json(); })
+            .then(function (json) {
+                DATA = json;
+                keyFigures();
+                draw();
+                drawTable();
+
+                fLang.innerHTML = DATA.languages.slice()
+                    .sort(function (a, b) { return a.name.localeCompare(b.name); })
+                    .map(function (d) {
+                        return '<option value="' + esc(d.code) + '"' +
+                               (d.code === 'tel' ? ' selected' : '') + '>' + esc(d.name) + '</option>';
+                    }).join('');
+                [fLang, fReq, fPrice, fCtx].forEach(function (el) {
+                    el.addEventListener('input', cost);
+                });
+                cost();
+
+                bindToggle('sort-tokens', 'sort-alpha',
+                    function () { sortBy = 'tokens'; draw(); drawTable(); },
+                    function () { sortBy = 'alpha'; draw(); drawTable(); });
+                bindToggle('view-chart', 'view-table',
+                    function () {
+                        document.getElementById('tt-chart').hidden = false;
+                        document.getElementById('tt-table-view').hidden = true;
+                    },
+                    function () {
+                        document.getElementById('tt-chart').hidden = true;
+                        document.getElementById('tt-table-view').hidden = false;
+                    });
+            })
+            .catch(function () {
+                rows.innerHTML = '<p style="color:var(--ink-3)">The measurement data could not be loaded. ' +
+                    'It is published at <a href="assets/tokenizer-tax.json" style="color:#a5b4fc">assets/tokenizer-tax.json</a>.</p>';
+            });
+    })();
+    </script>
+    <script src="analytics.js"></script>
+</body>
+</html>

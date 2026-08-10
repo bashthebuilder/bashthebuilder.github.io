@@ -509,6 +509,9 @@
 
 &lt;div class=&quot;myth-pull&quot;&gt;Before the model has understood anything, it has already decided your language is expensive.&lt;/div&gt;
 
+&lt;p style=&quot;padding:1.4rem 1.6rem;border-radius:16px;background:rgba(99,102,241,.07);border:1px solid rgba(129,140,248,.22);&quot;&gt;
+&lt;strong&gt;See it for yourself.&lt;/strong&gt; I measured this: Article 1 of the Universal Declaration of Human Rights, in 19 languages across 11 writing systems, run through two of OpenAI&amp;rsquo;s tokenizers. The same sentence costs 33 tokens in English and 305 in Amharic. &lt;a href=&quot;https://bashthebuilder.github.io/tokenizer-tax.html&quot;&gt;&lt;strong&gt;Open the interactive &amp;rarr;&lt;/strong&gt;&lt;/a&gt; &amp;mdash; the data and the script that produced it are published with it.&lt;/p&gt;
+
 &lt;p&gt;I find this the most clarifying fact in the whole debate, because nobody chose it. No committee decided that Telugu speakers should pay a premium. It fell out of an engineering decision about compression, made by people optimising for the corpus in front of them. Which is exactly how this kind of bias usually arrives: not as prejudice, but as a default that nobody had a reason to question.&lt;/p&gt;
 
 &lt;h4 data-n=&quot;TWO&quot;&gt;Data, not speakers, decides who the model serves&lt;/h4&gt;

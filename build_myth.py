@@ -224,6 +224,7 @@ def build_entry_page(entry, newer, older):
 {FOOTER}
     <script src="reveal.js"></script>
     <script src="nav.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>
 """
@@ -350,6 +351,7 @@ def build_index(entries):
         if (m) {{ window.location.replace('myth-' + m[1] + '.html'); }}
     }})();
     </script>
+    <script src="analytics.js"></script>
 </body>
 </html>
 """
