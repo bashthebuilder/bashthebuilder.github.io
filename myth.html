@@ -5,209 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyTh &mdash; My Thoughts | Shoaib Jameel</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="MyTh — My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.">
+    <meta name="description" content="MyTh &mdash; My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.">
+    <link rel="canonical" href="https://bashthebuilder.github.io/myth.html">
+    <link rel="alternate" type="application/atom+xml" title="MyTh &mdash; My Thoughts" href="feed.xml">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shoaib Jameel">
     <meta property="og:title" content="MyTh &mdash; My Thoughts | Shoaib Jameel">
-    <meta property="og:description" content="Numbered, dated essays on research, universities, technology — and whatever else is worth an argument.">
+    <meta property="og:description" content="MyTh &mdash; My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.">
     <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <meta property="og:url" content="https://bashthebuilder.github.io/myth.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MyTh &mdash; My Thoughts | Shoaib Jameel">
-    <meta name="twitter:description" content="Numbered, dated essays on research, universities, technology — and whatever else is worth an argument.">
+    <meta name="twitter:description" content="MyTh &mdash; My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.">
     <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="myth.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        .my-hero { padding: 160px 0 0; }
-        .my-hero h1 { font-size: 4.2rem; margin-bottom: 1.6rem; }
-        .my-hero .lead { margin-bottom: 0; }
-        @media (max-width: 1024px) { .my-hero h1 { font-size: 2.9rem; } }
-
-        /* The wordmark: MyTh, with the two capitals doing the explaining. */
-        .my-mark { font-weight: 900; letter-spacing: -2px; }
-        .my-mark em { font-style: normal; color: var(--text-muted); font-weight: 700; }
-
-        .my-about {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1rem; margin: 2.5rem 0 3.5rem;
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "MyTh — My Thoughts",
+    "url": "https://bashthebuilder.github.io/myth.html",
+    "description": "MyTh — My Thoughts. Numbered, dated essays by Shoaib Jameel on research, universities, technology and whatever else is worth an argument. Evidence-led, sourced, and occasionally political.",
+    "author": {
+        "@type": "Person",
+        "name": "Shoaib Jameel",
+        "url": "https://bashthebuilder.github.io/index.html"
+    },
+    "blogPost": [
+        {
+            "@type": "BlogPosting",
+            "headline": "Independent, and Never Alone",
+            "url": "https://bashthebuilder.github.io/myth-004.html",
+            "datePublished": "2026-08-10T21:00:00+01:00",
+            "description": "My students own their ideas. My job is to raise those ideas until a top venue cannot refuse them — and to be in the room the whole time, testing, arguing, refusing to be impressed too early. The full record of twenty-two people, what they built, and what this style of supervision actually costs the supervisor."
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "One Every Five Days",
+            "url": "https://bashthebuilder.github.io/myth-003.html",
+            "datePublished": "2026-08-09T15:00:00+01:00",
+            "description": "On good academic practice: how to not plagiarise, how to decide who goes on a paper, why reviewer collusion is the hardest of these to catch, and what a very large publication count does, and does not, tell you about the person holding it. Written deliberately about nobody."
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "The Default Human",
+            "url": "https://bashthebuilder.github.io/myth-002.html",
+            "datePublished": "2026-08-07T18:00:00+01:00",
+            "description": "A model trained mostly on one slice of the world does not learn that slice as a culture. It learns it as neutrality, and everything else as deviation. But “make it less Western” turns out to be a worse answer than it sounds — and the field cannot yet measure whether it worked."
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "The Four Squeezes: what is actually happening to academic life",
+            "url": "https://bashthebuilder.github.io/myth-001.html",
+            "datePublished": "2026-08-07T09:00:00+01:00",
+            "description": "A wage that has lost close to a third of its value, a student market that grew and shrank at the same time, a machine that now writes and marks, and a generation quietly recalculating whether any of it is worth it. Three of those four are worse than the headlines say. One is better."
         }
-        .my-about div {
-            padding: 1.4rem 1.6rem; border-radius: 18px;
-            background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
-        }
-        .my-about h2 {
-            font-size: .78rem; text-transform: uppercase; letter-spacing: 2px;
-            color: #818cf8; margin: 0 0 .5rem; font-weight: 800;
-        }
-        .my-about p { font-size: .98rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
-
-        /* Toolbar above the list */
-        .my-bar {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem;
-            padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);
-        }
-        .my-count { color: var(--text-muted); font-size: .92rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-
-        /* ---------- The MyTh entry ---------- */
-        .myth {
-            position: relative; overflow: hidden;
-            background: rgba(255,255,255,.025);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px; margin-bottom: 1.5rem;
-            scroll-margin-top: 130px;
-            transition: border-color .4s, background .4s;
-        }
-        .myth:hover { border-color: rgba(129,140,248,.38); background: rgba(255,255,255,.04); }
-        .myth[open] { border-color: rgba(129,140,248,.45); background: rgba(255,255,255,.04); }
-        .myth::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-            background: var(--accent-liquid);
-            transform: scaleY(0); transform-origin: top;
-            transition: transform .5s cubic-bezier(.16,.8,.3,1);
-        }
-        .myth[open]::before, .myth:hover::before { transform: scaleY(1); }
-
-        .myth > summary {
-            cursor: pointer; list-style: none;
-            display: grid; grid-template-columns: auto 1fr auto;
-            gap: 1.6rem; align-items: start;
-            padding: 2rem 2.4rem;
-        }
-        .myth > summary::-webkit-details-marker { display: none; }
-        .myth > summary:focus-visible { outline: 2px solid #818cf8; outline-offset: -4px; border-radius: 24px; }
-
-        .myth-no {
-            font-size: 1.55rem; font-weight: 900; letter-spacing: -1px;
-            background: var(--accent-liquid);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.1; padding-top: .15rem; white-space: nowrap;
-        }
-        .myth-no small { display: block; font-size: .62rem; letter-spacing: 2px; -webkit-text-fill-color: var(--text-muted); font-weight: 800; }
-
-        .myth-head h3 { font-size: 1.6rem; margin: 0 0 .55rem; letter-spacing: -.6px; line-height: 1.25; }
-        .myth-dek { color: var(--text-muted); font-size: 1.02rem; line-height: 1.55; margin: 0 0 .9rem; max-width: 62ch; }
-        .myth-meta { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
-        .myth-meta .tag { margin: 0; font-size: .78rem; padding: 4px 12px; }
-        .myth-date { color: var(--text-muted); font-size: .82rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
-
-        .myth-chev {
-            flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
-            display: grid; place-items: center; font-size: 1.5rem; font-weight: 300;
-            color: #a5b4fc; background: rgba(99,102,241,.12); border: 1px solid var(--glass-border);
-            transition: transform .35s cubic-bezier(.16,.8,.3,1), background .3s;
-        }
-        .myth[open] .myth-chev { transform: rotate(45deg); background: rgba(99,102,241,.25); }
-
-        .myth-body { padding: 0 2.4rem 2.6rem; border-top: 1px solid var(--glass-border); padding-top: 2.2rem; }
-        .myth-body > p { color: #cbd5e1; margin-bottom: 1.35rem; font-size: 1.12rem; line-height: 1.75; }
-        .myth-body h4 {
-            font-size: 1.32rem; font-weight: 800; letter-spacing: -.4px;
-            margin: 2.8rem 0 1.1rem; color: #fff;
-        }
-        .myth-body h4::before {
-            content: attr(data-n); color: #818cf8; font-size: .82rem;
-            font-weight: 800; letter-spacing: 2px; display: block; margin-bottom: .35rem;
-        }
-        .myth-body ul { margin: 0 0 1.4rem 1.3rem; }
-        .myth-body li { color: #cbd5e1; margin-bottom: .6rem; font-size: 1.08rem; line-height: 1.7; }
-        .myth-body strong { color: #fff; }
-        .myth-body a { color: #a5b4fc; }
-
-        /* Inline citation markers */
-        .cit {
-            font-size: .68em; font-weight: 800; vertical-align: super; line-height: 0;
-            text-decoration: none; color: #a5b4fc; padding: 0 1px;
-            border-bottom: none;
-        }
-        .cit:hover, .cit:focus { color: #fff; }
-        .cit::before { content: '['; }
-        .cit::after { content: ']'; }
-
-        /* Key-numbers strip inside an entry */
-        .myth-figs {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1rem; margin: 2rem 0 2.4rem;
-        }
-        .myth-fig {
-            padding: 1.3rem 1.4rem; border-radius: 16px;
-            background: rgba(99,102,241,.07); border: 1px solid rgba(129,140,248,.22);
-        }
-        .myth-fig b {
-            display: block; font-size: 2.4rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1;
-            background: var(--accent-liquid);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        /* Direct child only: the counter <span> lives inside the <b> above and must
-           keep the display size and gradient fill, not the label styling. */
-        .myth-fig > span { display: block; color: var(--text-muted); font-size: .88rem; font-weight: 600; line-height: 1.4; margin-top: .3rem; max-width: none; }
-        .myth-fig b span { font: inherit; color: inherit; }
-
-        /* Roster tables inside an entry. The wrapper scrolls, never the page. */
-        .myth-tw {
-            overflow-x: auto; margin: 1.6rem 0 2.4rem;
-            border: 1px solid var(--glass-border); border-radius: 18px;
-            background: rgba(255,255,255,.02);
-        }
-        .myth-table { width: 100%; border-collapse: collapse; min-width: 700px; font-size: .96rem; }
-        .myth-table caption {
-            text-align: left; padding: 1.2rem 1.4rem .2rem;
-            color: #818cf8; font-weight: 800; font-size: .74rem;
-            letter-spacing: 2.2px; text-transform: uppercase;
-        }
-        .myth-table th, .myth-table td {
-            text-align: left; padding: .85rem 1.4rem; vertical-align: top;
-            border-top: 1px solid var(--glass-border);
-        }
-        .myth-table thead th {
-            color: var(--text-muted); font-size: .7rem; letter-spacing: 1.6px;
-            text-transform: uppercase; font-weight: 800; background: rgba(99,102,241,.07);
-        }
-        .myth-table tbody th { color: #fff; font-weight: 700; }
-        .myth-table td { color: #cbd5e1; line-height: 1.55; }
-        .myth-table tbody tr:hover td, .myth-table tbody tr:hover th { background: rgba(255,255,255,.03); }
-        .myth-table .role {
-            display: block; margin-top: .3rem; font-weight: 600;
-            color: var(--text-muted); font-size: .82rem; letter-spacing: .2px;
-        }
-
-        .myth-pull {
-            margin: 2.2rem 0; padding: 1.5rem 0 1.5rem 2rem;
-            border-left: 3px solid #ec4899;
-            font-size: 1.35rem; font-weight: 600; line-height: 1.5;
-            color: #fff; letter-spacing: -.3px; max-width: 52ch;
-        }
-
-        /* Sources */
-        .myth-src { margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid var(--glass-border); }
-        .myth-src h4 { margin-top: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: 2.5px; color: #6366f1; }
-        .myth-src ol { margin: 0; padding-left: 1.6rem; }
-        .myth-src li {
-            color: var(--text-muted); font-size: .95rem; line-height: 1.55;
-            margin-bottom: .75rem; max-width: 78ch; scroll-margin-top: 140px;
-        }
-        .myth-src li:target { color: #fff; }
-        .myth-src a { color: #a5b4fc; word-break: break-word; }
-        .myth-src cite { font-style: italic; color: #cbd5e1; }
-
-        .myth-foot {
-            margin-top: 1.6rem; font-size: .9rem; color: var(--text-muted);
-            font-style: italic; max-width: 78ch;
-        }
-
-        @media (max-width: 768px) {
-            .myth > summary { grid-template-columns: 1fr auto; gap: .9rem 1rem; padding: 1.6rem; }
-            .myth-no { grid-column: 1 / -1; font-size: 1.25rem; }
-            .myth-head h3 { font-size: 1.28rem; }
-            .myth-body { padding: 1.8rem 1.6rem 2rem; }
-            .myth-pull { font-size: 1.12rem; padding-left: 1.2rem; }
-            .myth-table th, .myth-table td { padding: .75rem 1rem; }
-            .myth-table caption { padding: 1rem 1rem .2rem; }
-        }
-    </style>
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="liquid-bg"></div>
@@ -248,7 +107,7 @@
         <section class="my-about reveal" data-reveal-delay="80">
             <div>
                 <h2>What this is</h2>
-                <p>One thought per entry, numbered <strong style="color:#fff;">MyTh 001</strong> onwards and listed newest first. Click a title to read it. Nothing is ever renumbered.</p>
+                <p>One thought per entry, numbered <strong style="color:#fff;">MyTh 001</strong> onwards and listed newest first. Each has its own page. Nothing is ever renumbered.</p>
             </div>
             <div>
                 <h2>House rule</h2>
@@ -266,769 +125,74 @@
 
         <div class="my-bar reveal">
             <span class="my-count"><span class="counter" data-count="4">0</span> thoughts published</span>
-            <div style="display:flex; gap:.6rem;">
-                <button class="filter-pill" id="expandAll" type="button">Expand all</button>
-                <button class="filter-pill" id="collapseAll" type="button">Collapse all</button>
-            </div>
+            <a class="filter-pill" href="feed.xml">Subscribe by RSS</a>
         </div>
 
-        <!-- Entries run newest first: a new MyTh goes directly below this line,
-             above every existing one. Numbers are permanent and never reused,
-             so the sequence descends down the page. -->
-
-        <!-- ============================ MyTh 004 ============================ -->
-        <details class="myth reveal" id="myth-004">
-            <summary>
-                <span class="myth-no"><small>MYTH</small>004</span>
-                <span class="myth-head">
-                    <h3>Independent, and Never Alone</h3>
-                    <p class="myth-dek">My students own their ideas. My job is to raise those ideas until a top venue cannot refuse them &mdash; and to be in the room the whole time, testing, arguing, refusing to be impressed too early. The full record of twenty-two people, what they built, and what this style of supervision actually costs the supervisor.</p>
-                    <span class="myth-meta">
-                        <span class="myth-date">10 August 2026</span>
+        <a class="myth myth-card reveal" href="myth-004.html" id="myth-004">
+            <span class="myth-no"><small>MYTH</small>004</span>
+            <span class="myth-head">
+                <h3>Independent, and Never Alone</h3>
+                <p class="myth-dek">My students own their ideas. My job is to raise those ideas until a top venue cannot refuse them &mdash; and to be in the room the whole time, testing, arguing, refusing to be impressed too early. The full record of twenty-two people, what they built, and what this style of supervision actually costs the supervisor.</p>
+                <span class="myth-meta">
+                    <span class="myth-date">10 August 2026</span>
                         <span class="tag">Supervision</span>
                         <span class="tag">PhD</span>
                         <span class="tag">Research culture</span>
                         <span class="tag">KTP</span>
                         <span class="tag">~13 min read</span>
-                    </span>
                 </span>
-                <span class="myth-chev" aria-hidden="true">+</span>
-            </summary>
+            </span>
+            <span class="myth-chev" aria-hidden="true">&rarr;</span>
+        </a>
 
-            <div class="myth-body">
-                <p>Every so often a prospective PhD applicant asks me what my supervision style is, and I give an answer that sounds evasive until you have seen it working: <em>the idea will be yours, and I will be there every week trying to break it.</em></p>
-
-                <p>People hear the first half and think I mean hands-off. They hear the second half and think I mean control. It is neither, and the distance between those two misreadings is most of what I have learned in the last decade. So here is the philosophy stated plainly, the record it has produced, and &mdash; because this is the part nobody publishes &mdash; what it costs me.</p>
-
-                <div class="myth-figs">
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="22">0</span></b>
-                        <span>Researchers and engineers I have supervised or recruited to date<a class="cit" href="#s4-1">1</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="11">0</span></b>
-                        <span>PhD researchers currently in the group<a class="cit" href="#s4-1">1</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="24.5" data-dec="1" data-post="%">0</span></b>
-                        <span>NeurIPS 2025 acceptance rate &mdash; 5,290 papers from 21,575 submissions<a class="cit" href="#s4-4">4</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="89" data-post="%">0</span></b>
-                        <span>UK and Australian doctoral researchers satisfied with supervision, PRES 2025<a class="cit" href="#s4-2">2</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="29" data-post="%">0</span></b>
-                        <span>Of supervisors with mandatory continuing development <em>as supervisors</em><a class="cit" href="#s4-3">3</a></span>
-                    </div>
-                </div>
-
-                <h4 data-n="ONE">&ldquo;Independent&rdquo; does not mean &ldquo;on your own&rdquo;</h4>
-
-                <p>The single thing I want a student to feel, from month one, is that they are a researcher rather than a pair of hands. That means the research question is theirs to choose and theirs to defend. They get their own space, physical and intellectual: a desk, a project that has their name on the intellectual deed, and explicit permission to tell me I am wrong &mdash; in group meeting, in front of everyone, with evidence.</p>
-
-                <p>What that does <em>not</em> mean is that I hand them a topic and reappear at the viva. I have watched that model produce three miserable years and a thesis nobody wanted, and the sector data suggests it is not rare enough to ignore: UKRI's own review of doctoral training noted that only around <strong>66% of supervisors have mandatory induction training</strong> and just <strong>29% have mandatory continuing professional development as supervisors</strong>.<a class="cit" href="#s4-3">3</a> Most of us were never trained to do this. We are copying whoever supervised us, which is a transmission mechanism for bad habits as much as good ones.</p>
-
-                <p>The honest sector picture is better than the folklore, mind. The 2025 Postgraduate Research Experience Survey &mdash; more than 35,000 doctoral researchers across 93 institutions &mdash; put satisfaction with supervision at <strong>89%</strong> and overall satisfaction at <strong>83%</strong>, the highest in over a decade.<a class="cit" href="#s4-2">2</a> Supervision is one of the things British doctoral education already does well. I am not writing this because the average is bad. I am writing it because the average hides two very different failure modes at either end, and I have strong views about which one to fear.</p>
-
-                <div class="myth-pull">Abandonment is not independence. Neither is being handed a problem and told the answer.</div>
-
-                <p>So the arrangement is this. They own the question. I own the standard. They are free to spend a month chasing something I think will not work &mdash; and they should, because I have been wrong about that more than once. What they are not free to do is take a half-argued claim to a top venue with my name on it, because the reviewers will be less kind than I am and the rejection will teach them less.</p>
-
-                <h4 data-n="TWO">What &ldquo;elevating the idea&rdquo; actually means</h4>
-
-                <p>Here is the part that sounds like arrogance and is really just arithmetic. NeurIPS 2025 took <strong>5,290 papers out of 21,575 valid main-track submissions</strong> &mdash; an acceptance rate of 24.52%, judged by 20,518 reviewers, 1,663 area chairs and 199 senior area chairs.<a class="cit" href="#s4-4">4</a> Three quarters of the work sent there was rejected, and a large fraction of it was good.</p>
-
-                <p>A student's raw idea is almost never the problem. In my experience the idea is usually the best thing in the room. What separates it from an accepted paper at the very top of the field is a set of unglamorous things a first-time author has no way of knowing yet: which baseline a reviewer will demand and be annoyed you omitted; which ablation turns a plausible story into a demonstrated one; which sentence in the introduction is doing all the work and is therefore the one that must be bulletproof; which venue's community will recognise the contribution at all.</p>
-
-                <p>That knowledge is mine to give away, and giving it away is not the same as taking the idea over. The test I apply to myself is simple: <strong>at the end, can the student explain every decision in the paper as their own reasoning?</strong> If the answer is no &mdash; if there is a section they cannot defend under questioning because it was really mine &mdash; then I have failed, no matter where it was published. That rule also happens to be the fourth ICMJE authorship criterion doing its job, which I wrote about at length in <a href="#myth-003">MyTh 003</a>.</p>
-
-                <p>The practical shape of it:</p>
-
-                <ul>
-                    <li><strong>They pick the problem; I stress-test the framing.</strong> Most weeks the useful question is not &ldquo;is this true?&rdquo; but &ldquo;who would be surprised by this, and why would a reviewer care?&rdquo;</li>
-                    <li><strong>I am the hostile reviewer first.</strong> Better that the objection arrives from me in a Tuesday meeting than from Reviewer 2 in four months. I have a reputation in my group for asking the same question five different ways. It is deliberate.</li>
-                    <li><strong>Aim high on purpose, early.</strong> A student who has only ever submitted to venues they were sure of has not learned what the ceiling looks like. First-year rejections from a top conference are tuition, and they are cheap.</li>
-                    <li><strong>Their name, first.</strong> On the work they led, they go first. This is not generosity; it is accuracy.</li>
-                </ul>
-
-                <h4 data-n="THREE">The record</h4>
-
-                <p>Philosophy is easy to assert, so here is the evidence, all of it, including the people whose work has not landed yet. Everything below is drawn from my own supervision record;<a class="cit" href="#s4-1">1</a> where an achievement has a public source, it is cited.</p>
-
-                <div class="myth-tw">
-                    <table class="myth-table">
-                        <caption>Current PhD cohort &middot; University of Southampton</caption>
-                        <thead>
-                            <tr><th scope="col">Researcher</th><th scope="col">The question they own</th><th scope="col">On the record</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Lingzhi Shen<span class="role">Supervisor</span></th>
-                                <td>Whether a language model can know that its own defaults are cultural, rather than neutral &mdash; and multimodal misinformation and personality detection.</td>
-                                <td><strong>NeurIPS 2025</strong> (<em>CALM: Culturally Self-Aware Language Models</em>)<a class="cit" href="#s4-5">5</a>; <strong>WSDM 2025</strong> (<em>GAMED</em>)<a class="cit" href="#s4-6">6</a>; CIKM 2025; ICME 2025; IJCNN 2025. Five accepted papers in a single year.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ubaid Azam<span class="role">Supervisor</span></th>
-                                <td>How a model should express what it does not know &mdash; uncertainty in knowledge-graph embeddings and in under-represented languages.</td>
-                                <td><strong>WSDM 2025</strong> (<em>BAKER</em>, with Thomson Reuters Labs); COLING 2025; LREC 2026; CIKM 2026 (<em>PROCS</em>)<a class="cit" href="#s4-7">7</a>. Led our team into the UNDP AI Trust &amp; Safety cohort, selected by global competition<a class="cit" href="#s4-8">8</a>. Winner, Doctoral College Director's Award 2026<a class="cit" href="#s4-9">9</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Inamullah Khan<span class="role">Supervisor</span></th>
-                                <td>Oculomics &mdash; whether the retina can be read as a window onto systemic disease.</td>
-                                <td>Survey in <cite>The Journal of Precision Medicine</cite>, <strong>featured in Forbes</strong><a class="cit" href="#s4-10">10</a>; MICAD 2025 on retinal&ndash;lipidomic markers for cardiovascular health.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ghadir Alselwi<span class="role">Co-supervisor</span></th>
-                                <td>What a model should remember when the context is longer than its memory.</td>
-                                <td><strong>ACL 2026</strong> main conference, full paper (<em>Long Context Modeling with Ranked Memory-Augmented Retrieval</em>)<a class="cit" href="#s4-11">11</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Abdulrahman Alalawi<span class="role">Co-supervisor</span></th>
-                                <td>Learning usefully when almost nothing is labelled, applied to misinformation.</td>
-                                <td><cite>World Wide Web Journal</cite> 2026 (<em>Cluster-SCP</em>); LLMs for Social Media workshop, WebConf 2025<a class="cit" href="#s4-12">12</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Abdulsalam Obaid Alharbi<span class="role">Co-supervisor</span></th>
-                                <td>Whether large language models actually work across Arabic dialects, particularly on health claims.</td>
-                                <td>ASONAM 2025; NLP for Languages Using Arabic Script workshop, COLING 2025<a class="cit" href="#s4-12">12</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Bador Ali Al Sari &middot; Dalia Nahhas &middot; Ibtisam Khader Alzahrani &middot; Fatima Alshareef &middot; Matthew Javanshir<span class="role">Supervisor / co-supervisor</span></th>
-                                <td>Early-stage: choosing a problem worth three years, and reading until they can argue with the field rather than summarise it.</td>
-                                <td>Nothing published yet, deliberately. Rushing a first paper out to fill a table like this one is a way of teaching someone that the count matters more than the contribution.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="myth-tw">
-                    <table class="myth-table">
-                        <caption>Graduated &middot; PhD and MPhil</caption>
-                        <thead>
-                            <tr><th scope="col">Researcher</th><th scope="col">The question they owned</th><th scope="col">Achievements &amp; where they went</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Ant&oacute;nio Correia<span class="role">Co-supervisor &middot; UTAD / INESC TEC, Portugal</span></th>
-                                <td>Crowd&ndash;AI hybrids for scientific discovery.</td>
-                                <td><strong>First Portuguese researcher awarded a Microsoft Research PhD Fellowship</strong> (2021)<a class="cit" href="#s4-13">13</a>; <cite>IEEE Transactions on Human-Machine Systems</cite>; <cite>Artificial Intelligence Review</cite>; <cite>CSCW</cite>; best-paper nomination at HICSS; FLAD and FCT awards. Researcher at INESC TEC.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hamad Zogan<span class="role">Co-supervisor &middot; UTS, Australia</span></th>
-                                <td>Detecting depression from social media without treating people as datapoints.</td>
-                                <td><strong>SIGIR 2021</strong> (<em>DepressionNet</em>)<a class="cit" href="#s4-14">14</a>; <cite>IEEE J-BHI</cite>; <cite>World Wide Web Journal</cite>; <cite>IEEE Trans. Computational Social Systems</cite>. Work picked up widely in the press.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Mozhgan Talebpour<span class="role">Supervisor &middot; University of Essex</span></th>
-                                <td>Why topical structure emerges inside attention when nobody designed it to.</td>
-                                <td><strong>ECIR 2023</strong><a class="cit" href="#s4-15">15</a>; <strong>SIGIR 2025</strong> on architecture versus data in model bias. Computational model deployed on a partner company's production systems.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Mahsa Abazari Kia<span class="role">Supervisor &middot; University of Essex, BT-funded</span></th>
-                                <td>Question-driven summarisation across an extractive&ndash;abstractive boundary.</td>
-                                <td><cite>IEEE Access</cite> 2022; <cite>Computational Intelligence</cite> 2024; thesis completed 2023<a class="cit" href="#s4-16">16</a>. Model developed for deployment on BT systems. Now in an academic post.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Reyhaneh Hashempour<span class="role">Co-supervisor &middot; University of Essex</span></th>
-                                <td>Joint intent classification and entity recognition in one transformer.</td>
-                                <td><cite>IEEE Access</cite> 2021 &mdash; <strong>model deployed at BT and used by their development team</strong><a class="cit" href="#s4-17">17</a>. Now a Data Scientist at BT.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Yi Liao<span class="role">Technical advisor &middot; CUHK</span></th>
-                                <td>Mathematical modelling, scientific programming, experiment design.</td>
-                                <td>Research Scientist at Huawei's research lab.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Sam Lai<span class="role">MPhil supervisor &middot; CUHK</span></th>
-                                <td>Crawling and analysing online social networks; probabilistic topic models.</td>
-                                <td>MPhil defended; joint paper at SIGIR; went on to a research assistant post.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="myth-tw">
-                    <table class="myth-table">
-                        <caption>KTP associates, postdocs, research assistants &mdash; and one undergraduate</caption>
-                        <thead>
-                            <tr><th scope="col">Researcher</th><th scope="col">What they built</th><th scope="col">Achievements &amp; where they went</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Yogesh Kumar Meena<span class="role">Postdoctoral KTP Associate &middot; Essex &times; Mersea Homes</span></th>
-                                <td>A smart platform integrating site and office processes across a property developer.</td>
-                                <td>The partnership won <strong>Best KTP with an SME</strong> at Essex's Celebration of Innovation 2022<a class="cit" href="#s4-18">18</a>. Now <strong>Assistant Professor at IIT Gandhinagar</strong>, leading the Human-AI Interaction Lab<a class="cit" href="#s4-19">19</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Faizan Khan<span class="role">KTP Associate &middot; Essex &times; Horus Security Consultancy</span></th>
-                                <td>NLP and image analysis to automate open-source intelligence for safety advice, without invading individual privacy.</td>
-                                <td>Model deployed on the company's production system. Now a Data Scientist at Three UK. I was lead academic on this KTP<a class="cit" href="#s4-20">20</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">KTP Associate<span class="role">Essex &times; BT, 2019&ndash;2022</span></th>
-                                <td>AI methods to optimise customer interactions.</td>
-                                <td>Model deployed in BT's internal production systems; two papers; <strong>a permanent job at BT &mdash; which ended the project ten months early</strong>, the best possible reason to lose a project.<a class="cit" href="#s4-21">21</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Anastasia Tomita<span class="role">Research Assistant &middot; University of Essex</span></th>
-                                <td>Culturally adaptive artwork for children's reading material.</td>
-                                <td>Graduate Trainee at Lloyds Bank. Her project reports are published on <a href="cultural-modelling.html">the cultural AI page</a>.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Yaseen Mohammed Osman<span class="role">Research Assistant &middot; University of Southampton</span></th>
-                                <td>Geo-alignment of illustrated material across cultures.</td>
-                                <td>Now a PhD student at the University of Southampton.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Elena Barry<span class="role">Final-year undergraduate &middot; University of Essex</span></th>
-                                <td>Emoji embeddings trained on emotional content rather than co-occurrence.</td>
-                                <td>Full paper at UKCI 2021; dataset and code released openly<a class="cit" href="#s4-22">22</a>. <strong>BBC Radio 4 got in touch to discuss it.</strong> She was an undergraduate.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p>The fuller version of this record &mdash; every publication, every destination, laid out person by person &mdash; is on <a href="students.html">the mentorship page</a>.</p>
-
-                <h4 data-n="FOUR">KTP: the same philosophy, with a company and a deadline attached</h4>
-
-                <p>Knowledge Transfer Partnerships deserve their own section, because they are the version of this that cannot hide behind a long time horizon. A KTP Associate is a graduate employed to embed a piece of research inside a real business, with real money and a real board expecting something to work. Over 50% of Associates are offered a job by the host company at the end.<a class="cit" href="#s4-23">23</a></p>
-
-                <p>People assume the independence has to go out of the window in that setting. My experience is the opposite: it is the setting where independence pays fastest. My associates were not handed a specification. They were handed a business problem, a supervisor who asked hard questions weekly, and the authority to tell the company that its preferred approach would not survive contact with the data. That is why the models ended up in production rather than in a report &mdash; at Horus, at BT, at Mersea Homes.</p>
-
-                <div class="myth-pull">A researcher who has never been allowed to disagree with a stakeholder will not notice when the stakeholder is wrong.</div>
-
-                <p>One honest note on credit, since this entry is a claim about my own record. On the Mersea Homes partnership I was a co-investigator at a 40% role, not the lead academic; the university's public write-up rightly names the colleagues who led it. On the Horus KTP I was the lead academic and principal investigator &mdash; that one is mine to claim, and the university's announcement records my role.<a class="cit" href="#s4-20">20</a> On another KTP I wrote the entire work package and plan and then handed the PI role to a colleague who had not yet led one, which I would do again. Supervision includes supervising your own appetite for the byline.</p>
-
-                <h4 data-n="FIVE">What it costs</h4>
-
-                <p>Now the part I would want to know if I were choosing a supervisor.</p>
-
-                <p>This style is expensive. Being a hostile reviewer for eleven concurrent projects means actually reading eleven literatures, not skimming eleven drafts. It means weekly meetings that overrun because a student found something interesting, and it means reading a paper five times across five versions when a faster supervisor would rewrite it once and be done by Thursday. There are weeks when the supervision alone is most of the working week.</p>
-
-                <p>I want to be clear that this is a choice and not a virtue. Rewriting a student's paper myself would be quicker, and the paper would probably be accepted at a similar rate. What it would not produce is a person who can do it without me in three years' time. The entire justification for the slower route is that the output of a PhD is not a thesis; it is a researcher. Every time I have been tempted to optimise for the paper instead, the student has been the thing that got optimised away.</p>
-
-                <p>And I should say plainly: I love it. Not in the dutiful sense people write in promotion cases. The best hours of my week are the ones where somebody twenty years younger than me explains why my objection is wrong and turns out to be right. That has happened often enough that I have stopped being surprised by it and started designing for it.</p>
-
-                <h4 data-n="SIX">What I am not claiming</h4>
-
-                <p>Three caveats, because a table of achievements is exactly the kind of artefact that invites over-reading &mdash; and I spent <a href="#myth-003">the whole of MyTh 003</a> arguing that a list of outputs is a question rather than a verdict.</p>
-
-                <ul>
-                    <li><strong>These achievements belong to the people who earned them.</strong> Ant&oacute;nio's Microsoft Fellowship was won by Ant&oacute;nio, on a thesis led by his primary supervisors in Portugal, where my role was co-supervisory. Every name above had other supervisors, collaborators and mentors. A supervisor who claims a student's award has misunderstood what they did.</li>
-                    <li><strong>Not everything worked.</strong> One KTP was withdrawn mid-project when the company hit COVID-era losses; the associate's work was good and the outcome was still a project that stopped. Papers I was confident about have been rejected. Students have hit dead ends that cost them months, some of which I should have spotted sooner. A record like this shows what survived, which is not the same as what happened.</li>
-                    <li><strong>The model has limits.</strong> It scales badly &mdash; there is a headcount past which &ldquo;in the room every week&rdquo; becomes a polite fiction, and I have felt the edge of it. And it suits people who want to argue. A researcher who wants a specification and a quiet life would be better served by someone else, and I try to say so honestly at interview rather than discover it in year two.</li>
-                </ul>
-
-                <h4 data-n="IF YOU ARE READING THIS AS AN APPLICANT">Come and argue with me</h4>
-
-                <p>If you are thinking about a PhD and any of this sounds like the way you want to work &mdash; you bring the question, I bring the standard and the stubbornness &mdash; then write to me. Tell me what you find interesting and why the obvious answer to it is wrong. I do not need a polished proposal; I need evidence that there is something you cannot stop thinking about.</p>
-
-                <p>I read every one of these emails myself, and I would rather have a short message with one real idea in it than three pages of my own publications quoted back at me. Funding routes vary and I will be straight with you about what exists and what does not. But the first step is cheap: <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
-
-                <div class="myth-src">
-                    <h4>Sources</h4>
-                    <ol>
-                        <li id="s4-1">Shoaib Jameel, supervision record, current to August 2026 &mdash; twenty-two researchers and engineers supervised or recruited, of whom eleven are currently in the group. Person-by-person detail, including publications and destinations, is set out on <a href="students.html">the mentorship page</a> and in the <a href="cv.html">full CV</a>. This is a personal record rather than an independently published source; individual achievements are cited separately below wherever a public record exists.</li>
-                        <li id="s4-2">Advance HE, <cite>Postgraduate research experience up to highest level of satisfaction in more than 10 years</cite>, 19 February 2026, reporting the 2025 Postgraduate Research Experience Survey: more than 35,000 postgraduate researchers at 93 institutions (including four in Australia); overall satisfaction 83%; satisfaction with supervision 89%. <a href="https://advance-he.ac.uk/news-and-views/postgraduate-research-experience-highest-level-satisfaction-more-10-years/" target="_blank" rel="noopener">advance-he.ac.uk</a> &middot; <a href="https://advance-he.ac.uk/sites/default/files/2026-02/PRES_2025_sector_report_final.pdf" target="_blank" rel="noopener">sector report (PDF)</a></li>
-                        <li id="s4-3">UK Council for Graduate Education, <cite>The New Deal for Postgraduate Research: A Digest</cite>, 11 October 2023, quoting UKRI's statement that &ldquo;only around 66 per cent of supervisors have mandatory induction training with 29 per cent having mandatory CPD as a supervisor&rdquo;; the underlying figures come from UKCGE's 2021 UK Research Supervision Survey. <a href="https://ukcge.ac.uk/news-and-blog/the-new-deal-for-postgraduate-research-a-digest" target="_blank" rel="noopener">ukcge.ac.uk</a> &middot; <a href="https://www.ukri.org/what-we-do/developing-people-and-skills/new-deal-for-postgraduate-research/" target="_blank" rel="noopener">ukri.org</a></li>
-                        <li id="s4-4">NeurIPS Program Committee Chairs, <cite>Reflections on the 2025 Review Process</cite>, NeurIPS Blog, 30 September 2025: 21,575 valid main-track submissions, 5,290 accepted, an acceptance rate of 24.52%, with 20,518 reviewers, 1,663 area chairs and 199 senior area chairs. <a href="https://blog.neurips.cc/2025/09/30/reflections-on-the-2025-review-process-from-the-program-committee-chairs/" target="_blank" rel="noopener">blog.neurips.cc</a></li>
-                        <li id="s4-5">Lingzhi Shen, Xiaohao Cai, Yunfei Long, Imran Razzak, Guanming Chen and Shoaib Jameel, <cite>CALM: Culturally Self-Aware Language Models</cite>, NeurIPS 2025; arXiv:2601.03483. <a href="https://neurips.cc/virtual/2025/poster/120260" target="_blank" rel="noopener">NeurIPS poster</a> &middot; <a href="https://arxiv.org/abs/2601.03483" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s4-6">Lingzhi Shen et al., <cite>GAMED: Knowledge Adaptive Multi-Experts Decoupling for Multimodal Fake News Detection</cite>, WSDM 2025, full paper; arXiv:2412.12164. <a href="https://arxiv.org/abs/2412.12164" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://www.wsdm-conference.org/2025/accepted-papers/" target="_blank" rel="noopener">WSDM 2025 accepted papers</a></li>
-                        <li id="s4-7">Ubaid Azam's publication record, including <cite>BAKER: Bayesian Kernel Uncertainty in Domain-Specific Document Modelling</cite> (WSDM 2025, with Thomson Reuters Labs), <cite>Uncertainty Modelling in Under-Represented Languages with Bayesian Deep Gaussian Processes</cite> (COLING 2025) and <cite>PROCS: Uncertainty-Aware Knowledge Graph Embeddings via Conceptual Spaces</cite> (CIKM 2026). <a href="https://scholar.google.com/citations?user=N8YWidwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> &middot; <a href="all-publications.html">full publication list</a></li>
-                        <li id="s4-8">United Nations Development Programme, <cite>AI Trust and Safety Re-imagination Programme</cite>. UNDP reports hearing from practitioners in 60 countries and selecting 17 initiatives for the inaugural cohort. Our team, led by Ubaid Azam with me, was selected through that global call. <a href="https://www.undp.org/digital/ai-trust-and-safety" target="_blank" rel="noopener">undp.org</a></li>
-                        <li id="s4-9">University of Southampton Doctoral College Director's Awards. Ubaid Azam won the 2026 award for Public Engagement &amp; Outreach and Knowledge Exchange &amp; Enterprise. The university's awards page did not list the 2026 winners at the time of writing, so this one rests on my own record rather than a published citation. <a href="https://www.southampton.ac.uk/doctoral-college/research-community/directors-awards.page" target="_blank" rel="noopener">southampton.ac.uk</a></li>
-                        <li id="s4-10">Inamullah, Imran Razzak and Shoaib Jameel, <cite>The Eye as a Window to Systemic Health: A Survey of Retinal Imaging from Classical Techniques to Oculomics</cite>, <cite>The Journal of Precision Medicine: Health and Disease</cite>, 2025; arXiv:2505.04006. Featured in William A. Haseltine's Forbes coverage of AI-assisted retinal screening, 5 November 2025. <a href="https://arxiv.org/abs/2505.04006" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://www.forbes.com/sites/williamhaseltine/2025/11/05/how-artificial-intelligence-makes-eye-exams-a-gateway-to-whole-body-wellness/" target="_blank" rel="noopener">forbes.com</a></li>
-                        <li id="s4-11">Ghadir Alselwi, Hao Xue, Shoaib Jameel, Basem Suleiman, Flora D. Salim and Imran Razzak, <cite>Long Context Modeling with Ranked Memory-Augmented Retrieval</cite>, ACL 2026 main conference, full paper; arXiv:2503.14800. <a href="https://arxiv.org/abs/2503.14800" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://2026.aclweb.org/program/accepted_papers/" target="_blank" rel="noopener">ACL 2026 accepted papers</a></li>
-                        <li id="s4-12">Publications by Abdulrahman Alalawi and Abdulsalam Obaid Alharbi, including <cite>Cluster-SCP</cite> (<cite>World Wide Web Journal</cite>, 2026), <cite>Few Labels with Active Learning</cite> (LLMs for Social Media workshop, WebConf 2025), <cite>Enhancing Large Language Models for Arabic Dialects</cite> (ASONAM 2025) and <cite>Evaluating Large Language Models on Health-Related Claims Across Arabic Dialects</cite> (NLP for Languages Using Arabic Script workshop, COLING 2025). <a href="all-publications.html">full publication list</a></li>
-                        <li id="s4-13">INESC TEC, <cite>INESC TEC researcher is the first Portuguese selected for the Microsoft Research PhD Fellowship programme</cite>, November 2021. Ant&oacute;nio Correia's thesis, &ldquo;Crowd-computing hybrids in scientific discovery&rdquo;, was supervised by Benjamim Fonseca and co-supervised by Hugo Paredes and me. <a href="https://bip.inesctec.pt/en/noticias/inesc-tec-researcher-is-the-first-portuguese-selected-for-the-microsoft-research-phd-fellowship-programme/" target="_blank" rel="noopener">inesctec.pt</a> &middot; <a href="https://noticias.up.pt/en/2021/11/10/inesc-tec-researcher-among-the-exceptional-talents-of-computing/" target="_blank" rel="noopener">University of Porto</a></li>
-                        <li id="s4-14">Hamad Zogan, Imran Razzak, Shoaib Jameel and Guandong Xu, <cite>DepressionNet: Learning Multi-modalities with User Post Summarization for Depression Detection on Social Media</cite>, SIGIR 2021, full paper; doi:10.1145/3404835.3462938. <a href="https://dl.acm.org/doi/abs/10.1145/3404835.3462938" target="_blank" rel="noopener">dl.acm.org</a></li>
-                        <li id="s4-15">Mozhgan Talebpour, Alba Garcia Seco de Herrera and Shoaib Jameel, <cite>Topics in Contextualised Attention Embeddings</cite>, ECIR 2023, Stavanger; arXiv:2301.04339. A later paper, <cite>Bias in Language Models: Interplay of Architecture and Data?</cite>, appeared at SIGIR 2025. <a href="https://arxiv.org/abs/2301.04339" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://link.springer.com/chapter/10.1007/978-3-031-28238-6_15" target="_blank" rel="noopener">Springer</a></li>
-                        <li id="s4-16">Mahsa Abazari Kia, <cite>Question-driven Text Summarization with Extractive-Abstractive Frameworks</cite>, PhD thesis, University of Essex, 2023. <a href="https://repository.essex.ac.uk/35438/" target="_blank" rel="noopener">Essex Research Repository</a></li>
-                        <li id="s4-17">Alberto Jose Benayas, Reyhaneh Hashempour, Damian Rumble, Shoaib Jameel and Renato Amorim, <cite>Unified Transformer Multi-task Learning for Intent Classification with Entity Recognition</cite>, <cite>IEEE Access</cite> 9, 2021, pp. 147306&ndash;147314. The model is deployed at BT and used by their development team. <a href="https://ieeexplore.ieee.org/document/9599152/" target="_blank" rel="noopener">IEEE Xplore</a></li>
-                        <li id="s4-18">University of Essex, <cite>Mersea Homes</cite> KTP case study, and <cite>Celebration of Innovation 2022 &mdash; Mersea Homes, winner of Best KTP partnership (SME)</cite>. The partnership is reported to have saved the company approximately &pound;80,330 a year. I was a co-investigator on this KTP at a 40% role; the university's public write-up names the lead academics. <a href="https://www.essex.ac.uk/business/expertise/case-studies/mersea-homes" target="_blank" rel="noopener">essex.ac.uk</a> &middot; <a href="https://www.youtube.com/watch?v=XOfk3khrDE4" target="_blank" rel="noopener">award video</a></li>
-                        <li id="s4-19">Indian Institute of Technology Gandhinagar, faculty profile for Yogesh Kumar Meena, Assistant Professor in Computer Science and Engineering, leading the Human-AI Interaction (HAIx) Lab since February 2023; previously AI Software Development Engineer and Senior AI Software Development Engineer at the University of Essex, 2021&ndash;2023, on the Innovate UK KTP with Mersea Homes Ltd. <a href="https://iitgn.ac.in/faculty/cse/yogesh" target="_blank" rel="noopener">iitgn.ac.in</a> &middot; <a href="https://labs.iitgn.ac.in/haix/team/" target="_blank" rel="noopener">HAIx Lab</a></li>
-                        <li id="s4-20">University of Essex, <cite>Horus Security Consultancy partners with University of Essex</cite>, 30 November 2021, recording my role as academic supervisor on an Innovate UK KTP described there as worth over &pound;200,000. My own record puts the full award at &pound;350k over three years, with me as lead academic and principal investigator; the discrepancy is between the announcement's figure and the final award value, and I have quoted both rather than picking the larger. <a href="https://www.essex.ac.uk/news/2021/11/30/horus-security-consultancy-partners-with-university-of-essex" target="_blank" rel="noopener">essex.ac.uk</a> &middot; <a href="https://securityjournaluk.com/horus-security-university-of-essex/" target="_blank" rel="noopener">Security Journal UK</a></li>
-                        <li id="s4-21">Innovate UK Knowledge Transfer Partnership with BT, 2019&ndash;2022, &pound;123k, on AI methods to optimise customer interactions; my role was support academic and co-investigator at a 40% share. Outcomes as recorded in my own research record: a model deployed in BT's internal production systems, two research papers, and the associate taking a permanent position at BT, which closed the project ten months early. See also source 17, whose model is deployed at BT.</li>
-                        <li id="s4-22">Elena Barry, Shoaib Jameel and Haider Raza, <cite>Emojional: Emoji Embeddings</cite>, 20th UK Workshop on Computational Intelligence (UKCI 2021), full paper; published by Springer. Dataset and code released openly. <a href="https://link.springer.com/chapter/10.1007/978-3-030-87094-2_27" target="_blank" rel="noopener">Springer</a> &middot; <a href="https://github.com/elenabarry/emojional" target="_blank" rel="noopener">github.com</a></li>
-                        <li id="s4-23">Innovate UK, <cite>Knowledge Transfer Partnerships &mdash; Graduates</cite>: &ldquo;Over 50% of Associates are offered employment by their host business at the end of the project.&rdquo; <a href="https://iuk-ktp.org.uk/discover/graduates/" target="_blank" rel="noopener">iuk-ktp.org.uk</a></li>
-                    </ol>
-                    <p class="myth-foot">Sources checked on 10 August 2026. Where a claim rests only on my own supervision record rather than a published source &mdash; the headline counts, the BT KTP outcomes, and Ubaid Azam's 2026 Doctoral College Director's Award &mdash; I have said so at the point of citation rather than letting it pass as independently verified. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
-                    <p class="myth-foot">On names: everyone listed here is named because their work is already in the public record under their own name. The BT KTP associate is not named because I could not confirm they would want to be. If you are in one of these tables and would like your entry changed, corrected or removed, email me and it will be done the same day, no explanation required.</p>
-                    <p class="myth-foot">Declared interest: this entry is a description of my own supervision, written by me, using a record I compiled. It is not an evaluation. The only people qualified to assess whether any of this is true of me are the twenty-two people in the tables above, and I have not asked them to referee it.</p>
-                </div>
-            </div>
-        </details>
-
-        <!-- ============================ MyTh 003 ============================ -->
-        <details class="myth reveal" id="myth-003">
-            <summary>
-                <span class="myth-no"><small>MYTH</small>003</span>
-                <span class="myth-head">
-                    <h3>One Every Five Days</h3>
-                    <p class="myth-dek">On good academic practice: how to not plagiarise, how to decide who goes on a paper, why reviewer collusion is the hardest of these to catch, and what a very large publication count does, and does not, tell you about the person holding it. Written deliberately about nobody.</p>
-                    <span class="myth-meta">
-                        <span class="myth-date">9 August 2026</span>
+        <a class="myth myth-card reveal" href="myth-003.html" id="myth-003">
+            <span class="myth-no"><small>MYTH</small>003</span>
+            <span class="myth-head">
+                <h3>One Every Five Days</h3>
+                <p class="myth-dek">On good academic practice: how to not plagiarise, how to decide who goes on a paper, why reviewer collusion is the hardest of these to catch, and what a very large publication count does, and does not, tell you about the person holding it. Written deliberately about nobody.</p>
+                <span class="myth-meta">
+                    <span class="myth-date">9 August 2026</span>
                         <span class="tag">Research integrity</span>
                         <span class="tag">Higher education</span>
                         <span class="tag">Peer review</span>
                         <span class="tag">Publishing</span>
                         <span class="tag">~15 min read</span>
-                    </span>
                 </span>
-                <span class="myth-chev" aria-hidden="true">+</span>
-            </summary>
+            </span>
+            <span class="myth-chev" aria-hidden="true">&rarr;</span>
+        </a>
 
-            <div class="myth-body">
-                <p>This is not about anyone. I have a rule, which is that I do not comment on live integrity cases involving named individuals, and the reason is in section five. But the questions circling those cases are worth answering in the abstract, because they are questions early-career researchers ask me privately and get mush in return: <em>how do I make sure I am not plagiarising? Who should be on this paper? What should happen if a colleague wants a favourable review? Is that person&rsquo;s publication list even possible?</em></p>
-
-                <p>So: the rules, the evidence, and the part where I refuse to draw the conclusion you may want me to draw.</p>
-
-                <div class="myth-figs">
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="72">0</span></b>
-                        <span>Papers a year &mdash; one every five days &mdash; the threshold that started this argument<a class="cit" href="#s3-1">1</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="30.8" data-dec="1" data-post="%">0</span></b>
-                        <span>Of 46,087 retractions across ten publishers name plagiarism<a class="cit" href="#s3-7">7</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="51" data-post="%">0</span></b>
-                        <span>Honorary authorship, when declared contributions are checked against the criteria<a class="cit" href="#s3-5">5</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="31" data-post="%">0</span></b>
-                        <span>Best overlap any algorithm achieved when trying to detect a ten-person collusion ring<a class="cit" href="#s3-16">16</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="5">0</span></b>
-                        <span>Outputs per person REF 2029 expects a submission not to exceed<a class="cit" href="#s3-13">13</a></span>
-                    </div>
-                </div>
-
-                <h4 data-n="ONE">What a big number is, and is not, evidence of</h4>
-
-                <p>The modern version of this argument starts in 2018, when Ioannidis, Klavans and Boyack looked for authors who had published more than <strong>72 papers in a single calendar year</strong> &mdash; one every five days &mdash; at any point between 2000 and 2016, and found thousands of them.<a class="cit" href="#s3-1">1</a> The threshold was chosen because it is the point at which a straightforward reading of authorship stops being physically credible.</p>
-
-                <p>Their 2024 follow-up lowered the bar to more than 60 articles a year and produced the number that matters for this discussion: <strong>3,191</strong> such authors outside physics, against <strong>12,624</strong> inside it.<a class="cit" href="#s3-2">2</a> That ratio is the whole caveat. Particle physics runs on consortium papers with author lists in the thousands, where every member of a collaboration is credited by prior agreement. Nobody in that field is pretending to have written 200 papers. The convention is public, understood, and priced in by everyone reading it.</p>
-
-                <p>Outside physics there is no such convention, and this is where the honest analysis gets harder rather than easier. A 2026 study of sports medicine and musculoskeletal health went through 16,983 articles and 68,209 unique authors in the top-ranked journals of the field between 2020 and 2024. It found <strong>222 extremely productive authors &mdash; 0.45% of everyone</strong>.<a class="cit" href="#s3-4">4</a> And then it found something that complicates the easy story: those authors had a mean h-index of 79.9 and mean career citations of 35,654. Their work is not junk. The authors conclude, reasonably, that high productivity does not by itself equate to low quality.</p>
-
-                <p>The detail I cannot stop thinking about is the position on the byline. In that sample the extremely productive authors occupied middle-author positions a median <strong>60%</strong> of the time, and were first author on between 1.9% and 2.1% of papers.<a class="cit" href="#s3-4">4</a> That is a portrait of a particular kind of career &mdash; the senior figure whose group, network and methods are genuinely everywhere &mdash; and it is entirely compatible with both an exemplary research leader and a person collecting names on work they have not read. The bibliometrics cannot distinguish between those two people. Neither can you, from the outside.</p>
-
-                <div class="myth-pull">A publication count is a question, not a verdict. It tells you where to look. It does not tell you what you will find.</div>
-
-                <p>A systematic review published in <cite>Scientometrics</cite> in 2026 makes this point more carefully than I can. Having surveyed 18 articles addressing hyperprolific authorship and 79 further contributions on related behaviours, it reports that there is <strong>no consensus at all</strong> on the threshold or the method for identifying such authors, and concludes that hyperprolific authorship should not be reduced to a single category of misconduct but treated as a multifaceted, context-dependent phenomenon.<a class="cit" href="#s3-3">3</a></p>
-
-                <p>I want to be blunt about what that means, because it cuts against the direction of travel in every comment thread on this subject. If the field that studies this professionally cannot agree where the line is, then a number on its own is not a finding. It is a prompt to ask a specific, answerable question: <em>what did this person actually do on this paper?</em></p>
-
-                <h4 data-n="TWO">Who goes on a paper, and how to decide it</h4>
-
-                <p>That question has a published answer, and it has had one for years. The ICMJE criteria require all four of the following: substantial contribution to conception, design, acquisition, analysis or interpretation; drafting or critically revising for important intellectual content; final approval of the version to be published; and agreement to be accountable for all aspects of the work.<a class="cit" href="#s3-6">6</a> The same document says explicitly that acquisition of funding, general supervision of a research group, general administrative support, and writing, technical or language editing <strong>do not on their own justify authorship</strong>. People who contributed but do not meet all four should be acknowledged, with their role named.<a class="cit" href="#s3-6">6</a></p>
-
-                <p>Almost everyone in the life and health sciences knows this. Look at what happens anyway. A meta-analysis of nineteen surveys found that when researchers were simply asked whether any co-author was honorary, <strong>26%</strong> said yes; when the ICMJE criteria were put in front of them first, <strong>18%</strong>; and when researchers declared what each co-author had actually done and those declarations were checked against the criteria, <strong>51%</strong>.<a class="cit" href="#s3-5">5</a> Ten per cent reported being approached to add an honorary author; 16% admitted having added one.<a class="cit" href="#s3-5">5</a></p>
-
-                <p>The gap between 26% and 51% is the interesting one. It is the distance between what people think they are doing and what they are doing. Most gift authorship is not a conspiracy. It is a lab norm nobody has written down, a head of department who has always gone on everything, a collaborator who sent a reagent, a supervisor added out of gratitude or fear. The practice survives precisely because everyone involved experiences it as courtesy.</p>
-
-                <p>So the practical advice, which is duller than the debate:</p>
-
-                <ul>
-                    <li><strong>Have the authorship conversation at the start, in writing.</strong> Not at submission. At the point the project is designed, when nobody yet knows whose contribution will turn out to matter, which is exactly when people are fairest.</li>
-                    <li><strong>Use a contributorship statement and mean it.</strong> Write down who did what, in named roles, and circulate it before submission. The 51% figure exists because contributions were written down and then compared to a standard. Do that yourself and the problem largely self-diagnoses.</li>
-                    <li><strong>Decline authorship you have not earned, out loud.</strong> This is the only lever senior people actually control, and it is worth more than any policy. A professor who says &ldquo;take me off, I only funded it, put me in the acknowledgements&rdquo; changes a lab&rsquo;s norms in one sentence.</li>
-                    <li><strong>If you cannot describe your intellectual contribution to a paper in one sentence, you are not an author of it.</strong> That is not an ICMJE rule. It is mine, and it has never once been difficult to apply.</li>
-                </ul>
-
-                <h4 data-n="THREE">Plagiarism: the boring rules that actually work</h4>
-
-                <p>Plagiarism is presenting someone else&rsquo;s words, ideas, data or images as your own. That definition is easy. What is hard is that almost nobody who commits it set out to.</p>
-
-                <p>The scale is not trivial. A February 2026 bibliometric analysis of <strong>46,087 retractions</strong> across ten major publishers, drawn from the Retraction Watch database covering 1997&ndash;2026, found plagiarism named in <strong>30.8%</strong> of them &mdash; 14,187 records &mdash; making it the third most common reason after concerns about results or conclusions and third-party involvement.<a class="cit" href="#s3-7">7</a> The same study found retraction lags ranging from a median of 41 days at one publisher to 1,568 days at another.<a class="cit" href="#s3-7">7</a> Four years is a long time for a paper to be cited before the correction arrives.</p>
-
-                <p>Here is what I tell my own students, and it is all mechanical rather than moral:</p>
-
-                <ul>
-                    <li><strong>Never paste source text into your draft file.</strong> Not even temporarily, not even with a note saying &ldquo;fix later&rdquo;. Every serious plagiarism case I have seen up close began as a placeholder that survived to submission. Read the source, close it, then write the sentence from your notes.</li>
-                    <li><strong>Cite at the point of the idea, not at the end of the paragraph.</strong> A citation parked after four sentences leaves three of them looking like yours.</li>
-                    <li><strong>Rewriting is not laundering.</strong> Substituting synonyms into someone else&rsquo;s sentence structure is still their sentence. If the idea is theirs, the citation is theirs, no matter whose words carry it.</li>
-                    <li><strong>Methods sections are the usual trap.</strong> They are formulaic, they get reused, and reviewers rarely read them closely. That is exactly why they show up in overlap reports.</li>
-                    <li><strong>Figures, images and code count.</strong> A redrawn figure is still a derived figure. Say where it came from.</li>
-                    <li><strong>Your own text is not a free resource either.</strong> Text recycling has legitimate uses, particularly in methods, and COPE publishes guidance for editors on handling it,<a class="cit" href="#s3-8">8</a> but it needs disclosure. Note that the guidance reaching authors is genuinely thin: a survey of 209 epidemiology, public health and general medicine journals found only <strong>12.9%</strong> had an explicit policy on salami publication and 35.9% on duplicate publication.<a class="cit" href="#s3-9">9</a> Where journals have not decided, the responsibility falls to you.</li>
-                    <li><strong>If your name is on it, you are accountable for all of it.</strong> That is the fourth ICMJE criterion,<a class="cit" href="#s3-6">6</a> and it is the one that ends the &ldquo;my student wrote that section&rdquo; defence. Supervisors do not get to sign for the credit and not the liability.</li>
-                </ul>
-
-                <p>Then there is the new problem. An analysis published in March 2026 examined 7,251 articles in one major medical journal between January 2022 and March 2025 and classified <strong>2.7%</strong> as containing significant AI-generated text, with the detected rate climbing from 0.0% to <strong>11.3%</strong> across the period. Just <strong>0.2%</strong> of articles disclosed using a large language model at all.<a class="cit" href="#s3-14">14</a> Detection tools are imperfect and the authors treat their estimates as detection rates rather than ground truth, which is the right posture. But the disclosure gap is the finding, and it does not depend on the detector being precise.</p>
-
-                <div class="myth-pull">A tool that cannot tell you where its sentences came from cannot relieve you of the duty to say where yours did.</div>
-
-                <p>I work on these models and I use them. My position is not that you should not. It is that a language model produces text whose provenance is unknown to it and therefore unknown to you, and that plagiarism is defined by what appears under your name rather than by your intent when it got there. Use the thing to argue with, to restructure, to catch your own bad sentences. Do not use it to generate prose you have not verified against sources you have actually read, and declare it where the journal asks.</p>
-
-                <h4 data-n="FOUR">Collusion: the one we cannot currently catch</h4>
-
-                <p>Fabrication gets the headlines. Plagiarism gets the software. Collusion gets almost nothing &mdash; no detection tool worth the name, very little published prevalence data, and until recently not much policy either.</p>
-
-                <p>It is also the failure mode least likely to announce itself as one. Fabricating data requires a decision to fabricate. Agreeing to look kindly on a colleague&rsquo;s submission can be arranged in a corridor, in the language of collegiality, by people who would be genuinely offended at the word corruption.</p>
-
-                <div class="myth-pull">It does not arrive looking like fraud. It arrives looking like a colleague being friendly.</div>
-
-                <p>The mechanism deserves explaining, because it is specific and it is boring. Most computer science venues let reviewers <em>bid</em> on which submissions they would like to handle, and an automated matcher uses those bids to allocate papers. A group that agrees in advance to bid for each other&rsquo;s submissions can steer the matcher into assigning them to one another, at which point the reviews write themselves. Michael Littman set this out in <cite>Communications of the ACM</cite> in 2021, describing collusion rings as sets of authors who review and support each other while breaking anonymity and concealing conflicts of interest.<a class="cit" href="#s3-15">15</a> It is a coordination problem, not a technical exploit. Nothing is hacked. The system is simply told a set of lies about interest.</p>
-
-                <p>The genuinely bad news is that we cannot reliably catch it. Jecmen, Shah, Fang and Akoglu tested whether collusion rings can be detected from bidding patterns, using two realistic conference bidding datasets and the fraud-detection algorithms that work in other domains. Undetected colluders achieved assignment to <strong>up to 30%</strong> of the papers written by other members of their ring. And when ten colluders bid on all of each other&rsquo;s papers, <strong>no detection algorithm produced a candidate group with more than 31% overlap</strong> with the actual colluders.<a class="cit" href="#s3-16">16</a> Their conclusion is that collusion cannot be effectively detected from bidding using existing tools.</p>
-
-                <p>Read that against the volume question in section one and it should be sobering. We have decent instruments for detecting copied text and manipulated images. We have almost none for detecting an arrangement between four people who trust each other.</p>
-
-                <p>Venues know it. The NeurIPS 2026 handbook states that the conference &ldquo;does not tolerate any collusion whereby authors secretly cooperate with reviewers, ACs or SACs to obtain favorable reviews&rdquo;, and lists the consequences: immediate removal from the reviewing system, rejection of all papers under consideration, sharing of identities with sister conferences, informing the colluding parties&rsquo; home institutions, and sanctions on future participation.<a class="cit" href="#s3-17">17</a> The bidding instructions carry their own warning &mdash; &ldquo;Your bids are an important input to the paper matching process. Please be cognizant of our anti-collusion policies.&rdquo;<a class="cit" href="#s3-17">17</a> A conference does not write that sentence into its handbook as a hypothetical. There are also structural repairs available: assignment algorithms can be constrained to exclude review cycles outright, which is computationally hard in general but tractable enough in practice for a working heuristic.<a class="cit" href="#s3-19">19</a></p>
-
-                <p>Collusion also has a milder, far more widespread cousin, and this one has hard evidence behind it. Adrian Barnett analysed more than 37,000 reviews of over 12,000 articles across four journals that run fully open peer review. Roughly <strong>6% of reviews requested a citation to the reviewer&rsquo;s own work</strong>. And where authors complied with the request, the article&rsquo;s probability of approval was <strong>92%, against 76% where they did not</strong> &mdash; an odds ratio of about 3.5.<a class="cit" href="#s3-18">18</a> The picture is not simple: reviewers who asked for self-citations were, overall, markedly <em>less</em> likely to approve, which suggests many such requests accompany genuine criticism rather than a shakedown.<a class="cit" href="#s3-18">18</a> But the compliance effect is the finding that should worry us. Adding the citations helps. Authors work that out quickly.</p>
-
-                <p>So, plainly, what I think good practice requires:</p>
-
-                <ul>
-                    <li><strong>Bid on what you are qualified to judge, and nothing else.</strong> A bid is a declaration of expertise, not a favour you are in a position to grant.</li>
-                    <li><strong>Declining is the floor, not the ceiling.</strong> Refusing protects your own conduct and leaves the arrangement entirely intact for whoever gets asked next. Reporting &mdash; to the programme chairs, to an editor, to your institution &mdash; is the only step that removes it. It costs the reporter time, awkwardness and sometimes a working relationship; it costs the person who asked almost nothing to try again elsewhere. That asymmetry is a large part of why these arrangements persist, and no detection algorithm repairs it.</li>
-                    <li><strong>Never review a paper you would struggle to describe as an arm&rsquo;s-length judgement.</strong> Conflicts of interest are declared, not weighed up privately and waved through.</li>
-                    <li><strong>Ask for citations only where you would defend the request in the open.</strong> If you would not put your name to it, it is not a scientific objection.</li>
-                    <li><strong>Confidentiality is part of it.</strong> The same NeurIPS handbook requires that nothing about a submission be shared or discussed with anyone outside the assigned reviewers.<a class="cit" href="#s3-17">17</a> Collusion rings run on side channels, and every casual conversation about a paper you are reviewing widens one.</li>
-                </ul>
-
-                <p>I wrote in <a href="#myth-001">MyTh 001</a> about reviewers outsourcing their judgement to language models, and argued that it was a workload symptom before it was an ethics failure. Collusion is not that. Nobody drifts into a collusion ring because their department shed a fifth of its staff. It is deliberate, it is coordinated, and it is the one item on this list for which I can find no structural excuse at all. It is also the one that most of the advice in this entry cannot reach. Everything else here is a habit you can build cheaply in advance &mdash; a citation style, an authorship conversation, a rule about never pasting source text. Collusion is not defeated by a habit. It is defeated by somebody being willing to tell a chair what they were asked to do, which is a harder thing to ask of people and a much rarer thing to observe.</p>
-
-                <h4 data-n="FIVE">Why I will not tell you what I think about a live case</h4>
-
-                <p>Now the part that this entry exists to say.</p>
-
-                <p>An allegation is not a finding. The machinery for turning one into the other is unglamorous and it matters. In the United States, a substantially revised version of the Public Health Service regulation on research misconduct &mdash; 42 CFR Part 93 &mdash; applied to all institutions from <strong>1 January 2026</strong>, the most substantial revision since the regulation was adopted in 2005, with updated assurances due by 30 April 2026.<a class="cit" href="#s3-11">11</a> In the UK, the refreshed Concordat to Support Research Integrity was published on 4 April 2025, and organisations were expected to align with it by <strong>April 2026</strong>.<a class="cit" href="#s3-12">12</a> Between them these documents require what a headline cannot supply: a defined standard of proof, a definition of what counts as intentional, knowing or reckless conduct, confidential routes to raise concerns, trained investigators, fixed timelines, and a right of appeal.<a class="cit" href="#s3-11">11</a><a class="cit" href="#s3-12">12</a></p>
-
-                <p>They also encode something that gets lost in public argument: honest error and honest differences of interpretation are not misconduct. A wrong paper is not a fraudulent paper. A messy paper is not a fraudulent paper. A paper with an unattributed sentence in the methods is a serious problem that is nonetheless a different problem from fabricated data, and treating the two as one category serves nobody except people who would like the whole conversation abandoned as hysteria.</p>
-
-                <p>I have views about the cases in the news. I am not going to publish them, because I have not seen the evidence, and neither has anybody forming a confident opinion from a news article. That is not fence-sitting. It is the same standard I would want applied to me, and I would rather be dull about it than be one more person adding certainty to a matter that has not yet been established. If an institution reaches a finding, that finding will be public and arguable. Until then, the honest position is that I do not know.</p>
-
-                <h4 data-n="SIX">The count was never supposed to be the point</h4>
-
-                <p>The premise underneath all of this is that something changed &mdash; that people once spent months on one problem and published a paper or two a year, and now the numbers are absurd. I have a great deal of sympathy for that account and I want to be careful with it, because nostalgia is not evidence and I do not have a clean historical median to hand.</p>
-
-                <p>What I do have is the direction. Articles indexed in Scopus and Web of Science grew roughly <strong>47% between 2016 and 2022</strong>, far outpacing any growth in the number of practising scientists &mdash; which means the writing, reviewing and editing load per researcher rose sharply over six years.<a class="cit" href="#s3-10">10</a> And extreme publishing behaviour is not a static curiosity: Ioannidis and colleagues recorded 1,226 authors outside physics exceeding 60 articles in 2022 alone.<a class="cit" href="#s3-2">2</a> Something is being produced faster than it is being read.</p>
-
-                <p>The consoling thing is that formal research assessment has largely stopped rewarding personal volume, and almost nobody has noticed. REF 2029 &mdash; whose contribution to knowledge and understanding element carries 55% of the weight &mdash; requires submissions of 2.5 outputs per full-time-equivalent staff member at unit level, with <strong>no minimum output requirement for any individual</strong> and an explicit expectation that no more than five outputs be associated with a single person.<a class="cit" href="#s3-13">13</a> Read that as a system design and it says the opposite of what people believe it says: your five best pieces of work are all the exercise will look at. The hundredth paper is worth precisely nothing to it.</p>
-
-                <p>Three things I hold, then.</p>
-
-                <ul>
-                    <li><strong>Integrity is a set of habits, not a personality trait.</strong> Nobody avoids plagiarism by being a good person. They avoid it by never pasting source text into a draft, by writing the authorship agreement before the results exist, by keeping records they would be content to hand over. Build the habits when the stakes are low, because you will not invent them when the stakes are high.</li>
-                    <li><strong>The incentive is the villain, and it is local.</strong> The national assessment framework already caps how much any one person&rsquo;s volume can count. Hiring panels, promotion committees and probation reviews mostly have not caught up. That is fixable by the people reading this, in the meetings they sit in, this year.</li>
-                    <li><strong>Suspicion is not analysis.</strong> The right response to an improbable publication list is a specific question about a specific paper, put through a process with rules. It is not a thread. I say this as someone who finds some of these lists genuinely hard to explain &mdash; and who has been wrong before about what he assumed he was looking at.</li>
-                </ul>
-
-                <p>I still think the best work I have done took months of being stuck, and produced very little that a counter could register. That is not a moral claim about other people&rsquo;s output. It is just what the work felt like when it was going well, and I would not know how to want a career that never felt like that.</p>
-
-                <div class="myth-src">
-                    <h4>Sources</h4>
-                    <ol>
-                        <li id="s3-1">John P. A. Ioannidis, Richard Klavans and Kevin W. Boyack, <cite>Thousands of scientists publish a paper every five days</cite>, <cite>Nature</cite> 561(7722), 12 September 2018, pp. 167&ndash;169. Identifies authors exceeding 72 full papers in a single calendar year &mdash; one every five days &mdash; between 2000 and 2016. <a href="https://www.nature.com/articles/d41586-018-06185-8" target="_blank" rel="noopener">nature.com</a> &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/30209384/" target="_blank" rel="noopener">pubmed</a></li>
-                        <li id="s3-2">John P. A. Ioannidis, Thomas A. Collins and Jeroen Baas, <cite>Evolving patterns of extreme publishing behavior across science</cite>, <cite>Scientometrics</cite> 129(9), September 2024, pp. 5783&ndash;5796; doi:10.1007/s11192-024-05117-w. Defines extreme publishing as more than 60 full articles indexed in Scopus in one calendar year; 3,191 such authors outside physics against 12,624 within it, and 1,226 outside physics in 2022. <a href="https://doi.org/10.1007/s11192-024-05117-w" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-3">Jussara M. Almeida, Alessia Antelmi, Marcos Andr&eacute; Gon&ccedil;alves and Maria Angela Pellegrino, <cite>The complex ecosystem of hyperprolific authors</cite>, <cite>Scientometrics</cite>, 2026; doi:10.1007/s11192-026-05563-8. Systematic review identifying 18 articles on hyperprolific authorship and 79 further contributions; finds no consensus on thresholds or methods and argues against treating the phenomenon as a single category of misconduct. <a href="https://doi.org/10.1007/s11192-026-05563-8" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-4">Serena Uppal, Haneef Khan, Michelle Helen Cruickshank and Michelle Ghert, <cite>Prevalence of hyperprolific authors in sports medicine and musculoskeletal health and implications on research attention</cite>, <cite>PLOS ONE</cite>, 2026; doi:10.1371/journal.pone.0343827. 16,983 articles and 68,209 unique authors across the top 20 CiteScore-ranked journals in the field, 2020&ndash;2024; 222 extremely productive authors (0.45%), mean h-index 79.9, mean career citations 35,654, median 60% middle-author position, 1.9&ndash;2.1% first authorship. <a href="https://doi.org/10.1371/journal.pone.0343827" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-5">Reint A. Meursinge Reynders, Gerben ter Riet, Nicola Di Girolamo, Davide Cavagnetto and Mario Mali&#x0107;ki, <cite>Honorary authorship is highly prevalent in health sciences: systematic review and meta-analysis of surveys</cite>, <cite>Scientific Reports</cite> 14, article 4385, 2024; doi:10.1038/s41598-024-54909-w. Pooled prevalence 26% (6 surveys, 2,758 respondents) without reference to criteria; 18% (11 surveys, 4,272) with ICMJE criteria disclosed; 51% (15 surveys, 5,111) when declared contributions were checked against ICMJE criteria. <a href="https://doi.org/10.1038/s41598-024-54909-w" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-6">International Committee of Medical Journal Editors, <cite>Defining the Role of Authors and Contributors</cite>, ICMJE Recommendations. Source of the four authorship criteria and of the statement that funding acquisition, general supervision, administrative support and writing or language editing do not alone justify authorship. <a href="https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html" target="_blank" rel="noopener">icmje.org</a></li>
-                        <li id="s3-7">Jonas Oppenl&auml;nder, <cite>How Ten Publishers Retract Research</cite>, arXiv:2602.19197, 22 February 2026. Bibliometric analysis of 46,087 retractions across ten major publishers using the Retraction Watch database, 1997&ndash;2026. Plagiarism named in 30.8% (14,187) of records; normalised retraction rates ranging from 3.97 to 320.02 per 10,000 publications; median retraction lag from 41 days to 1,568 days by publisher. <a href="https://arxiv.org/abs/2602.19197" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s3-8">Committee on Publication Ethics, <cite>Handling text recycling (also known as self-plagiarism)</cite> and <cite>Determining acceptable levels of plagiarism/duplication</cite>, COPE guidance. Cited for the existence and shape of editorial guidance on overlap; publicationethics.org blocks automated access, so these pages were not read at source for this entry. <a href="https://publicationethics.org/guidance/cope-position/handling-text-recycling-also-known-self-plagiarism" target="_blank" rel="noopener">publicationethics.org</a></li>
-                        <li id="s3-9">Ding Ding, Binh Nguyen, Klaus Gebel, Adrian Bauman and Lisa Bero, <cite>Duplicate and salami publication: a prevalence study of journal policies</cite>, <cite>International Journal of Epidemiology</cite> 49(1), 2020, pp. 281&ndash;288; doi:10.1093/ije/dyz187. 209 journals in epidemiology, public health and general or internal medicine: 35.9% had explicit duplicate-publication policies, 12.9% explicit salami-publication policies. <a href="https://doi.org/10.1093/ije/dyz187" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-10">Mark A. Hanson, Pablo G&oacute;mez Barreiro, Paolo Crosetto and Dan Brockington, <cite>The strain on scientific publishing</cite>, <cite>Quantitative Science Studies</cite> 5(4), 2024, pp. 823&ndash;843; doi:10.1162/qss_a_00327; preprint arXiv:2309.15884. Total articles indexed in Scopus and Web of Science in 2022 approximately 47% higher than in 2016, outpacing growth in the number of practising scientists. <a href="https://doi.org/10.1162/qss_a_00327" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-11">US Department of Health and Human Services, Office of Research Integrity, <cite>Public Health Service Policies on Research Misconduct</cite>, 42 CFR Part 93 (2024 final rule), applying to all institutions from 1 January 2026, with updated institutional assurances due by 30 April 2026. The revision defines &ldquo;intentionally&rdquo;, &ldquo;knowingly&rdquo; and &ldquo;recklessly&rdquo; and tightens requirements on process, records and timelines. <a href="https://ori.hhs.gov/blog/new-ori-final-rule-guidance-documents-released" target="_blank" rel="noopener">ori.hhs.gov</a> &middot; <a href="https://www.ecfr.gov/current/title-42/chapter-I/subchapter-H/part-93" target="_blank" rel="noopener">ecfr.gov</a></li>
-                        <li id="s3-12">UK Research Integrity Office, <cite>The Concordat to Support Research Integrity</cite>. The refreshed Concordat was published on 4 April 2025, replacing the 2019 edition; organisations were expected to align with it by April 2026. Sets five commitments covering research culture, ethics and governance, and places responsibility for misconduct policies, confidential reporting, trained investigators, timely investigation and appeal routes on employers. <a href="https://ukrio.org/research-integrity/the-concordat-to-support-research-integrity/" target="_blank" rel="noopener">ukrio.org</a></li>
-                        <li id="s3-13">REF 2029, <cite>Section 4 &ndash; Contributions to Knowledge and Understanding (CKU) guidance</cite> and <cite>Section 1 &ndash; Overview</cite>, published 16 January 2025 by Research England, the Scottish Funding Council, Medr and the Department for the Economy, Northern Ireland. CKU carries 55% of the weighting; the number of outputs required is the volume measure multiplied by 2.5 at unit-of-assessment level; there is no minimum output requirement for individual staff members, and the expectation is that no more than five outputs are associated with a single substantive link within a submission. <a href="https://2029.ref.ac.uk/guidance/section-4-contributions-to-knowledge-and-understanding-cku-guidance/" target="_blank" rel="noopener">2029.ref.ac.uk</a></li>
-                        <li id="s3-14">Nathan Wolfrath, Simrin Patel, Madelyn Flitcroft, Anjishnu Banerjee, Melek Somai, Bradley H. Crotty and Anai N. Kothari, <cite>Rising Prevalence of Detected AI-Generated Text in Medical Literature: Longitudinal Analysis in Open Access Articles</cite>, arXiv:2603.19316, 15 March 2026. 7,251 articles from one major medical journal, January 2022 to March 2025; 195 (2.7%) classified as containing significant AI-generated text, detection rising from 0.0% to 11.3%; 15 articles (0.2%) disclosed large language model use. Figures are detection-tool estimates, not confirmed use. <a href="https://arxiv.org/abs/2603.19316" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s3-15">Michael L. Littman, <cite>Collusion rings threaten the integrity of computer science research</cite>, <cite>Communications of the ACM</cite> 64(6), June 2021, pp. 43&ndash;44; doi:10.1145/3429776. Describes collusion rings as sets of authors who unethically review and support one another while breaking anonymity and concealing conflicts of interest. cacm.acm.org blocks automated access; bibliographic details and abstract confirmed via the NSF Public Access Repository. <a href="https://par.nsf.gov/biblio/10331359-collusion-rings-threaten-integrity-computer-science-research" target="_blank" rel="noopener">par.nsf.gov</a> &middot; <a href="https://dl.acm.org/doi/10.1145/3429776" target="_blank" rel="noopener">dl.acm.org</a></li>
-                        <li id="s3-16">Steven Jecmen, Nihar B. Shah, Fei Fang and Leman Akoglu, <cite>On the Detection of Reviewer-Author Collusion Rings From Paper Bidding</cite>, arXiv:2402.07860, March 2024; published in <cite>Transactions on Machine Learning Research</cite>. Empirical analysis of two realistic conference bidding datasets: undetected colluders achieved assignment to up to 30% of papers authored by other colluders, and with ten colluders bidding on all of each other&rsquo;s papers no detection algorithm produced a group with more than 31% overlap with the true colluders. <a href="https://arxiv.org/abs/2402.07860" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s3-17">NeurIPS, <cite>Main Track Handbook 2026</cite>, Thirty-Ninth Conference on Neural Information Processing Systems. Source of the anti-collusion policy and its listed consequences, the bidding warning to reviewers, ACs and SACs, and the confidentiality requirement. <a href="https://neurips.cc/Conferences/2026/MainTrackHandbook" target="_blank" rel="noopener">neurips.cc</a></li>
-                        <li id="s3-18">Adrian Barnett, <cite>Are peer reviewers influenced by their work being cited?</cite>, <cite>eLife</cite>, reviewed preprint version of record 23 December 2025; doi:10.7554/eLife.108748. Over 37,000 reviews of more than 12,000 articles across four fully open peer-review journals (F1000Research, Wellcome Open Research, Open Research Europe, Gates Open Research). 6% of reviews included a request to cite the reviewer&rsquo;s own work; where authors complied, approval probability was 92% against 76% where they did not (odds ratio 3.5); reviewers requesting self-citation were overall less likely to approve. <a href="https://doi.org/10.7554/eLife.108748" target="_blank" rel="noopener">doi.org</a></li>
-                        <li id="s3-19">Niclas Boehmer, Robert Bredereck and Andr&eacute; Nichterlein, <cite>Combating Collusion Rings is Hard but Possible</cite>, Proceedings of the Thirty-Sixth AAAI Conference on Artificial Intelligence (AAAI-22), 2022; arXiv:2112.08444. Formalises Cycle-Free Reviewing, shows it is NP-hard in restricted settings, and gives an efficient heuristic for computing cycle-free review assignments. <a href="https://arxiv.org/abs/2112.08444" target="_blank" rel="noopener">arxiv.org</a></li>
-                    </ol>
-                    <p class="myth-foot">Every source above was checked on 9 August 2026 against its primary record where that record was reachable. Two were not: publicationethics.org returned a 403 to automated access, so source 8 is cited for the existence of the guidance rather than for any quoted content; and the Springer page for source 3 requires a session, so its bibliographic details were confirmed through the DOI and indexing records rather than the article page. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
-                    <p class="myth-foot">On naming: this entry deliberately discusses no individual, living or dead, and no ongoing investigation. Where a study reports figures for a named field, that is the study&rsquo;s scope, not an allegation about anyone working in it. Nothing here should be read as a claim about any particular researcher&rsquo;s conduct.</p>
-                    <p class="myth-foot">Declared interest: I am a serving academic who publishes, supervises, reviews and sits on panels that assess other people&rsquo;s output. I am inside every incentive described above, not observing it.</p>
-                </div>
-            </div>
-        </details>
-
-        <!-- ============================ MyTh 002 ============================ -->
-        <details class="myth reveal" id="myth-002">
-            <summary>
-                <span class="myth-no"><small>MYTH</small>002</span>
-                <span class="myth-head">
-                    <h3>The Default Human</h3>
-                    <p class="myth-dek">A model trained mostly on one slice of the world does not learn that slice as a culture. It learns it as neutrality, and everything else as deviation. But &ldquo;make it less Western&rdquo; turns out to be a worse answer than it sounds &mdash; and the field cannot yet measure whether it worked.</p>
-                    <span class="myth-meta">
-                        <span class="myth-date">7 August 2026</span>
+        <a class="myth myth-card reveal" href="myth-002.html" id="myth-002">
+            <span class="myth-no"><small>MYTH</small>002</span>
+            <span class="myth-head">
+                <h3>The Default Human</h3>
+                <p class="myth-dek">A model trained mostly on one slice of the world does not learn that slice as a culture. It learns it as neutrality, and everything else as deviation. But &ldquo;make it less Western&rdquo; turns out to be a worse answer than it sounds &mdash; and the field cannot yet measure whether it worked.</p>
+                <span class="myth-meta">
+                    <span class="myth-date">7 August 2026</span>
                         <span class="tag">AI</span>
                         <span class="tag">Culture</span>
                         <span class="tag">My research</span>
                         <span class="tag">~9 min read</span>
-                    </span>
                 </span>
-                <span class="myth-chev" aria-hidden="true">+</span>
-            </summary>
+            </span>
+            <span class="myth-chev" aria-hidden="true">&rarr;</span>
+        </a>
 
-            <div class="myth-body">
-                <p>In 2021 I was given £36,500 by the Global Challenges Research Fund to work on a problem that sounded, at the time, faintly eccentric: could a machine automatically redraw a children&rsquo;s picture book for a different culture?<a class="cit" href="#s2-1">1</a> Not translate it. Redraw it. A child in Kerala reading a story set in a British seaside town does not know what a fish-and-chip shop is; a child in Yorkshire does not know a dosa stall. Publishers already solve this by hand, with an illustrator, one book at a time, which is why it reaches almost none of the world&rsquo;s languages.</p>
-
-                <p>Five years later the same question has a fashionable name &mdash; cultural alignment &mdash; and everyone has an opinion about it. So here is mine, which is less comfortable than the one you would expect from someone who has spent six years on this.</p>
-
-                <div class="myth-figs">
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="15">0</span>&times;</b>
-                        <span>Difference in tokens needed for the same text across languages<a class="cit" href="#s2-3">3</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="200">0</span>+</b>
-                        <span>Languages measured, with non-Latin scripts paying 3&ndash;5&times;<a class="cit" href="#s2-4">4</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="1.5" data-dec="1">0</span>m</b>
-                        <span>Nahuatl speakers, against 1.52 billion for English<a class="cit" href="#s2-5">5</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="4" data-post="%">0</span></b>
-                        <span>More human-rights-violating output from less Western-aligned models<a class="cit" href="#s2-6">6</a></span>
-                    </div>
-                </div>
-
-                <h4 data-n="ONE">The tax you pay for your alphabet</h4>
-
-                <p>Start with the least arguable part, because it is arithmetic rather than politics.</p>
-
-                <p>Language models do not read characters. They read tokens, and the tokenizer that produces them is fitted to whatever the model saw most. English got the efficient encoding. Everything else got what was left. Petrov and colleagues measured this properly and found that the same text, translated, can take up to <strong>15 times</strong> as many tokens depending on the language it is written in.<a class="cit" href="#s2-3">3</a> A later study across more than 200 languages found non-Latin scripts and morphologically rich languages routinely paying three to five times the English rate.<a class="cit" href="#s2-4">4</a></p>
-
-                <p>That is not an aesthetic complaint. Tokens are the unit of billing, the unit of latency, and the unit of memory. So a speaker of an unlucky language pays more money for the same answer, waits longer to receive it, and can fit less of their problem into the model&rsquo;s context before it starts forgetting the beginning.<a class="cit" href="#s2-3">3</a> The same query, the same model, the same day &mdash; and a structurally worse service, priced higher, for the people least able to absorb either.</p>
-
-                <div class="myth-pull">Before the model has understood anything, it has already decided your language is expensive.</div>
-
-                <p>I find this the most clarifying fact in the whole debate, because nobody chose it. No committee decided that Telugu speakers should pay a premium. It fell out of an engineering decision about compression, made by people optimising for the corpus in front of them. Which is exactly how this kind of bias usually arrives: not as prejudice, but as a default that nobody had a reason to question.</p>
-
-                <h4 data-n="TWO">Data, not speakers, decides who the model serves</h4>
-
-                <p>The obvious assumption is that big languages are well served and small ones are not. It is wrong, and the counterexample is instructive.</p>
-
-                <p>Stanford&rsquo;s work on the language divide points out that Swahili has roughly 200 million speakers but too little digitised text for models to learn from properly, while Welsh &mdash; with a fraction of that number &mdash; does comparatively well, because it has been documented, digitised and institutionally preserved for decades.<a class="cit" href="#s2-5">5</a> Models work well for the 1.52 billion people who speak English, less well for 97 million Vietnamese speakers, and worse again for the 1.5 million who speak Nahuatl.<a class="cit" href="#s2-5">5</a></p>
-
-                <p>So the variable is not how many people speak your language. It is how much of your language someone bothered to write down in a machine-readable form, and whether anyone funded that. Which means the map of who AI serves well is, to an uncomfortable degree, a map of historical investment in linguistic infrastructure &mdash; colonial, national, academic. The model inherits that map without ever being told it is a map.</p>
-
-                <h4 data-n="THREE">Whose values got called &ldquo;alignment&rdquo;</h4>
-
-                <p>Now the harder claim. A model trained overwhelmingly on one part of the world does not represent that part as <em>a</em> culture. It represents it as the absence of culture &mdash; the neutral case, from which everything else is a departure requiring a modifier. Ask for a wedding and you get one specific wedding. Ask for a family, a breakfast, a professional, a beautiful house, and the defaults have a postcode.</p>
-
-                <p>The literature calls this WEIRD &mdash; Western, Educated, Industrialised, Rich, Democratic &mdash; borrowing a term Henrich, Heine and Norenzayan coined in 2010, when psychology noticed that its findings about &ldquo;human nature&rdquo; rested on samples drawn overwhelmingly from Western university undergraduates &mdash; among, as they put it, &ldquo;the least representative populations one could find for generalizing about humans&rdquo;.<a class="cit" href="#s2-9">9</a><a class="cit" href="#s2-6">6</a> The parallel is close enough to be embarrassing. A discipline generalising from an unrepresentative sample, and calling the result universal, is not a new failure mode. We have simply automated it and put it behind an API.</p>
-
-                <p>What makes the word <em>alignment</em> worth pausing on is that it names a destination without naming it. Aligned to what? The honest answer, most of the time, is: to the preferences of the annotators who were hired, under the guidelines they were given, at the companies that could afford to run the process. That is a legitimate thing to optimise for. It is not a neutral thing, and the vocabulary invites us to forget the difference.</p>
-
-                <h4 data-n="FOUR">The finding that ruins the easy version of this argument</h4>
-
-                <p>Here is where I part company with most people who agree with me so far.</p>
-
-                <p>If the problem is Western defaults, the obvious fix is less Western default. Zhou, Constantinides and Quercia tested that directly across GPT-3.5, GPT-4, Llama-3, BLOOM and Qwen. Models with <em>lower</em> alignment to WEIRD values did produce more culturally varied responses &mdash; and were also <strong>2&ndash;4% more likely to generate output that violated human rights</strong>, particularly on gender and equality. The examples are not subtle: endorsements of the ideas that a man who cannot father children is not a real man, or that a husband should always know where his wife is.<a class="cit" href="#s2-6">6</a></p>
-
-                <p>I do not think this vindicates the current defaults, and I want to be careful here, because that is exactly how the finding will be used. Human rights are not a Western cultural preference, and treating them as one is a move with a long and disreputable history. But it does demolish the lazy formulation &mdash; that cultural representativeness is straightforwardly good and Western skew is straightforwardly bad. Sometimes a model reproducing local majority opinion faithfully is a model reproducing something a great many people in that locality are fighting against.</p>
-
-                <div class="myth-pull">&ldquo;Represent every culture accurately&rdquo; and &ldquo;never endorse the subjugation of women&rdquo; are both good goals. They are not always the same goal.</div>
-
-                <p>Anyone selling you a clean answer to that has not read the tension carefully. I certainly do not have one. What I have is the conviction that the trade-off should be visible and argued about, rather than resolved silently in a guidelines document by whoever happens to be writing it.</p>
-
-                <h4 data-n="FIVE">And we cannot currently tell whether any of it works</h4>
-
-                <p>The methodological news is worse than the political news.</p>
-
-                <p>Most cultural alignment evaluation works by giving the model survey questions &mdash; typically from instruments like the World Values Survey &mdash; and comparing its answers to a country&rsquo;s human responses. Khan, Casper and Hadfield-Menell examined the three assumptions this rests on, and found all three fail.<a class="cit" href="#s2-7">7</a> Cultural alignment is <strong>not stable</strong>: response shifts caused by trivial changes in question formatting frequently exceed the actual differences between cultures. It is <strong>not extrapolable</strong>: alignment measured on a few dimensions predicts alignment on held-out dimensions about as well as chance. And it is <strong>not steerable</strong>: prompting a model to adopt a culture produces erratic patterns that no human population resembles.</p>
-
-                <p>Read that again, because it undercuts a great deal of published work, including work I am sympathetic to. If reformatting your question moves the result more than swapping Japan for Germany does, then you are not measuring a property of the model. You are measuring your own questionnaire. A field cannot claim to have reduced cultural bias using an instrument that unreliable, and the honest position is that many confident claims in this area &mdash; in both directions &mdash; are currently unsupported.</p>
-
-                <h4 data-n="WHAT I THINK">Self-awareness, not substitution</h4>
-
-                <p>Six years on the same problem has moved me from the position most people start at to one that sounds duller and is, I think, correct.</p>
-
-                <p>The goal is not to find the right culture to encode. There isn&rsquo;t one, the attempt to pick one is how we got here, and the evidence suggests that swapping the default out wholesale trades one set of harms for another. The goal is for the system to know that it is standing somewhere &mdash; that its defaults are defaults, that the person in front of it may not share them, and that this is a thing to be established rather than assumed. That is the argument behind <em>CALM: Culturally Self-Aware Language Models</em>, which we published at NeurIPS last year,<a class="cit" href="#s2-2">2</a> and it is the same instinct as the picture-book problem: not &ldquo;what should this child&rsquo;s story be&rdquo;, but &ldquo;does the system know whose story it is telling&rdquo;.</p>
-
-                <p>Three things follow, and none of them are technical.</p>
-
-                <ul>
-                    <li><strong>The tokenizer tax is the easiest win and nobody is taking it.</strong> It is a measurable, unambiguous, purely engineering inequity that makes AI more expensive for the world&rsquo;s poorer speakers. It requires no philosophy to fix. It persists because the people paying it are not the people in the room.</li>
-                    <li><strong>Digitisation is cultural policy, and it is being done by accident.</strong> Whether your grandchildren&rsquo;s language works with these systems is being decided now, by who funds corpus-building. Swahili and Welsh should be the standing example in every ministerial briefing on AI. It almost never is.</li>
-                    <li><strong>Fix the measurements before trusting any claim, including mine.</strong> On the current evidence, &ldquo;our model is culturally aligned&rdquo; is not a verifiable statement. Until the evaluations are robust, that phrase belongs in scare quotes &mdash; on marketing copy, on benchmark leaderboards, and in my own papers.</li>
-                </ul>
-
-                <p>When UNESCO's statistics institute last put a headline number on this, in 2017, it counted 617 million children and adolescents not reaching minimum proficiency in reading and mathematics.<a class="cit" href="#s2-8">8</a> It is an old figure and I quote it with that caveat, but it is the one that was in front of me at the start, and it is why I began on picture books rather than benchmarks, and it is the thing I try to keep in view when this subject becomes an argument about definitions. Somewhere in that number is a child who would read more if the story looked like somewhere they had been. Whether the technology of this decade reaches them is not going to be settled by a leaderboard.</p>
-
-                <div class="myth-src">
-                    <h4>Sources</h4>
-                    <ol>
-                        <li id="s2-1">Global Challenges Research Fund, <cite>Automatically Geo-Localising Reading Material Digital Artwork for Increased Reader Engagement</cite>, £36,500, January&ndash;July 2021, Principal Investigator: Shoaib Jameel. Compute supplied under an NVIDIA Academic Hardware Grant (Quadro RTX6000). Project detail and primary documents: <a href="cultural-modelling.html">the cultural AI paper trail</a>.</li>
-                        <li id="s2-2">Lingzhi Shen, Xiaohao Cai, Yunfei Long, Imran Razzak, Guanming Chen and Shoaib Jameel, <cite>CALM: Culturally Self-Aware Language Models</cite>, Thirty-Ninth Conference on Neural Information Processing Systems (NeurIPS 2025); arXiv:2601.03483. <a href="https://arxiv.org/abs/2601.03483" target="_blank" rel="noopener">arxiv.org</a> &middot; <a href="https://neurips.cc/virtual/2025/poster/120260" target="_blank" rel="noopener">NeurIPS poster</a> &middot; <a href="publications.html">research page</a>.</li>
-                        <li id="s2-3">Aleksandar Petrov, Emanuele La Malfa, Philip H. S. Torr and Adel Bibi, <cite>Language Model Tokenizers Introduce Unfairness Between Languages</cite>, NeurIPS 2023; arXiv:2305.15425. Reports tokenization length differences of up to 15&times; between languages, and identifies cost, latency and context length as the three resulting disadvantages. <a href="https://arxiv.org/abs/2305.15425" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s2-4">Hailay Kidu Teklehaymanot and Wolfgang Nejdl, <cite>Tokenization Disparities as Infrastructure Bias: How Subword Systems Create Inequities in LLM Access and Efficiency</cite>, arXiv:2510.12389, 14 October 2025. Over 200 languages; non-Latin and morphologically complex languages show relative tokenization costs 3&ndash;5&times; higher. <a href="https://arxiv.org/abs/2510.12389" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s2-5">&ldquo;How AI is leaving non-English speakers behind&rdquo;, <cite>Stanford Report</cite>, May 2025, interviewing Sanmi Koyejo on a Stanford Institute for Human-Centered AI policy white paper. Source of the English/Vietnamese/Nahuatl comparison and the Swahili/Welsh contrast. <a href="https://news.stanford.edu/stories/2025/05/digital-divide-ai-llms-exclusion-non-english-speakers-research" target="_blank" rel="noopener">news.stanford.edu</a></li>
-                        <li id="s2-6">Ke Zhou, Marios Constantinides and Daniele Quercia, <cite>Should LLMs Be WEIRD? Exploring WEIRDness and Human Rights in Large Language Models</cite>, Proceedings of the AAAI/ACM Conference on AI, Ethics and Society (AIES-25), 2025. Tested GPT-3.5, GPT-4, Llama-3, BLOOM and Qwen; models less aligned to WEIRD values were 2&ndash;4% more likely to produce outputs violating human rights, especially on gender and equality. Preprint: arXiv:2508.19269. <a href="https://ojs.aaai.org/index.php/AIES/article/view/36761" target="_blank" rel="noopener">ojs.aaai.org</a> &middot; <a href="https://arxiv.org/abs/2508.19269" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s2-7">Ariba Khan, Stephen Casper and Dylan Hadfield-Menell, <cite>Randomness, Not Representation: The Unreliability of Evaluating Cultural Alignment in LLMs</cite>, ACM Conference on Fairness, Accountability and Transparency (FAccT &rsquo;25), Athens, June 2025; arXiv:2503.08688, 11 March 2025. Finds cultural alignment is not stable across presentation formats, not extrapolable to held-out dimensions, and not steerable by prompting. <a href="https://arxiv.org/abs/2503.08688" target="_blank" rel="noopener">arxiv.org</a></li>
-                        <li id="s2-8">UNESCO Institute for Statistics, <cite>617 million children and adolescents not getting the minimum in reading and math</cite>, 21 September 2017. Note that the figure covers reading <em>and</em> mathematics, not reading alone, and that it is the 2017 release rather than a current estimate. <a href="https://www.unesco.org/en/articles/617-million-children-and-adolescents-not-getting-minimum-reading-and-math" target="_blank" rel="noopener">unesco.org</a></li>
-                        <li id="s2-9">Joseph Henrich, Steven J. Heine and Ara Norenzayan, <cite>The weirdest people in the world?</cite>, <cite>Behavioral and Brain Sciences</cite> 33(2&ndash;3), 2010, pp. 61&ndash;83. Origin of the WEIRD acronym. <a href="https://pubmed.ncbi.nlm.nih.gov/20550733/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov</a></li>
-                    </ol>
-                    <p class="myth-foot">Every paper cited above was opened and checked against its primary source on 7 August 2026 &mdash; titles, authors, venues, years and figures &mdash; and an independent AI fact-check was run in parallel as a second opinion. Two things were fixed before publication as a result: the UNESCO figure was originally described as covering reading alone and quoted as if current, when it covers reading and mathematics and dates from 2017; and the CALM citation originally omitted its authors. The Stanford Report piece was read via the Internet Archive, as the original blocks automated access. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
-                    <p class="myth-foot">Declared interest: sources 1, 2 and 8 relate to my own funded research, and this entry argues for a position I have published on. Read it accordingly.</p>
-                </div>
-            </div>
-        </details>
-
-        <!-- ============================ MyTh 001 ============================ -->
-        <details class="myth reveal" id="myth-001">
-            <summary>
-                <span class="myth-no"><small>MYTH</small>001</span>
-                <span class="myth-head">
-                    <h3>The Four Squeezes: what is actually happening to academic life</h3>
-                    <p class="myth-dek">A wage that has lost close to a third of its value, a student market that grew and shrank at the same time, a machine that now writes and marks, and a generation quietly recalculating whether any of it is worth it. Three of those four are worse than the headlines say. One is better.</p>
-                    <span class="myth-meta">
-                        <span class="myth-date">7 August 2026</span>
+        <a class="myth myth-card reveal" href="myth-001.html" id="myth-001">
+            <span class="myth-no"><small>MYTH</small>001</span>
+            <span class="myth-head">
+                <h3>The Four Squeezes: what is actually happening to academic life</h3>
+                <p class="myth-dek">A wage that has lost close to a third of its value, a student market that grew and shrank at the same time, a machine that now writes and marks, and a generation quietly recalculating whether any of it is worth it. Three of those four are worse than the headlines say. One is better.</p>
+                <span class="myth-meta">
+                    <span class="myth-date">7 August 2026</span>
                         <span class="tag">Higher education</span>
                         <span class="tag">AI</span>
                         <span class="tag">Policy</span>
                         <span class="tag">~10 min read</span>
-                    </span>
                 </span>
-                <span class="myth-chev" aria-hidden="true">+</span>
-            </summary>
-
-            <div class="myth-body">
-                <p>I have worked in universities on both sides of the world, and I have never known a year in which so many good academics were quietly asking whether they should still be doing this. Not because the work stopped being interesting &mdash; it did not &mdash; but because four separate pressures arrived at once and started interacting. Individually each is survivable. Together they change what the job <em>is</em>.</p>
-
-                <p>What follows is an attempt to be accurate rather than cathartic. Some of it is grimmer than the sector admits. One part of it is genuinely better than the discourse allows, and I will say so plainly, because a critique that cannot register good news is just a mood.</p>
-
-                <div class="myth-figs">
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="30" data-post="%">0</span></b>
-                        <span>Real-terms fall in university staff pay since 2011, on the unions' 2026/27 claim<a class="cit" href="#s1-23">23</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="124">0</span></b>
-                        <span>English providers &mdash; 45% &mdash; projected to run a deficit in 2025&ndash;26<a class="cit" href="#s1-3">3</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="95" data-post="%">0</span></b>
-                        <span>Students who now use generative AI in at least one way<a class="cit" href="#s1-2">2</a></span>
-                    </div>
-                    <div class="myth-fig">
-                        <b><span class="counter" data-count="45" data-post="%">0</span></b>
-                        <span>Students rating their course good value &mdash; a ten-year high<a class="cit" href="#s1-1">1</a></span>
-                    </div>
-                </div>
-
-                <h4 data-n="SQUEEZE ONE">The wage that quietly halved its ambition</h4>
-
-                <p>Start with the least glamorous number in the sector. The 2025&ndash;26 national pay round opened with a &ldquo;full and final&rdquo; offer of <strong>1.4%</strong>.<a class="cit" href="#s1-6">6</a> The 2026&ndash;27 round improved on it: <strong>2%</strong> from 1 August 2026, against a union claim of 3% plus RPI &mdash; roughly 7%, or £3,000, whichever was greater. Universities in difficulty may defer even that award by up to eleven months, without back pay.<a class="cit" href="#s1-5">5</a></p>
-
-                <p>Set 2% against the prices actually being paid. CPI ran at 3.3% in the twelve months to March 2026, easing to 2.6% by June.<a class="cit" href="#s1-9">9</a> Average private rent across the UK rose 3.3% over the year to June 2026, to £1,388 a month &mdash; and 6.3% in the North East, where several of the universities making the deepest cuts happen to sit.<a class="cit" href="#s1-10">10</a> A 2% award in that environment is not a pay rise that feels small. It is a pay cut that has been given a nicer name.</p>
-
-                <p>Do that for fifteen years and you get the number the sector has learned to skim past. When UCU launched its pay modeller in October 2021, it put the cumulative real-terms fall at 20% since 2009.<a class="cit" href="#s1-7">7</a> The joint unions' 2026/27 claim now puts it at <strong>30% since 2011</strong>.<a class="cit" href="#s1-23">23</a> Employers dispute the deflator &mdash; the figure is smaller on CPI than on RPI, and the baseline year does a good deal of work in both versions &mdash; but nobody seriously argues the direction. Something close to a third of the value of the job has gone, one &ldquo;affordable in the circumstances&rdquo; settlement at a time.</p>
-
-                <div class="myth-pull">A 2% award against 3.3% rent inflation is not a small pay rise. It is a pay cut with better manners.</div>
-
-                <p>The consequence is not that academics are poor in any absolute sense. It is that the <em>trade</em> has changed. The old bargain was: accept below-market pay, receive in exchange security, autonomy, and time to think. Two of those three are now being withdrawn while the pay term stays where it is. UCU counts more than 15,000 job cuts across the sector in the current round of restructures.<a class="cit" href="#s1-8">8</a> HESA recorded academic staff numbers in UK higher education falling for <strong>the first time in more than a decade</strong> in 2024&ndash;25 &mdash; 244,755 academic staff excluding atypical contracts, down 1% on 246,930, breaking an upward trend running since 2014/15.<a class="cit" href="#s1-12">12</a><a class="cit" href="#s1-13">13</a> And 29% of academic staff &mdash; 69,875 people &mdash; remain on fixed-term contracts, with a further 57,365 on &ldquo;atypical&rdquo; ones.<a class="cit" href="#s1-11">11</a></p>
-
-                <p>The generational effect is the part that worries me most. Wonkhe's read of the same data shows the share of academics under 35 sliding from nearly a third a decade ago to roughly a quarter today.<a class="cit" href="#s1-13">13</a> You do not notice a missing cohort in the year it fails to arrive. You notice it fifteen years later, when there is nobody to hand the field to.</p>
-
-                <h4 data-n="SQUEEZE TWO">&ldquo;Falling student numbers&rdquo; is the wrong description of a real problem</h4>
-
-                <p>Here is where I part company with the standard account. Domestic demand for UK higher education is not falling. In the 2026 admissions cycle, <strong>338,940</strong> UK 18-year-olds applied by the January deadline, up 4.8% on the previous year, with total applicants reaching 619,360.<a class="cit" href="#s1-16">16</a> Acceptances of UK undergraduates through UCAS grew 3.1% in 2025 against the same point in 2024, as reported by the Office for Students.<a class="cit" href="#s1-3">3</a> On the raw headcount, more young people want a degree than ever.</p>
-
-                <p>Two things are nevertheless true at the same time, and the sector's finances live in the gap between them.</p>
-
-                <ul>
-                    <li><strong>The growth is below forecast, and forecasts had already been spent.</strong> That 3.1% rise came against sector plans assuming 4.1%.<a class="cit" href="#s1-3">3</a> A percentage point of shortfall on a fee-funded budget is not a rounding error; it is a hiring freeze.</li>
-                    <li><strong>The students who subsidise the system are leaving one door, not every door.</strong> International undergraduate applications through UCAS actually <em>rose</em> 5.1% in the 2026 cycle, to 124,830, with Chinese applicants up 10%.<a class="cit" href="#s1-16">16</a> But undergraduates are not where international fee income comes from. The one-year taught master's is, and that is the floor that gave way: HESA recorded a 6% fall in international enrolments, and in a BUILA survey 42 of 69 responding universities &mdash; 61% &mdash; reported postgraduate commencements down for September 2025.<a class="cit" href="#s1-18">18</a> Study-visa issuance sits well below its 2023 peak,<a class="cit" href="#s1-19">19</a> and the Home Office received roughly a third fewer sponsored-study applications from main applicants in early 2026 than in the same months of 2025.<a class="cit" href="#s1-20">20</a></li>
-                </ul>
-
-                <p>Domestic fees do not cover the cost of teaching a domestic student, so a British undergraduate is, in accounting terms, a loss. The cap was frozen at £9,000&ndash;£9,250 for most of a decade while prices rose; it reached £9,535 for 2025&ndash;26 and £9,790 for 2026&ndash;27, now indexed to inflation for providers meeting quality conditions.<a class="cit" href="#s1-21">21</a><a class="cit" href="#s1-22">22</a> Indexing from a base that already lost roughly a fifth of its value does not restore the fifth. It just stops the bleeding at the current wound size.</p>
-
-                <p>So the true sentence is not &ldquo;fewer students&rdquo;. It is: <strong>record domestic demand for a product sold below cost, minus the postgraduate international students whose fees closed the gap.</strong> The result is what the OfS now reports with striking calm &mdash; 124 English providers, 45% of those analysed, projected to run a deficit in 2025&ndash;26, and nearly one in six holding less than 30 days of liquidity.<a class="cit" href="#s1-3">3</a> The 2026 report has that easing only slightly, to 41% in deficit the following year.<a class="cit" href="#s1-4">4</a> This is a policy choice about migration and fee regulation that has been reclassified as a management problem for individual vice-chancellors.</p>
-
-                <p>And the demographic reprieve is temporary. The current bulge of UK 18-year-olds peaks around 2030. What follows is a smaller cohort arriving into a sector that will by then have cut the capacity it is now cutting.</p>
-
-                <h4 data-n="SQUEEZE THREE">The machine that writes, and now marks, and now reviews</h4>
-
-                <p>I work on language models. I am not going to pretend to be a neutral observer, and I am not going to perform alarm I do not feel. But the speed of what happened to academic practice in three years deserves to be stated without euphemism.</p>
-
-                <p>Among UK undergraduates, <strong>95% now use generative AI in at least one way</strong>, and 94% use it for assessed work. The share pasting AI-generated text directly into submitted work has gone from 3% in 2024 to 8% in 2025 to <strong>12%</strong> in 2026.<a class="cit" href="#s1-2">2</a> Two-thirds of students say assessment on their course has already changed significantly because of it.</p>
-
-                <p>The instinct is to call this a cheating problem. I think that is a category error, and a self-flattering one. If a task can be completed to a passing standard by a general-purpose model in nine seconds, the interesting question is not who used the model. It is what we thought we were measuring. A great deal of what universities assess turns out to have been a proxy for effort rather than a measure of understanding, and the proxy has just been commoditised. That is uncomfortable, but it is diagnostic information we were never going to get any other way.</p>
-
-                <p>What genuinely troubles me is the supply side, where the same tool is being used by people who are supposed to be doing the judging. At ICLR 2026 &mdash; one of the largest machine-learning conferences in the world, in my own field &mdash; detection analysis flagged <strong>15,899 peer reviews, 21% of the total, as fully AI-generated</strong>, and found some degree of AI involvement in over half of them &mdash; with researchers reporting hallucinated citations and confidently wrong objections in reviews of their own work.<a class="cit" href="#s1-14">14</a><a class="cit" href="#s1-15">15</a> Peer review is not a bureaucratic formality. It is the only mechanism by which the literature distinguishes itself from a very large pile of assertions.</p>
-
-                <div class="myth-pull">Students using AI to write is a curriculum problem. Reviewers using AI to judge is an epistemology problem.</div>
-
-                <p>There is a grim symmetry to it. We are exhorting students to use these tools responsibly while a fifth of the reviews in a flagship venue are generated by them. The academic who outsources a review has usually not become lazy; they have been asked to referee eight papers in a semester in which their department shed a fifth of its staff. Squeeze one produces squeeze three. That is the part the &ldquo;AI in education&rdquo; conversation keeps missing: the misuse is a workload symptom before it is an ethics failure.</p>
-
-                <p>And students notice the asymmetry. Sixty-eight per cent say AI skills are essential for the world they are entering; fewer than half &mdash; 48% &mdash; think their teaching staff are helping them build those skills.<a class="cit" href="#s1-2">2</a> That gap is a straightforward indictment, and it is ours, not theirs.</p>
-
-                <h4 data-n="SQUEEZE FOUR">What a degree is now worth &mdash; and the surprise in the data</h4>
-
-                <p>Here is the good news I promised, and I want to give it its full weight rather than a grudging clause.</p>
-
-                <p>In the 2026 Student Academic Experience Survey &mdash; 10,065 full-time undergraduates &mdash; <strong>45% rated their course good or very good value for money, up from 37% a year earlier and the highest figure in over a decade</strong>. Sixty-six per cent are happy with their choice of course and institution, up from 56%. The proportion who have considered withdrawing fell to 22%, the lowest in recent years.<a class="cit" href="#s1-1">1</a> After a decade in which &ldquo;value for money&rdquo; was the stick used to beat the sector, students themselves have started answering the question more warmly. Anyone arguing that undergraduates have lost faith in universities is arguing against the evidence.</p>
-
-                <p>But look at what those same students are doing with their week. Sixty-five per cent are in paid employment during term, averaging nearly 14 hours. Their total weekly commitment &mdash; study plus work &mdash; is 44.2 hours, against a national average working week of 36.6.<a class="cit" href="#s1-1">1</a> Full-time study is no longer full-time study. It is a full-time degree with a part-time job welded onto it, because maintenance support does not meet the rent.</p>
-
-                <p>Meanwhile the destination is getting harder to reach. The Department for Science, Innovation and Technology's own snapshot puts the UK hiring rate down <strong>14% year-on-year</strong> to April 2026, with 30 of 38 tracked entry-level occupations in decline &mdash; accountant &minus;29%, graphic designer &minus;28%, software engineer &minus;27%. The steepest falls are concentrated precisely in information-processing roles.<a class="cit" href="#s1-17">17</a> To their credit, the authors state explicitly that this &ldquo;should not be considered causal evidence of AI's impact&rdquo;; the labour market has several things wrong with it at once, and disentangling them honestly is not yet possible.<a class="cit" href="#s1-17">17</a> I would rather cite that caveat than write the headline everyone wants.</p>
-
-                <p>Put the two findings together and you get something more interesting than either alone. Students value the experience <em>more</em> than they did, while the economic case for it looks <em>worse</em> than it did. That combination should demolish the framing that has governed English higher education policy for fifteen years &mdash; that a degree is an individual investment purchased for a private financial return, and that a course is failing if its graduate salary premium is thin. Students are telling us, with their satisfaction scores and their 14 hours of shift work, that they are buying something else as well. The policy machinery has no column for it.</p>
-
-                <h4 data-n="WHAT I THINK">Four squeezes, one system</h4>
-
-                <p>What makes 2026 different is not the severity of any one pressure but the fact that they now feed each other. Deficits produce redundancies. Redundancies produce workload. Workload produces the AI shortcut &mdash; in marking, in reviewing, in the parts of the job nobody defends in public. Degraded teaching and degraded review erode the thing a university actually sells, which is credible judgement. And an institution whose judgement is not credible has no answer at all for the eighteen-year-old asking why they should spend £9,790 a year plus three years of foregone earnings on it.</p>
-
-                <p>I do not have a five-point plan, and I distrust essays that end with one. But I hold three things fairly firmly.</p>
-
-                <ul>
-                    <li><strong>The funding model is the root cause, and it is a political choice.</strong> A regulated fee below the cost of provision, cross-subsidised by an international market that immigration policy then suppressed, is not a market failure. It is a design. Everything downstream &mdash; the redundancies, the 2% offers, the mergers &mdash; follows from refusing to say out loud who pays for teaching.</li>
-                    <li><strong>AI is not the crisis; it is the contrast agent.</strong> It shows up wherever the system was already weak. Assessment that measured effort rather than understanding. Peer review sustained by unpaid goodwill that austerity had already exhausted. The tool did not create either gap. It made both impossible to keep ignoring.</li>
-                    <li><strong>Students are more loyal to universities than universities' funders are.</strong> The value-for-money numbers went <em>up</em> in the worst financial year the sector has had. That is not a mandate for complacency; it is a mandate we are in danger of squandering.</li>
-                </ul>
-
-                <p>I remain in this job, for what it is worth, and I would still recommend it &mdash; with a candour I would not have needed a decade ago. The work is as good as it ever was. It is the conditions around the work that have been quietly renegotiated, in fifteen annual instalments, by people who never had to describe the cumulative effect in a single sentence.</p>
-
-                <p>So here is the single sentence: <strong>we have spent fifteen years asking universities to do more, for less, for more people, and we are now surprised that the arithmetic caught up.</strong></p>
-
-                <div class="myth-src">
-                    <h4>Sources</h4>
-                    <ol>
-                        <li id="s1-1">Jonathan Neves, Rose Stephenson and Charlotte Armstrong, <cite>Student Academic Experience Survey 2026</cite>, Higher Education Policy Institute &amp; Advance HE, 11 June 2026 (10,065 full-time undergraduates). <a href="https://www.hepi.ac.uk/reports/the-student-academic-experience-survey-2026/" target="_blank" rel="noopener">hepi.ac.uk</a></li>
-                        <li id="s1-2">Rose Stephenson and Charlotte Armstrong, <cite>Student Generative AI Survey 2026</cite>, Higher Education Policy Institute (sponsored by Kortext), 12 March 2026 (1,054 full-time UK undergraduates, fieldwork December 2025). <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">hepi.ac.uk</a></li>
-                        <li id="s1-3">Office for Students, <cite>Significant challenges continue to face higher education finances &ndash; with nearly half facing deficits in 2025&ndash;26</cite>, 20 November 2025. <a href="https://www.officeforstudents.org.uk/news-blog-and-events/press-and-media/significant-challenges-continue-to-face-higher-education-finances-with-nearly-half-facing-deficits-in-2025-26/" target="_blank" rel="noopener">officeforstudents.org.uk</a></li>
-                        <li id="s1-4">Office for Students, <cite>Financial sustainability of higher education providers in England 2026</cite>, 14 May 2026 (republished 15 June 2026 with corrections). <a href="https://www.officeforstudents.org.uk/publications/financial-sustainability-of-higher-education-providers-in-england-2026/" target="_blank" rel="noopener">officeforstudents.org.uk</a></li>
-                        <li id="s1-5">&ldquo;UK university staff offered pay rise of 2 per cent&rdquo;, <cite>Times Higher Education</cite>, 18 May 2026. <a href="https://www.timeshighereducation.com/news/uk-university-staff-offered-pay-rise-2-cent" target="_blank" rel="noopener">timeshighereducation.com</a></li>
-                        <li id="s1-6">&ldquo;University staff offered 1.4% pay increase&rdquo;, <cite>Research Professional News</cite>, 2025. <a href="https://www.researchprofessionalnews.com/rr-news-uk-universities-2025-5-university-workers-offered-1-4-per-cent-pay-increase/" target="_blank" rel="noopener">researchprofessionalnews.com</a></li>
-                        <li id="s1-7">University and College Union, <cite>University staff pay cut by 20%, new figures show</cite>, 26 October 2021. UCU's pay modeller, measured against RPI from 2009. Note the date: this is the 2021 figure, superseded by source 23. <a href="https://www.ucu.org.uk/article/11830/University-staff-pay-cut-by-20-new-figures-show" target="_blank" rel="noopener">ucu.org.uk</a></li>
-                        <li id="s1-8">University and College Union, <cite>New analysis shows over 15,000 university job cuts as UCU launches UK-wide strike ballot</cite>. <a href="https://www.ucu.org.uk/article/14220/New-analysis-shows-over-15000-university-job-cuts-as-UCU-launches-UK-wide-strike-ballot" target="_blank" rel="noopener">ucu.org.uk</a></li>
-                        <li id="s1-9">Office for National Statistics, <cite>Consumer price inflation, UK: June 2026</cite> (CPI +2.6% in the 12 months to June 2026; +3.3% to March 2026). <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/june2026" target="_blank" rel="noopener">ons.gov.uk</a></li>
-                        <li id="s1-10">Office for National Statistics, <cite>Private rent and house prices, UK: July 2026</cite> (average UK private rent £1,388, +3.3% in the 12 months to June 2026; North East +6.3%). <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/july2026" target="_blank" rel="noopener">ons.gov.uk</a></li>
-                        <li id="s1-11">Higher Education Statistics Agency, <cite>Higher Education Staff Statistics: UK, 2024/25</cite> (SB274), 19 February 2026. <a href="https://www.hesa.ac.uk/news/19-02-2026/sb274-higher-education-staff-statistics" target="_blank" rel="noopener">hesa.ac.uk</a></li>
-                        <li id="s1-12">Higher Education Statistics Agency, <cite>Number of academic staff in UK higher education falls for the first time</cite>, 19 February 2026. <a href="https://www.hesa.ac.uk/news/19-02-2026/number-academic-staff-uk-he-falls-for-first-time" target="_blank" rel="noopener">hesa.ac.uk</a></li>
-                        <li id="s1-13">David Kernohan, <cite>HESA Spring 2026: Staff</cite>, Wonkhe, 20 February 2026 (244,755 academic non-atypical FTE, down ~1%; under-35 share down from ~a third a decade ago to ~a quarter). <a href="https://wonkhe.com/blogs/hesa-spring-2026-staff/" target="_blank" rel="noopener">wonkhe.com</a></li>
-                        <li id="s1-14">Miryam Naddaf, &ldquo;Major AI conference flooded with peer reviews written fully by AI&rdquo;, <cite>Nature</cite> news, 27 November 2025 (corrected 1 December 2025); <cite>Nature</cite> 648, 256&ndash;257. <a href="https://www.nature.com/articles/d41586-025-03506-6" target="_blank" rel="noopener">nature.com</a></li>
-                        <li id="s1-15">Bradley Emi, <cite>Pangram predicts 21% of ICLR reviews are AI-generated</cite>, Pangram Labs, 18 November 2025. Analysis of all ICLR 2026 submissions and reviews: 15,899 reviews (21%) fully AI-generated, with some AI involvement in over half. Underlying detector described in Thai, Emi, Masrour and Iyyer, arXiv:2510.03154. <a href="https://www.pangram.com/blog/pangram-predicts-21-of-iclr-reviews-are-ai-generated" target="_blank" rel="noopener">pangram.com</a></li>
-                        <li id="s1-16">UCAS, <cite>Growing 18-year-old population pushes UK university applicant numbers higher</cite> (2026 cycle, 14 January deadline: 338,940 UK 18-year-olds, +4.8%; 619,360 total applicants). <a href="https://www.ucas.com/corporate/news-and-key-documents/news/growing-18-year-old-population-pushes-uk-university-applicant-numbers-higher" target="_blank" rel="noopener">ucas.com</a></li>
-                        <li id="s1-17">Department for Science, Innovation &amp; Technology, <cite>A snapshot of entry-level hiring in the UK</cite>, GOV.UK, 8 June 2026. <a href="https://www.gov.uk/government/publications/entry-level-hiring-in-the-uk-a-snapshot/a-snapshot-of-entry-level-hiring-in-the-uk" target="_blank" rel="noopener">gov.uk</a></li>
-                        <li id="s1-18">ICEF Monitor, <cite>UK universities bracing for a further decline in international enrolments</cite>, May 2026 (HESA &minus;6% international enrolments; BUILA survey of 69 universities). <a href="https://monitor.icef.com/2026/05/uk-universities-bracing-for-a-further-decline-in-international-enrolments/" target="_blank" rel="noopener">monitor.icef.com</a></li>
-                        <li id="s1-19">The PIE News, <cite>UK study visa issuance falls</cite>. <a href="https://thepienews.com/uk-study-visa-issuance-falls-32/" target="_blank" rel="noopener">thepienews.com</a></li>
-                        <li id="s1-20">ApplyBoard, <cite>Early 2026 visa data reveals how much demand has softened for studying in the UK</cite> (Home Office sponsored-study main applications down ~33% January&ndash;April 2026 year on year). <a href="https://www.applyboard.com/applyinsights-article/q1-26-uk-student-visa-data" target="_blank" rel="noopener">applyboard.com</a></li>
-                        <li id="s1-21">House of Commons Library, <cite>Tuition fees in England: history, debates and international comparisons</cite> (CBP-10155). <a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10155/" target="_blank" rel="noopener">commonslibrary.parliament.uk</a></li>
-                        <li id="s1-22">Pinsent Masons, <cite>University fees to rise year-on-year in England from 2026</cite>. <a href="https://www.pinsentmasons.com/out-law/news/university-fees-rise-year-on-year-england-2026" target="_blank" rel="noopener">pinsentmasons.com</a></li>
-                        <li id="s1-23">UCU, Unison, Unite, EIS and GMB, <cite>Joint Higher Education Unions' Claim 2026/27</cite> (30% real-terms pay cut since 2011; claim of RPI plus 3% or £3,000, whichever is greater). <a href="https://www.ucu.org.uk/media/15631/Joint-HE-claim-26-27/pdf/Joint_HE_Unions_Full_Claim_2026-27.pdf" target="_blank" rel="noopener">ucu.org.uk (PDF)</a>. Offer history confirmed against UCEA's own record of the 2026&ndash;27 New JNCHES round: initial 1.5%, improved to 1.8%, full and final 2% on 15 May 2026. <a href="https://www.ucea.ac.uk/our-work/collective-pay-negotiations-landing/2026-27-nj-pay-round/" target="_blank" rel="noopener">ucea.ac.uk</a></li>
-                    </ol>
-                    <p class="myth-foot">Figures are quoted as published by the sources above and were checked on 7 August 2026. Where employers and unions use different inflation measures &mdash; RPI versus CPI &mdash; I have said so rather than picking the larger number. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
-                    <p class="myth-foot"><strong style="color:#fff;">Corrected 7 August 2026.</strong> Two errors in the version first published. (1) The pay figure was given as &ldquo;20% since 2009&rdquo; without noting that UCU published it in October 2021; the union's current claim puts the fall at 30% since 2011, and the text now carries both with their dates. (2) The piece said international recruitment as a whole was collapsing. It is not: international undergraduate applications through UCAS rose 5.1% in the 2026 cycle. The fall is in taught postgraduate recruitment and visa applications, and the text now says so.</p>
-                    <p class="myth-foot"><strong style="color:#fff;">Second pass, 7 August 2026.</strong> Every claim was then re-checked against primary sources, with an independent AI fact-check run in parallel as a second opinion. Four further fixes. (1) The 244,755 academic staff figure was described as full-time-equivalent posts; it is a count of academic staff excluding atypical contracts, and the fall is the first in more than a decade rather than the first ever. (2) The 3.1% recruitment figure was attributed to an OfS estimate of entrants; it is UCAS acceptances, as reported by the OfS. (3) The ICLR peer-review figure was given as &ldquo;21% of roughly 76,000 reviews&rdquo;, a number derived rather than reported; Pangram states 15,899 reviews, 21% of the total. (4) A comparison of AI use against figures from &ldquo;two years earlier&rdquo; was removed: sources disagree on the baseline year and I could not settle it, so the text now uses only the year-by-year series HEPI publishes directly. Two claims remain corroborated only at second hand, both flagged in the note below.</p>
-                    <p class="myth-foot"><strong style="color:#fff;">Still second-hand.</strong> Two figures here could not be read at their primary source, because ucu.org.uk and hesa.ac.uk both block automated access. The 30%-since-2011 pay figure comes from the unions' 2026/27 claim as reported elsewhere, not from the claim document itself; the fixed-term and atypical contract counts (69,875 and 57,365) come from HESA's statistical bulletin as reported elsewhere, not from the bulletin. Both were independently corroborated, but if you are relying on either, open the source and check it yourself.</p>
-                </div>
-            </div>
-        </details>
+            </span>
+            <span class="myth-chev" aria-hidden="true">&rarr;</span>
+        </a>
 
         <section class="reveal" style="margin: 4rem 0;">
             <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,.07), rgba(236,72,153,.05)); padding: 2.5rem 3rem;">
@@ -1037,6 +201,7 @@
                 <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 64ch;">These arrive when a thought is finished rather than on a schedule. If you want to disagree with one &mdash; particularly if you have better data &mdash; that is the most useful thing you can send me.</p>
                 <div style="display:flex; gap:1rem; flex-wrap:wrap;">
                     <a href="mailto:M.S.Jameel@southampton.ac.uk" class="tag" style="padding: 14px 28px; background:#6366f1; color:#fff; text-decoration:none;">Argue with me</a>
+                    <a href="feed.xml" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">Subscribe by RSS</a>
                     <a href="publications.html" class="tag" style="padding: 14px 28px; background:rgba(255,255,255,0.05); color:#fff; text-decoration:none; border:1px solid var(--glass-border);">The peer-reviewed version</a>
                 </div>
             </div>
@@ -1053,33 +218,12 @@
     <script src="reveal.js"></script>
     <script src="nav.js"></script>
     <script>
+    /* Entries used to be <details> sections of this page, so links of the form
+       myth.html#myth-003 exist in the wild. Send them to the entry's own page. */
     (function () {
         'use strict';
-        var entries = document.querySelectorAll('details.myth');
-
-        document.getElementById('expandAll').addEventListener('click', function () {
-            entries.forEach(function (d) { d.open = true; });
-        });
-        document.getElementById('collapseAll').addEventListener('click', function () {
-            entries.forEach(function (d) { d.open = false; });
-        });
-
-        /* Deep links: #myth-001 opens that entry; a #s1-4 source link opens the
-           entry that contains it before the browser tries to scroll to it. */
-        function openFromHash() {
-            var hash = window.location.hash;
-            if (!hash || hash.length < 2) return;
-            var el;
-            try { el = document.querySelector(hash); } catch (e) { return; }
-            if (!el) return;
-            var host = el.closest('details.myth');
-            if (host) {
-                host.open = true;
-                el.scrollIntoView({ block: 'start' });
-            }
-        }
-        window.addEventListener('hashchange', openFromHash);
-        openFromHash();
+        var m = /^#myth-(\d+)$/.exec(window.location.hash);
+        if (m) { window.location.replace('myth-' + m[1] + '.html'); }
     })();
     </script>
 </body>
