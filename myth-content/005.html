@@ -1,0 +1,152 @@
+<!--META
+{
+  "number": "005",
+  "title": "The Cat Saw a Dog",
+  "dek": "In March 2013, in a converted chocolate factory in Moscow, I put a slide up that said we cannot tell whether the cat saw a dog or a dog saw a cat &mdash; and told the room that word order was the future of text mining. I was right about the direction and wrong about the mechanism. The more useful story is what I had already learned, by then, about which ideas actually get published.",
+  "date": "12 August 2026",
+  "iso": "2026-08-12T19:00:00+01:00",
+  "tags": [
+    "My research",
+    "NLP",
+    "Information retrieval",
+    "Research culture"
+  ],
+  "readtime": "~12 min read"
+}
+META-->
+
+<p>Every researcher has a moment where they said something in public that later looked either prescient or ridiculous, and usually cannot remember which. I have one, and unusually there is a paper trail, so I can check.</p>
+
+<p>This is the story of how I got into this field, the disillusionment that arrived roughly a year into the PhD, and a claim I made out loud in Moscow in 2013 that I still think about. I am going to be careful about the part where I appear to have been right, because that is exactly the sort of story people tell themselves badly.</p>
+
+<div class="myth-figs">
+    <div class="myth-fig">
+        <b><span class="counter" data-count="1994">0</span></b>
+        <span>Pinkerton publishes WebCrawler &mdash; the Web&rsquo;s first comprehensive full-text search engine<a class="cit" href="#s5-1">1</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="287">0</span></b>
+        <span>Submissions to ECIR 2013, Moscow, where I made the claim<a class="cit" href="#s5-8">8</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="30" data-post="%">0</span>+</b>
+        <span>Accuracy drop in frontier LLMs from reordering premises that do not change the problem<a class="cit" href="#s5-16">16</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="7">0</span>/18</b>
+        <span>Neural recommender papers from top venues that could be reproduced with reasonable effort<a class="cit" href="#s5-19">19</a></span>
+    </div>
+</div>
+
+<h4 data-n="ONE">A thesis that was not about mathematics</h4>
+
+<p>I was an undergraduate at Sikkim Manipal Institute of Technology, in my penultimate year, when I read Brian Pinkerton&rsquo;s work on WebCrawler. Not a textbook, not a course &mdash; a dissertation, downloaded and read the way you read something nobody assigned you.</p>
+
+<p>WebCrawler was the first comprehensive full-text search engine for the Web. Pinkerton started it at the University of Washington in 1994 and presented it that October at the Second International WWW Conference in Chicago.<a class="cit" href="#s5-1">1</a> The dissertation came six years later, after the thing had become a commercial product, and its preface says something I did not appreciate at the time and have thought about ever since:</p>
+
+<div class="myth-pull">&ldquo;this dissertation is different than most in that the evaluation is based not on the solution&rsquo;s theoretical or laboratory results, but on its actual implementation in a production setting.&rdquo;<a class="cit" href="#s5-2">2</a></div>
+
+<p>He is apologising, gently, for having built something that worked instead of proving something that was elegant. He even lists solutions that were theoretically promising and never deployed. I read that as an invitation. Then I read the PageRank work &mdash; the Stanford technical report, and Brin and Page&rsquo;s description of the Google prototype, which notes almost in passing that &ldquo;very little academic research has been done&rdquo; on large-scale search engines.<a class="cit" href="#s5-3">3</a><a class="cit" href="#s5-4">4</a> Two of the most consequential systems in computing, and both papers open by observing that the academy was not especially interested.</p>
+
+<p>So I built one. Between 2007 and 2009, on a research placement in the R&amp;D division of Tata Steel in Jamshedpur, I wrote a multithreaded web crawler as an indigenous search solution, and a localised search engine that ranked results by where you were asking from. It got written up in the <cite>Hindustan Times</cite> under a headline I did not choose.<a class="cit" href="#s5-5">5</a> It was not sophisticated. It worked, and I wanted to spend my life on this.</p>
+
+<h4 data-n="TWO">The Mario problem</h4>
+
+<p>The PhD started at the Chinese University of Hong Kong, and the first idea I had that felt genuinely mine came from a video game.</p>
+
+<p>Growing up on Super Mario, every player internalises something without being taught: not all jumps are equal. Two ledges close together and low down are trivial. Move the platform further away, or higher up, and it suddenly demands precision. Distance and height are what make a jump hard.</p>
+
+<p>Reading, I thought, is the same terrain. Some sentences are short hops between everyday words; others ask you to leap a wide conceptual gap or climb onto a ledge of dense technical vocabulary. So model the document as terrain and rank text by how hard the jumps across it are. That became a CIKM 2011 paper &mdash; four pages, an unsupervised ranking method based on a technical difficulty terrain &mdash; and the seed of everything after it.<a class="cit" href="#s5-6">6</a></p>
+
+<p>I was, briefly, extremely pleased with myself. And then I learned how this actually works.</p>
+
+<h4 data-n="THREE">The part nobody tells you in the first year</h4>
+
+<p>Here is the thing I want to say plainly, because I have watched a decade of PhD students discover it the slow way.</p>
+
+<p>The novelty of an idea and its publishability at a top venue are two different variables, and they are less correlated than you would like. What reliably travels is technical <em>weight</em>: a nonparametric prior, a derivation, a sampler, a proof, a table with enough baselines. An idea that is genuinely new and expressible in a paragraph is a hard sell. An idea that is a modest variation but arrives wearing four pages of mathematics is an easy one.</p>
+
+<p>I am aware this is the sort of claim a bitter person makes about reviewers, so take it from people with data rather than from me.</p>
+
+<ul>
+    <li>Lipton and Steinhardt named the pattern <strong>mathiness</strong> &mdash; borrowing the term from the economist Paul Romer &mdash; and defined it as &ldquo;the use of mathematics that obfuscates or impresses rather than clarifies&rdquo;. They describe spurious theorems inserted &ldquo;to lend authoritativeness to empirical results&rdquo; even where the theorem does not support the paper&rsquo;s actual claims, and mathematics used &ldquo;to bulldoze rather than to clarify&rdquo;.<a class="cit" href="#s5-17">17</a></li>
+    <li>In my own field, Armstrong, Moffat, Webber and Zobel took a decade of ad-hoc retrieval results reported at SIGIR and CIKM (1998&ndash;2008), lined them up against each other rather than each against its own baseline, and found &ldquo;little evidence of improvement in ad-hoc retrieval technology over the past decade&rdquo; &mdash; because the baselines were weak and nobody was comparing across papers.<a class="cit" href="#s5-18">18</a> Dozens of individually reported improvements; no aggregate movement.</li>
+    <li>A decade later Ferrari Dacrema, Cremonesi and Jannach did the equivalent for neural recommendation. Of 18 algorithms from top-tier conferences, <strong>only 7 could be reproduced with reasonable effort</strong>; 6 of those 7 were often beaten by simple nearest-neighbour or graph heuristics, and the last did not consistently beat a well-tuned linear method.<a class="cit" href="#s5-19">19</a></li>
+</ul>
+
+<p>None of that says mathematics is decoration. This is where I have to be fair to the field and to my own younger self. My ECIR paper needed a collapsed Gibbs sampler, and deriving it was not a costume &mdash; without it the model was untrainable at any useful scale. Sophistication is frequently load-bearing. The problem is not that our venues reward rigour; it is that rigour is <em>legible</em> and novelty is not, so under time pressure a reviewer can check the first and can only have an opinion about the second.</p>
+
+<div class="myth-pull">The incentive is not to be wrong. The incentive is to be checkable. Those are not the same thing, and the gap between them is where interesting work goes to die.</div>
+
+<p>What I did about it was not heroic. I adapted. I learned the machinery &mdash; Dirichlet processes, Chinese restaurant franchises, samplers, the lot &mdash; and I used it to carry the ideas I actually cared about. That is the honest version. I did not fight the system; I learned to speak it well enough that it would let my ideas through. I would give the same advice to a student today, with the same lack of pride about it.</p>
+
+<h4 data-n="FOUR">Moscow, March 2013</h4>
+
+<p>The idea I carried through was word order.</p>
+
+<p>Topic models at the time &mdash; LDA and nearly everything built on it &mdash; assumed <em>exchangeability</em>: a document is a bag of words, and the order they arrived in carries no information. This is an assumption of convenience. It makes the mathematics tractable. It is also, obviously, false about language, and my thesis was an extended argument that you can drop it and still compute.<a class="cit" href="#s5-7">7</a></p>
+
+<p>ECIR 2013 was the 35th European Conference on Information Retrieval, held 24&ndash;27 March 2013 in Moscow &mdash; the easternmost ECIR ever, organised by Yandex and the Higher School of Economics, in the buildings of the former Red October chocolate factory on an island in the Moskva. It took 287 submissions; the main research track accepted 29%. That March was the coldest Moscow had recorded in 33 years.<a class="cit" href="#s5-8">8</a> I was there on a student accommodation grant from Yandex, presenting an n-gram topic model for time-stamped documents &mdash; a model that tracks how topics move through time <em>without</em> throwing away the order of the words inside them.<a class="cit" href="#s5-9">9</a></p>
+
+<p>My fifth slide is still online. It gives three reasons the bag-of-words assumption is a problem, and the first one reads:</p>
+
+<div class="myth-pull">&ldquo;Logical structure of the document is lost. For example, we do not know whether &lsquo;the cat saw a dog or a dog saw a cat&rsquo;.&rdquo;<a class="cit" href="#s5-9">9</a></div>
+
+<p>Same words. Same counts. Opposite events. Every model in the room, mine included, was built on a representation that could not tell them apart, and mine was a partial fix rather than a solution.</p>
+
+<p>What I said out loud, and what is <em>not</em> on any slide, was that word order was probably the future of text mining and NLP. The deck&rsquo;s written &ldquo;future work&rdquo; is far more modest &mdash; explore nonparametric methods for n-gram topics over time &mdash; and I want that on the record before I take any credit. The grand claim was a spoken remark by a PhD student at the end of a twenty-minute talk.</p>
+
+<p>Marc Najork was at that conference. He was then a Principal Researcher at Microsoft Research, one of the people who had built AltaVista, and he gave one of seven Industry Day keynotes, on social signals in Bing &mdash; a talk that ended, per the conference report, by trying &ldquo;to point out the limitations of social search and dispel its myths&rdquo;.<a class="cit" href="#s5-8">8</a> Yandex filmed an interview with him in Moscow that week and put it up on 4 April 2013.<a class="cit" href="#s5-10">10</a> My memory is that he was in the hall for my talk. I cannot prove that part and I am not going to pretend otherwise; what the record establishes is that he was at that conference, and that I was making a large claim in a room that contained people who had built the systems I had grown up reading about.</p>
+
+<h4 data-n="FIVE">So was I right?</h4>
+
+<p>Partly. And the way in which I was wrong is more interesting than the way in which I was right.</p>
+
+<p><strong>The direction was right.</strong> Four years later, the Transformer arrived, and section 3.5 of <cite>Attention Is All You Need</cite> is a direct statement of the problem my slide was about:</p>
+
+<div class="myth-pull">&ldquo;Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.&rdquo;<a class="cit" href="#s5-11">11</a></div>
+
+<p>Self-attention, left alone, is a bag-of-words machine. Order has to be put back in deliberately &mdash; first with sine and cosine encodings, later with rotary position embeddings, which are what Llama-style models actually use.<a class="cit" href="#s5-11">11</a><a class="cit" href="#s5-12">12</a> Position encoding is not a footnote in modern LLMs; it is a live research area, and how far a model can extrapolate beyond its training length turns out to depend on which scheme you chose.<a class="cit" href="#s5-13">13</a> The thing every one of these systems has in common, underneath the scale, is that they model the order of the tokens.</p>
+
+<p><strong>The mechanism was wrong.</strong> I thought word order would enter models the way it entered mine: as explicit discrete structure &mdash; n-grams, phrases, collocations, segment boundaries, with a latent variable deciding where a phrase begins.<a class="cit" href="#s5-14">14</a> That is not what happened. Order became a continuous geometric property of the representation &mdash; a rotation in embedding space &mdash; and the explicit phrase machinery I spent years on was simply bypassed. Nobody uses my model. The bet on word order paid off; the way I placed it did not.</p>
+
+<p><strong>And the evidence is messier than my version of the story.</strong> In 2021 Sinha and colleagues pre-trained masked language models on sentences with the words <em>randomly shuffled</em>, and found they still did well after fine-tuning on many downstream tasks &mdash; including tasks specifically designed to punish models that ignore order. Their conclusion was that &ldquo;purely distributional information largely explains the success of pre-training&rdquo;.<a class="cit" href="#s5-15">15</a> Read narrowly, that is a paper saying word order mattered less than people like me assumed. I think the honest reading is that it indicts our <em>benchmarks</em> as much as our models &mdash; which is what the authors themselves say, calling for evaluation sets that require deeper linguistic knowledge. But I am not going to quietly leave it out because it is inconvenient.</p>
+
+<p>Set against it: in 2024 Chen, Chi, Wang and Zhou showed that permuting the order of the premises in a logical reasoning problem &mdash; a change that cannot alter the answer &mdash; causes accuracy drops of over 30% in state-of-the-art LLMs, and that presenting premises in the order the proof needs them dramatically improves performance.<a class="cit" href="#s5-16">16</a> That is not a model using word order well. It is a model whose behaviour is <em>hostage</em> to order it has not properly understood. Which is, in a sense, the 2013 slide again, thirteen years and several orders of magnitude of compute later, wearing better clothes.</p>
+
+<h4 data-n="WHAT I THINK">Being early is worth almost nothing</h4>
+
+<p>Three things I have taken from this, none of them flattering.</p>
+
+<p><strong>Being right early is not a credential.</strong> It is close to worthless, professionally, and people who trade on it are usually rounding. I did not predict the Transformer. I did not predict attention, or scale, or any of the things that actually mattered. I argued that a convenient assumption was false, which was neither original to me &mdash; Wallach had said it in 2006, and better<a class="cit" href="#s5-14">14</a> &mdash; nor sufficient. What the record shows is a student relaying what his own experiments demonstrated, in a room, with more confidence than the results strictly licensed. I would rather be described that way accurately than heroically.</p>
+
+<p><strong>The disillusionment was correct and the conclusion I drew from it was wrong.</strong> I was right that the system rewards legible sophistication over illegible novelty; the evidence above is not ambiguous. Where I went wrong, for about a year, was concluding that the ideas therefore did not matter. They do. The mathematics is the visa, not the destination. The students I supervise now get told both halves, in that order, because being told only the first half makes cynics and being told only the second makes casualties.</p>
+
+<p><strong>The assumptions of convenience are where the future is.</strong> Every field carries a simplification adopted because it made the equations work, which everyone knows is false and nobody has time to remove. Exchangeability was ours for twenty years. The useful question to ask of any field, including this one today, is not &ldquo;what is the state of the art&rdquo; but &ldquo;what is the thing we all know is wrong and tolerate anyway&rdquo;. In 2026, in my own area, my candidates are that a document has one meaning, that a benchmark score is a measurement, and that the tokenizer is a neutral piece of plumbing.<a class="cit" href="#s5-20">20</a> I could be wrong about all three. Someone should stand up in a room and say so.</p>
+
+<div class="myth-src">
+    <h4>Sources</h4>
+    <ol>
+        <li id="s5-1">Brian Pinkerton, <cite>Finding What People Want: Experiences with the WebCrawler</cite>, Proceedings of the Second International World Wide Web Conference, Chicago, 17&ndash;20 October 1994. Author&rsquo;s own copy: <a href="http://www.thinkpink.com/bp/WebCrawler/WWW94.html" target="_blank" rel="noopener">thinkpink.com</a> (plain HTTP; the site has been online since the 1990s and the page was last modified in 2001).</li>
+        <li id="s5-2">Brian Pinkerton, <cite>WebCrawler: Finding What People Want</cite>, doctoral dissertation, University of Washington, Department of Computer Science &amp; Engineering, 2000; supervisory committee co-chairs Edward Lazowska and John Zahorjan. The quotation is from the Preface, p.&nbsp;v; the abstract describes WebCrawler as &ldquo;the first comprehensive full-text search engine for the World-Wide Web&rdquo;. <a href="http://www.thinkpink.com/bp/Thesis/Thesis.pdf" target="_blank" rel="noopener">thinkpink.com/bp/Thesis/Thesis.pdf</a></li>
+        <li id="s5-3">Lawrence Page, Sergey Brin, Rajeev Motwani and Terry Winograd, <cite>The PageRank Citation Ranking: Bringing Order to the Web</cite>, Technical Report 1999-66, Stanford InfoLab, 11 November 1999. The Stanford InfoLab publication server (ilpubs.stanford.edu:8090/422/) was returning a database error when this entry was checked on 12 August 2026; the bibliographic details above are the standard ones and are given so the report can be located elsewhere.</li>
+        <li id="s5-4">Sergey Brin and Lawrence Page, <cite>The Anatomy of a Large-Scale Hypertextual Web Search Engine</cite>, Proceedings of the Seventh International World Wide Web Conference (WWW7), Brisbane, April 1998. Source of the &ldquo;very little academic research has been done&rdquo; remark, in the abstract. <a href="http://infolab.stanford.edu/~backrub/google.html" target="_blank" rel="noopener">infolab.stanford.edu</a></li>
+        <li id="s5-5">Primary documents for the 2007&ndash;2009 Tata Steel R&amp;D placement &mdash; the signed letter of appreciation listing the multithreaded web crawler among five projects, the 89-page B.Tech thesis, and Animesh Bisoee&rsquo;s <cite>Hindustan Times</cite> report on the localised search engine (Jamshedpur, August 2008) &mdash; are reproduced in full on <a href="undergraduate.html">the undergraduate record</a>.</li>
+        <li id="s5-6">Shoaib Jameel, Wai Lam, Ching-man Au Yeung and Sheaujiun Chyan, <cite>An Unsupervised Ranking Method Based on a Technical Difficulty Terrain</cite>, CIKM 2011, pp. 1989&ndash;1992, Glasgow. Winner, Best Paper Award, Beijing&ndash;Hong Kong International Doctoral Forum 2011. <a href="https://doi.org/10.1145/2063576.2063872" target="_blank" rel="noopener">doi.org/10.1145/2063576.2063872</a> &middot; <a href="thesis.html">the Mario story in full</a>.</li>
+        <li id="s5-7">Mohammad Shoaib Jameel, <cite>Latent Probabilistic Topic Discovery for Text Documents Incorporating Segment Structure and Word Order</cite>, PhD thesis, Systems Engineering and Engineering Management, The Chinese University of Hong Kong, July 2014. <a href="ShoaibJameelPhDThesis.pdf">Full thesis (PDF, 354pp)</a>. The related SIGIR paper is Shoaib Jameel and Wai Lam, <cite>An Unsupervised Topic Segmentation Model Incorporating Word Order</cite>, SIGIR 2013, pp. 203&ndash;212, Dublin (<a href="https://doi.org/10.1145/2484028.2484062" target="_blank" rel="noopener">doi</a>); the journal version is <cite>Supervised topic models with word order structure for document classification and retrieval learning</cite>, <cite>Information Retrieval Journal</cite> 18(4), 2015, pp. 283&ndash;330 (<a href="https://doi.org/10.1007/s10791-015-9254-2" target="_blank" rel="noopener">doi</a>).</li>
+        <li id="s5-8">Pavel Serdyukov, Pavel Braslavski and Jaap Kamps, <cite>Conference Report: ECIR 2013 &mdash; 35th European Conference on Information Retrieval</cite>, <cite>ACM SIGIR Forum</cite> 47(2), December 2013, pp. 41&ndash;57. Source of the dates (24&ndash;27 March 2013), the Yandex/HSE organisation, the Digital October venue in the former Red October chocolate factory, the 287 submissions and 29% main-track acceptance rate, the coldest March in 33 years, and the Industry Day programme &mdash; chaired by Yandex CTO Ilya Segalovich, held Wednesday 27 March in parallel with the technical tracks, at which &ldquo;Marc Najork form [sic] Microsoft Research&rdquo; spoke on social search. <a href="https://sigir.org/files/forum/2013D/p041.pdf" target="_blank" rel="noopener">sigir.org</a></li>
+        <li id="s5-9">Shoaib Jameel and Wai Lam, <cite>An N-Gram Topic Model for Time-Stamped Documents</cite>, ECIR 2013, LNCS 7814, pp. 292&ndash;304, Moscow (<a href="https://doi.org/10.1007/978-3-642-36973-5_25" target="_blank" rel="noopener">doi</a>). The quoted line is slide 5 of the conference presentation itself, archived at <a href="https://pdfs.semanticscholar.org/cc4a/78c58b0ae718576259a01aaa032f6d95ffd5.pdf" target="_blank" rel="noopener">Semantic Scholar</a>; slide 37 gives the deck&rsquo;s stated future work. Attendance was supported by an ECIR-2013 student accommodation grant from Yandex.</li>
+        <li id="s5-10">Yandex, <cite>&laquo;&#1052;&#1072;&#1088;&#1082; &#1053;&#1072;&#1081;&#1086;&#1088;&#1082; &#1086; &#1087;&#1088;&#1086;&#1096;&#1083;&#1086;&#1084; &#1080; &#1073;&#1091;&#1076;&#1091;&#1097;&#1077;&#1084; &#1087;&#1086;&#1080;&#1089;&#1082;&#1072;&raquo;</cite> (&ldquo;Marc Najork on the past and future of search&rdquo;), published 4 April 2013. The description states that Najork is a Principal Researcher at Microsoft Research, was among those who worked on AltaVista, and took part in Industry Day at ECIR-2013. <a href="https://www.youtube.com/watch?v=mjtnwYlsRw8" target="_blank" rel="noopener">youtube.com</a></li>
+        <li id="s5-11">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, &#321;ukasz Kaiser and Illia Polosukhin, <cite>Attention Is All You Need</cite>, NeurIPS 2017; arXiv:1706.03762, first submitted 12 June 2017. The quotation is the opening sentence of &sect;3.5, &ldquo;Positional Encoding&rdquo;. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-12">Jianlin Su, Yu Lu, Shengfeng Pan, Ahmed Murtadha, Bo Wen and Yunfeng Liu, <cite>RoFormer: Enhanced Transformer with Rotary Position Embedding</cite>, arXiv:2104.09864, 2021. Rotary position embedding encodes absolute position with a rotation matrix such that the attention inner product depends only on relative position; it is the scheme used by Llama-style models. <a href="https://arxiv.org/abs/2104.09864" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-13">Amirhossein Kazemnejad, Inkit Padhi, Karthikeyan Natesan Ramamurthy, Payel Das and Siva Reddy, <cite>The Impact of Positional Encoding on Length Generalization in Transformers</cite>, NeurIPS 2023; arXiv:2305.19466. Compares absolute, T5-relative, ALiBi, rotary and no-positional-encoding decoder-only Transformers on length generalization. <a href="https://arxiv.org/abs/2305.19466" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-14">Hanna M. Wallach, <cite>Topic Modeling: Beyond Bag-of-Words</cite>, ICML 2006, pp. 977&ndash;984. The two other direct antecedents of my ECIR model, both cited in the Moscow deck, are Xuerui Wang and Andrew McCallum, <cite>Topics over Time: A Non-Markov Continuous-Time Model of Topical Trends</cite>, KDD 2006, pp. 424&ndash;433 &mdash; the model mine was benchmarked against &mdash; and Xuerui Wang, Andrew McCallum and Xing Wei, <cite>Topical N-grams: Phrase and Topic Discovery, with an Application to Information Retrieval</cite>, ICDM 2007, pp. 697&ndash;702.</li>
+        <li id="s5-15">Koustuv Sinha, Robin Jia, Dieuwke Hupkes, Joelle Pineau, Adina Williams and Douwe Kiela, <cite>Masked Language Modeling and the Distributional Hypothesis: Order Word Matters Pre-training for Little</cite>, EMNLP 2021, pp. 2888&ndash;2913. Note the scope: this concerns masked-language-model pre-training followed by fine-tuning on downstream NLU tasks, not autoregressive generation. <a href="https://aclanthology.org/2021.emnlp-main.230/" target="_blank" rel="noopener">aclanthology.org</a></li>
+        <li id="s5-16">Xinyun Chen, Ryan A. Chi, Xuezhi Wang and Denny Zhou, <cite>Premise Order Matters in Reasoning with Large Language Models</cite>, ICML 2024; arXiv:2402.08939. Permuting premises &mdash; which cannot change the correct answer &mdash; causes accuracy drops of over 30%; the paper also releases R-GSM, a reordered variant of GSM8K. <a href="https://arxiv.org/abs/2402.08939" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-17">Zachary C. Lipton and Jacob Steinhardt, <cite>Troubling Trends in Machine Learning Scholarship</cite>, arXiv:1807.03341, July 2018; later published in <cite>ACM Queue</cite> 17(1), 2019. &ldquo;Mathiness&rdquo; is their third named pattern, defined in the abstract as &ldquo;the use of mathematics that obfuscates or impresses rather than clarifies&rdquo;; the term is borrowed from Paul Romer. <a href="https://arxiv.org/abs/1807.03341" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-18">Timothy G. Armstrong, Alistair Moffat, William Webber and Justin Zobel, <cite>Improvements That Don&rsquo;t Add Up: Ad-Hoc Retrieval Results Since 1998</cite>, CIKM 2009, pp. 601&ndash;610, Hong Kong. Analyses TREC Ad-Hoc, Web, Terabyte and Robust results reported at SIGIR (1998&ndash;2008) and CIKM (2004&ndash;2008). <a href="https://doi.org/10.1145/1645953.1646031" target="_blank" rel="noopener">doi.org/10.1145/1645953.1646031</a></li>
+        <li id="s5-19">Maurizio Ferrari Dacrema, Paolo Cremonesi and Dietmar Jannach, <cite>Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches</cite>, RecSys 2019 (Best Long Paper); arXiv:1907.06902. 18 algorithms examined, 7 reproducible with reasonable effort, 6 of those 7 often outperformed by simple heuristics. An extended analysis appeared as <cite>A Troubling Analysis of Reproducibility and Progress in Recommender Systems Research</cite>, <cite>ACM TOIS</cite>, 2021. <a href="https://arxiv.org/abs/1907.06902" target="_blank" rel="noopener">arxiv.org</a></li>
+        <li id="s5-20">On the tokenizer specifically, see <a href="myth-002.html">MyTh 002</a> and the accompanying <a href="tokenizer-tax.html">interactive measurement</a>: the same sentence of the Universal Declaration of Human Rights costs 33 tokens in English and 305 in Amharic.</li>
+    </ol>
+    <p class="myth-foot">Checked against primary sources on 12 August 2026. Three things are worth flagging rather than burying. First, my recollection that Marc Najork was in the hall for my talk is a recollection and nothing more &mdash; the conference report<a class="cit" href="#s5-8">8</a> places him at ECIR 2013 as an Industry Day speaker, and Industry Day ran on the final morning in parallel with the technical tracks, but no record establishes who sat in which session. Second, the claim that word order was the future of text mining was said out loud and is not in the slide deck; the deck&rsquo;s written future work is narrower, and I have quoted it above so you can see the difference.<a class="cit" href="#s5-9">9</a> Third, the strongest published evidence against my position &mdash; Sinha et al.<a class="cit" href="#s5-15">15</a> &mdash; is included deliberately, and I have tried to state it at its strongest rather than at its most convenient. The Stanford InfoLab server hosting the PageRank technical report was down when this was written, which is why that citation carries bibliographic detail instead of a working link. Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
+</div>
