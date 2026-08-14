@@ -87,9 +87,29 @@
                 else activate(el);
                 io.unobserve(el);           // one-shot: no repeated work on scroll
             });
-        }, { rootMargin: '0px 0px -80px 0px', threshold: 0.05 });
+        /* threshold must stay 0. A ratio-based threshold is a trap for tall
+           elements: asking for 5% of a 19,000px article means 950px on screen,
+           which is more than the viewport, so the condition can never be met and
+           the element stays at opacity 0 forever. MyTh 006 was the first entry
+           long enough to cross that line and render as a blank page. The -80px
+           bottom margin already provides the "meaningfully in view" guard that
+           the ratio was there for, and it is independent of element height. */
+        }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
 
         targets.forEach(function (el) { io.observe(el); });
+
+        /* Safety net. Content must never be invisible because an animation did
+           not run, so anything still unrevealed once the page has loaded gets
+           activated if it is at or above the fold. */
+        window.addEventListener('load', function () {
+            targets.forEach(function (el) {
+                if (el.classList.contains('active')) return;
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    io.unobserve(el);
+                    activate(el);
+                }
+            });
+        });
     }
 
     /* ---------- scroll progress bar (opt in with <div class="scroll-progress">) ---------- */
