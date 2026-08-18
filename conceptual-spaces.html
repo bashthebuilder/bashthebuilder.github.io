@@ -219,6 +219,113 @@
         .cs-paper-title { display: block; color: #fff; font-weight: 700; font-size: 1rem; line-height: 1.4; margin: 0.4rem 0 0.3rem; }
         .cs-paper-auth { font-size: 0.85rem; color: var(--text-muted); }
 
+
+        /* ---------- comparison matrix ---------- */
+        .cs-quad { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 0.6rem; margin-bottom: 1.4rem; }
+        .cs-quad-btn {
+            font-family: inherit; text-align: left; cursor: pointer;
+            padding: 0.9rem 1.1rem; border-radius: 14px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.03);
+            color: var(--text-muted); transition: 0.25s cubic-bezier(.16,.8,.3,1);
+        }
+        .cs-quad-btn:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.28); }
+        .cs-quad-btn:focus-visible { outline: 2px solid #818cf8; outline-offset: 3px; }
+        .cs-quad-btn b { display: block; font-size: 0.98rem; color: #fff; margin-bottom: 0.15rem; }
+        .cs-quad-btn span { font-size: 0.84rem; }
+        .cs-quad-btn.on { background: rgba(99,102,241,0.16); border-color: #818cf8; }
+        .cs-quad-btn.on span { color: #c7d2fe; }
+
+        .cs-matrix-wrap { overflow-x: auto; }
+        table.cs-matrix { width: 100%; border-collapse: collapse; min-width: 620px; }
+        table.cs-matrix th { text-align: left; padding: 0.6rem 0.9rem; font-size: 0.74rem; font-weight: 800;
+            letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted);
+            border-bottom: 1px solid var(--glass-border); }
+        table.cs-matrix th.cs-col-cs { color: #a5b4fc; }
+        table.cs-matrix th.cs-col-llm { color: #7dd3fc; }
+        table.cs-matrix td { padding: 0.7rem 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: top; }
+        table.cs-matrix tr.cs-row { cursor: pointer; transition: background 0.2s; }
+        table.cs-matrix tr.cs-row:hover { background: rgba(255,255,255,0.035); }
+        table.cs-matrix tr.cs-row.hide { display: none; }
+        .cs-cap { color: #e2e8f0; font-weight: 600; font-size: 0.98rem; }
+        .cs-cap::after { content: ' +'; color: #64748b; font-weight: 400; }
+        tr.cs-row.open .cs-cap::after { content: ' \2212'; }
+        .cs-mark { display: inline-flex; align-items: center; justify-content: center;
+            min-width: 2.1rem; padding: 2px 8px; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 800; letter-spacing: 0.4px; }
+        .cs-mark.yes  { background: rgba(52,211,153,0.14); color: #34d399; }
+        .cs-mark.part { background: rgba(251,191,36,0.14); color: #fbbf24; }
+        .cs-mark.no   { background: rgba(239,68,68,0.13);  color: #f87171; }
+        tr.cs-eviRow { display: none; }
+        tr.cs-eviRow.show { display: table-row; }
+        tr.cs-eviRow td { padding-top: 0; padding-bottom: 1.1rem; color: var(--text-muted); font-size: 0.94rem; line-height: 1.6; }
+        tr.cs-eviRow td > div { max-width: 78ch; border-left: 2px solid rgba(129,140,248,0.4); padding-left: 1rem; }
+        .cs-cite { color: #a5b4fc; text-decoration: none; border-bottom: 1px dotted rgba(165,180,252,0.5); }
+        .cs-cite:hover { color: #c7d2fe; border-bottom-style: solid; }
+        .cs-empty { color: var(--text-muted); font-style: italic; padding: 1.2rem 0.9rem; }
+        /* On a phone the four-column table would only scroll sideways. The
+           one-line gloss is the expendable column — the evidence behind it is
+           still one tap away on the row itself. */
+        @media (max-width: 720px) {
+            table.cs-matrix { min-width: 0; }
+            table.cs-matrix th:nth-child(4), table.cs-matrix td:nth-child(4) { display: none; }
+            table.cs-matrix th:first-child { width: auto; }
+            .cs-cap { font-size: 0.92rem; }
+        }
+
+        /* ---------- the published-results chart ---------- */
+        .cs-viz {
+            --surface-1: #0e1015;
+            --series-gpt4:    #3987e5;   /* categorical slot 1 — GPT-4 */
+            --series-davinci: #d95926;   /* slot 2 — GPT-3 davinci   */
+            --series-deberta: #199e70;   /* slot 3 — DeBERTa, fine-tuned */
+        }
+        .cs-facets { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+        @media (min-width: 820px) { .cs-facets { grid-template-columns: 0.9fr 1.6fr; } }
+        .cs-facet-title { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.6px; color: #e2e8f0; margin-bottom: 0.15rem; }
+        .cs-facet-sub { font-size: 0.78rem; color: #64748b; margin-bottom: 0.7rem; }
+        .cs-legend { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-bottom: 1.1rem; }
+        .cs-legend span { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        .cs-legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+        .cs-bar-rect { transition: opacity 0.18s; }
+        .cs-bar-rect:hover { opacity: 0.82; }
+        .cs-axis-line { stroke: rgba(255,255,255,0.22); stroke-width: 1.2; }
+        .cs-gridline { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+        .cs-tick { fill: #64748b; font-size: 10.5px; }
+        .cs-grp { fill: #94a3b8; font-size: 11.5px; font-weight: 700; }
+        .cs-val { fill: #e2e8f0; font-size: 11px; font-weight: 800; }
+        .cs-tip {
+            position: absolute; pointer-events: none; opacity: 0; transform: translate(-50%, -115%);
+            background: rgba(10,12,18,0.97); border: 1px solid var(--glass-border); border-radius: 10px;
+            padding: 0.5rem 0.75rem; font-size: 0.82rem; color: #e2e8f0; white-space: nowrap;
+            transition: opacity 0.15s; z-index: 5; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .cs-tip.on { opacity: 1; }
+        .cs-tip b { color: #fff; }
+        table.cs-numbers { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 1rem; }
+        table.cs-numbers th, table.cs-numbers td { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: right; }
+        table.cs-numbers th:first-child, table.cs-numbers td:first-child { text-align: left; color: #e2e8f0; }
+        table.cs-numbers th { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.7px; }
+
+        /* ---------- convexity probe ---------- */
+        .cs-probe-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 0.9rem; margin-top: 1.2rem; }
+        .cs-probe-stat { padding: 1rem; border-radius: 14px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.025); text-align: center; }
+        .cs-probe-stat b { display: block; font-size: 1.5rem; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; }
+        .cs-probe-stat span { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; display: block; margin-top: 0.2rem; }
+        .cs-schematic {
+            display: inline-block; margin-bottom: 0.8rem; padding: 3px 11px; border-radius: 100px;
+            background: rgba(251,191,36,0.12); color: #fbbf24;
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 0.9px; text-transform: uppercase;
+        }
+
+        /* ---------- sources ---------- */
+        ol.cs-refs { list-style: none; counter-reset: ref; margin-top: 1rem; }
+        ol.cs-refs li { counter-increment: ref; position: relative; padding: 0.5rem 0 0.5rem 2.3rem;
+            font-size: 0.9rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); max-width: none; }
+        ol.cs-refs li::before { content: '[' counter(ref) ']'; position: absolute; left: 0; top: 0.5rem;
+            color: #64748b; font-variant-numeric: tabular-nums; font-size: 0.8rem; font-weight: 700; }
+        ol.cs-refs a { color: #a5b4fc; text-decoration: none; }
+        ol.cs-refs a:hover { text-decoration: underline; }
+
         @media (prefers-reduced-motion: reduce) {
             .cs-ent, .cs-bar-fill, .cs-rank-list li, .cs-hull { transition: none !important; }
         }
@@ -528,6 +635,143 @@
                         <div class="cs-item-body"><p>The deepest limitation, and the one I am now attacking. A point is a point: it carries no width. A vague report and a confirmed identification land in the space as identical objects. Region boundaries are drawn crisply where the underlying concept is genuinely fuzzy. For anything with consequences, &ldquo;here is the answer&rdquo; is not enough &mdash; you need &ldquo;here is the answer, and here is how much to trust it.&rdquo;</p></div>
                     </details>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============ CONCEPTUAL SPACES vs LLMs ============ -->
+        <section id="cs-vs-llm" class="reveal" style="margin: 4rem 0 0; scroll-margin-top: 130px;">
+            <span class="section-title">The comparison everyone asks for</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">Conceptual spaces and large language models</h2>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">The question I get asked most is some version of &ldquo;hasn't this been made obsolete?&rdquo; It is a fair question and it has a more interesting answer than yes or no, because the two approaches do not fail in the same places. An LLM will fluently tell you something false and sound equally confident either way. A conceptual space cannot tell you anything it has no dimension for &mdash; but when it does answer, you can read off exactly why.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">What follows is not a rhetorical contrast. Every row below points at a published result, and where the evidence cuts against conceptual spaces I have said so.</p>
+
+            <!-- FIGURE 6: the matrix -->
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 6 &middot; filterable</span>
+                    <span class="cs-fig-title">Four questions, one table</span>
+                </div>
+
+                <div class="cs-quad" id="cs-quad">
+                    <button class="cs-quad-btn on" data-cs-quad="all"><b>Everything</b><span>the full comparison</span></button>
+                    <button class="cs-quad-btn" data-cs-quad="llm-can"><b>What LLMs do well</b><span>and conceptual spaces do not</span></button>
+                    <button class="cs-quad-btn" data-cs-quad="llm-cant"><b>What LLMs cannot do</b><span>where the geometry still wins</span></button>
+                    <button class="cs-quad-btn" data-cs-quad="cs-can"><b>What spaces do well</b><span>their genuine advantages</span></button>
+                    <button class="cs-quad-btn" data-cs-quad="cs-cant"><b>What spaces cannot do</b><span>including things LLMs can</span></button>
+                </div>
+
+                <div class="cs-matrix-wrap">
+                    <table class="cs-matrix">
+                        <thead>
+                            <tr>
+                                <th style="width:38%">Capability &mdash; click a row for the evidence</th>
+                                <th class="cs-col-cs" style="width:16%">Conceptual&nbsp;spaces</th>
+                                <th class="cs-col-llm" style="width:16%">LLMs</th>
+                                <th style="width:30%">In one line</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cs-matrix-body"></tbody>
+                    </table>
+                </div>
+                <p class="cs-caption" id="cs-matrix-caption"></p>
+            </div>
+
+            <!-- FIGURE 7: the published numbers -->
+            <p style="color: var(--text-muted); margin: 2.5rem 0 1rem;">Two of those rows are worth seeing as numbers, because they are the ones people find most surprising. In 2023 Steven's group at Cardiff asked directly whether an LLM can learn conceptual space dimensions &mdash; ranking foods by sweetness, objects by mass, and so on. The result splits cleanly in two, and neither half is the one people expect.</p>
+
+            <div class="cs-fig cs-viz">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 7 &middot; published results</span>
+                    <span class="cs-fig-title">Where each one actually wins</span>
+                </div>
+
+                <div class="cs-legend">
+                    <span><i style="background:var(--series-gpt4)"></i> GPT-4</span>
+                    <span><i style="background:var(--series-davinci)"></i> GPT-3 davinci &mdash; 175B</span>
+                    <span><i style="background:var(--series-deberta)"></i> DeBERTa &mdash; fine-tuned, ~0.1% the size</span>
+                </div>
+
+                <div class="cs-facets">
+                    <div style="position:relative;">
+                        <div class="cs-facet-title">Perceptual dimension</div>
+                        <div class="cs-facet-sub">Ranking 590 foods by sweetness &middot; Spearman &rho; (%)<br><span style="color:#fbbf24;">GPT-4 is absent: it could not rank the items.</span></div>
+                        <svg class="cs-svg" id="cs-v-taste" viewBox="0 0 250 250" role="img"
+                             aria-label="Bar chart of Spearman correlation for ranking foods by sweetness: GPT-3 davinci 55.0, fine-tuned DeBERTa 69.1."></svg>
+                    </div>
+                    <div style="position:relative;">
+                        <div class="cs-facet-title">Objective magnitudes</div>
+                        <div class="cs-facet-sub">Pairwise comparison of everyday objects &middot; accuracy (%)</div>
+                        <svg class="cs-svg" id="cs-v-phys" viewBox="0 0 430 250" role="img"
+                             aria-label="Grouped bar chart of pairwise accuracy on mass, height and size for GPT-4, GPT-3 davinci and fine-tuned DeBERTa."></svg>
+                    </div>
+                </div>
+                <div class="cs-tip" id="cs-v-tip"></div>
+
+                <div class="cs-ctrls" style="margin: 1.2rem 0 0;">
+                    <button class="cs-btn" id="cs-v-table-btn" aria-expanded="false">Show the numbers as a table</button>
+                </div>
+                <div id="cs-v-table" hidden></div>
+
+                <p class="cs-caption"><strong>Scale wins on the left-hand side of the world and loses on the right.</strong> On objective physical magnitudes GPT-4 is close to perfect &mdash; <strong>99.1%</strong> on both height and size. On a genuinely perceptual dimension it is not merely worse, it is absent: ChatGPT and GPT-4 <em>could not produce a ranking of the 590 items at all</em>, so the authors excluded them from that experiment. The best perceptual result came from a fine-tuned DeBERTa at <strong>&rho;&nbsp;=&nbsp;69.1</strong>, ahead of the 175-billion-parameter GPT-3 davinci at 55.0 and far ahead of the smaller curie at 36.0 &mdash; from a model two to three orders of magnitude smaller. Source: <a class="cs-cite" href="https://arxiv.org/abs/2310.05481" target="_blank" rel="noopener">Chatterjee, Gajbhiye &amp; Schockaert, EMNLP 2023</a>.</p>
+            </div>
+
+            <!-- FIGURE 8: convexity emerging -->
+            <h3 style="font-size: 1.5rem; margin: 3rem 0 1rem;">The part I did not expect</h3>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">Here is the finding that reframed this whole comparison for me. If G&auml;rdenfors is right that natural concepts occupy convex regions, then a neural network that has learned a domain well ought to show convexity in its own latent space &mdash; without anyone imposing it. In 2025 a group at the Technical University of Denmark tested exactly that across image, text, audio, activity and medical data, and found <strong style="color:#fff;">approximate convexity nearly everywhere</strong>.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">The stronger result is what convexity predicts. How convex a class region is <em>after pretraining</em> correlates with how accurate the model becomes <em>after fine-tuning</em> &mdash; and with few-shot recall. A criterion proposed in 2000 from cognitive science, on entirely non-computational grounds, turns out to forecast how well a deep network will learn.</p>
+
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 8 &middot; interactive</span>
+                    <span class="cs-fig-title">The convexity probe, and what it predicts</span>
+                </div>
+
+                <span class="cs-schematic">Schematic of the measurement &mdash; not their data</span>
+                <p style="color: var(--text-muted); font-size:0.97rem; margin-bottom:1rem;">The test is the one from Figure 2, applied to a learned representation: take two points known to be in the same class, and check whether the point <em>between</em> them is still in that class. Drag the slider from an early layer through to a fine-tuned one. The score is counted live from the geometry you are looking at.</p>
+
+                <div class="cs-stage">
+                    <svg class="cs-svg" id="cs-p-svg" viewBox="0 0 720 340" role="img"
+                         aria-label="A schematic latent space in which points of one class become progressively more convex, with sampled midpoints marked as inside or outside the class."></svg>
+                </div>
+
+                <div class="cs-slider-row">
+                    <label for="cs-p-range">Representation</label>
+                    <input type="range" class="cs-range" id="cs-p-range" min="0" max="1000" value="0">
+                    <span style="font-weight:800; color:#fff; min-width:11rem; text-align:right; font-size:0.9rem;" id="cs-p-stage">Early layer</span>
+                </div>
+
+                <div class="cs-probe-stats">
+                    <div class="cs-probe-stat">
+                        <b id="cs-p-score">&mdash;</b>
+                        <span>Midpoints still inside the class<br>(counted live, this figure)</span>
+                    </div>
+                    <div class="cs-probe-stat">
+                        <b>0.63</b>
+                        <span>Published correlation between convexity after pretraining and accuracy after fine-tuning <em>(p&nbsp;=&nbsp;5&times;10<sup>&minus;4</sup>)</em></span>
+                    </div>
+                    <div class="cs-probe-stat">
+                        <b>0.53</b>
+                        <span>Published correlation between pretrained convexity and few-shot class recall</span>
+                    </div>
+                </div>
+
+                <p class="cs-caption"><strong>Read the two published figures on the right as the point of this section.</strong> They come from <a class="cs-cite" href="https://www.nature.com/articles/s41467-025-60809-y" target="_blank" rel="noopener">T&#283;tkov&aacute; et al., <em>Nature Communications</em>, 2025</a>, who measured convexity in RoBERTa, BERT, ViT, DINOv2, wav2vec2 and others. The animation left of them is my illustration of their measurement procedure, not a plot of their results.</p>
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">So the honest summary is not that one approach beat the other. It is that the geometry turned out to be there all along, unlabelled, inside the models that displaced it &mdash; and that the property G&auml;rdenfors singled out as the mark of a natural concept is the same property that predicts whether a network will generalise.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">Which leaves the single row in that table where <em>both</em> columns say no: knowing how confident to be. An LLM's stated confidence degrades under the very post-training that makes it useful. A classical conceptual space has no confidence to state at all &mdash; a hedged report and a confirmed one land on the same coordinate. On explaining itself the geometry already wins; on calibration neither side has an answer, and that gap is the whole of what I am building now.</p>
+
+            <div class="cs-fig" style="background: rgba(255,255,255,0.015);">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Sources</span>
+                    <span class="cs-fig-title">Everything cited above</span>
+                </div>
+                <ol class="cs-refs" id="cs-refs"></ol>
             </div>
         </section>
 
@@ -1463,6 +1707,512 @@
             }
             range.addEventListener('input', update);
             update();
+        })();
+
+
+        /* ================================================================
+           FIGURE 6 — the conceptual-spaces / LLM comparison matrix
+           ================================================================ */
+        var CS_REFS = [
+            { k: 'gpt3',    t: 'Brown et al., “Language Models are Few-Shot Learners”', v: 'NeurIPS 2020', u: 'https://arxiv.org/abs/2005.14165' },
+            { k: 'cabbage', t: 'Chatterjee, Gajbhiye &amp; Schockaert, “Cabbage Sweeter than Cake? Analysing the Potential of Large Language Models for Learning Conceptual Spaces”', v: 'EMNLP 2023', u: 'https://arxiv.org/abs/2310.05481' },
+            { k: 'gpt4',    t: 'OpenAI, “GPT-4 Technical Report”', v: '2023 — calibration before and after RLHF, Figure 8', u: 'https://arxiv.org/abs/2303.08774' },
+            { k: 'turpin',  t: 'Turpin, Michael, Perez &amp; Bowman, “Language Models Don’t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting”', v: 'NeurIPS 2023', u: 'https://arxiv.org/abs/2305.04388' },
+            { k: 'halluc',  t: 'Xu, Jain &amp; Kankanhalli, “Hallucination is Inevitable: An Innate Limitation of Large Language Models”', v: '2024', u: 'https://arxiv.org/abs/2401.11817' },
+            { k: 'reversal',t: 'Berglund et al., “The Reversal Curse: LLMs Trained on ‘A is B’ Fail to Learn ‘B is A’”', v: 'ICLR 2024', u: 'https://arxiv.org/abs/2309.12288' },
+            { k: 'faith',   t: 'Dziri et al., “Faith and Fate: Limits of Transformers on Compositionality”', v: 'NeurIPS 2023', u: 'https://arxiv.org/abs/2305.18654' },
+            { k: 'selfcorr',t: 'Huang et al., “Large Language Models Cannot Self-Correct Reasoning Yet”', v: 'ICLR 2024', u: 'https://arxiv.org/abs/2310.01798' },
+            { k: 'linear',  t: 'Park, Choe &amp; Veitch, “The Linear Representation Hypothesis and the Geometry of Large Language Models”', v: 'ICML 2024', u: 'https://proceedings.mlr.press/v235/park24c.html' },
+            { k: 'convex',  t: 'Tětková et al., “On convex decision regions in deep network representations”', v: 'Nature Communications, 2025', u: 'https://www.nature.com/articles/s41467-025-60809-y' },
+            { k: 'ranking', t: 'Kumar, Chatterjee &amp; Schockaert, “Ranking Entities along Conceptual Space Dimensions with LLMs”', v: 'Findings of ACL 2024', u: 'https://arxiv.org/abs/2402.15337' },
+            { k: 'proto',   t: 'Kumar, Chatterjee &amp; Schockaert, “Extracting Conceptual Spaces from LLMs Using Prototype Embeddings”', v: '2025', u: 'https://arxiv.org/abs/2509.19269' }
+        ];
+        var CS_REF_N = {};
+        CS_REFS.forEach(function (r, i) { CS_REF_N[r.k] = i + 1; });
+
+        function cite(key, label) {
+            var r = CS_REFS[CS_REF_N[key] - 1];
+            return '<a class="cs-cite" href="' + r.u + '" target="_blank" rel="noopener">' + label + ' [' + CS_REF_N[key] + ']</a>';
+        }
+
+        var CS_ROWS = [
+            {
+                cap: 'Open-domain language and instruction following',
+                cs: 'no', llm: 'yes', q: ['llm-can', 'cs-cant'],
+                line: 'Ask anything, phrased any way. A space has no answer for what it has no dimension for.',
+                ev: 'This is the LLM’s home ground and it is not close. A conceptual space is built for one domain at a time: to ask it about films you need a film subspace, and a question that crosses domains has to be decomposed by hand. An LLM handles arbitrary phrasing, unseen tasks and mixed domains from a prompt alone — the capability first demonstrated at scale by ' + cite('gpt3', 'Brown et al., NeurIPS 2020') + '. Nothing in the conceptual-spaces literature competes with this, and pretending otherwise would be silly.'
+            },
+            {
+                cap: 'Ranking by objective physical magnitudes',
+                cs: 'part', llm: 'yes', q: ['llm-can', 'cs-cant'],
+                line: 'GPT-4 reaches 99.1% on height and on size — reading off facts a learned space can only infer sideways.',
+                ev: 'On mass, height and size — dimensions with a fact of the matter that is written down somewhere — GPT-4 gets <strong>84.9%</strong>, <strong>99.1%</strong> and <strong>99.1%</strong> pairwise accuracy respectively (' + cite('cabbage', 'Chatterjee et al., EMNLP 2023') + '). A learned conceptual space recovers these orderings only approximately, because it is inferring them from how people happen to talk about the entities rather than reading them off. See Figure 7.'
+            },
+            {
+                cap: 'Ranking by perceptual and subjective dimensions',
+                cs: 'yes', llm: 'part', q: ['cs-can', 'llm-cant'],
+                line: 'On sweetness, a small fine-tuned encoder beats 175B GPT-3 — and GPT-4 could not do the task at all.',
+                ev: 'The same study asked models to rank 590 foods by sweetness against ground truth from trained human panellists. A fine-tuned DeBERTa scored <strong>ρ = 69.1</strong>, against <strong>55.0</strong> for GPT-3 davinci and <strong>36.0</strong> for curie. More strikingly, <em>“ChatGPT and GPT-4 were not able to provide a ranking of the 590 items, and are thus not considered for this experiment”</em> — the largest models were excluded because they could not perform the task, not because they did badly at it (' + cite('cabbage', 'Chatterjee et al., EMNLP 2023') + '). Perceptual structure is exactly what conceptual spaces were designed for.'
+            },
+            {
+                cap: 'Saying how confident to be',
+                cs: 'no', llm: 'no', q: ['llm-cant', 'cs-cant'],
+                line: 'Neither one manages this. It is the reason PICASO exists.',
+                ev: 'The GPT-4 technical report is unusually candid here: the pretrained model is <em>“highly calibrated”</em>, but <em>“after the post-training process, the calibration is reduced”</em> — the RLHF that makes the model useful is the same step that degrades its sense of its own reliability (' + cite('gpt4', 'OpenAI, 2023, Fig. 8') + '). A classical conceptual space is no better and arguably worse: a point has no width at all, so a hedged report and a confirmed one land at identical coordinates. This row is the one place where both columns genuinely fail.'
+            },
+            {
+                cap: 'Explaining its answer faithfully',
+                cs: 'yes', llm: 'no', q: ['cs-can', 'llm-cant'],
+                line: 'A coordinate and a direction, versus a chain of thought that need not be the real reason.',
+                ev: 'Chain-of-thought reads like an explanation, but it can systematically misstate the actual cause of the answer. Turpin and colleagues biased inputs — for instance reordering multiple-choice options so the answer was always “(A)” — and found models were swayed by the bias while never mentioning it in their stated reasoning (' + cite('turpin', 'Turpin et al., NeurIPS 2023') + '). In a conceptual space there is no separate explanation to be unfaithful: the coordinate, the direction and the distance <em>are</em> the computation.'
+            },
+            {
+                cap: 'Never fabricating',
+                cs: 'yes', llm: 'no', q: ['cs-can', 'llm-cant'],
+                line: 'A region either contains the point or it does not. Hallucination is not an engineering bug.',
+                ev: 'Xu, Jain and Kankanhalli formalise LLMs as computable functions and show by diagonalisation that no such model can learn every computable ground-truth function — so hallucination is <em>innate</em> rather than a defect to be patched out (' + cite('halluc', 'Xu et al., 2024') + '). A geometric membership test cannot invent a member; its failure mode is refusing or mis-locating, not confabulating. That is a very different risk profile to defend.'
+            },
+            {
+                cap: 'Treating symmetric relationships symmetrically',
+                cs: 'yes', llm: 'no', q: ['cs-can', 'llm-cant'],
+                line: 'Distance is symmetric by construction. Autoregressive training is not.',
+                ev: 'A model trained on “Valentina Tereshkova was the first woman in space” often fails to answer “who was the first woman in space?” — the reversal curse, which survived hyperparameter sweeps, model scale and explicitly training both orderings (' + cite('reversal', 'Berglund et al., ICLR 2024') + '). Similarity in a conceptual space is a metric: d(a,b) = d(b,a) holds by definition, with nothing to learn and nothing to forget. The caveat from the ledger above still applies — asymmetric <em>relations</em> need a separate graph component either way.'
+            },
+            {
+                cap: 'Multi-step compositional reasoning',
+                cs: 'no', llm: 'part', q: ['llm-can', 'cs-cant', 'llm-cant'],
+                line: 'LLMs do it approximately and collapse as depth grows. Spaces do not attempt it.',
+                ev: 'Transformers solve compositional problems by reducing them to <em>“linearized subgraph matching”</em> against computation graphs seen in training, with performance falling <em>“from nearly perfect to zero”</em> as complexity increases (' + cite('faith', 'Dziri et al., NeurIPS 2023') + '). That is a real limitation — and still far more than a conceptual space offers, since regions give you intersection and containment and nothing else. Negation and quantifier scope have to come from a description logic layered on top.'
+            },
+            {
+                cap: 'Repairing its own wrong conclusions',
+                cs: 'yes', llm: 'no', q: ['cs-can', 'llm-cant'],
+                line: 'Disjointness axioms veto bad inductions. LLMs asked to revise unprompted tend to get worse.',
+                ev: 'Asked to self-correct reasoning without external feedback, LLMs do not reliably improve and often degrade (' + cite('selfcorr', 'Huang et al., ICLR 2024') + '). The hybrid in Figure 5 does have a repair mechanism, and it is not the model’s own opinion of itself: when induction proposes two conclusions the ontology declares disjoint, the contradiction is detected structurally and the lower-confidence branch is dropped.'
+            },
+            {
+                cap: 'Being interpretable by construction',
+                cs: 'yes', llm: 'part', q: ['cs-can', 'llm-cant'],
+                line: 'LLMs do carry linear concept directions — but you have to go hunting for them afterwards.',
+                ev: 'This one is closer than it used to be. There is now good evidence that high-level concepts are represented as directions in LLM activation space (' + cite('linear', 'Park, Choe &amp; Veitch, ICML 2024') + ') and that class regions in deep networks are approximately convex (' + cite('convex', 'Tětková et al., Nature Communications 2025') + '). But those directions are <em>discovered</em>, by probing, after training, one concept at a time — whereas in a conceptual space they are the representation itself. Interpretability you have to excavate is not the same as interpretability you can rely on.'
+            },
+            {
+                cap: 'Cost to build, run and audit',
+                cs: 'yes', llm: 'no', q: ['cs-can', 'llm-cant'],
+                line: 'A fine-tuned encoder matched GPT-3 at two to three orders of magnitude fewer parameters.',
+                ev: 'On conceptual-space dimensions, <em>“fine-tuned models of the BERT family are able to match or even outperform the largest GPT-3 model, despite being 2 to 3 orders of magnitude smaller”</em> (' + cite('cabbage', 'Chatterjee et al., EMNLP 2023') + '). For a deployment that has to run in a constrained environment, be audited, and be explained to somebody who will be held responsible for its output, that ratio is not a footnote.'
+            },
+            {
+                cap: 'Working out what the dimensions should be',
+                cs: 'no', llm: 'yes', q: ['llm-can', 'cs-cant'],
+                line: 'The oldest hole in the theory — and the thing LLMs are now being used to fill.',
+                ev: 'Gärdenfors assumed the quality dimensions were given; for anything past colour they are not, and this blocked the whole programme for fifteen years. The current answer is to get them out of an LLM: fine-tuning strategies for ranking entities along candidate dimensions (' + cite('ranking', 'Kumar, Chatterjee &amp; Schockaert, ACL Findings 2024') + '), and encoding each dimension by embedding a description of its prototype, e.g. <em>“a very sweet food”</em> (' + cite('proto', 'Kumar et al., 2025') + '). The honest reading is that conceptual spaces need LLMs for the step they were always weakest at.'
+            }
+        ];
+
+        (function matrix() {
+            var body = document.getElementById('cs-matrix-body');
+            if (!body) return;
+            var MARK = { yes: ['yes', 'Yes'], part: ['part', 'Partly'], no: ['no', 'No'] };
+            var caption = document.getElementById('cs-matrix-caption');
+            var CAPTIONS = {
+                'all': 'All twelve rows. Ratings are mine; the evidence behind each one is somebody else’s, and linked.',
+                'llm-can': 'Where an LLM is straightforwardly the better tool — open-ended language, objective magnitudes, and supplying the quality dimensions that conceptual spaces could never generate for themselves.',
+                'llm-cant': 'Where scale does not help: calibration, faithful explanation, fabrication, symmetry, deep composition, and self-repair.',
+                'cs-can': 'The geometry’s genuine advantages — most of them properties of <em>how</em> the answer is computed rather than how good it is.',
+                'cs-cant': 'The other half of the ledger, including four rows where an LLM simply does the job better.'
+            };
+
+            CS_ROWS.forEach(function (r, i) {
+                var tr = document.createElement('tr');
+                tr.className = 'cs-row';
+                tr.dataset.q = r.q.join(' ');
+                tr.setAttribute('tabindex', '0');
+                tr.setAttribute('role', 'button');
+                tr.setAttribute('aria-expanded', 'false');
+                tr.innerHTML =
+                    '<td><span class="cs-cap">' + r.cap + '</span></td>' +
+                    '<td><span class="cs-mark ' + MARK[r.cs][0] + '">' + MARK[r.cs][1] + '</span></td>' +
+                    '<td><span class="cs-mark ' + MARK[r.llm][0] + '">' + MARK[r.llm][1] + '</span></td>' +
+                    '<td style="color:var(--text-muted); font-size:0.92rem;">' + r.line + '</td>';
+                var ev = document.createElement('tr');
+                ev.className = 'cs-eviRow';
+                ev.innerHTML = '<td colspan="4"><div>' + r.ev + '</div></td>';
+                function toggle() {
+                    var open = ev.classList.toggle('show');
+                    tr.classList.toggle('open', open);
+                    tr.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+                tr.addEventListener('click', toggle);
+                tr.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
+                body.appendChild(tr);
+                body.appendChild(ev);
+                r._tr = tr; r._ev = ev;
+            });
+
+            function filter(q) {
+                CS_ROWS.forEach(function (r) {
+                    var on = (q === 'all') || r.q.indexOf(q) >= 0;
+                    r._tr.classList.toggle('hide', !on);
+                    if (!on) { r._ev.classList.remove('show'); r._tr.classList.remove('open'); r._tr.setAttribute('aria-expanded', 'false'); }
+                });
+                caption.innerHTML = CAPTIONS[q];
+            }
+            document.querySelectorAll('[data-cs-quad]').forEach(function (b) {
+                b.addEventListener('click', function () {
+                    document.querySelectorAll('[data-cs-quad]').forEach(function (o) { o.classList.remove('on'); });
+                    b.classList.add('on');
+                    filter(b.dataset.csQuad);
+                });
+            });
+            filter('all');
+
+            /* the reference list */
+            var ol = document.getElementById('cs-refs');
+            CS_REFS.forEach(function (r) {
+                var li = document.createElement('li');
+                li.innerHTML = r.t + '. <em>' + r.v + '</em>. <a href="' + r.u + '" target="_blank" rel="noopener">link &rarr;</a>';
+                ol.appendChild(li);
+            });
+        })();
+
+        /* ================================================================
+           FIGURE 7 — published results, Chatterjee et al. EMNLP 2023.
+           Two facets rather than one plot: the left is a Spearman rho and the
+           right is a pairwise accuracy. Different measures never share an axis.
+           Palette = categorical slots 1-3, dark mode, validated against the
+           #0e1015 card surface (worst CVD dE 9.4, worst normal-vision dE 20.9).
+           ================================================================ */
+        (function published() {
+            var tasteSvg = document.getElementById('cs-v-taste');
+            var physSvg = document.getElementById('cs-v-phys');
+            if (!tasteSvg || !physSvg) return;
+
+            var SERIES = [
+                { id: 'gpt4',    name: 'GPT-4',           colour: '#3987e5' },
+                { id: 'davinci', name: 'GPT-3 davinci',   colour: '#d95926' },
+                { id: 'deberta', name: 'DeBERTa (fine-tuned)', colour: '#199e70' }
+            ];
+            var byId = {};
+            SERIES.forEach(function (s) { byId[s.id] = s; });
+
+            var TASTE = { unit: 'Spearman ρ', bars: [
+                { id: 'davinci', v: 55.0 },
+                { id: 'deberta', v: 69.1 }
+            ] };
+            var PHYS = { unit: 'accuracy', groups: [
+                { g: 'Mass',   vals: { gpt4: 84.9, davinci: 76.8, deberta: 42.8 } },
+                { g: 'Height', vals: { gpt4: 99.1, davinci: 76.4, deberta: 86.6 } },
+                { g: 'Size',   vals: { gpt4: 99.1, davinci: 80.4, deberta: 93.9 } }
+            ] };
+
+            var tip = document.getElementById('cs-v-tip');
+            function showTip(evt, host, html) {
+                var box = host.getBoundingClientRect();
+                var parent = tip.offsetParent.getBoundingClientRect();
+                tip.innerHTML = html;
+                tip.style.left = (evt.clientX - parent.left) + 'px';
+                tip.style.top = (evt.clientY - parent.top) + 'px';
+                tip.classList.add('on');
+            }
+            function hideTip() { tip.classList.remove('on'); }
+
+            /* a bar with 4px-rounded top corners, anchored to the baseline */
+            function barPath(x, y, w, h, r) {
+                r = Math.min(r, w / 2, h);
+                return 'M' + x + ',' + (y + h) +
+                       ' L' + x + ',' + (y + r) +
+                       ' Q' + x + ',' + y + ' ' + (x + r) + ',' + y +
+                       ' L' + (x + w - r) + ',' + y +
+                       ' Q' + (x + w) + ',' + y + ' ' + (x + w) + ',' + (y + r) +
+                       ' L' + (x + w) + ',' + (y + h) + ' Z';
+            }
+
+            function axis(svg, W, H, padL, padB, padT) {
+                var y0 = H - padB, y1 = padT;
+                [0, 25, 50, 75, 100].forEach(function (t) {
+                    var y = y0 - (t / 100) * (y0 - y1);
+                    if (t > 0) el('line', { x1: padL, y1: y, x2: W - 6, y2: y, 'class': 'cs-gridline' }, svg);
+                    var lab = el('text', { x: padL - 7, y: y + 3.5, 'class': 'cs-tick', 'text-anchor': 'end' }, svg);
+                    lab.textContent = t;
+                });
+                el('line', { x1: padL, y1: y0, x2: W - 6, y2: y0, 'class': 'cs-axis-line' }, svg);
+                return { y0: y0, y1: y1 };
+            }
+
+            /* ---- facet A: one perceptual dimension ---- */
+            (function taste() {
+                var W = 250, H = 250, padL = 30, padB = 44, padT = 14;
+                var a = axis(tasteSvg, W, H, padL, padB, padT);
+                var slot = (W - 6 - padL) / TASTE.bars.length;
+                var bw = Math.min(42, slot - 18);
+                TASTE.bars.forEach(function (b, i) {
+                    var s = byId[b.id];
+                    var x = padL + i * slot + (slot - bw) / 2;
+                    var h = (b.v / 100) * (a.y0 - a.y1);
+                    var p = el('path', { d: barPath(x, a.y0 - h, bw, h, 4), fill: s.colour, 'class': 'cs-bar-rect' }, tasteSvg);
+                    var ttl = el('title', {}, p);
+                    ttl.textContent = s.name + ' — sweetness, Spearman rho ' + b.v.toFixed(1);
+                    p.addEventListener('mousemove', function (e) {
+                        showTip(e, tasteSvg, '<b>' + s.name + '</b><br>sweetness &middot; ρ = ' + b.v.toFixed(1));
+                    });
+                    p.addEventListener('mouseleave', hideTip);
+                    var v = el('text', { x: x + bw / 2, y: a.y0 - h - 7, 'class': 'cs-val', 'text-anchor': 'middle' }, tasteSvg);
+                    v.textContent = b.v.toFixed(1);
+                    var g = el('text', { x: x + bw / 2, y: a.y0 + 17, 'class': 'cs-grp', 'text-anchor': 'middle' }, tasteSvg);
+                    g.textContent = s.id === 'deberta' ? 'DeBERTa' : 'GPT-3';
+                    var g2 = el('text', { x: x + bw / 2, y: a.y0 + 30, 'class': 'cs-tick', 'text-anchor': 'middle' }, tasteSvg);
+                    g2.textContent = s.id === 'deberta' ? 'fine-tuned' : 'davinci';
+                });
+            })();
+
+            /* ---- facet B: three objective magnitudes ---- */
+            (function phys() {
+                var W = 430, H = 250, padL = 30, padB = 44, padT = 14;
+                var a = axis(physSvg, W, H, padL, padB, padT);
+                var slot = (W - 6 - padL) / PHYS.groups.length;
+                var GAP = 2;                       /* surface gap between adjacent bars */
+                var bw = (Math.min(112, slot - 26) - GAP * 2) / 3;
+                PHYS.groups.forEach(function (grp, gi) {
+                    var gx = padL + gi * slot + (slot - (bw * 3 + GAP * 2)) / 2;
+                    SERIES.forEach(function (s, si) {
+                        var v = grp.vals[s.id];
+                        var x = gx + si * (bw + GAP);
+                        var h = (v / 100) * (a.y0 - a.y1);
+                        var p = el('path', { d: barPath(x, a.y0 - h, bw, h, 4), fill: s.colour, 'class': 'cs-bar-rect' }, physSvg);
+                        var ttl = el('title', {}, p);
+                        ttl.textContent = s.name + ' — ' + grp.g + ', ' + v.toFixed(1) + '% pairwise accuracy';
+                        p.addEventListener('mousemove', function (e) {
+                            showTip(e, physSvg, '<b>' + s.name + '</b><br>' + grp.g + ' &middot; ' + v.toFixed(1) + '%');
+                        });
+                        p.addEventListener('mouseleave', hideTip);
+                        var lab = el('text', { x: x + bw / 2, y: a.y0 - h - 7, 'class': 'cs-val', 'text-anchor': 'middle',
+                                               'font-size': 10 }, physSvg);
+                        lab.textContent = v.toFixed(1);
+                    });
+                    var g = el('text', { x: gx + (bw * 3 + GAP * 2) / 2, y: a.y0 + 19, 'class': 'cs-grp', 'text-anchor': 'middle' }, physSvg);
+                    g.textContent = grp.g;
+                });
+            })();
+
+            /* ---- the same numbers as a table, for anyone who wants them ---- */
+            (function tableView() {
+                var host = document.getElementById('cs-v-table');
+                var btn = document.getElementById('cs-v-table-btn');
+                var rows = '';
+                rows += '<tr><td>Sweetness &mdash; Spearman &rho;</td><td>&mdash;</td><td>55.0</td><td>69.1</td></tr>';
+                PHYS.groups.forEach(function (g) {
+                    rows += '<tr><td>' + g.g + ' &mdash; pairwise accuracy (%)</td><td>' + g.vals.gpt4.toFixed(1) +
+                            '</td><td>' + g.vals.davinci.toFixed(1) + '</td><td>' + g.vals.deberta.toFixed(1) + '</td></tr>';
+                });
+                host.innerHTML =
+                    '<table class="cs-numbers"><thead><tr><th>Task</th><th>GPT-4</th><th>GPT-3 davinci</th><th>DeBERTa</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table>' +
+                    '<p style="font-size:0.82rem;color:#64748b;margin-top:0.6rem;">GPT-4 has no sweetness score because it could not produce a ranking of the 590 items. ' +
+                    'GPT-3 curie, not charted, scored 36.0 on sweetness.</p>';
+                btn.addEventListener('click', function () {
+                    var open = host.hasAttribute('hidden');
+                    if (open) host.removeAttribute('hidden'); else host.setAttribute('hidden', '');
+                    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    btn.textContent = open ? 'Hide the table' : 'Show the numbers as a table';
+                });
+            })();
+        })();
+
+        /* ================================================================
+           FIGURE 8 — the convexity probe.
+           A schematic of the measurement in Tetkova et al. (Nature Comms 2025):
+           take two points of one class, and ask whether the point between them
+           still belongs to that class. The score shown is counted from the
+           geometry actually on screen, not from their published data.
+           ================================================================ */
+        (function convexProbe() {
+            var svg = document.getElementById('cs-p-svg');
+            if (!svg) return;
+            var W = 720, H = 340, PAD = 26;
+            var CLASS_C = '#818cf8', OTHER_C = '#475569', PASS_C = '#34d399', FAIL_C = '#f87171';
+
+            var seed = 12345;
+            function rnd() { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; }
+
+            /* target region for the class: a tilted ellipse on the right-hand side */
+            var CX = W * 0.60, CY = H * 0.50, RX = 165, RY = 92, ROT = -0.22;
+            function inTarget(x, y) {
+                var dx = x - CX, dy = y - CY;
+                var c = Math.cos(-ROT), s = Math.sin(-ROT);
+                var u = dx * c - dy * s, v = dx * s + dy * c;
+                return (u * u) / (RX * RX) + (v * v) / (RY * RY) <= 1;
+            }
+            function targetPoint() {
+                var t = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * 0.92;
+                var u = Math.cos(t) * RX * r, v = Math.sin(t) * RY * r;
+                var c = Math.cos(ROT), s = Math.sin(ROT);
+                return { x: CX + u * c - v * s, y: CY + u * s + v * c };
+            }
+            function scatterPoint() {
+                return { x: PAD + rnd() * (W - 2 * PAD), y: PAD + rnd() * (H - 2 * PAD) };
+            }
+
+            var CLASS_N = 24, OTHER_N = 30;
+            var cls = [], oth = [];
+            var i;
+            for (i = 0; i < CLASS_N; i++) {
+                var a = scatterPoint(), b = targetPoint();
+                cls.push({ ax: a.x, ay: a.y, bx: b.x, by: b.y, x: a.x, y: a.y });
+            }
+            for (i = 0; i < OTHER_N; i++) {
+                var p = scatterPoint();
+                /* end state: anything not in the class is pushed clear of the region */
+                var ex = p.x, ey = p.y, guard = 0;
+                while (inTarget(ex, ey) && guard++ < 60) { var q = scatterPoint(); ex = q.x; ey = q.y; }
+                oth.push({ ax: p.x, ay: p.y, bx: ex, by: ey, x: p.x, y: p.y });
+            }
+
+            /* fixed pairs, so the score does not jitter as the slider moves */
+            var PAIRS = [];
+            for (i = 0; i < 24; i++) {
+                var m = Math.floor(rnd() * CLASS_N), n = Math.floor(rnd() * CLASS_N);
+                if (m === n) n = (n + 1) % CLASS_N;
+                PAIRS.push([m, n]);
+            }
+
+            var hullG   = el('g', {}, svg);
+            var segG    = el('g', {}, svg);
+            var ptG     = el('g', {}, svg);
+            var midG    = el('g', {}, svg);
+
+            /* legend */
+            var legend = el('g', {}, svg);
+            function key(x, colour, label, square) {
+                if (square) el('rect', { x: x - 4, y: H - 17, width: 8, height: 8, fill: colour }, legend);
+                else el('circle', { cx: x, cy: H - 13, r: 4.5, fill: colour }, legend);
+                var t = el('text', { x: x + 10, y: H - 9, fill: '#94a3b8', 'font-size': 11, 'font-weight': 600 }, legend);
+                t.textContent = label;
+                return x + 16 + label.length * 6.1;
+            }
+            var lx = PAD;
+            lx = key(lx, CLASS_C, 'in the class', false);
+            lx = key(lx, OTHER_C, 'not in the class', false);
+            lx = key(lx, PASS_C, 'midpoint inside', true);
+            key(lx, FAIL_C, 'midpoint outside', true);
+
+            var hullPath = el('path', { fill: CLASS_C, 'fill-opacity': 0.07, stroke: CLASS_C,
+                                        'stroke-opacity': 0.45, 'stroke-width': 1.4, 'stroke-dasharray': '6 5' }, hullG);
+
+            var clsEls = cls.map(function () { return el('circle', { r: 5, fill: CLASS_C, stroke: '#0b0d14', 'stroke-width': 1.6 }, ptG); });
+            var othEls = oth.map(function () { return el('circle', { r: 4, fill: OTHER_C }, ptG); });
+
+            function hull(pts) {
+                var p = pts.slice().sort(function (a2, b2) { return a2[0] - b2[0] || a2[1] - b2[1]; });
+                if (p.length < 3) return p;
+                var cross = function (o, a2, b2) { return (a2[0]-o[0])*(b2[1]-o[1]) - (a2[1]-o[1])*(b2[0]-o[0]); };
+                var lower = [], j;
+                for (j = 0; j < p.length; j++) {
+                    while (lower.length >= 2 && cross(lower[lower.length-2], lower[lower.length-1], p[j]) <= 0) lower.pop();
+                    lower.push(p[j]);
+                }
+                var upper = [];
+                for (j = p.length - 1; j >= 0; j--) {
+                    while (upper.length >= 2 && cross(upper[upper.length-2], upper[upper.length-1], p[j]) <= 0) upper.pop();
+                    upper.push(p[j]);
+                }
+                lower.pop(); upper.pop();
+                return lower.concat(upper);
+            }
+
+            var range = document.getElementById('cs-p-range');
+            var stageEl = document.getElementById('cs-p-stage');
+            var scoreEl = document.getElementById('cs-p-score');
+
+            var STAGES = [
+                [0.22, 'Early layer'],
+                [0.50, 'Middle layer'],
+                [0.78, 'Final layer, pretrained'],
+                [1.01, 'After fine-tuning']
+            ];
+
+            function update() {
+                var t = range.value / 1000;
+                var e = t * t * (3 - 2 * t);           /* smoothstep, so the ends settle */
+
+                cls.forEach(function (p, k) {
+                    p.x = p.ax + (p.bx - p.ax) * e;
+                    p.y = p.ay + (p.by - p.ay) * e;
+                    clsEls[k].setAttribute('cx', p.x); clsEls[k].setAttribute('cy', p.y);
+                });
+                oth.forEach(function (p, k) {
+                    p.x = p.ax + (p.bx - p.ax) * e;
+                    p.y = p.ay + (p.by - p.ay) * e;
+                    othEls[k].setAttribute('cx', p.x); othEls[k].setAttribute('cy', p.y);
+                });
+
+                var poly = hull(cls.map(function (p) { return [p.x, p.y]; }));
+                hullPath.setAttribute('d', poly.map(function (pt, k) {
+                    return (k ? 'L' : 'M') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1);
+                }).join(' ') + ' Z');
+
+                /* the probe: is the midpoint of two class members nearer to a class
+                   member than to anything else? */
+                while (midG.firstChild) midG.removeChild(midG.firstChild);
+                while (segG.firstChild) segG.removeChild(segG.firstChild);
+
+                var pass = 0;
+                PAIRS.forEach(function (pr, k) {
+                    var A2 = cls[pr[0]], B2 = cls[pr[1]];
+                    var mx = (A2.x + B2.x) / 2, my = (A2.y + B2.y) / 2;
+                    var dc = Infinity, dOther = Infinity;
+                    cls.forEach(function (p, idx) {
+                        if (idx === pr[0] || idx === pr[1]) return;
+                        dc = Math.min(dc, Math.hypot(p.x - mx, p.y - my));
+                    });
+                    oth.forEach(function (p) { dOther = Math.min(dOther, Math.hypot(p.x - mx, p.y - my)); });
+                    var ok = dc <= dOther;
+                    if (ok) pass++;
+                    if (k < 7) {
+                        el('line', { x1: A2.x, y1: A2.y, x2: B2.x, y2: B2.y, stroke: CLASS_C,
+                                     'stroke-width': 1, 'stroke-dasharray': '3 4', opacity: 0.4 }, segG);
+                    }
+                    el('rect', { x: mx - 3.5, y: my - 3.5, width: 7, height: 7, rx: 1.5,
+                                 fill: ok ? PASS_C : FAIL_C, stroke: '#0b0d14', 'stroke-width': 1.2 }, midG);
+                });
+
+                scoreEl.textContent = pass + ' / ' + PAIRS.length +
+                                      '  (' + Math.round((pass / PAIRS.length) * 100) + '%)';
+                for (var k2 = 0; k2 < STAGES.length; k2++) {
+                    if (t < STAGES[k2][0]) { stageEl.textContent = STAGES[k2][1]; break; }
+                }
+            }
+
+            /* the intro sweep must yield the moment the reader touches the slider,
+               otherwise it keeps yanking the handle back out from under them */
+            var userDriving = false;
+            range.addEventListener('input', function () { userDriving = true; update(); });
+            range.addEventListener('pointerdown', function () { userDriving = true; });
+            update();
+
+            /* run it once, on first sight, so the point lands without a click */
+            if (!reduce && 'IntersectionObserver' in window) {
+                var fired = false;
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (en) {
+                        if (!en.isIntersecting || fired) return;
+                        fired = true; io.disconnect();
+                        var t0 = null;
+                        function step(now) {
+                            if (userDriving) return;
+                            if (t0 === null) t0 = now;
+                            var p = Math.min((now - t0) / 2600, 1);
+                            range.value = Math.round(p * 1000);
+                            update();
+                            if (p < 1) requestAnimationFrame(step);
+                        }
+                        setTimeout(function () { if (!userDriving) requestAnimationFrame(step); }, 350);
+                    });
+                }, { threshold: 0.4 });
+                io.observe(svg);
+            }
         })();
 
         /* graceful defaults if the browser cannot animate */
