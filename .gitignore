@@ -46,3 +46,8 @@ Desktop.ini
 
 # Cached third-party sources for build_tokenizer_tax.py (refetchable).
 /.cache/
+
+# Source papers used to write conceptual-spaces.html. Two of the three are
+# publisher-copyrighted (AAAI, ACM), so they are not republished here; the page
+# links to arXiv and the IJCAI proceedings instead. Same anchoring as /PICASO/.
+/ConceptualSpaces/

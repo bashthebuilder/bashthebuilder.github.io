@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual Spaces: The Geometry of Meaning | Shoaib Jameel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate" type="application/atom+xml" title="MyTh &mdash; My Thoughts" href="feed.xml">
+    <meta name="description" content="Conceptual spaces represent meaning geometrically: entities are points, properties are convex regions, similarity is distance. An interactive tour of ten years of work with Steven Schockaert — what the geometry buys you, and what it will never give you.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shoaib Jameel">
+    <meta property="og:title" content="Conceptual Spaces: The Geometry of Meaning | Shoaib Jameel">
+    <meta property="og:description" content="Entities are points. Properties are convex regions. Similarity is distance. An interactive tour of conceptual spaces — and of the decade I have spent building them.">
+    <meta property="og:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <meta property="og:url" content="https://bashthebuilder.github.io/conceptual-spaces.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conceptual Spaces: The Geometry of Meaning | Shoaib Jameel">
+    <meta name="twitter:description" content="Entities are points. Properties are convex regions. Similarity is distance. An interactive tour of conceptual spaces.">
+    <meta name="twitter:image" content="https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- page chrome ---------- */
+        .cs-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent-liquid); z-index: 999; transition: width 0.12s linear; }
+
+        /* ---------- generic figure shell ---------- */
+        .cs-fig {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            padding: 1.6rem;
+            margin: 2rem 0;
+        }
+        @media (min-width: 760px) { .cs-fig { padding: 2.2rem; } }
+        .cs-fig-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .cs-fig-num {
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+            color: #a5b4fc; background: rgba(99,102,241,0.14); border: 1px solid rgba(99,102,241,0.3);
+            padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+        }
+        .cs-fig-title { font-size: 1.25rem; font-weight: 800; color: #fff; line-height: 1.3; }
+        .cs-caption { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-top: 1.1rem; max-width: 72ch; }
+        .cs-caption strong { color: #cbd5e1; }
+
+        /* ---------- controls ---------- */
+        .cs-ctrls { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.2rem; }
+        .cs-btn {
+            font-family: inherit; font-size: 0.86rem; font-weight: 700; cursor: pointer;
+            padding: 9px 18px; border-radius: 100px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.04);
+            color: var(--text-muted); transition: 0.22s cubic-bezier(.16,.8,.3,1);
+        }
+        .cs-btn:hover { color: #fff; border-color: rgba(255,255,255,0.28); transform: translateY(-2px); }
+        .cs-btn.active { background: rgba(99,102,241,0.22); border-color: #818cf8; color: #fff; }
+        .cs-btn:focus-visible { outline: 2px solid #818cf8; outline-offset: 3px; }
+        .cs-btn-primary { background: #6366f1; border-color: #6366f1; color: #fff; }
+        .cs-btn-primary:hover { background: #818cf8; }
+
+        /* ---------- figure 1: anatomy ---------- */
+        .cs-stage { position: relative; width: 100%; }
+        .cs-svg { width: 100%; height: auto; display: block; overflow: visible; }
+        .cs-steps { display: flex; gap: 6px; margin-bottom: 1rem; }
+        .cs-step-pip { flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.1); transition: background 0.4s; }
+        .cs-step-pip.on { background: #818cf8; }
+        .cs-step-label { color: #fff; font-weight: 700; font-size: 1.02rem; margin-bottom: 0.35rem; }
+        .cs-step-body { color: var(--text-muted); font-size: 0.97rem; line-height: 1.6; min-height: 3.4em; max-width: 70ch; }
+
+        .cs-axis { stroke: rgba(255,255,255,0.32); stroke-width: 1.6; }
+        .cs-grid { stroke: rgba(255,255,255,0.055); stroke-width: 1; }
+        .cs-axlabel { fill: #94a3b8; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+        .cs-dot { cursor: pointer; }
+        .cs-dot circle { transition: r 0.2s, filter 0.2s; }
+        .cs-dot:hover circle { r: 8.5; }
+        .cs-dotlabel { fill: #e2e8f0; font-size: 11.5px; font-weight: 600; pointer-events: none; }
+        .cs-hull { transition: opacity 0.6s; }
+        .cs-hull-label { font-size: 12.5px; font-weight: 800; letter-spacing: 0.5px; }
+
+        /* ---------- figure 2: colour canvas ---------- */
+        .cs-canvas-wrap { position: relative; width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); touch-action: none; }
+        .cs-canvas-wrap canvas { display: block; width: 100%; height: auto; }
+        .cs-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .cs-handle { cursor: grab; }
+        .cs-handle:active { cursor: grabbing; }
+        .cs-verdict {
+            margin-top: 1.1rem; padding: 1.1rem 1.4rem; border-radius: 14px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.03);
+            font-size: 1rem; line-height: 1.6; transition: 0.3s;
+        }
+        .cs-verdict.good { border-color: rgba(52,211,153,0.45); background: rgba(52,211,153,0.07); }
+        .cs-verdict.bad  { border-color: rgba(239,68,68,0.45);  background: rgba(239,68,68,0.07); }
+        .cs-verdict b.good { color: #34d399; }
+        .cs-verdict b.bad  { color: #f87171; }
+        .cs-swatch { display: inline-block; width: 0.85em; height: 0.85em; border-radius: 3px; vertical-align: -1px; margin-right: 4px; border: 1px solid rgba(255,255,255,0.3); }
+
+        /* ---------- figure 3: directions ---------- */
+        .cs-dir-layout { display: grid; grid-template-columns: 1fr; gap: 1.6rem; align-items: start; }
+        @media (min-width: 860px) { .cs-dir-layout { grid-template-columns: 1.25fr 0.75fr; } }
+        .cs-rank-list { list-style: none; counter-reset: r; }
+        .cs-rank-list li {
+            counter-increment: r; position: relative; padding: 0.45rem 0 0.45rem 2.4rem;
+            font-size: 0.98rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.06);
+            opacity: 0; transform: translateX(14px); transition: opacity .5s, transform .5s;
+        }
+        .cs-rank-list li.in { opacity: 1; transform: none; }
+        .cs-rank-list li::before {
+            content: counter(r); position: absolute; left: 0; top: 0.45rem;
+            width: 1.7rem; text-align: center; font-variant-numeric: tabular-nums;
+            font-size: 0.78rem; font-weight: 800; color: #818cf8;
+        }
+        .cs-rank-list li.hi { color: #fff; font-weight: 600; }
+        .cs-ent { transition: transform 0.9s cubic-bezier(.16,.8,.3,1), opacity 0.5s; }
+
+        /* ---------- figure 4: gaussians ---------- */
+        .cs-slider-row { display: flex; align-items: center; gap: 1rem; margin: 1rem 0 0.4rem; flex-wrap: wrap; }
+        .cs-slider-row label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+        input[type="range"].cs-range { flex: 1; min-width: 200px; accent-color: #818cf8; height: 6px; }
+        .cs-conf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.2rem; }
+        .cs-conf {
+            padding: 0.9rem 1rem; border-radius: 12px; border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.025); text-align: center; transition: 0.3s;
+        }
+        .cs-conf.win { background: rgba(99,102,241,0.16); border-color: #818cf8; }
+        .cs-conf-name { font-size: 0.78rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        .cs-conf-val { display: block; font-size: 1.5rem; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; margin-top: 0.2rem; }
+        .cs-conf-note { font-size: 0.74rem; color: var(--text-muted); }
+        /* three cards abreast get very tight on a phone; shrink rather than stack,
+           so the reader can still compare all three scores at a glance */
+        @media (max-width: 560px) {
+            .cs-conf-grid { gap: 0.45rem; }
+            .cs-conf { padding: 0.7rem 0.35rem; }
+            .cs-conf-name { font-size: 0.62rem; letter-spacing: 0.4px; }
+            .cs-conf-val { font-size: 1.15rem; }
+            .cs-conf-note { font-size: 0.66rem; line-height: 1.35; }
+        }
+
+        /* ---------- dimensionality bars ---------- */
+        .cs-bars { display: grid; gap: 0.55rem; }
+        .cs-bar-row { display: grid; grid-template-columns: 8.5rem 1fr 3.4rem; align-items: center; gap: 0.8rem; font-size: 0.9rem; }
+        @media (max-width: 620px) { .cs-bar-row { grid-template-columns: 6.6rem 1fr 3rem; font-size: 0.82rem; } }
+        .cs-bar-name { color: #e2e8f0; font-weight: 600; }
+        .cs-bar-track { display: block; height: 12px; border-radius: 20px; background: rgba(255,255,255,0.06); overflow: hidden; }
+        .cs-bar-fill { display: block; height: 100%; width: 0; border-radius: 20px; background: linear-gradient(90deg,#6366f1,#a855f7); transition: width 1.2s cubic-bezier(.16,.8,.3,1); }
+        .cs-bar-val { color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+        .cs-bar-row.hi .cs-bar-name { color: #fff; }
+
+        /* ---------- can / cannot ---------- */
+        .cs-cols { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0; }
+        @media (min-width: 860px) { .cs-cols { grid-template-columns: 1fr 1fr; } }
+        .cs-col { padding: 1.8rem; border-radius: 20px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.022); }
+        .cs-col.can { border-color: rgba(52,211,153,0.3); }
+        .cs-col.cant { border-color: rgba(239,68,68,0.28); }
+        .cs-col-tag { display: inline-block; margin-bottom: 1.2rem; padding: 5px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; }
+        .cs-col.can .cs-col-tag { background: rgba(52,211,153,0.13); color: #34d399; }
+        .cs-col.cant .cs-col-tag { background: rgba(239,68,68,0.12); color: #f87171; }
+        details.cs-item { border-bottom: 1px solid rgba(255,255,255,0.07); padding: 0.2rem 0; }
+        details.cs-item:last-child { border-bottom: 0; }
+        details.cs-item > summary {
+            list-style: none; cursor: pointer; padding: 0.85rem 1.8rem 0.85rem 1.7rem; position: relative;
+            font-size: 1.02rem; font-weight: 600; color: #e2e8f0; transition: color 0.2s;
+        }
+        details.cs-item > summary::-webkit-details-marker { display: none; }
+        details.cs-item > summary:hover { color: #fff; }
+        details.cs-item > summary::before {
+            content: ''; position: absolute; left: 0; top: 1.28rem;
+            width: 8px; height: 8px; border-radius: 50%; transition: 0.25s;
+        }
+        .cs-col.can details.cs-item > summary::before { background: #34d399; }
+        .cs-col.cant details.cs-item > summary::before { background: #f87171; }
+        details.cs-item > summary::after {
+            content: '+'; position: absolute; right: 0; top: 0.72rem;
+            font-size: 1.3rem; font-weight: 400; color: var(--text-muted); transition: transform 0.25s;
+        }
+        details.cs-item[open] > summary::after { transform: rotate(45deg); }
+        details.cs-item[open] > summary { color: #fff; }
+        .cs-item-body { padding: 0 0 1rem 1.7rem; color: var(--text-muted); font-size: 0.96rem; line-height: 1.65; }
+        .cs-item-body p { max-width: none; }
+        .cs-item-body em { color: #cbd5e1; }
+
+        /* ---------- timeline ---------- */
+        .cs-rail { position: relative; margin: 2.5rem 0 1rem; padding-left: 2.2rem; }
+        .cs-rail::before {
+            content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+            background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+            opacity: 0.5;
+        }
+        .cs-node { position: relative; padding-bottom: 2rem; }
+        .cs-node::before {
+            content: ''; position: absolute; left: -2.2rem; top: 0.55rem;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--bg-dark); border: 2px solid #818cf8;
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.12);
+        }
+        .cs-node.now::before { background: #ec4899; border-color: #ec4899; box-shadow: 0 0 0 6px rgba(236,72,153,0.18); }
+        .cs-node-year { font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px; color: #a5b4fc; text-transform: uppercase; }
+        .cs-node h4 { font-size: 1.1rem; color: #fff; margin: 0.2rem 0 0.35rem; line-height: 1.35; }
+        .cs-node p { color: var(--text-muted); font-size: 0.97rem; }
+        .cs-node .cs-venue { display: inline-block; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.8px; padding: 3px 10px; border-radius: 100px; background: rgba(255,255,255,0.06); color: #cbd5e1; margin-bottom: 0.4rem; }
+
+        /* ---------- misc ---------- */
+        .cs-pull {
+            border-left: 3px solid #818cf8; padding: 0.4rem 0 0.4rem 1.6rem;
+            margin: 2rem 0; font-size: 1.28rem; line-height: 1.55; color: #e2e8f0; font-weight: 500;
+        }
+        .cs-pull span { color: #fff; font-weight: 700; }
+        .cs-formula {
+            font-family: 'SF Mono', ui-monospace, 'Courier New', monospace;
+            background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.22);
+            border-radius: 14px; padding: 1.2rem 1.4rem; margin: 1.2rem 0;
+            color: #cbd5e1; font-size: 0.95rem; overflow-x: auto; text-align: center;
+        }
+        .cs-formula .cs-hl { color: #a5b4fc; font-weight: 700; }
+        .cs-hint { font-size: 0.85rem; color: #64748b; font-style: italic; margin-top: 0.7rem; }
+        .cs-paper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+        .cs-paper { display: block; padding: 1.4rem; border-radius: 16px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.025); text-decoration: none; transition: 0.3s cubic-bezier(.16,.8,.3,1); }
+        .cs-paper:hover { transform: translateY(-5px); border-color: rgba(129,140,248,0.55); background: rgba(99,102,241,0.07); }
+        .cs-paper-venue { font-size: 0.72rem; font-weight: 800; letter-spacing: 1.2px; color: #a5b4fc; text-transform: uppercase; }
+        .cs-paper-title { display: block; color: #fff; font-weight: 700; font-size: 1rem; line-height: 1.4; margin: 0.4rem 0 0.3rem; }
+        .cs-paper-auth { font-size: 0.85rem; color: var(--text-muted); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cs-ent, .cs-bar-fill, .cs-rank-list li, .cs-hull { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg"></div>
+    <div class="cs-progress" id="cs-progress"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">SHOAIB JAMEEL</a>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <div class="nav-links">
+                <a href="index.html">Profile</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="undergraduate.html">Early Work</a>
+                <a href="thesis.html">Thesis</a>
+                <a href="publications.html">Research</a>
+                <a href="cultural-modelling.html">Cultural AI</a>
+                <a href="resources.html">Defence AI</a>
+                <a href="conceptual-spaces.html" class="active">Conceptual Spaces</a>
+                <a href="industry.html">Industry Impact</a>
+                <a href="ai-leadership.html">AI Leadership</a>
+                <a href="students.html">Mentorship</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="competitive-programming.html">Competitive Coding</a>
+                <a href="press.html">Press</a>
+                <a href="myth.html">MyTh</a>
+                <a href="cv.html">CV</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" style="padding-top: 160px;">
+
+        <!-- ============ HERO ============ -->
+        <section class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
+            <span class="section-title">A decade of work &middot; with <a href="https://profiles.cardiff.ac.uk/staff/schockaerts1" target="_blank" rel="noopener" style="color:inherit;">Prof. Steven Schockaert</a></span>
+            <h1 class="liquid-text" style="font-size: 3.1rem; letter-spacing: -2px; line-height: 1.08;">Meaning Has a Shape.</h1>
+            <p class="lead" style="margin: 0 auto 2rem; max-width: 840px;">A <strong style="color:#fff;">conceptual space</strong> is a way of representing meaning as geometry. Entities become <span class="highlight-text">points</span>. Properties become <span class="highlight-text">convex regions</span>. Similarity becomes <span class="highlight-text">distance</span>. Nothing is a symbol you have to look up, and nothing is a weight you cannot read. Everything below is live &mdash; drag it, break it, watch it reason.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                <a href="#cs-anatomy" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">Build one, step by step &darr;</a>
+                <a href="#cs-limits" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">What they cannot do</a>
+                <a href="resources.html" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">PICASO, what I do now &rarr;</a>
+            </div>
+        </section>
+
+        <!-- ============ STATS ============ -->
+        <section class="grid reveal" style="margin-bottom: 4rem;">
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="10" data-dec="0">0</span></span>
+                <span class="stat-label">Years on conceptual spaces</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="1292702" data-dec="0" data-group="true">0</span></span>
+                <span class="stat-label">Entities embedded (Wikidata)</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="4" data-dec="0">0</span></span>
+                <span class="stat-label">Papers at ECAI, IJCAI, AAAI, SIGIR</span>
+            </div>
+            <div class="card stat-card">
+                <span class="stat-value"><span class="counter" data-count="140" data-pre="&pound;" data-post="k">0</span></span>
+                <span class="stat-label">Turing Institute grant, PICASO</span>
+            </div>
+        </section>
+
+        <!-- ============ WHAT IS IT ============ -->
+        <section class="reveal" style="margin-bottom: 3rem;">
+            <span class="section-title">The idea</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">What is a conceptual space?</h2>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">In 2000 the cognitive scientist <strong style="color:#fff;">Peter G&auml;rdenfors</strong> published <em>Conceptual Spaces: The Geometry of Thought</em>, arguing that AI had been forced into a false choice. On one side, <strong style="color:#e2e8f0;">symbolic</strong> representations &mdash; logic, ontologies, knowledge graphs &mdash; which are precise and explainable but brittle, and have no notion of one thing being <em>a bit like</em> another. On the other, <strong style="color:#e2e8f0;">connectionist</strong> representations &mdash; neural networks and their embeddings &mdash; which handle similarity beautifully but whose internals nobody can read.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">G&auml;rdenfors proposed a third, intermediate level. Take a domain and identify its <strong style="color:#fff;">quality dimensions</strong>: the primitive features along which things in that domain actually vary. For colour, that is hue, saturation and brightness. For people, it might be height, age, education. For a wine, body, acidity, tannin. A conceptual space is then just the Cartesian product of those dimensions &mdash; and once you have it, three things follow for free.</p>
+
+            <div class="cs-pull">
+                <span>Entities are points.</span> <span>Natural properties are convex regions.</span> <span>Similarity is distance.</span>
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">That third commitment &mdash; convexity &mdash; is the one that does the real work, and it is easy to miss why. A region is convex when, for any two points inside it, every point on the straight line between them is also inside it. G&auml;rdenfors' claim is that the properties human languages actually bother to name are exactly the convex ones. There is a word for <em>red</em>, and every colour between two reds is red. There is no single word for &ldquo;red or green but not yellow&rdquo;, because that region is full of holes.</p>
+
+            <p style="color: var(--text-muted);">Convexity is what makes the geometry <em>reason</em> rather than merely <em>store</em>. If you know two things have a property, you get every point between them for free. That is induction, done by arithmetic.</p>
+        </section>
+
+        <!-- ============ FIGURE 1: ANATOMY ============ -->
+        <section id="cs-anatomy" class="reveal" style="scroll-margin-top: 130px;">
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 1 &middot; interactive</span>
+                    <span class="cs-fig-title">A conceptual space, built one commitment at a time</span>
+                </div>
+
+                <div class="cs-steps" id="cs-a-pips" aria-hidden="true"></div>
+                <div class="cs-step-label" id="cs-a-label">&nbsp;</div>
+                <div class="cs-step-body" id="cs-a-body">&nbsp;</div>
+
+                <div class="cs-ctrls" style="margin-top: 1.1rem;">
+                    <button class="cs-btn cs-btn-primary" id="cs-a-play">&#9654;&nbsp; Play</button>
+                    <button class="cs-btn" id="cs-a-prev">&larr; Back</button>
+                    <button class="cs-btn" id="cs-a-next">Next &rarr;</button>
+                </div>
+
+                <div class="cs-stage">
+                    <svg class="cs-svg" id="cs-a-svg" viewBox="0 0 720 480" role="img"
+                         aria-label="A two-dimensional conceptual space of fruit. The horizontal quality dimension is sweetness, the vertical is size. Individual fruits appear as points; citrus, berry and melon appear as convex regions enclosing their members."></svg>
+                </div>
+
+                <p class="cs-caption"><strong>A space of fruit, with two quality dimensions.</strong> Everything on this page is the same trick at larger scale: the spaces I have actually built have between 2 and 288 dimensions, learned from a billion words of Wikipedia rather than drawn by hand. But the commitments are identical, and they are all visible here.</p>
+            </div>
+        </section>
+
+        <!-- ============ CONVEXITY / COLOUR ============ -->
+        <section class="reveal" style="margin: 3.5rem 0 0;">
+            <span class="section-title">The load-bearing assumption</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">Why convexity is not a technicality</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">Colour is the canonical example, because it is the one domain where the quality dimensions are not up for debate &mdash; hue and lightness are facts about human perception, not modelling choices. Drag the two handles below and watch what the straight line between them passes through.</p>
+
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 2 &middot; draggable</span>
+                    <span class="cs-fig-title">Betweenness: the test a property has to pass</span>
+                </div>
+
+                <div class="cs-ctrls">
+                    <button class="cs-btn active" data-cs-preset="red">Two reds</button>
+                    <button class="cs-btn" data-cs-preset="orange">Red &rarr; yellow</button>
+                    <button class="cs-btn" data-cs-preset="notblue">&ldquo;Not blue&rdquo;</button>
+                </div>
+
+                <div class="cs-canvas-wrap" id="cs-c-wrap">
+                    <canvas id="cs-c-canvas" width="720" height="330"></canvas>
+                    <svg class="cs-overlay" id="cs-c-overlay" viewBox="0 0 720 330" preserveAspectRatio="none"></svg>
+                </div>
+
+                <div class="cs-verdict" id="cs-c-verdict">Drag A or B anywhere in the space.</div>
+                <p class="cs-hint">Horizontal axis: hue. Vertical axis: lightness. Both are quality dimensions in G&auml;rdenfors' original sense.</p>
+
+                <p class="cs-caption"><strong>Why this matters to a machine.</strong> Convexity is not decoration &mdash; it is what makes generalisation safe. If a property is a convex region, two examples pin down everything between them and a model can extrapolate without being told. If it is not, there is nothing to interpolate along, and any region fitted to it will quietly swallow cases that do not belong. The three presets are the whole argument in three clicks: <em>red</em> passes the test, <em>red&nbsp;&rarr;&nbsp;yellow</em> shows what passing it buys you, and <em>&ldquo;not blue&rdquo;</em> shows what failing it looks like.</p>
+            </div>
+        </section>
+
+        <!-- ============ WORKED EXAMPLE ============ -->
+        <section class="reveal" style="margin: 4rem 0 0;">
+            <span class="section-title">A worked example</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">So what does one actually look like?</h2>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">A hand-drawn fruit space is a teaching device. The hard problem &mdash; the one that kept conceptual spaces out of practical AI for fifteen years &mdash; is that <strong style="color:#fff;">nobody tells you what the quality dimensions are</strong>. G&auml;rdenfors assumed you had them. For a domain of a million entities you do not.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">The 2016 paper Steven and I wrote for ECAI attacked exactly this. The recipe: take every entity mentioned in at least ten Wikipedia articles &mdash; <strong style="color:#fff;">1,292,702</strong> of them &mdash; and learn a single 300-dimensional vector space in which each entity is a point and each context word is a direction. Then add the constraint that makes it a <em>conceptual</em> space rather than just an embedding: every entity of a given semantic type must lie in a common low-dimensional subspace, enforced by penalising the nuclear norm of the matrix spanning that subspace. Films get their own subspace. Countries get theirs. Chemical elements get theirs.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">Two consequences of that constraint are worth seeing directly.</p>
+
+            <!-- FIGURE 3: directions -->
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 3 &middot; interactive</span>
+                    <span class="cs-fig-title">Salient properties turn out to be directions</span>
+                </div>
+
+                <div class="cs-ctrls">
+                    <button class="cs-btn active" data-cs-attr="pop">Population &middot; countries</button>
+                    <button class="cs-btn" data-cs-attr="inc">Founding year &middot; organisations</button>
+                    <button class="cs-btn" data-cs-attr="dob">Date of birth &middot; humans</button>
+                </div>
+
+                <div class="cs-dir-layout">
+                    <div class="cs-stage">
+                        <svg class="cs-svg" id="cs-d-svg" viewBox="0 0 620 420" role="img"
+                             aria-label="Entities arranged along a learned direction in the conceptual space, ordered by the selected attribute."></svg>
+                    </div>
+                    <div>
+                        <div style="font-size:0.78rem; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#a5b4fc; margin-bottom:0.6rem;" id="cs-d-title">Ranked along the direction</div>
+                        <ol class="cs-rank-list" id="cs-d-list"></ol>
+                        <p style="font-size:0.86rem; color:#64748b; margin-top:0.9rem;" id="cs-d-note"></p>
+                    </div>
+                </div>
+
+                <p class="cs-caption"><strong>These are real outputs, not an illustration.</strong> None of the attributes shown were used to build the space &mdash; the model never saw a population figure or a birth date. It saw only Wikipedia text and Wikidata types. Yet a single direction, fitted from a handful of training examples, recovers the ordering. Across 73 attribute-and-type combinations the average Spearman correlation was <strong>0.319</strong>, against 0.213 for the strongest prior model and 0.155 for skip-gram.</p>
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">And note where it goes wrong, because that matters more than where it goes right. Bermuda, Monaco, San Marino and Barbados are all <em>less</em> populous than Malta but rank above it. Ptolemy lived some five hundred years after Plato and is placed before him. The geometry approximates; it does not guarantee.</p>
+
+            <!-- FIGURE 4: dimensionality -->
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 4 &middot; animated</span>
+                    <span class="cs-fig-title">The space chooses its own dimensionality</span>
+                </div>
+                <div class="cs-bars" id="cs-b-bars"></div>
+                <p class="cs-caption"><strong>Nobody set these numbers.</strong> The nuclear-norm penalty decides how many dimensions each semantic type needs, and the answers are quietly sensible. <em>Candy</em> is a thin concept and lands in 2 dimensions. <em>Human</em> is enormous and needs 288. And note that <em>house</em>, with 2,762 instances, claims more dimensions than <em>railway station</em>, with 4,120 &mdash; because houses vary along more axes than railway stations do. That is the model reporting the conceptual complexity of a category, not its popularity.</p>
+            </div>
+        </section>
+
+        <!-- ============ INDUCTION ============ -->
+        <section class="reveal" style="margin: 4rem 0 0;">
+            <span class="section-title">What the geometry buys you</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">Reasoning that fills its own gaps</h2>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">Every ontology and every knowledge graph is incomplete. SUMO has plenty to say about chess, darts and poker, and nothing at all about checkers. CYC says an ice cream shop cannot be a restaurant; Wikipedia says it is one. A logic engine handles neither situation: it cannot invent the missing fact, and it falls over on the contradiction.</p>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">In our AAAI 2017 paper &mdash; with <a href="https://cril.univ-artois.fr/~bouraoui/" target="_blank" rel="noopener" style="color:#a5b4fc;">Zied Bouraoui</a> &mdash; we made the space do the inductive half of the job. The move is simple. Assume that, along each quality dimension, the instances of a concept are Gaussian-distributed. A subconcept is then a <em>narrower</em> Gaussian sitting inside its parent's. To ask whether some entity belongs to subconcept B given that it belongs to parent A, compare the two densities at its coordinate:</p>
+
+            <div class="cs-formula">
+                conf(<span class="cs-hl">a</span>, B) &nbsp;=&nbsp; &sum;<sub>i</sub> [ log <span class="cs-hl">G</span><sub>B,i</sub>(x<sub>i</sub>) &minus; log <span class="cs-hl">G</span><sub>A,i</sub>(x<sub>i</sub>) ]
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem;">Positive means the entity looks more like a B than like a generic A. With so few known instances, the Gaussians' own parameters are uncertain, so we do not point-estimate them &mdash; we integrate them out under a normal-inverse-&chi;&sup2; prior. That is a small detail with a large consequence, and it is the seed of everything I am doing now.</p>
+
+            <div class="cs-fig">
+                <div class="cs-fig-head">
+                    <span class="cs-fig-num">Figure 5 &middot; interactive</span>
+                    <span class="cs-fig-title">Where does the boundary go?</span>
+                </div>
+
+                <p style="color: var(--text-muted); font-size:0.97rem; margin-bottom:1rem;">Three sibling subconcepts, known to be mutually disjoint by the ontology. Their known instances sit at coordinates 1&ndash;3, 4&ndash;6 and 7&ndash;9 along a single quality dimension. Move the candidate entity and watch which concept claims it.</p>
+
+                <div class="cs-stage">
+                    <svg class="cs-svg" id="cs-g-svg" viewBox="0 0 720 330" role="img"
+                         aria-label="Three Gaussian density curves for sibling concepts A, B and C along one quality dimension, with a movable candidate entity and its confidence scores."></svg>
+                </div>
+
+                <div class="cs-slider-row">
+                    <label for="cs-g-range">Candidate coordinate</label>
+                    <input type="range" class="cs-range" id="cs-g-range" min="0" max="1000" value="340">
+                    <span style="font-variant-numeric: tabular-nums; font-weight:800; color:#fff; min-width:3.4rem; text-align:right;" id="cs-g-val">3.4</span>
+                </div>
+
+                <div class="cs-conf-grid" id="cs-g-conf"></div>
+
+                <p class="cs-caption"><strong>Watch the region where two scores are both positive.</strong> Pure induction would put the candidate in two disjoint concepts at once &mdash; a contradiction. The ontology knows they are disjoint, so the deductive layer repairs the inductive one by keeping only the highest-confidence conclusion. Induction proposes; logic vetoes. Neither could draw this boundary alone.</p>
+            </div>
+        </section>
+
+        <!-- ============ CAN / CANNOT ============ -->
+        <section id="cs-limits" class="reveal" style="margin: 4rem 0 0; scroll-margin-top: 130px;">
+            <span class="section-title">An honest ledger</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">What conceptual spaces can and cannot do</h2>
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem;">I have spent ten years on this. That is long enough to be fond of it and long enough to know precisely where it fails. Both columns are load-bearing &mdash; click any item.</p>
+
+            <div class="cs-cols">
+                <div class="cs-col can">
+                    <span class="cs-col-tag">What they do well</span>
+
+                    <details class="cs-item">
+                        <summary>Interpolate meanings that were never stored</summary>
+                        <div class="cs-item-body"><p>A point halfway between red and yellow <em>is</em> orange &mdash; not by lookup, but because that is where it sits. Give the space two known instances of a property and it hands you every case between them. A symbolic knowledge base has to be told each one separately.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Rank by properties nobody ever recorded</summary>
+                        <div class="cs-item-body"><p>Most Wikipedia articles never state that a mountain is tall. But <em>tall</em> gets mentioned in the articles about the mountains where tallness is the notable thing &mdash; so the direction fitted to that word points at exactly the tall ones. Figure 3 above is this effect: population, founding year and birth date all recovered from text that never listed them.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Generalise from three examples</summary>
+                        <div class="cs-item-body"><p>Give the model a handful of films directed by Spielberg, without telling it that &ldquo;directed by Spielberg&rdquo; is the property in question, and ask for more. Because the property is a region, a few points pin it down. In the ECAI evaluation this induction task reached <em>0.883 MRR</em> and <em>0.609 P@5</em>, against 0.756 and 0.490 for the strongest baseline.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Explain themselves without a post-hoc story</summary>
+                        <div class="cs-item-body"><p>Every conclusion reduces to a coordinate, a direction and a distance. There is no saliency map, no attention heatmap, no attempt to reverse-engineer a decision after the fact. The representation <em>is</em> the explanation, which is the entire reason this line of work is usable in defence and intelligence settings.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Repair contradictions instead of choking on them</summary>
+                        <div class="cs-item-body"><p>When induction proposes two conclusions that the ontology declares disjoint, confidence scores break the tie (Figure 5). A pure logic engine has no way to prefer one of two contradictory derivations; a pure neural model has no notion that they conflict.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Answer queries a graph has no edge for</summary>
+                        <div class="cs-item-body"><p>&ldquo;Famous tourist sites in France&rdquo; is not a relation in any knowledge graph. In our SIGIR 2017 work, MEmbER learned entity embeddings under max-margin constraints so that query terms became separating hyperplanes &mdash; letting a text query be interpreted <em>directly</em> as a region of the space rather than matched against documents.</p></div>
+                    </details>
+                </div>
+
+                <div class="cs-col cant">
+                    <span class="cs-col-tag">What they cannot do</span>
+
+                    <details class="cs-item">
+                        <summary>Represent concepts that are not convex</summary>
+                        <div class="cs-item-body"><p>This is the theory's own boundary, not a bug. &ldquo;Not blue&rdquo; has no region (Figure 2). Neither does <em>weekend</em>, which is two disjoint stretches of a week. Wittgenstein's <em>game</em> &mdash; board games, ball games, solitaire, war games &mdash; is the classic case of a category with family resemblance but no common core. Force a convex region around it and you sweep in everything in between.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Handle relational structure on their own</summary>
+                        <div class="cs-item-body"><p>A conceptual space tells you how tall a building is and which buildings resemble it. It does not tell you who designed it. Relations between entities are not distances, and every model in this line has needed a separate knowledge-graph component bolted alongside the geometry to carry them.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Do genuine logical composition</summary>
+                        <div class="cs-item-body"><p>Negation, quantification, nested scope. &ldquo;No student passed every module&rdquo; has no natural rendering as a region. Regions intersect and they contain; that is the whole of the logic you get for free. Anything richer has to come from a description logic sitting on top &mdash; which is exactly how we structured the AAAI work.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Tell you what the dimensions are</summary>
+                        <div class="cs-item-body"><p>G&auml;rdenfors' theory assumes the quality dimensions are given. For colour they genuinely are. For &ldquo;insurgent activity&rdquo; or &ldquo;maritime vessel&rdquo; they are not, and getting them is most of the work. The earlier approach &mdash; multidimensional scaling over a distance matrix &mdash; is quadratic in the number of entities and simply cannot reach a million of them. Ours can, but the dimensions it finds are learned approximations, not perceptual primitives.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Guarantee that the geometry is right</summary>
+                        <div class="cs-item-body"><p>Spearman 0.319 is a strong result and also a modest number. Monaco outranks Malta on population; Ptolemy is placed before Plato. Directions recover <em>orderings</em>, approximately, from statistical traces in text. Treat a single answer as authoritative and you will eventually be badly wrong.</p></div>
+                    </details>
+
+                    <details class="cs-item">
+                        <summary>Say how sure they are</summary>
+                        <div class="cs-item-body"><p>The deepest limitation, and the one I am now attacking. A point is a point: it carries no width. A vague report and a confirmed identification land in the space as identical objects. Region boundaries are drawn crisply where the underlying concept is genuinely fuzzy. For anything with consequences, &ldquo;here is the answer&rdquo; is not enough &mdash; you need &ldquo;here is the answer, and here is how much to trust it.&rdquo;</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TEN YEARS ============ -->
+        <section class="reveal" style="margin: 4rem 0 0;">
+            <span class="section-title">2016 &ndash; 2026</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">Ten years on one idea</h2>
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem;">This did not start as a fashionable topic and it never became one. I began working on conceptual spaces with <strong style="color:#fff;">Steven Schockaert</strong> at Cardiff in 2016, at a point when the field's entire attention was on making embeddings bigger rather than making them mean anything. The line has run continuously since.</p>
+
+            <div class="cs-rail">
+                <div class="cs-node reveal" data-reveal-delay="0">
+                    <span class="cs-node-year">2016</span>
+                    <h4>Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning</h4>
+                    <span class="cs-venue">ECAI &middot; The Hague</span>
+                    <p>The first scalable construction. 1.29 million Wikipedia entities, semantic types as low-dimensional subspaces enforced by nuclear-norm regularisation, salient properties recoverable as directions. <a href="https://arxiv.org/abs/1602.05765" target="_blank" rel="noopener" style="color:#a5b4fc;">arXiv &rarr;</a></p>
+                </div>
+                <div class="cs-node reveal" data-reveal-delay="80">
+                    <span class="cs-node-year">2016</span>
+                    <h4>Plausible Reasoning based on Qualitative Entity Embeddings</h4>
+                    <span class="cs-venue">IJCAI &middot; New York &middot; invited</span>
+                    <p>The qualitative reading of the same machinery, presented to the reasoning community rather than the representation-learning one. <a href="https://www.ijcai.org/Proceedings/16/Papers/605.pdf" target="_blank" rel="noopener" style="color:#a5b4fc;">Proceedings &rarr;</a></p>
+                </div>
+                <div class="cs-node reveal" data-reveal-delay="160">
+                    <span class="cs-node-year">2017</span>
+                    <h4>Inductive Reasoning about Ontologies Using Conceptual Spaces</h4>
+                    <span class="cs-venue">AAAI &middot; San Francisco</span>
+                    <p>With Zied Bouraoui. Gaussian concepts, a normal-inverse-&chi;&sup2; prior, and inductive completion of both the ABox and the TBox &mdash; with the description logic repairing the inductive conclusions where they conflict. This is the paper Figure 5 comes from, and the first Bayesian move in the line.</p>
+                </div>
+                <div class="cs-node reveal" data-reveal-delay="240">
+                    <span class="cs-node-year">2017</span>
+                    <h4>MEmbER: Max-Margin Based Embeddings for Entity Retrieval</h4>
+                    <span class="cs-venue">SIGIR &middot; Tokyo</span>
+                    <p>Interpretability made the training objective rather than a post-hoc analysis: query terms become separating hyperplanes learned jointly with the entity positions, so a text query can be read straight off the geometry.</p>
+                </div>
+                <div class="cs-node reveal" data-reveal-delay="320">
+                    <span class="cs-node-year">2017&ndash;18</span>
+                    <h4>Regions, relations and the limits of directions</h4>
+                    <span class="cs-venue">CoNLL &middot; ACL &middot; COLING</span>
+                    <p>Modelling context words as regions rather than vectors; unsupervised distributional relation vectors; and a hard second look at relation induction in word embeddings, which found the standard evaluation considerably more forgiving than it should be.</p>
+                </div>
+                <div class="cs-node now reveal" data-reveal-delay="400">
+                    <span class="cs-node-year">2025&ndash;2026 &middot; now</span>
+                    <h4>PICASO &mdash; conceptual spaces, made properly Bayesian</h4>
+                    <span class="cs-venue">Alan Turing Institute &middot; MoD</span>
+                    <p>Every point becomes a distribution. The last limitation in the ledger above, taken seriously.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PICASO ============ -->
+        <section class="reveal" style="margin: 3.5rem 0 0;">
+            <div class="card" style="padding: 2.6rem; background: linear-gradient(140deg, rgba(99,102,241,0.13), rgba(168,85,247,0.06) 55%, transparent);">
+                <span class="section-title">What I am doing now</span>
+                <h2 style="font-size: 2.1rem; margin-bottom: 1.2rem;">PICASO: giving conceptual spaces a Bayesian model</h2>
+
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem;">Read the right-hand column above and one entry sits underneath all the others: a point cannot tell you how sure it is. That is fine for fruit. It is not fine for an intelligence analyst holding a report that says &ldquo;a vehicle, possibly military, near the border&rdquo;, because a classical conceptual space will place that at a single crisp coordinate and lose the vagueness that was the most important thing in the sentence.</p>
+
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem;"><strong style="color:#fff;">PICASO</strong> &mdash; Probabilistic Conceptual Spaces Sensemaking under Uncertainty &mdash; replaces every point with a probability cloud. A vague description produces a wide Gaussian; a confirmed identification produces a tight one. Regions stop being crisp and start being distributions, which is what G&auml;rdenfors' own treatment of vagueness always implied but the computational models never delivered. The seed was already in the AAAI 2017 paper's normal-inverse-&chi;&sup2; prior; PICASO makes it the whole architecture.</p>
+
+                <p style="color: var(--text-muted); margin-bottom: 1.8rem;">It is funded by the <a href="https://www.turing.ac.uk/" target="_blank" rel="noopener" style="color:#a5b4fc;">Alan Turing Institute</a>'s Defence &amp; Security Programme for the UK Ministry of Defence, I am the Principal Investigator, and the core engine is built with my PhD student <a href="https://ubaidazam.github.io/" target="_blank" rel="noopener" style="color:#a5b4fc;">Ubaid Azam</a>. It matches deep graph neural networks on link prediction while running at the cost of an embedding lookup &mdash; and, unlike any of them, reports calibrated uncertainty natively.</p>
+
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <a href="resources.html" class="tag" style="padding: 14px 28px; background: #6366f1; color: white; text-decoration: none;">The PICASO deep-dive &rarr;</a>
+                    <a href="https://github.com/ubaidazam/PICASO" target="_blank" rel="noopener" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Code on GitHub</a>
+                    <a href="https://ubaidazam.github.io/PICASO/" target="_blank" rel="noopener" class="tag" style="padding: 14px 28px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border: 1px solid var(--glass-border);">Project blog</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PAPERS ============ -->
+        <section class="reveal" style="margin: 4rem 0 5rem;">
+            <span class="section-title">The papers behind this page</span>
+            <h2 style="font-size: 1.7rem; margin-bottom: 0.6rem;">Read the primary sources</h2>
+            <div class="cs-paper-grid">
+                <a class="cs-paper" href="https://arxiv.org/abs/1602.05765" target="_blank" rel="noopener">
+                    <span class="cs-paper-venue">ECAI 2016</span>
+                    <span class="cs-paper-title">Entity Embeddings with Conceptual Subspaces as a Basis for Plausible Reasoning</span>
+                    <span class="cs-paper-auth">Jameel &amp; Schockaert</span>
+                </a>
+                <a class="cs-paper" href="https://www.ijcai.org/Proceedings/16/Papers/605.pdf" target="_blank" rel="noopener">
+                    <span class="cs-paper-venue">IJCAI 2016 &middot; invited</span>
+                    <span class="cs-paper-title">Plausible Reasoning based on Qualitative Entity Embeddings</span>
+                    <span class="cs-paper-auth">Jameel &amp; Schockaert</span>
+                </a>
+                <a class="cs-paper" href="all-publications.html">
+                    <span class="cs-paper-venue">AAAI 2017</span>
+                    <span class="cs-paper-title">Inductive Reasoning about Ontologies Using Conceptual Spaces</span>
+                    <span class="cs-paper-auth">Bouraoui, Jameel &amp; Schockaert</span>
+                </a>
+                <a class="cs-paper" href="all-publications.html">
+                    <span class="cs-paper-venue">SIGIR 2017</span>
+                    <span class="cs-paper-title">MEmbER: Max-Margin Based Embeddings for Entity Retrieval</span>
+                    <span class="cs-paper-auth">Jameel, Bouraoui &amp; Schockaert</span>
+                </a>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.95rem;">The foundational text is Peter G&auml;rdenfors, <em>Conceptual Spaces: The Geometry of Thought</em> (MIT Press, 2000). For the full list of my work, see <a href="all-publications.html" style="color:#a5b4fc;">all publications</a>.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dr. Shoaib Jameel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        'use strict';
+        var SVGNS = 'http://www.w3.org/2000/svg';
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function el(tag, attrs, parent) {
+            var n = document.createElementNS(SVGNS, tag);
+            for (var k in attrs) { if (attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]); }
+            if (parent) parent.appendChild(n);
+            return n;
+        }
+
+        /* ---------------- scroll progress ---------------- */
+        var prog = document.getElementById('cs-progress');
+        function tickProgress() {
+            var h = document.documentElement;
+            var max = (h.scrollHeight - h.clientHeight);
+            prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        }
+        window.addEventListener('scroll', tickProgress, { passive: true });
+        window.addEventListener('resize', tickProgress);
+        tickProgress();
+
+        /* ================================================================
+           FIGURE 1 — anatomy of a conceptual space (fruit)
+           ================================================================ */
+        (function anatomy() {
+            var svg = document.getElementById('cs-a-svg');
+            if (!svg) return;
+
+            var W = 720, H = 480, PAD_L = 78, PAD_B = 66, PAD_T = 30, PAD_R = 32;
+            var x0 = PAD_L, x1 = W - PAD_R, y0 = H - PAD_B, y1 = PAD_T;
+            function px(v) { return x0 + (v / 100) * (x1 - x0); }   /* sweetness */
+            function py(v) { return y0 - (v / 100) * (y0 - y1); }   /* size */
+
+            var CITRUS = '#fbbf24', BERRY = '#f472b6', MELON = '#34d399';
+
+            var FRUIT = [
+                { n: 'Lime',       s: 9,  z: 16, g: 'citrus', dx: -6, dy: -14 },
+                { n: 'Lemon',      s: 13, z: 24, g: 'citrus', dx: 10, dy: -13 },
+                { n: 'Grapefruit', s: 26, z: 42, g: 'citrus', dx: 10, dy: -12 },
+                { n: 'Orange',     s: 46, z: 31, g: 'citrus', dx: 8,  dy: 18 },
+                { n: 'Blueberry',  s: 58, z: 5,  g: 'berry',  dx: 10, dy: 15 },
+                { n: 'Raspberry',  s: 54, z: 9,  g: 'berry',  dx: -8, dy: -12 },
+                { n: 'Blackberry', s: 49, z: 12, g: 'berry',  dx: -10, dy: 15 },
+                { n: 'Strawberry', s: 64, z: 14, g: 'berry',  dx: 10, dy: -11 },
+                { n: 'Cantaloupe', s: 68, z: 70, g: 'melon',  dx: -10, dy: 18 },
+                { n: 'Honeydew',   s: 74, z: 66, g: 'melon',  dx: 10, dy: -12 },
+                { n: 'Watermelon', s: 84, z: 92, g: 'melon',  dx: -6, dy: -14 },
+                { n: 'Apple',      s: 62, z: 34, g: null,     dx: 10, dy: -11 },
+                { n: 'Banana',     s: 80, z: 40, g: null,     dx: 10, dy: 16 }
+            ];
+            var GROUPS = { citrus: CITRUS, berry: BERRY, melon: MELON };
+            var PROTOS = {
+                citrus: { s: 23, z: 28 },
+                berry:  { s: 56, z: 10 },
+                melon:  { s: 75, z: 76 }
+            };
+            /* region names are placed by hand: derived positions collide with the
+               entity labels, and there are only three of them. */
+            var HULL_LABEL = {
+                citrus: { s: 23, z: 52 },
+                berry:  { s: 57, z: 20 },
+                melon:  { s: 64, z: 84 }
+            };
+
+            function hull(pts) {
+                var p = pts.slice().sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+                if (p.length < 3) return p;
+                var cross = function (o, a, b) { return (a[0]-o[0])*(b[1]-o[1]) - (a[1]-o[1])*(b[0]-o[0]); };
+                var lower = [], i;
+                for (i = 0; i < p.length; i++) {
+                    while (lower.length >= 2 && cross(lower[lower.length-2], lower[lower.length-1], p[i]) <= 0) lower.pop();
+                    lower.push(p[i]);
+                }
+                var upper = [];
+                for (i = p.length - 1; i >= 0; i--) {
+                    while (upper.length >= 2 && cross(upper[upper.length-2], upper[upper.length-1], p[i]) <= 0) upper.pop();
+                    upper.push(p[i]);
+                }
+                lower.pop(); upper.pop();
+                return lower.concat(upper);
+            }
+            /* expand a hull outwards from its centroid so labels sit clear of the dots */
+            function pad(poly, amount) {
+                var cx = 0, cy = 0;
+                poly.forEach(function (p) { cx += p[0]; cy += p[1]; });
+                cx /= poly.length; cy /= poly.length;
+                return poly.map(function (p) {
+                    var dx = p[0] - cx, dy = p[1] - cy, d = Math.hypot(dx, dy) || 1;
+                    return [p[0] + (dx / d) * amount, p[1] + (dy / d) * amount];
+                });
+            }
+
+            var STEPS = [
+                { t: 'Start with quality dimensions',
+                  b: 'Pick the features along which things in this domain actually vary. Here, two: how sweet a fruit is, and how big. A conceptual space is nothing more than the Cartesian product of dimensions like these.' },
+                { t: 'Every entity is a point',
+                  b: 'Each fruit gets one coordinate per dimension. That is the whole representation — no symbol, no label, no lookup table. A lime is the pair (9, 16), and everything you can say about it has to be recoverable from where it sits.' },
+                { t: 'Similarity is distance',
+                  b: 'Nothing extra has to be defined. Lime and lemon are near-neighbours; lime and watermelon are on opposite corners. The similarity relation that symbolic AI struggled to axiomatise falls straight out of the geometry.' },
+                { t: 'Natural properties are convex regions',
+                  b: 'Citrus, berry and melon are not lists of members — they are areas. Anything landing inside is one, including fruits the model has never seen. And each region is convex: the straight line between any two members stays inside.' },
+                { t: 'Concepts have prototypes, and prototypes tile the space',
+                  b: 'Take the central point of each region as its prototype and assign every other point to the nearest one. The resulting partition — a Voronoi tessellation — is always convex. Prototype theory and convexity turn out to be the same claim.' },
+                { t: 'Salient properties are directions',
+                  b: 'Not every meaningful property is a region. "Sweeter" is an axis running through the space, and projecting the fruits onto it recovers an ordering. This is the mechanism that lets a learned space rank entities by attributes nobody recorded.' }
+            ];
+
+            var layers = {};
+            ['grid', 'axes', 'cells', 'hulls', 'sim', 'dir', 'dots'].forEach(function (name) {
+                layers[name] = el('g', { 'class': 'cs-l-' + name, opacity: 0 }, svg);
+            });
+            layers.grid.setAttribute('opacity', 0);
+
+            /* --- grid + axes --- */
+            for (var g = 0; g <= 100; g += 20) {
+                el('line', { x1: px(g), y1: y0, x2: px(g), y2: y1, 'class': 'cs-grid' }, layers.grid);
+                el('line', { x1: x0, y1: py(g), x2: x1, y2: py(g), 'class': 'cs-grid' }, layers.grid);
+            }
+            el('line', { x1: x0, y1: y0, x2: x1, y2: y0, 'class': 'cs-axis' }, layers.axes);
+            el('line', { x1: x0, y1: y0, x2: x0, y2: y1, 'class': 'cs-axis' }, layers.axes);
+            var ax = el('text', { x: (x0 + x1) / 2, y: H - 22, 'class': 'cs-axlabel', 'text-anchor': 'middle' }, layers.axes);
+            ax.textContent = 'Sweetness →';
+            var ay = el('text', { x: 22, y: (y0 + y1) / 2, 'class': 'cs-axlabel', 'text-anchor': 'middle',
+                                  transform: 'rotate(-90 22 ' + ((y0 + y1) / 2) + ')' }, layers.axes);
+            ay.textContent = 'Size →';
+            var qd = el('text', { x: x0, y: 20, 'class': 'cs-axlabel', 'text-anchor': 'start', fill: '#64748b' }, layers.axes);
+            qd.textContent = 'quality dimensions';
+
+            /* --- prototype cells: a true Voronoi partition of the plot rectangle.
+                   With three sites every cell is the plot rectangle clipped by the two
+                   perpendicular bisectors, so Sutherland-Hodgman gives exact edges
+                   (a rasterised version showed visible staircase seams). --- */
+            (function tessellate() {
+                var sites = Object.keys(PROTOS).map(function (k) {
+                    return { k: k, x: px(PROTOS[k].s), y: py(PROTOS[k].z) };
+                });
+                var box = [[x0, y1], [x1, y1], [x1, y0], [x0, y0]];
+
+                /* keep the half-plane strictly nearer to `a` than to `b` */
+                function clip(poly, a, b) {
+                    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+                    var nx = b.x - a.x, ny = b.y - a.y;
+                    var f = function (p) { return (p[0] - mx) * nx + (p[1] - my) * ny; };
+                    var out = [];
+                    for (var i = 0; i < poly.length; i++) {
+                        var A2 = poly[i], B2 = poly[(i + 1) % poly.length];
+                        var fa = f(A2), fb = f(B2);
+                        if (fa <= 0) out.push(A2);
+                        if ((fa <= 0) !== (fb <= 0)) {
+                            var t = fa / (fa - fb);
+                            out.push([A2[0] + t * (B2[0] - A2[0]), A2[1] + t * (B2[1] - A2[1])]);
+                        }
+                    }
+                    return out;
+                }
+
+                sites.forEach(function (site) {
+                    var poly = box;
+                    sites.forEach(function (other) { if (other !== site) poly = clip(poly, site, other); });
+                    if (poly.length < 3) return;
+                    var d = poly.map(function (pt, i) {
+                        return (i ? 'L' : 'M') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1);
+                    }).join(' ') + ' Z';
+                    el('path', { d: d, fill: GROUPS[site.k], 'fill-opacity': 0.12,
+                                 stroke: GROUPS[site.k], 'stroke-opacity': 0.5, 'stroke-width': 1.4 }, layers.cells);
+                });
+
+                /* the prototypes themselves — step 5 talks about them, so show them.
+                   One shared legend rather than three labels: per-star labels collide
+                   with the berry entity names, which are tightly packed. */
+                sites.forEach(function (site) {
+                    el('path', {
+                        d: 'M0,-9 L2.6,-2.6 L9,0 L2.6,2.6 L0,9 L-2.6,2.6 L-9,0 L-2.6,-2.6 Z',
+                        transform: 'translate(' + site.x + ',' + site.y + ')',
+                        fill: GROUPS[site.k], stroke: '#0b0d14', 'stroke-width': 1.5
+                    }, layers.cells);
+                });
+                el('path', {
+                    d: 'M0,-7 L2,-2 L7,0 L2,2 L0,7 L-2,2 L-7,0 L-2,-2 Z',
+                    transform: 'translate(' + px(5) + ',' + py(94) + ')',
+                    fill: '#e2e8f0', stroke: '#0b0d14', 'stroke-width': 1.2
+                }, layers.cells);
+                var leg = el('text', { x: px(5) + 13, y: py(94) + 4, fill: '#cbd5e1', 'font-size': 11.5,
+                                       'font-weight': 700, 'letter-spacing': '0.4px' }, layers.cells);
+                leg.textContent = 'prototype of each region';
+            })();
+
+            /* --- hulls --- */
+            var hullEls = {};
+            Object.keys(GROUPS).forEach(function (name) {
+                var pts = FRUIT.filter(function (f) { return f.g === name; }).map(function (f) { return [px(f.s), py(f.z)]; });
+                var poly = pad(hull(pts), 26);
+                var d = poly.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + ' Z';
+                var gEl = el('g', { 'class': 'cs-hull' }, layers.hulls);
+                el('path', { d: d, fill: GROUPS[name], 'fill-opacity': 0.13, stroke: GROUPS[name], 'stroke-width': 1.8, 'stroke-dasharray': '6 4' }, gEl);
+                var lp = HULL_LABEL[name];
+                var lab = el('text', { x: px(lp.s), y: py(lp.z), 'class': 'cs-hull-label', fill: GROUPS[name],
+                                       'text-anchor': 'middle', opacity: 0.85 }, gEl);
+                lab.textContent = name.toUpperCase();
+                hullEls[name] = gEl;
+            });
+
+            /* --- similarity illustration --- */
+            (function () {
+                function link(a, b, label, colour) {
+                    var A = FRUIT.filter(function (f) { return f.n === a; })[0];
+                    var B = FRUIT.filter(function (f) { return f.n === b; })[0];
+                    el('line', { x1: px(A.s), y1: py(A.z), x2: px(B.s), y2: py(B.z),
+                                 stroke: colour, 'stroke-width': 2, 'stroke-dasharray': '5 5', opacity: 0.85 }, layers.sim);
+                    var t = el('text', { x: (px(A.s) + px(B.s)) / 2, y: (py(A.z) + py(B.z)) / 2 - 8,
+                                         fill: colour, 'font-size': 11.5, 'font-weight': 700, 'text-anchor': 'middle' }, layers.sim);
+                    t.textContent = label;
+                }
+                link('Lime', 'Lemon', 'near → similar', '#7dd3fc');
+                link('Lime', 'Watermelon', 'far → dissimilar', '#94a3b8');
+            })();
+
+            /* --- direction --- */
+            (function () {
+                var defs = el('defs', {}, svg);
+                var m = el('marker', { id: 'cs-a-arrow', viewBox: '0 0 10 10', refX: 8, refY: 5,
+                                       markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, defs);
+                el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#818cf8' }, m);
+                var ax1 = px(4), ay1 = py(64), ax2 = px(94), ay2 = py(30);
+                el('line', { x1: ax1, y1: ay1, x2: ax2, y2: ay2, stroke: '#818cf8', 'stroke-width': 2.6,
+                             'marker-end': 'url(#cs-a-arrow)' }, layers.dir);
+                var dl = el('text', { x: ax1 + 4, y: ay1 - 14, fill: '#a5b4fc', 'font-size': 12.5,
+                                      'font-weight': 800, 'text-anchor': 'start' }, layers.dir);
+                dl.textContent = 'direction: "sweeter" →';
+                /* projections */
+                var vx = ax2 - ax1, vy = ay2 - ay1, vv = vx * vx + vy * vy;
+                FRUIT.forEach(function (f) {
+                    var wx = px(f.s) - ax1, wy = py(f.z) - ay1;
+                    var t = (wx * vx + wy * vy) / vv;
+                    el('line', { x1: px(f.s), y1: py(f.z), x2: ax1 + t * vx, y2: ay1 + t * vy,
+                                 stroke: '#818cf8', 'stroke-width': 1, 'stroke-dasharray': '2 4', opacity: 0.55 }, layers.dir);
+                    el('circle', { cx: ax1 + t * vx, cy: ay1 + t * vy, r: 3, fill: '#a5b4fc' }, layers.dir);
+                });
+            })();
+
+            /* --- dots --- */
+            var dotEls = [];
+            FRUIT.forEach(function (f, i) {
+                var gEl = el('g', { 'class': 'cs-dot', opacity: 0 }, layers.dots);
+                var colour = f.g ? GROUPS[f.g] : '#cbd5e1';
+                el('circle', { cx: px(f.s), cy: py(f.z), r: 6.5, fill: colour, stroke: '#0b0d14', 'stroke-width': 2 }, gEl);
+                var t = el('text', { x: px(f.s) + f.dx, y: py(f.z) + f.dy, 'class': 'cs-dotlabel',
+                                     'text-anchor': f.dx < 0 ? 'end' : 'start' }, gEl);
+                t.textContent = f.n;
+                var title = el('title', {}, gEl);
+                title.textContent = f.n + ' — sweetness ' + f.s + ', size ' + f.z;
+                dotEls.push(gEl);
+            });
+
+            /* --- step machine --- */
+            var pips = document.getElementById('cs-a-pips');
+            STEPS.forEach(function () {
+                var d = document.createElement('div');
+                d.className = 'cs-step-pip';
+                pips.appendChild(d);
+            });
+            var pipEls = pips.children;
+            var labEl = document.getElementById('cs-a-label');
+            var bodyEl = document.getElementById('cs-a-body');
+            var step = -1, timer = null, playing = false;
+
+            function show(g, on, delay) {
+                if (reduce || !delay) { g.setAttribute('opacity', on ? 1 : 0); g.style.transition = 'opacity .6s'; return; }
+                g.style.transition = 'opacity .6s';
+                setTimeout(function () { g.setAttribute('opacity', on ? 1 : 0); }, delay);
+            }
+
+            function render(n) {
+                step = n;
+                var i;
+                for (i = 0; i < pipEls.length; i++) pipEls[i].classList.toggle('on', i <= n);
+                labEl.textContent = (n + 1) + '. ' + STEPS[n].t;
+                bodyEl.textContent = STEPS[n].b;
+
+                show(layers.grid, n >= 0, 0);
+                show(layers.axes, n >= 0, 0);
+                show(layers.dots, n >= 1, 120);
+                show(layers.sim,  n === 2, 0);
+                show(layers.hulls, n >= 3 && n !== 4, 180);
+                show(layers.cells, n === 4, 0);
+                show(layers.dir,  n === 5, 120);
+
+                /* stagger the dots on the step that introduces them */
+                dotEls.forEach(function (d, i2) {
+                    d.style.transition = 'opacity .5s';
+                    if (n >= 1) {
+                        if (n === 1 && !reduce) setTimeout(function () { if (step >= 1) d.setAttribute('opacity', 1); }, 120 + i2 * 55);
+                        else d.setAttribute('opacity', 1);
+                    } else d.setAttribute('opacity', 0);
+                });
+            }
+
+            function stop() {
+                playing = false;
+                clearInterval(timer);
+                document.getElementById('cs-a-play').innerHTML = '▶&nbsp; Play';
+            }
+            function play() {
+                if (playing) { stop(); return; }
+                playing = true;
+                document.getElementById('cs-a-play').innerHTML = '⏸&nbsp; Pause';
+                if (step >= STEPS.length - 1) render(0);
+                timer = setInterval(function () {
+                    if (step >= STEPS.length - 1) { stop(); return; }
+                    render(step + 1);
+                }, 4200);
+            }
+
+            document.getElementById('cs-a-play').addEventListener('click', play);
+            document.getElementById('cs-a-next').addEventListener('click', function () {
+                stop(); render(Math.min(STEPS.length - 1, step + 1));
+            });
+            document.getElementById('cs-a-prev').addEventListener('click', function () {
+                stop(); render(Math.max(0, step - 1));
+            });
+
+            render(0);
+
+            /* auto-play once, when it first scrolls into view */
+            if (!reduce && 'IntersectionObserver' in window) {
+                var fired = false;
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting && !fired) { fired = true; play(); io.disconnect(); }
+                    });
+                }, { threshold: 0.35 });
+                io.observe(svg);
+            }
+        })();
+
+        /* ================================================================
+           FIGURE 2 — colour space, betweenness and convexity
+           ================================================================ */
+        (function colourSpace() {
+            var canvas = document.getElementById('cs-c-canvas');
+            if (!canvas) return;
+            var W = canvas.width, H = canvas.height;
+            var ctx = canvas.getContext('2d');
+            var overlay = document.getElementById('cs-c-overlay');
+            var wrap = document.getElementById('cs-c-wrap');
+            var verdict = document.getElementById('cs-c-verdict');
+
+            var L_HI = 0.80, L_LO = 0.30;
+            function hueAt(x) { return (x / W) * 360; }
+            function lightAt(y) { return L_HI - (y / H) * (L_HI - L_LO); }
+            function cssAt(x, y) { return 'hsl(' + hueAt(x).toFixed(1) + ', 78%, ' + (lightAt(y) * 100).toFixed(1) + '%)'; }
+
+            /* paint the field */
+            (function paint() {
+                var img = ctx.createImageData(W, H);
+                for (var y = 0; y < H; y++) {
+                    for (var x = 0; x < W; x++) {
+                        var rgb = hsl2rgb(hueAt(x) / 360, 0.78, lightAt(y));
+                        var o = (y * W + x) * 4;
+                        img.data[o] = rgb[0]; img.data[o + 1] = rgb[1]; img.data[o + 2] = rgb[2]; img.data[o + 3] = 255;
+                    }
+                }
+                ctx.putImageData(img, 0, 0);
+            })();
+
+            function hsl2rgb(h, s, l) {
+                var r, g, b;
+                if (s === 0) { r = g = b = l; }
+                else {
+                    var hue2rgb = function (p, q, t) {
+                        if (t < 0) t += 1; if (t > 1) t -= 1;
+                        if (t < 1 / 6) return p + (q - p) * 6 * t;
+                        if (t < 1 / 2) return q;
+                        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                        return p;
+                    };
+                    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    var p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1 / 3); g = hue2rgb(p, q, h); b = hue2rgb(p, q, h - 1 / 3);
+                }
+                return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+            }
+
+            /* basic colour terms, as hue bands */
+            var BANDS = [
+                [0,   16,  'red'], [16,  44,  'orange'], [44,  68,  'yellow'],
+                [68,  158, 'green'], [158, 196, 'cyan'], [196, 254, 'blue'],
+                [254, 292, 'purple'], [292, 344, 'magenta'], [344, 360, 'red']
+            ];
+            function nameAt(x, y) {
+                var h = hueAt(x), l = lightAt(y);
+                var base = 'red';
+                for (var i = 0; i < BANDS.length; i++) {
+                    if (h >= BANDS[i][0] && h < BANDS[i][1]) { base = BANDS[i][2]; break; }
+                }
+                if (l > 0.74) return 'pale ' + base;
+                if (l < 0.37) return 'dark ' + base;
+                return base;
+            }
+            function coreName(n) { return n.replace(/^(pale|dark) /, ''); }
+
+            /* handles */
+            var A = { x: W * 0.045, y: H * 0.42 }, B = { x: W * 0.045, y: H * 0.42 };
+            var seg = el('line', { stroke: '#fff', 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0.9 }, overlay);
+            var segShadow = el('line', { stroke: '#000', 'stroke-width': 6, 'stroke-linecap': 'round', opacity: 0.35 }, overlay);
+            overlay.insertBefore(segShadow, seg);
+            var mid = el('circle', { r: 7, fill: 'none', stroke: '#fff', 'stroke-width': 2.5, opacity: 0.9 }, overlay);
+
+            function mkHandle(label) {
+                var g = el('g', { 'class': 'cs-handle' }, overlay);
+                el('circle', { r: 15, fill: 'rgba(0,0,0,0.35)' }, g);
+                el('circle', { r: 13, fill: 'none', stroke: '#fff', 'stroke-width': 3 }, g);
+                var t = el('text', { 'text-anchor': 'middle', y: 5.5, fill: '#fff', 'font-size': 14, 'font-weight': 800,
+                                     'pointer-events': 'none', style: 'font-family:Inter,sans-serif' }, g);
+                t.textContent = label;
+                return g;
+            }
+            var hA = mkHandle('A'), hB = mkHandle('B');
+
+            var PRESETS = {
+                red:     { a: { hx: 0.012, ly: 0.30 }, b: { hx: 0.028, ly: 0.72 } },
+                orange:  { a: { hx: 0.010, ly: 0.45 }, b: { hx: 0.157, ly: 0.45 } },
+                notblue: { a: { hx: 0.330, ly: 0.45 }, b: { hx: 0.880, ly: 0.45 } }
+            };
+
+            function draw() {
+                segShadow.setAttribute('x1', A.x); segShadow.setAttribute('y1', A.y);
+                segShadow.setAttribute('x2', B.x); segShadow.setAttribute('y2', B.y);
+                seg.setAttribute('x1', A.x); seg.setAttribute('y1', A.y);
+                seg.setAttribute('x2', B.x); seg.setAttribute('y2', B.y);
+                mid.setAttribute('cx', (A.x + B.x) / 2); mid.setAttribute('cy', (A.y + B.y) / 2);
+                hA.setAttribute('transform', 'translate(' + A.x + ',' + A.y + ')');
+                hB.setAttribute('transform', 'translate(' + B.x + ',' + B.y + ')');
+
+                /* sample the segment */
+                var seen = [], N = 90;
+                for (var i = 0; i <= N; i++) {
+                    var t = i / N;
+                    var nm = coreName(nameAt(A.x + (B.x - A.x) * t, A.y + (B.y - A.y) * t));
+                    if (seen[seen.length - 1] !== nm) seen.push(nm);
+                }
+                var nA = nameAt(A.x, A.y), nB = nameAt(B.x, B.y);
+                var swA = '<span class="cs-swatch" style="background:' + cssAt(A.x, A.y) + '"></span>';
+                var swB = '<span class="cs-swatch" style="background:' + cssAt(B.x, B.y) + '"></span>';
+                var swM = '<span class="cs-swatch" style="background:' + cssAt((A.x + B.x) / 2, (A.y + B.y) / 2) + '"></span>';
+                var nM = nameAt((A.x + B.x) / 2, (A.y + B.y) / 2);
+
+                var uniq = seen.filter(function (v, i2, arr) { return arr.indexOf(v) === i2; });
+                verdict.classList.remove('good', 'bad');
+
+                /* the counterexample test: does the path cross blue although neither end is blue? */
+                var crossesBlue = uniq.indexOf('blue') >= 0 &&
+                                  coreName(nA) !== 'blue' && coreName(nB) !== 'blue';
+
+                if (uniq.length === 1) {
+                    verdict.classList.add('good');
+                    verdict.innerHTML = '<b class="good">Convex.</b> A is ' + swA + '<b>' + nA + '</b> and B is ' + swB + '<b>' + nB +
+                        '</b>, and every single colour on the line between them is <b>' + uniq[0] + '</b> too. ' +
+                        'That is what it means for <em>' + uniq[0] + '</em> to be a natural property \u2014 it needs no list of members, only a region.';
+                } else if (crossesBlue) {
+                    verdict.classList.add('bad');
+                    verdict.innerHTML = '<b class="bad">&ldquo;Not blue&rdquo; fails the test.</b> A is ' + swA + '<b>' + nA +
+                        '</b> and B is ' + swB + '<b>' + nB + '</b> \u2014 both, uncontroversially, not blue. Yet the straight path between them runs <b>' +
+                        uniq.join('</b> \u2192 <b>') + '</b>, directly through blue. A property that holds at both ends and fails in the middle has no ' +
+                        'region to live in, and on G&auml;rdenfors&rsquo; account is not a natural concept at all.';
+                } else {
+                    verdict.innerHTML = '<b>Betweenness at work.</b> A is ' + swA + '<b>' + nA + '</b>, B is ' + swB + '<b>' + nB +
+                        '</b>, and the midpoint is ' + swM + '<b>' + nM + '</b>. The path runs <b>' + uniq.join('</b> \u2192 <b>') + '</b>. ' +
+                        'Nobody stored that midpoint \u2014 the space produced it, because the point between two meanings <em>is</em> the meaning between them.';
+                }
+            }
+
+            function setPreset(key) {
+                var p = PRESETS[key];
+                A.x = p.a.hx * W; A.y = p.a.ly * H;
+                B.x = p.b.hx * W; B.y = p.b.ly * H;
+                draw();
+            }
+
+            /* pointer dragging, in viewBox coordinates */
+            var dragging = null;
+            function toLocal(e) {
+                var r = wrap.getBoundingClientRect();
+                return {
+                    x: Math.max(4, Math.min(W - 4, ((e.clientX - r.left) / r.width) * W)),
+                    y: Math.max(4, Math.min(H - 4, ((e.clientY - r.top) / r.height) * H))
+                };
+            }
+            function nearest(p) {
+                return (Math.hypot(p.x - A.x, p.y - A.y) <= Math.hypot(p.x - B.x, p.y - B.y)) ? A : B;
+            }
+            wrap.addEventListener('pointerdown', function (e) {
+                var p = toLocal(e);
+                dragging = nearest(p);
+                dragging.x = p.x; dragging.y = p.y;
+                wrap.setPointerCapture(e.pointerId);
+                draw();
+                e.preventDefault();
+            });
+            wrap.addEventListener('pointermove', function (e) {
+                if (!dragging) return;
+                var p = toLocal(e);
+                dragging.x = p.x; dragging.y = p.y;
+                draw();
+            });
+            ['pointerup', 'pointercancel'].forEach(function (ev) {
+                wrap.addEventListener(ev, function () { dragging = null; });
+            });
+
+            document.querySelectorAll('[data-cs-preset]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('[data-cs-preset]').forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    setPreset(btn.dataset.csPreset);
+                });
+            });
+
+            setPreset('red');
+        })();
+
+        /* ================================================================
+           FIGURE 3 — salient properties as directions (ECAI 2016 results)
+           ================================================================ */
+        (function directions() {
+            var svg = document.getElementById('cs-d-svg');
+            if (!svg) return;
+            var W = 620, H = 420, CX = W / 2, CY = H / 2;
+
+            var ATTRS = {
+                pop: {
+                    angle: -22, dir: 'more populous →', title: 'Countries, ranked by population',
+                    note: 'Five lowest and five highest ranked countries, as reported in the ECAI 2016 paper.',
+                    low: ['Malta', 'Bermuda', 'Monaco', 'San Marino', 'Barbados'],
+                    high: ['China', 'India', 'USA', 'Soviet Union', 'Brazil'],
+                    lowLabel: 'least populous'
+                },
+                inc: {
+                    angle: 14, dir: 'founded more recently →', title: 'Organisations, ranked by founding year',
+                    note: 'The model separates the twentieth-century industrials from the platform era without ever seeing a date.',
+                    low: ['General Electric', 'IBM', 'Hewlett Packard', 'Microsoft', 'Oracle Corporation'],
+                    high: ['Alphabet Inc.', 'Tencent Holdings', 'Facebook, Inc.', 'Uber', 'Amazon.com'],
+                    lowLabel: 'oldest'
+                },
+                dob: {
+                    angle: -40, dir: 'born more recently →', title: 'People, ranked by date of birth',
+                    note: 'Antiquity at one end, contemporary celebrity at the other — recovered from prose alone.',
+                    low: ['Valmiki', 'Jesus Christ', 'Cleopatra', 'Ptolemy', 'Plato'],
+                    high: ['Prince George of Cambridge', 'Isabela Moner', 'Justin Bieber', 'Lionel Messi', 'Kim Kardashian'],
+                    lowLabel: 'earliest'
+                }
+            };
+
+            var defs = el('defs', {}, svg);
+            var mk = el('marker', { id: 'cs-d-arrow', viewBox: '0 0 10 10', refX: 8, refY: 5,
+                                    markerWidth: 6.5, markerHeight: 6.5, orient: 'auto-start-reverse' }, defs);
+            el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#818cf8' }, mk);
+
+            /* faint background scatter, to read as "a subspace of the big space" */
+            var bg = el('g', { opacity: 0.5 }, svg);
+            var seedR = 7;
+            function rnd() { seedR = (seedR * 9301 + 49297) % 233280; return seedR / 233280; }
+            for (var i = 0; i < 90; i++) {
+                el('circle', { cx: 30 + rnd() * (W - 60), cy: 26 + rnd() * (H - 52), r: 1.8,
+                               fill: '#475569' }, bg);
+            }
+            el('rect', { x: 14, y: 14, width: W - 28, height: H - 28, rx: 16, fill: 'none',
+                         stroke: 'rgba(255,255,255,0.09)', 'stroke-dasharray': '7 6' }, svg);
+            var frameLab = el('text', { x: 26, y: 34, fill: '#475569', 'font-size': 11, 'font-weight': 700,
+                                        'letter-spacing': '0.6px' }, svg);
+            frameLab.textContent = 'type-specific subspace';
+
+            var axisG = el('g', {}, svg);
+            var axisLine = el('line', { stroke: '#818cf8', 'stroke-width': 2.6, 'marker-end': 'url(#cs-d-arrow)' }, axisG);
+            /* the arrow rotates per attribute, so its captions live in fixed frame
+               corners rather than on the line, where they collided with entities.
+               Every direction runs left-to-right, so low is always the left corner. */
+            var loLab = el('text', { x: 30, y: 396, fill: '#94a3b8', 'font-size': 11.5, 'font-weight': 800,
+                                     'text-anchor': 'start', 'letter-spacing': '0.5px' }, axisG);
+            var hiLab = el('text', { x: W - 30, y: 396, fill: '#a5b4fc', 'font-size': 11.5, 'font-weight': 800,
+                                     'text-anchor': 'end', 'letter-spacing': '0.5px' }, axisG);
+
+            var ptsG = el('g', {}, svg);
+            var listEl = document.getElementById('cs-d-list');
+            var titleEl = document.getElementById('cs-d-title');
+            var noteEl = document.getElementById('cs-d-note');
+
+            var offsets = [26, -34, 18, -22, 30, -28, 22, -18, 34, -24];
+
+            function render(key) {
+                var A = ATTRS[key];
+                var th = A.angle * Math.PI / 180;
+                var ux = Math.cos(th), uy = Math.sin(th);
+                var vx = -uy, vy = ux;
+                var LEN = 230;
+
+                axisLine.setAttribute('x1', CX - ux * LEN); axisLine.setAttribute('y1', CY - uy * LEN);
+                axisLine.setAttribute('x2', CX + ux * LEN); axisLine.setAttribute('y2', CY + uy * LEN);
+                axisLine.style.transition = reduce ? 'none' : 'all .9s cubic-bezier(.16,.8,.3,1)';
+                loLab.textContent = '\u2190 ' + A.lowLabel;
+                hiLab.textContent = A.dir;
+
+                var names = A.low.slice().concat(A.high.slice().reverse());  /* lowest → highest */
+                /* fade out the old set, then build the new one */
+                var old = ptsG;
+                old.style.transition = 'opacity .35s';
+                old.setAttribute('opacity', 0);
+                setTimeout(function () {
+                    while (ptsG.firstChild) ptsG.removeChild(ptsG.firstChild);
+                    names.forEach(function (n, i2) {
+                        var t = (i2 / (names.length - 1) - 0.5) * 2 * (LEN - 34);
+                        var o = offsets[i2 % offsets.length];
+                        var x = CX + ux * t + vx * o;
+                        var y = CY + uy * t + vy * o;
+                        var g = el('g', { 'class': 'cs-ent', opacity: 0 }, ptsG);
+                        /* projection line back onto the direction */
+                        el('line', { x1: x, y1: y, x2: CX + ux * t, y2: CY + uy * t,
+                                     stroke: '#818cf8', 'stroke-width': 1, 'stroke-dasharray': '2 4', opacity: 0.5 }, g);
+                        el('circle', { cx: CX + ux * t, cy: CY + uy * t, r: 3.2, fill: '#a5b4fc' }, g);
+                        el('circle', { cx: x, cy: y, r: 5.5, fill: '#e2e8f0', stroke: '#0b0d14', 'stroke-width': 2 }, g);
+                        var anchor = (vx * o > 0) ? 'start' : 'end';
+                        var tx = el('text', { x: x + (anchor === 'start' ? 10 : -10), y: y + 4,
+                                              fill: '#cbd5e1', 'font-size': 11.5, 'font-weight': 600,
+                                              'text-anchor': anchor }, g);
+                        tx.textContent = n;
+                        if (reduce) { g.setAttribute('opacity', 1); }
+                        else setTimeout(function () { g.setAttribute('opacity', 1); }, 60 + i2 * 70);
+                    });
+                    old.setAttribute('opacity', 1);
+                }, reduce ? 0 : 350);
+
+                /* ranked list */
+                titleEl.textContent = A.title;
+                noteEl.textContent = A.note;
+                listEl.innerHTML = '';
+                names.slice().reverse().forEach(function (n, i2) {
+                    var li = document.createElement('li');
+                    li.textContent = n;
+                    if (i2 < 5) li.classList.add('hi');
+                    listEl.appendChild(li);
+                    if (reduce) li.classList.add('in');
+                    else setTimeout(function () { li.classList.add('in'); }, 120 + i2 * 55);
+                });
+            }
+
+            document.querySelectorAll('[data-cs-attr]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('[data-cs-attr]').forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    render(btn.dataset.csAttr);
+                });
+            });
+            render('pop');
+        })();
+
+        /* ================================================================
+           FIGURE 4 — dimensionality chosen by nuclear-norm regularisation
+           ================================================================ */
+        (function dims() {
+            var host = document.getElementById('cs-b-bars');
+            if (!host) return;
+            var DATA = [
+                ['human', 191211, 288], ['railway station', 4120, 121], ['house', 2762, 136],
+                ['organization', 1379, 88], ['national park', 1307, 56], ['building', 1269, 52],
+                ['food', 1155, 55], ['college', 858, 33], ['automobile', 31, 12], ['candy', 10, 2]
+            ];
+            var MAX = 288;
+            var head = document.createElement('div');
+            head.className = 'cs-bar-row';
+            head.style.cssText = 'font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:#64748b;font-weight:800;margin-bottom:0.3rem;';
+            head.innerHTML = '<span>Semantic type</span><span>Dimensions selected</span><span style="text-align:right">Dims</span>';
+            host.appendChild(head);
+
+            DATA.forEach(function (d) {
+                var row = document.createElement('div');
+                row.className = 'cs-bar-row' + (d[0] === 'house' || d[0] === 'candy' ? ' hi' : '');
+                row.innerHTML =
+                    '<span class="cs-bar-name">' + d[0] + '</span>' +
+                    '<span class="cs-bar-track"><span class="cs-bar-fill" data-w="' + ((d[2] / MAX) * 100).toFixed(1) + '"></span></span>' +
+                    '<span class="cs-bar-val">' + d[2] + '</span>';
+                row.title = d[0] + ' — ' + d[1].toLocaleString('en-GB') + ' entities, ' + d[2] + ' dimensions';
+                host.appendChild(row);
+            });
+
+            function fill() {
+                host.querySelectorAll('.cs-bar-fill').forEach(function (f, i) {
+                    setTimeout(function () { f.style.width = f.dataset.w + '%'; }, reduce ? 0 : i * 90);
+                });
+            }
+            if (!('IntersectionObserver' in window) || reduce) { fill(); return; }
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting) { fill(); io.disconnect(); } });
+            }, { threshold: 0.25 });
+            io.observe(host);
+        })();
+
+        /* ================================================================
+           FIGURE 5 — inductive concept boundaries (AAAI 2017, Figure 2)
+           ================================================================ */
+        (function gaussians() {
+            var svg = document.getElementById('cs-g-svg');
+            if (!svg) return;
+            var W = 720, H = 330, PAD_L = 46, PAD_R = 26, PAD_B = 52, PAD_T = 22;
+            var x0 = PAD_L, x1 = W - PAD_R, yBase = H - PAD_B, yTop = PAD_T;
+            var LO = 0, HI = 10;
+            function px(v) { return x0 + ((v - LO) / (HI - LO)) * (x1 - x0); }
+
+            var CONCEPTS = [
+                { n: 'A', colour: '#34d399', pts: [1, 2, 3] },
+                { n: 'B', colour: '#818cf8', pts: [4, 5, 6] },
+                { n: 'C', colour: '#f472b6', pts: [7, 8, 9] }
+            ];
+            var PARENT = { n: 'D', colour: '#94a3b8', pts: [1, 2, 3, 4, 5, 6, 7, 8, 9] };
+
+            function stats(pts) {
+                var m = pts.reduce(function (a, b) { return a + b; }, 0) / pts.length;
+                var v = pts.reduce(function (a, b) { return a + (b - m) * (b - m); }, 0) / Math.max(1, pts.length - 1);
+                /* widened a little, in the spirit of integrating the variance out under a
+                   normal-inverse-chi-squared prior rather than point-estimating it */
+                return { m: m, s: Math.sqrt(v + 1.2) };
+            }
+            function gauss(x, p) {
+                return Math.exp(-((x - p.m) * (x - p.m)) / (2 * p.s * p.s)) / (p.s * Math.sqrt(2 * Math.PI));
+            }
+            CONCEPTS.forEach(function (c) { c.p = stats(c.pts); });
+            PARENT.p = stats(PARENT.pts);
+
+            /* peak density, for scaling the curves */
+            var PEAK = 0;
+            CONCEPTS.forEach(function (c) { PEAK = Math.max(PEAK, gauss(c.p.m, c.p)); });
+            function py(d) { return yBase - (d / PEAK) * (yBase - yTop) * 0.92; }
+
+            /* axis */
+            el('line', { x1: x0, y1: yBase, x2: x1, y2: yBase, stroke: 'rgba(255,255,255,0.3)', 'stroke-width': 1.6 }, svg);
+            for (var t = 0; t <= 10; t++) {
+                el('line', { x1: px(t), y1: yBase, x2: px(t), y2: yBase + 6, stroke: 'rgba(255,255,255,0.25)' }, svg);
+                var tl = el('text', { x: px(t), y: yBase + 22, fill: '#64748b', 'font-size': 11,
+                                      'text-anchor': 'middle' }, svg);
+                tl.textContent = t;
+            }
+            var axl = el('text', { x: (x0 + x1) / 2, y: H - 12, fill: '#94a3b8', 'font-size': 11.5,
+                                   'font-weight': 700, 'text-anchor': 'middle', 'letter-spacing': '0.7px' }, svg);
+            axl.textContent = 'ONE QUALITY DIMENSION →';
+
+            /* curves */
+            function curve(p, colour, dash, opacity) {
+                var d = '';
+                for (var x = LO; x <= HI; x += 0.04) {
+                    d += (d ? 'L' : 'M') + px(x).toFixed(1) + ',' + py(gauss(x, p)).toFixed(1) + ' ';
+                }
+                el('path', { d: d, fill: 'none', stroke: colour, 'stroke-width': dash ? 1.6 : 2.4,
+                             'stroke-dasharray': dash || null, opacity: opacity }, svg);
+                var area = d + 'L' + px(HI) + ',' + yBase + ' L' + px(LO) + ',' + yBase + ' Z';
+                if (!dash) el('path', { d: area, fill: colour, opacity: 0.09 }, svg);
+            }
+            curve(PARENT.p, PARENT.colour, '5 5', 0.7);
+            CONCEPTS.forEach(function (c) { curve(c.p, c.colour, null, 0.95); });
+
+            /* parent label */
+            var pl = el('text', { x: px(5), y: py(gauss(5, PARENT.p)) - 12, fill: PARENT.colour,
+                                  'font-size': 11.5, 'font-weight': 700, 'text-anchor': 'middle' }, svg);
+            pl.textContent = 'parent concept D';
+
+            /* known instances */
+            CONCEPTS.forEach(function (c) {
+                c.pts.forEach(function (v) {
+                    el('circle', { cx: px(v), cy: yBase, r: 5, fill: c.colour, stroke: '#0b0d14', 'stroke-width': 2 }, svg);
+                });
+                var lb = el('text', { x: px(c.p.m), y: py(gauss(c.p.m, c.p)) - 10, fill: c.colour,
+                                      'font-size': 13, 'font-weight': 800, 'text-anchor': 'middle' }, svg);
+                lb.textContent = c.n;
+            });
+
+            /* candidate marker */
+            var candLine = el('line', { y1: yTop - 6, y2: yBase, stroke: '#fff', 'stroke-width': 2,
+                                        'stroke-dasharray': '4 4', opacity: 0.85 }, svg);
+            var candDot = el('circle', { cy: yBase, r: 7, fill: '#fff', stroke: '#0b0d14', 'stroke-width': 2.5 }, svg);
+            var candLab = el('text', { y: yTop - 12, fill: '#fff', 'font-size': 11.5, 'font-weight': 800,
+                                       'text-anchor': 'middle' }, svg);
+            candLab.textContent = 'candidate';
+
+            /* confidence cards */
+            var confHost = document.getElementById('cs-g-conf');
+            var cards = CONCEPTS.map(function (c) {
+                var d = document.createElement('div');
+                d.className = 'cs-conf';
+                d.innerHTML = '<span class="cs-conf-name" style="color:' + c.colour + '">conf( x, ' + c.n + ' )</span>' +
+                              '<span class="cs-conf-val">0.00</span>' +
+                              '<span class="cs-conf-note">&nbsp;</span>';
+                confHost.appendChild(d);
+                return d;
+            });
+
+            var range = document.getElementById('cs-g-range');
+            var valEl = document.getElementById('cs-g-val');
+
+            function update() {
+                var x = LO + (range.value / 1000) * (HI - LO);
+                valEl.textContent = x.toFixed(1);
+                candLine.setAttribute('x1', px(x)); candLine.setAttribute('x2', px(x));
+                candDot.setAttribute('cx', px(x));
+                candLab.setAttribute('x', Math.max(x0 + 34, Math.min(x1 - 34, px(x))));
+
+                var best = -Infinity, bestI = -1, positives = 0;
+                var scores = CONCEPTS.map(function (c, i) {
+                    var s = Math.log(Math.max(gauss(x, c.p), 1e-300)) - Math.log(Math.max(gauss(x, PARENT.p), 1e-300));
+                    if (s > best) { best = s; bestI = i; }
+                    if (s > 0) positives++;
+                    return s;
+                });
+
+                scores.forEach(function (s, i) {
+                    var card = cards[i];
+                    card.querySelector('.cs-conf-val').textContent = (s >= 0 ? '+' : '') + s.toFixed(2);
+                    card.classList.toggle('win', i === bestI && s > 0);
+                    var note = card.querySelector('.cs-conf-note');
+                    if (s > 0 && i === bestI) note.textContent = positives > 1 ? 'claimed — highest wins' : 'inferred instance';
+                    else if (s > 0) note.textContent = 'positive, but overruled';
+                    else note.textContent = 'rejected';
+                });
+
+                if (positives === 0) {
+                    cards.forEach(function (c) { c.classList.remove('win'); });
+                }
+            }
+            range.addEventListener('input', update);
+            update();
+        })();
+
+        /* graceful defaults if the browser cannot animate */
+        if (reduce) {
+            document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('active'); });
+        }
+    })();
+    </script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>
