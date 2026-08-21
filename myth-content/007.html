@@ -1,0 +1,251 @@
+<!--META
+{
+  "number": "007",
+  "title": "The Question I Never Heard",
+  "dek": "I have bombed two interviews for jobs I badly wanted, and in both of them my failure was the same: I could not understand a word the interviewer was saying. Not the audio &mdash; the speech. This is what technical interviews actually measure, what the evidence says about that, what the good companies do that the bad ones do not, and the one failure mode that has no appeal, no protocol and no place to complain.",
+  "date": "21 August 2026",
+  "iso": "2026-08-21T20:30:00+01:00",
+  "tags": [
+    "Hiring",
+    "Interviews",
+    "Careers",
+    "Accent",
+    "For students"
+  ],
+  "readtime": "~16 min read"
+}
+META-->
+
+<p>I have been on both sides of the technical interview table for well over a decade &mdash; as a candidate at technology companies, as the academic who prepares students to sit them, and as the person doing the asking when we recruit into my own group. I have seen interviews conducted with real craft, and I have sat through one that I now use privately as a benchmark for how little effort a company can put in and still expect a yes.</p>
+
+<p>Most advice about tech interviews covers the first of the three things below and none of the other two. So: all three, in order of how often they are said out loud.</p>
+
+<div class="myth-figs">
+    <div class="myth-fig">
+        <b><span class="counter" data-count="0.42" data-dec="2">0</span></b>
+        <span>Validity of the <em>structured</em> interview for predicting job performance &mdash; the best single predictor there is. Unstructured: 0.19<a class="cit" href="#s7-1">1</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="20" data-post="%">0</span></b>
+        <span>Of candidates whose technical-interview scores were consistent across their own interviews. The other four in five were all over the place<a class="cit" href="#s7-2">2</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="61.5" data-dec="1" data-post="%">0</span></b>
+        <span>Failed a whiteboard problem while being watched, against 36.3% who solved the same problem alone<a class="cit" href="#s7-3">3</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="60" data-post="s">0</span></b>
+        <span>Under a minute of exposure is enough for a listener to adapt to an unfamiliar foreign accent &mdash; in a lab, on an easy task<a class="cit" href="#s7-4">4</a></span>
+    </div>
+    <div class="myth-fig">
+        <b><span class="counter" data-count="4">0</span></b>
+        <span>Interviews were enough for Google to reach about 86% confidence in a hire. The fifth added under 1%<a class="cit" href="#s7-5">5</a></span>
+    </div>
+</div>
+
+<h4 data-n="ONE">You have to prepare for all of it, including the part you find boring</h4>
+
+<p>The first thing is the thing everyone says, so I will say it quickly and then say the part that gets left off.</p>
+
+<p>A technical interview is not one exam. It is three or four separate exams stapled together, and they are scored by different people who often do not speak to each other until the debrief. Coding. System design. A deep dive on something you have actually built. Behavioural questions about how you work with other people. Then, on top of those, whatever your track demands: a software engineer will get more algorithms and more design; a research scientist will get taken into the machine learning until the interviewer finds the floor of what you know; a research engineer gets both and is allowed to be world-class at neither.</p>
+
+<p>The part that gets left off is this. <strong>Candidates do not usually fail on their strongest axis or their weakest one. They fail on the axis they decided would not come up.</strong> I have watched brilliant PhD students who can derive a variational bound on a whiteboard get taken apart by a question about how they would shard a write-heavy database, because they had quietly filed &ldquo;system design&rdquo; under things engineers do. I have watched superb engineers lose a research-scientist loop because they treated the machine learning round as a vocabulary test and could not say why their own model choice was the right one under the data they had.</p>
+
+<div class="myth-pull">You will not be asked what you know. You will be asked what you know, at a moment you did not choose, in a form you did not expect, in front of somebody deciding.</div>
+
+<p>Here is what I actually tell my students to prepare, by track. It is not a syllabus so much as a map of the surface area.</p>
+
+<div class="myth-tw">
+    <table class="myth-table">
+        <caption>What to prepare, by track &middot; and how to know you are ready</caption>
+        <thead>
+            <tr><th scope="col">Round</th><th scope="col">Software engineering</th><th scope="col">Research scientist / applied scientist</th><th scope="col">How you know you are ready</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Coding</th>
+                <td>Data structures and algorithms under a clock, spoken aloud. Complexity stated before you are asked for it. Edge cases named without prompting.</td>
+                <td>Still coding, and people are still surprised by this. Usually lighter, often array or string manipulation, sometimes implementing a small piece of a model from memory.</td>
+                <td>You can narrate a solution to a stranger while typing it, and the narration does not stop when the typing gets hard.</td>
+            </tr>
+            <tr>
+                <th scope="row">System design</th>
+                <td>Load estimates, storage, caching, queues, consistency, failure modes, and a defensible answer to &ldquo;what breaks first at ten times this traffic?&rdquo;</td>
+                <td>ML system design: data collection and labelling, training and serving skew, drift, evaluation in production, the cost of being wrong, and how you would know you were wrong.</td>
+                <td>You can drive the whiteboard for forty minutes without the interviewer having to rescue you, and you ask about requirements before you draw anything.</td>
+            </tr>
+            <tr>
+                <th scope="row">Depth in the track</th>
+                <td>The language and runtime you claim. Concurrency. Testing. What actually happens when your service is deployed.</td>
+                <td>Optimisation, regularisation, evaluation design, the failure modes of the model families you name, and honest limits of the current literature you claim to follow.</td>
+                <td>Every time they go one level deeper you have something real to say, and when you finally hit your limit you say so in one sentence and keep your composure.</td>
+            </tr>
+            <tr>
+                <th scope="row">Past projects</th>
+                <td colspan="2">Your own work, at three resolutions: two minutes, ten minutes, and forty-five minutes of hostile questioning. Your contribution stated precisely, including where it stops and a collaborator's begins.</td>
+                <td>Somebody who has never read your paper understands the contribution in two minutes, and somebody who has read it closely cannot find a decision you cannot justify.</td>
+            </tr>
+            <tr>
+                <th scope="row">Behavioural</th>
+                <td colspan="2">Concrete episodes, not dispositions. Disagreement with a senior person. A project that failed. A time you were wrong in public. What you did when the deadline and the correctness collided.</td>
+                <td>You have four or five real stories ready, and none of them ends with you being quietly right all along.</td>
+            </tr>
+            <tr>
+                <th scope="row">Your questions</th>
+                <td colspan="2">Six questions you actually want answered, at least two of which would be awkward to answer dishonestly.</td>
+                <td>You would change your mind about the job depending on the answers. If you would not, they are not questions, they are decoration.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>One footnote for the anxious. The evidence says a good interview is worth taking seriously: in the 2022 re-analysis of the personnel-selection literature, the <strong>structured interview came out at 0.42</strong>, ahead of cognitive-ability tests at 0.31, making it the strongest single predictor of job performance we have measured. The <strong>unstructured</strong> interview &mdash; the one where somebody chats to you and forms an impression &mdash; came out at <strong>0.19</strong>.<a class="cit" href="#s7-1">1</a> That gap is the whole subject of the next two sections.</p>
+
+<h4 data-n="TWO">The good ones have done their homework, and you can tell in ninety seconds</h4>
+
+<p>The best interviews I have ever sat have one thing in common: the interviewer had read something before walking in.</p>
+
+<p>At the top end this is genuinely impressive. Somebody has read the paper &mdash; not the abstract, the paper &mdash; and wants to know why I chose that particular evaluation protocol in Section 4, because they think it is the weak point. Somebody has looked at the repository. Somebody has noticed that two things on my CV are in tension and would like me to reconcile them. Those companies are doing the thing the evidence says works: a consistent rubric, the same core questions for every candidate, an interviewer who has prepared the specific ground they intend to cover. Google reached this conclusion the hard way and published it &mdash; after looking at tens of thousands of interviews they found brainteasers to be &ldquo;a complete waste of time&rdquo; that &ldquo;serve primarily to make the interviewer feel smart&rdquo;, and moved to structured behavioural interviewing with a shared rubric instead.<a class="cit" href="#s7-6">6</a></p>
+
+<p>An hour like that is a pleasure even when you do not get the job, because you learn something about your own work from the questions. And it tells you something about the company that no careers page will: these are people who prepare before they meet you. That is a fair prediction of what a design review will feel like once you are inside.</p>
+
+<h4 data-n="THREE">And then there is the other end</h4>
+
+<p>I once sat an interview in which every question I was asked was a request to <em>define</em> a concept that appeared in the first three lines of my CV.</p>
+
+<p>Define this. Define that. What is this technique. It went on for the full slot. There was no question about anything I had built, no question about a decision I had made, no question that required the interviewer to have read past the third line, and &mdash; this is the part I keep coming back to &mdash; nothing that would have distinguished me from a competent second-year undergraduate with the same three lines pasted into their own CV. The interviewer had, as far as I could tell, opened the document at the start of the call.</p>
+
+<p>I answered everything politely. I do not think I was rude. But I made a decision in that hour that I have not revisited: <strong>I will not apply to that company again.</strong> Not out of pique. Out of inference. An hour is a small sample, but it is not a zero sample, and what it sampled was an organisation that had decided this particular hour was not worth thirty minutes of preparation. If that is what they invest in choosing who joins, I have a reasonable prior about what they invest in the people who did.</p>
+
+<p>Two pieces of evidence make me less embarrassed about holding that view. The first is the validity gap above: the difference between a prepared, structured interview and an improvised one is roughly the difference between a signal and a rounding error.<a class="cit" href="#s7-1">1</a> The second is what happens when you actually measure the noise. interviewing.io, which runs anonymous technical interviews at scale, looked at over a thousand of them and found that <strong>only about 20% of candidates performed consistently across their own interviews</strong> &mdash; and that plenty of people who scored a 4 on a four-point scale in one interview scored a 2, or a 1, in another.<a class="cit" href="#s7-2">2</a> The same person. Often the same week.</p>
+
+<p>Some of that variance is the candidate having a bad day. Quite a lot of it is not the candidate at all. And a well-designed process knows this and defends against it &mdash; which is exactly why Google's own analysis landed on <strong>four interviewers being enough to reach about 86% confidence</strong>, with the fifth adding less than one percentage point.<a class="cit" href="#s7-5">5</a> Four independent readings, averaged, beat any one expert. The corollary that nobody enjoys: <em>your</em> single terrible interviewer is inside that average too, and if the loop is short, they are a big fraction of it.</p>
+
+<p>There is one more thing worth knowing about the unprepared interviewer, and it is less comfortable than it sounds. When Barrick, Swider and Stewart followed structured interviews from the small talk onwards, the evaluation formed during <strong>rapport building &mdash; before the interview proper had started</strong> &mdash; predicted the interviewer's final rating, ratings by a <em>different</em> interviewer later in the process, and whether an offer was made at all.<a class="cit" href="#s7-7">7</a> The first ninety seconds are not a warm-up. They are being scored, whether or not anybody intends to score them. Hold that thought; it comes back.</p>
+
+<h4 data-n="FOUR">You are selecting them, and this is not a consolation prize</h4>
+
+<p>Every student I have said this to has smiled politely and not believed me, so let me put the evidence next to it.</p>
+
+<p>The largest meta-analysis of what actually drives applicant attraction and job choice &mdash; 667 coefficients from 71 studies &mdash; found that job-choice outcomes were predicted by the characteristics of the job and organisation, by <strong>recruiter behaviours</strong>, and by <strong>candidates' perceptions of the recruiting process itself</strong>.<a class="cit" href="#s7-8">8</a> How you are treated in the process changes who accepts. This is measured, repeatedly, and companies with good hiring functions know it, which is why the good interview and the good candidate experience tend to arrive together.</p>
+
+<p>So the hour is symmetrical, even though the power in the room is not. You are being given, free, a live sample of: how these people think, what they consider a good question, whether they read before they speak, whether they interrupt, whether they can say &ldquo;I do not know&rdquo;, and what they do when you disagree with them. In a research role you are meeting the person who will review your drafts. In engineering you are meeting the person who will review your pull requests. That is not a hypothetical relationship; it starts on day one.</p>
+
+<p>The practical version, for students: go in with six real questions. Ask what the last technical disagreement on the team was and how it was resolved. Ask what happens when a project is not working &mdash; who decides, and how quickly. Ask what fraction of the team's work reaches users, or publication, or production. Ask what they wish they had known before joining. Then <em>listen to the shape of the answer</em>, because a team with a healthy answer gives it immediately and a team without one reaches for the careers page.</p>
+
+<h4 data-n="FIVE">The question I never heard</h4>
+
+<p>Now the part I have not written down before.</p>
+
+<p>The biggest bottleneck I have personally hit in interviews is not coding, or design, or nerves. It is that on two occasions I could not understand what the interviewer was saying. Not a word of it. And both were jobs I wanted very much.</p>
+
+<p>I want to be exact about this, because it gets misheard as something milder than it is. The audio was fine. There was no packet loss, no echo, no crackle, nobody was in a tunnel. The line was clean and the voice was clear and I could hear every syllable. I simply could not resolve the syllables into words. The interviewer's accent was far enough from anything my ear had been trained on that from the first question onwards I had no idea what was being asked. Not &ldquo;I missed a word&rdquo;. I did not know what the topic was.</p>
+
+<p>I was polite. I did not say, into a stranger's face, in the first five minutes of a job interview, <em>I cannot understand you at all.</em> I tried. I picked out the occasional keyword and built an answer around it, the way you do in a language you half-speak. I asked for a repeat once or twice. Repeating does not help. Repetition fixes a dropped packet; it does nothing for a systematic mismatch, because the second delivery is the same delivery. And there is a hard social ceiling on how many times you can ask &mdash; by the third you are visibly not following, and by the fourth the interview has quietly changed subject, from your engineering ability to your comprehension.</p>
+
+<p>Somewhere around the middle I made a decision that I still think was the right one, and it was not surrender. I thought: <em>suppose I get this. This person is on the team. Every design discussion, every stand-up, every disagreement, for years, is this hour.</em> That is a real consideration and not a face-saving one, and once I had thought it, I let the rest of the hour go.</p>
+
+<p>The feedback, when it came, said that I had not engaged with the details and had brushed things aside. That is a completely fair description of what it looked like from the other chair. It is also not what happened. I could nail that interview tomorrow, cold, without preparation. The content was not the problem. The channel was.</p>
+
+<p>And before anyone concludes this is a video-call problem: the second one was <strong>face to face</strong>, in a room, no technology involved at all. Same outcome.</p>
+
+<h4 data-n="SIX">What the evidence says about that hour, including the parts I do not like</h4>
+
+<p>The single most useful thing I have read on this is not about interviews at all. It is a finding in speech perception: <strong>intelligibility is a property of the speaker, the listener and the channel together &mdash; not of any one of them.</strong> Bent and Bradlow showed that a non-native talker can be <em>as intelligible as a native talker</em> to a listener who shares their language background, while being much harder work for someone who does not.<a class="cit" href="#s7-9">9</a> There is no fixed quantity called &ldquo;how clearly this person speaks&rdquo;. There is only a pairing, and the pairing has a value.</p>
+
+<p>An interview scores the pairing and writes the result on the candidate.</p>
+
+<p>The rest of the literature says the mismatch is usually temporary &mdash; and this is the part that makes the interview case genuinely bad luck rather than inevitable. Clarke and Garrett found that listeners adapt to an unfamiliar foreign accent in <strong>under a minute of exposure</strong>.<a class="cit" href="#s7-4">4</a> Under a minute! In a lab, on a simple word-matching task, with a cooperative listener whose entire cognitive budget is available for listening. An interview is the opposite of those conditions on every axis: the listening is simultaneous with hard technical thinking, the stakes are high, and the clock is running. Whatever adaptation is going to happen has to happen while you are also doing calculus in your head, and it starts in exactly the ninety seconds that Barrick and colleagues showed are already quietly determining your score.<a class="cit" href="#s7-7">7</a></p>
+
+<div class="myth-pull">The adaptation is free and takes sixty seconds. The interview spends those sixty seconds on something else, and then bills you for the difference.</div>
+
+<p>Two further findings should worry anybody who runs a remote hiring loop. Newman and Schwarz played people <em>identical</em> conference talks and radio interviews in high and low audio quality: with lower audio quality, listeners judged the research less important, the researcher less intelligent, and the speaker less likeable.<a class="cit" href="#s7-10">10</a> Same words, same person, worse microphone, worse science. And Schoenenberg, Raake and Koeppe showed that transmission delay is <strong>misattributed to the personality of the person at the other end</strong>: delayed speakers were rated less attentive, less friendly, less conscientious, and were perceived as interrupting when they had not interrupted at all.<a class="cit" href="#s7-11">11</a></p>
+
+<p>Read those two together and the conclusion is brutal for online interviewing. <em>The channel is routinely scored as the candidate.</em> A bad microphone becomes an unimpressive researcher; a laggy connection becomes a rude one; an unfamiliar accent becomes someone who brushes aside the details.</p>
+
+<p>Now the part I would rather not include, because it cuts across my own story. The accent literature is overwhelmingly about bias against the person <em>with</em> the accent, and that bias is real and well documented. Lev-Ari and Keysar found that identical trivia statements were judged <strong>less truthful</strong> when spoken with a foreign accent, and traced it to processing difficulty &mdash; work is misread as unreliability, which is precisely the mechanism above.<a class="cit" href="#s7-12">12</a> In the UK, the Accent Bias in Britain project had 827 people rate 38 accent labels for prestige and found the same hierarchy as fifty years ago, with Indian, Afro-Caribbean, Liverpool, Birmingham and Cockney accents all near the bottom.<a class="cit" href="#s7-13">13</a> The Sutton Trust's follow-up found <strong>29% of senior managers from working-class families had been mocked for their accent at work</strong>, and 41% of northern university students worried their accent would affect their future success.<a class="cit" href="#s7-14">14</a></p>
+
+<p>And here is the finding I am obliged to quote against myself: when the same project put real legal recruiters in a simulated hiring task, the bias <strong>shrank dramatically and could be almost fully suppressed</strong> once people knew to watch for it.<a class="cit" href="#s7-13">13</a> Accent bias is not a law of nature. Under professional conditions, with awareness, people beat it. That is genuinely good news, and it also sets the standard: if recruiters can suppress a bias they hold, a hiring process can certainly handle a mismatch neither party chose.</p>
+
+<p>I should also say the obvious symmetrical thing, and mean it. <strong>I have an accent.</strong> Somewhere out there is a candidate, or a student in the third row of my lecture theatre, who has spent an hour with me and understood rather less of it than they let on. The mechanism does not care who is inconvenienced by it. Nothing in this entry is a complaint about how anyone speaks &mdash; the two interviewers were, for all I know, excellent engineers speaking perfectly good English, and the failure was in a room that had no way to notice a failure was happening.</p>
+
+<h4 data-n="SEVEN">The part with no appeal</h4>
+
+<p>What makes this the worst experience I have had in hiring is not the outcome. It is that there is nowhere to put it.</p>
+
+<p>Consider the options honestly. Tell the interviewer during the interview: you have converted a technical hour into an awkward one, and you are now the candidate who made it about them. Tell the recruiter afterwards: you are a rejected candidate criticising an employee's speech, which will be filed &mdash; reasonably, from where they sit &mdash; as an excuse, and it will follow you at that company for as long as their notes do. Say nothing: the feedback stands, unchallenged, and the written record says you brushed aside the details.</p>
+
+<p>I said nothing. I still think that was the correct call, and I resent that it was.</p>
+
+<p>Notice what is missing. Almost every serious process a university runs &mdash; marking, ethics, misconduct, promotion &mdash; has an appeal route with a named owner and a rule about who may not sit on it. Corporate hiring, for the most part, has none. There is no mechanism through which a candidate can say <em>something went wrong with the process, independent of the decision</em>, and have it looked at by somebody who is not the person who made the decision. There is no route by which the company learns that one of its loops has a systematic problem, because the only people who can see the problem are the ones who have just been rejected and have every incentive to stay quiet.</p>
+
+<p>Legally, in Britain, this is not quite nothing &mdash; accent is not itself a protected characteristic, but where it stands proxy for national origins, treating someone worse for it can amount to race discrimination under the Equality Act 2010.<a class="cit" href="#s7-15">15</a> That is a real protection and I am glad it exists. It is also, for the situation I am describing, useless: there was no discrimination. Nobody did anything wrong. Two people who both spoke English could not run the protocol, and the entire cost of that landed on one of them.</p>
+
+<p>So you accept it and you move on. That is what I did, twice. But I would like to stop pretending it is the candidate's problem to solve, because it is trivially cheap for the company to solve and impossible for the candidate to.</p>
+
+<h4 data-n="EIGHT">What I would fix, and what it would cost</h4>
+
+<p>Everything on this list is cheaper than one wasted interview slot. I have adopted the first five in my own group.</p>
+
+<ul>
+    <li><strong>Put the question in writing at the moment it is asked.</strong> One line in the chat window, or one line on a sheet of paper in the room. Not a transcript &mdash; just the question. This costs an interviewer eight seconds and eliminates the entire failure mode described above. It also helps candidates who are deaf or hard of hearing, candidates who are dyslexic, candidates on a bad line, and candidates who are simply nervous. There is no version of this that is not worth doing.</li>
+    <li><strong>Spend the first sixty seconds on something that is not assessed</strong> &mdash; and tell the candidate it is not assessed. The perception research says the ear adapts in about that long.<a class="cit" href="#s7-4">4</a> The interview research says those seconds are being scored whether you intend it or not.<a class="cit" href="#s7-7">7</a> Doing both deliberately is strictly better than doing one accidentally.</li>
+    <li><strong>Give a no-penalty phrase and mean it.</strong> Tell every candidate, in the invitation email: &ldquo;if you need anything repeated, rephrased or typed, say &lsquo;can we put that in writing?&rsquo; &mdash; it is not scored.&rdquo; The reason candidates do not ask is not that they lack the words. It is that they cannot tell whether asking costs them. Remove the uncertainty in advance and they will ask.</li>
+    <li><strong>Fix the channel before you judge the person.</strong> Wired headsets over laptop microphones, on both sides. A sound check that happens before the clock starts. Given that identical content is rated as worse science through a worse microphone,<a class="cit" href="#s7-10">10</a> a company that interviews on built-in laptop audio is adding noise to its own measurement and paying for the privilege.</li>
+    <li><strong>Let people think in private first.</strong> Behroozi and colleagues ran the same whiteboard problem with and without an observer: <strong>61.5% failed while being watched, against 36.3% alone</strong>, with the median number of passing test cases cut from three to one (Mann&ndash;Whitney, <em>p</em> = 0.038, <em>d</em> = 0.57). In the observed condition <em>none</em> of the women solved it; alone, all of them did.<a class="cit" href="#s7-3">3</a> Five silent minutes with the problem before the talking starts recovers a large part of that, and costs five minutes.</li>
+    <li><strong>Use four interviewers, not one, and average them.</strong> Google's own data put four at roughly 86% confidence with sharply diminishing returns after.<a class="cit" href="#s7-5">5</a> Given that only a fifth of candidates score consistently across their own interviews,<a class="cit" href="#s7-2">2</a> a single-interview decision is close to a coin weighted by luck.</li>
+    <li><strong>Open a process-complaint channel that cannot touch the hiring decision.</strong> Different owner, no route back to the panel, closed after the decision is final. Most companies will never use it. The ones with a broken loop will find out they have one, which is the only way they ever will.</li>
+</ul>
+
+<h4 data-n="NINE">For students: the preparation nobody sets you</h4>
+
+<p>The technical preparation is well covered elsewhere and the table in section one is my version of it. This section is the rest &mdash; the things I have watched cost good people offers.</p>
+
+<ul>
+    <li><strong>Everything on your CV is fair game, and the first three lines most of all.</strong> Whatever is at the top will be asked about, by the prepared interviewer <em>and</em> by the unprepared one. If you cannot define, defend and give an example of every term in your own opening paragraph, either learn it properly or take it out. Nothing goes on that page that you would not enjoy being asked about.</li>
+    <li><strong>Rehearse out loud, on a call, with a stranger.</strong> Not in your head. The failure is almost never that you do not know the answer; it is that you have never once produced the answer as speech while somebody watched. Record yourself and watch it back, which is unpleasant and effective in roughly equal measure.</li>
+    <li><strong>Train your listening, not just your speaking.</strong> This is the item nobody does and the one I would put first if I could only give you one. Spend a few hours listening to technical talks by people whose English is unlike anything you have been exposed to &mdash; conference recordings are free and endless. You are not being polite; you are buying the adaptation the literature says takes under a minute of exposure,<a class="cit" href="#s7-4">4</a> in advance, at your leisure, instead of trying to buy it in the first ninety seconds of an interview while also designing a distributed cache. Do it for two or three accent families you have never worked with. It is the highest-return hour in the whole preparation.</li>
+    <li><strong>Rehearse the recovery sentence until it is boring.</strong> One line, warm, no apology, no hedging: &ldquo;I want to make sure I answer the right question &mdash; could you put the key part in the chat for me?&rdquo; Have it ready and it comes out calmly at minute two, when it still costs nothing. Improvise it and it comes out at minute twenty as an admission of defeat.</li>
+    <li><strong>Treat the kit as part of the interview, because it is.</strong> Wired headset. Wired internet if it exists. A quiet room with the door shut. A charged phone with the dial-in number already saved. Test the exact software on the exact machine the day before. Delay gets read as rudeness and bad audio gets read as bad work,<a class="cit" href="#s7-10">10</a><a class="cit" href="#s7-11">11</a> and you cannot appeal against either.</li>
+    <li><strong>Have three depths of every project.</strong> Two minutes, ten minutes, forty-five minutes. Know precisely which part was yours. Saying &ldquo;my collaborator built that component; I built this one and here is why we split it that way&rdquo; reads as confidence, every time. Vagueness about credit is the single fastest way to lose a research panel.</li>
+    <li><strong>Prepare your own six questions.</strong> See section four. If the answers would not change your decision, they are not questions.</li>
+    <li><strong>Expect to bomb some.</strong> Four in five candidates are inconsistent across their own interviews.<a class="cit" href="#s7-2">2</a> A rejection is one noisy sample of you, taken by people who had an hour. It is information, but it is not a verdict, and the sample size is one.</li>
+</ul>
+
+<h4 data-n="TEN">What I am not claiming</h4>
+
+<ul>
+    <li><strong>Two interviews is not data.</strong> It is an anecdote with a mechanism attached. I have cited the mechanism because the mechanism is well evidenced; my own two cases are not evidence of how common it is, and I do not know how common it is. Nobody does, because there is no way for it to be reported.</li>
+    <li><strong>I cannot prove I would have passed.</strong> That is exactly the situation I am describing, and it is unfalsifiable in both directions. Confident candidates who were rejected all believe they would have passed. I am one of them, and my belief is worth what everyone else's is.</li>
+    <li><strong>Neither interviewer did anything wrong.</strong> They spoke their English and I failed to parse it, and had I been the one asking the questions the difficulty would have run in the other direction. The design failure belongs to the process, which had no way to detect that its measurement had stopped working.</li>
+    <li><strong>The blacklist is a personal judgement about one hour.</strong> One unprepared interviewer is not proof of an unserious company; I have colleagues who have had a bad hour and a good decade at the same firm. I am choosing to act on a small sample because it is the only sample a candidate ever gets.</li>
+    <li><strong>Some of the literature cuts against me.</strong> The Accent Bias in Britain team found professional recruiters could suppress accent bias almost entirely once aware of it.<a class="cit" href="#s7-13">13</a> I have quoted that finding at full strength because it is the most hopeful thing in this entire entry, and because a house rule that only admits convenient evidence is not a house rule.</li>
+</ul>
+
+<p>If you are a student preparing for these: prepare all four surfaces, prepare your ear as well as your mouth, and remember that you are running an evaluation too. If you are a company: put the question in the chat. It takes eight seconds and it would have changed two afternoons of my life.</p>
+
+<p>And if you have had the version of this I have described &mdash; the interview where you walked out knowing the assessment had measured something other than you, and there was nobody to tell &mdash; I would genuinely like to hear it: <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>. Not to name companies. To find out whether the thing I think happened twice to me happens quietly to a great many people.</p>
+
+<div class="myth-src">
+    <h4>Sources</h4>
+    <ol>
+        <li id="s7-1">Paul R. Sackett, Charlene Zhang, Christopher M. Berry and Filip Lievens, <cite>Revisiting meta-analytic estimates of validity in personnel selection: Addressing systematic overcorrection for restriction of range</cite>, <cite>Journal of Applied Psychology</cite> 107, 2022, pp. 2040&ndash;2068; doi:10.1037/apl0000994. Structured interviews 0.42, job knowledge tests 0.40, work sample tests 0.33, general cognitive ability 0.31, unstructured interviews 0.19. The re-analysis corrects what the authors argue was systematic overcorrection for range restriction in earlier meta-analyses, and re-ranks structured interviews above cognitive ability. <a href="https://doi.org/10.1037/apl0000994" target="_blank" rel="noopener">doi.org</a> &middot; <a href="https://www.siop.org/tip-article/is-cognitive-ability-the-best-predictor-of-job-performance-new-research-says-its-time-to-think-again/" target="_blank" rel="noopener">SIOP summary of the coefficients</a> &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/34968080/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="s7-2">Aline Lerner, <cite>With more data, technical interview performance proves to be arbitrary</cite>, interviewing.io blog, updating a February 2016 analysis. Over a thousand anonymous technical interviews; interviewers rate technical ability 1&ndash;4; roughly 20% of interviewees were consistent across their own interviews, down from 25% in the earlier analysis, with many candidates scoring both a 4 and a 2, and some both a 4 and a 1. This is a company's analysis of its own platform data rather than peer-reviewed work, and the population is self-selected. <a href="https://interviewing.io/blog/after-a-lot-more-data-technical-interview-performance-really-is-kind-of-arbitrary" target="_blank" rel="noopener">interviewing.io</a> &middot; <a href="https://interviewing.io/blog/technical-interview-performance-is-kind-of-arbitrary-heres-the-data" target="_blank" rel="noopener">the 2016 original</a></li>
+        <li id="s7-3">Mahnaz Behroozi, Shivani Shirolkar, Titus Barik and Chris Parnin, <cite>Does Stress Impact Technical Interview Performance?</cite>, ESEC/FSE 2020, Sacramento; doi:10.1145/3368089.3409712. Randomised trial with eye-tracking; 48 participants analysed, 26 in the observed (&ldquo;public&rdquo;) whiteboard setting and 22 solving privately. 61.5% failed the task when observed against 36.3% alone; correctness 1.58&plusmn;1.29 (median 1 passing test case) observed against 2.29&plusmn;1.12 (median 3) private; Mann&ndash;Whitney U, Z = 180.5, p = 0.038, d = 0.57. In the observed setting none of the five women solved the task; in the private setting all four did. The sample is small, drawn from one university, and the gender result is a post-hoc analysis on single-figure groups &mdash; the authors present it as suggestive, and so do I. <a href="https://dl.acm.org/doi/10.1145/3368089.3409712" target="_blank" rel="noopener">dl.acm.org</a> &middot; <a href="http://www.chrisparnin.me/pdf/stress_FSE_20.pdf" target="_blank" rel="noopener">full text (PDF)</a></li>
+        <li id="s7-4">Constance M. Clarke and Merrill F. Garrett, <cite>Rapid adaptation to foreign-accented English</cite>, <cite>The Journal of the Acoustical Society of America</cite> 116(6), 2004, pp. 3647&ndash;3658. Processing of foreign-accented speech is initially slower than native speech, but the deficit is overcome after less than one minute of exposure to a talker, demonstrated for both Spanish- and Chinese-accented English. The task was cross-modal word matching under laboratory conditions, which is why I am careful in the text not to claim the same speed under interview conditions. <a href="https://pubmed.ncbi.nlm.nih.gov/15658715/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="s7-5">Laszlo Bock, <cite>Work Rules! Insights from Inside Google That Will Transform How You Live and Lead</cite>, Twelve, 2015. Google staffing analyst Todd Carlisle's analysis found four interviewers sufficient to predict a hiring decision with about 86% confidence, with each additional interview adding under one percentage point &mdash; the origin of Google's &ldquo;rule of four&rdquo;. The underlying analysis is internal to Google and has not been published as a peer-reviewed study; it is reported in Bock's book and widely summarised since. <a href="https://knowledge.wharton.upenn.edu/article/open-sourcing-googles-hr-secrets/" target="_blank" rel="noopener">Knowledge at Wharton</a> &middot; <a href="https://rework.withgoogle.com/en/guides/hiring-use-structured-interviewing" target="_blank" rel="noopener">Google re:Work on structured interviewing</a></li>
+        <li id="s7-6">Adam Bryant, <cite>In Head-Hunting, Big Data May Not Be Such a Big Deal</cite>, Corner Office, <cite>The New York Times</cite>, June 2013, interviewing Laszlo Bock, then Senior Vice President of People Operations at Google: &ldquo;On the hiring side, we found that brainteasers are a complete waste of time&hellip; They don't predict anything.&rdquo; Bock also describes Google's finding, from tens of thousands of interviews, of no relationship between individual interviewers' judgements and how candidates subsequently performed, and the move to structured behavioural interviewing with a consistent rubric. <a href="https://www.nytimes.com/2013/06/20/business/in-head-hunting-big-data-may-not-be-such-a-big-deal.html" target="_blank" rel="noopener">nytimes.com</a></li>
+        <li id="s7-7">Murray R. Barrick, Brian W. Swider and Greg L. Stewart, <cite>Initial evaluations in the interview: Relationships with subsequent interviewer evaluations and employment offers</cite>, <cite>Journal of Applied Psychology</cite> 95(6), 2010, pp. 1163&ndash;1172. Evaluations formed during the rapport-building stage, before the structured interview proper, predicted end-of-interview ratings, ratings from a separate later interviewer, and actual internship offers. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1991946" target="_blank" rel="noopener">SSRN</a> &middot; <a href="https://homepages.se.edu/cvonbergen/files/2012/12/Initial-Evaluations-in-the-Interview_Relationships-with-Subsequent-Interviewer-Evaluations-and-Employment-Offers.pdf" target="_blank" rel="noopener">full text (PDF)</a></li>
+        <li id="s7-8">Derek S. Chapman, Krista L. Uggerslev, Sarah A. Carroll, Kelly A. Piasentin and David A. Jones, <cite>Applicant attraction to organizations and job choice: A meta-analytic review of the correlates of recruiting outcomes</cite>, <cite>Journal of Applied Psychology</cite> 90(5), 2005, pp. 928&ndash;944. 667 coefficients from 71 studies; attraction and job-choice outcomes were predicted by job and organisational characteristics, recruiter behaviours, perceptions of the recruiting process, perceived fit and hiring expectancies &mdash; but not by recruiter demographics or perceived alternatives. <a href="https://doi.org/10.1037/0021-9010.90.5.928" target="_blank" rel="noopener">doi.org</a></li>
+        <li id="s7-9">Tessa Bent and Ann R. Bradlow, <cite>The interlanguage speech intelligibility benefit</cite>, <cite>The Journal of the Acoustical Society of America</cite> 114(3), 2003, pp. 1600&ndash;1610. Speech from a relatively high-proficiency non-native talker was as intelligible to listeners from the same native-language background as speech from a native talker &mdash; the &ldquo;matched interlanguage speech intelligibility benefit&rdquo;. Intelligibility is therefore a property of the talker&ndash;listener pairing, not of the talker alone. <a href="https://pubs.aip.org/asa/jasa/article/114/3/1600/547836/The-interlanguage-speech-intelligibility-benefit" target="_blank" rel="noopener">pubs.aip.org</a></li>
+        <li id="s7-10">Eryn J. Newman and Norbert Schwarz, <cite>Good Sound, Good Research: How Audio Quality Influences Perceptions of the Research and Researcher</cite>, <cite>Science Communication</cite> 40(2), 2018. Identical conference talks (experiment 1) and radio interviews (experiment 2) were presented in high or low audio quality; with lower audio quality, the same research was judged less important, the researcher less intelligent and less likeable. <a href="https://journals.sagepub.com/doi/abs/10.1177/1075547018759345" target="_blank" rel="noopener">journals.sagepub.com</a> &middot; <a href="https://today.usc.edu/why-we-believe-something-audio-sound-quality/" target="_blank" rel="noopener">USC summary</a></li>
+        <li id="s7-11">Katrin Schoenenberg, Alexander Raake and Judith Koeppe, <cite>Why are you so slow? &mdash; Misattribution of transmission delay to attributes of the conversation partner at the far-end</cite>, <cite>International Journal of Human-Computer Studies</cite> 72(5), 2014, pp. 477&ndash;487. Transmission delay led listeners to rate the delayed partner as less attentive, less friendly and less conscientious, and to perceive them as interrupting when they had not. <a href="https://www.sciencedirect.com/science/article/abs/pii/S1071581914000287" target="_blank" rel="noopener">sciencedirect.com</a></li>
+        <li id="s7-12">Shiri Lev-Ari and Boaz Keysar, <cite>Why don't we believe non-native speakers? The influence of accent on credibility</cite>, <cite>Journal of Experimental Social Psychology</cite> 46(6), 2010, pp. 1093&ndash;1096. Identical trivia statements were judged less truthful when spoken with a foreign accent, an effect the authors attribute to processing difficulty being misread as reduced credibility; the effect persisted for mild accents even when participants were told about the bias. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022103110001459" target="_blank" rel="noopener">sciencedirect.com</a></li>
+        <li id="s7-13">Erez Levon, Devyani Sharma, Dominic Watt, Christina Perry, Yang Ye, Amanda Cardoso and Christian Ilbury, <cite>Accent Bias in Britain: Attitudes to Accents in Britain and Implications for Fair Access</cite>, Queen Mary University of London and the University of York, 2020 (ESRC-funded). 827 participants rated 38 accent labels for prestige and pleasantness on a 1&ndash;7 scale; the hierarchy matched surveys from 50 and 15 years earlier, with Received Pronunciation and &ldquo;Queen's English&rdquo; at the top and Birmingham, Afro-Caribbean, Indian, Liverpool and Cockney accents in the bottom ten. In the accompanying experiment with real legal-sector recruiters listening to matched mock interview answers, bias was substantially weaker and, with awareness, was almost fully suppressed. <a href="https://accentbiasbritain.org/wp-content/uploads/2020/03/Accent-Bias-Britain-Report-2020.pdf" target="_blank" rel="noopener">full report (PDF)</a> &middot; <a href="https://accentbiasbritain.org/" target="_blank" rel="noopener">accentbiasbritain.org</a></li>
+        <li id="s7-14">Erez Levon, Devyani Sharma and Christian Ilbury, <cite>Speaking Up: Accents and Social Mobility</cite>, The Sutton Trust, 3 November 2022. 29% of senior managers from working-class families reported being mocked for their accent at work; 25% of professionals reported being mocked or singled out in work settings; 41% of university students from the North of England were worried their accent could affect their future success, against 19% in the South outside London. <a href="https://www.suttontrust.com/our-research/speaking-up-accents-social-mobility/" target="_blank" rel="noopener">suttontrust.com</a> &middot; <a href="https://www.suttontrust.com/wp-content/uploads/2022/11/Accents-and-social-mobility.pdf" target="_blank" rel="noopener">report (PDF)</a></li>
+        <li id="s7-15">Equality Act 2010, section 9: race includes colour, nationality, and ethnic or national origins. Accent is not itself a protected characteristic, but where less favourable treatment on the basis of accent is bound up with national or ethnic origins it may amount to race discrimination. This is a summary of the statute rather than legal advice, and the application to any individual case is a matter for a tribunal. <a href="https://www.legislation.gov.uk/ukpga/2010/15/section/9" target="_blank" rel="noopener">legislation.gov.uk</a> &middot; <a href="https://www.equalityhumanrights.com/equality/equality-act-2010" target="_blank" rel="noopener">EHRC</a></li>
+    </ol>
+    <p class="myth-foot">Sources checked on 21 August 2026. Two claims here rest on organisational rather than peer-reviewed data and are flagged as such at the point of citation: interviewing.io's platform analysis (source 2) and Google's internal &ldquo;rule of four&rdquo; analysis reported in <cite>Work Rules!</cite> (source 5). Corrections to <a href="mailto:M.S.Jameel@southampton.ac.uk">M.S.Jameel@southampton.ac.uk</a>.</p>
+    <p class="myth-foot">On the companies: no employer is named in this entry and none will be. The two interviews I could not follow, and the one where I was asked to define the first three lines of my own CV, are described because the pattern is useful, not because the organisations are. The interviewers involved did nothing wrong and I would not recognise a complaint against them as fair.</p>
+    <p class="myth-foot">Declared interest: I recruit. I supervise people who are preparing for exactly these interviews, and some of the fixes in section eight are ones I have adopted in my own hiring, which means I am marking my own homework. I have also been rejected by companies I wanted to work for, which is not a neutral position from which to write about hiring, and readers should discount accordingly.</p>
+</div>
