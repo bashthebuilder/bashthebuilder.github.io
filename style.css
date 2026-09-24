@@ -247,26 +247,46 @@ nav .container {
     transition: color 0.25s, background 0.25s, transform 0.25s;
     animation: navItemIn 0.5s cubic-bezier(0.16, 0.8, 0.3, 1) both;
 }
-.nav-links a:nth-child(1)  { animation-delay: 0.04s; }
-.nav-links a:nth-child(2)  { animation-delay: 0.08s; }
-.nav-links a:nth-child(3)  { animation-delay: 0.12s; }
-.nav-links a:nth-child(4)  { animation-delay: 0.16s; }
-.nav-links a:nth-child(5)  { animation-delay: 0.20s; }
-.nav-links a:nth-child(6)  { animation-delay: 0.24s; }
-.nav-links a:nth-child(7)  { animation-delay: 0.28s; }
-.nav-links a:nth-child(8)  { animation-delay: 0.32s; }
-.nav-links a:nth-child(9)  { animation-delay: 0.36s; }
-.nav-links a:nth-child(10) { animation-delay: 0.40s; }
-.nav-links a:nth-child(11) { animation-delay: 0.44s; }
-.nav-links a:nth-child(12) { animation-delay: 0.48s; }
-.nav-links a:nth-child(13) { animation-delay: 0.52s; }
-.nav-links a:nth-child(14) { animation-delay: 0.56s; }
-.nav-links a:nth-child(15) { animation-delay: 0.60s; }
-.nav-links a:nth-child(16) { animation-delay: 0.64s; }
+.nav-links > :nth-child(1)  { animation-delay: 0.03s; }
+.nav-links > :nth-child(2)  { animation-delay: 0.06s; }
+.nav-links > :nth-child(3)  { animation-delay: 0.09s; }
+.nav-links > :nth-child(4)  { animation-delay: 0.12s; }
+.nav-links > :nth-child(5)  { animation-delay: 0.15s; }
+.nav-links > :nth-child(6)  { animation-delay: 0.18s; }
+.nav-links > :nth-child(7)  { animation-delay: 0.21s; }
+.nav-links > :nth-child(8)  { animation-delay: 0.24s; }
+.nav-links > :nth-child(9)  { animation-delay: 0.27s; }
+.nav-links > :nth-child(10) { animation-delay: 0.30s; }
+.nav-links > :nth-child(11) { animation-delay: 0.33s; }
+.nav-links > :nth-child(12) { animation-delay: 0.36s; }
+.nav-links > :nth-child(13) { animation-delay: 0.39s; }
+.nav-links > :nth-child(14) { animation-delay: 0.42s; }
+.nav-links > :nth-child(15) { animation-delay: 0.45s; }
+.nav-links > :nth-child(16) { animation-delay: 0.48s; }
+.nav-links > :nth-child(17) { animation-delay: 0.51s; }
+.nav-links > :nth-child(18) { animation-delay: 0.54s; }
+.nav-links > :nth-child(19) { animation-delay: 0.57s; }
+.nav-links > :nth-child(20) { animation-delay: 0.60s; }
+.nav-links > :nth-child(21) { animation-delay: 0.63s; }
+.nav-links > :nth-child(22) { animation-delay: 0.66s; }
+.nav-links > :nth-child(23) { animation-delay: 0.69s; }
+/* Group headings: plain text, not links, so every page stays one click away
+   while the links read as five groups instead of one long column. */
+.nav-links .nav-label {
+    display: block;
+    margin: 1.1rem 0 0.2rem;
+    padding: 0 16px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #818cf8;
+    animation: navItemIn 0.5s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
 .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.07); transform: translateX(4px); }
 
 @media (prefers-reduced-motion: reduce) {
-    .nav-links a { animation: none !important; transform: none !important; }
+    .nav-links a, .nav-links .nav-label { animation: none !important; transform: none !important; }
 }
 
 /* Below 900px there's no room for a full-height rail next to real content —
@@ -305,6 +325,7 @@ nav .container {
     }
     .nav-links.open { display: flex; }
     .nav-links a { padding: 16px 2rem; border-radius: 0; }
+    .nav-links .nav-label { padding: 0 2rem; margin-top: 0.9rem; }
     .nav-links a:hover, .nav-links a.active { transform: none; }
 }
 

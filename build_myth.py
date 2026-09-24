@@ -13,7 +13,7 @@ generated from those files and should not be hand-edited.
     3. Commit myth-content/005.html and the regenerated files.
 
 Generated: myth-NNN.html (one per entry), myth.html (index), feed.xml,
-and the MyTh block of sitemap.xml.
+the MyTh block of sitemap.xml, and the latest-MyTh card on index.html.
 """
 
 import html
@@ -36,20 +36,27 @@ NAV = """    <nav>
             <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <div class="nav-links">
                 <a href="index.html">Profile</a>
+                <a href="cv.html">CV</a>
+                <span class="nav-label">Story</span>
                 <a href="timeline.html">Timeline</a>
                 <a href="undergraduate.html">Early Work</a>
                 <a href="thesis.html">Thesis</a>
-                <a href="publications.html">Research</a>
+                <span class="nav-label">Research</span>
+                <a href="publications.html">Overview</a>
                 <a href="cultural-modelling.html">Cultural AI</a>
                 <a href="resources.html">Defence AI</a>
-                <a href="industry.html">Industry Impact</a>
+                <a href="conceptual-spaces.html">Conceptual Spaces</a>
+                <span class="nav-label">Impact</span>
+                <a href="industry.html">Industry</a>
                 <a href="ai-leadership.html">AI Leadership</a>
+                <a href="press.html">Press</a>
+                <span class="nav-label">Teaching</span>
                 <a href="students.html">Mentorship</a>
                 <a href="teaching.html">Teaching</a>
                 <a href="competitive-programming.html">Competitive Coding</a>
-                <a href="press.html">Press</a>
+                <span class="nav-label">Writing</span>
                 <a href="myth.html" class="active">MyTh</a>
-                <a href="cv.html">CV</a>
+                <a href="tokenizer-tax.html">Tokenizer Tax</a>
             </div>
         </div>
     </nav>
@@ -455,6 +462,28 @@ def update_sitemap(entries):
     open(path, "w").write(new)
     return len(entries)
 
+# ----------------------------------------------------------------- homepage
+
+def update_homepage(entries):
+    """The newest entry's card in the homepage Explore strip."""
+    path = os.path.join(ROOT, "index.html")
+    src = open(path).read()
+    e = entries[0]
+    # The dek is a paragraph; the card wants its opening sentence.
+    lede = re.split(r"(?<=[.?!])\s", strip_tags(e["dek"]), maxsplit=1)[0]
+    card = (f'\n                <a class="story-beat" href="myth-{e["number"]}.html">'
+            f'\n                    <span class="story-year">Latest MyTh</span>'
+            f'\n                    <h3>{e["title"]}</h3>'
+            f'\n                    <p>{html.escape(lede)}</p>'
+            f'\n                    <span class="story-go">Read MyTh {e["number"]} &rarr;</span>'
+            f'\n                </a>\n                ')
+    new, n = re.subn(r"(<!-- LATEST-MYTH:START[^>]*-->).*?(<!-- LATEST-MYTH:END -->)",
+                     lambda m: m.group(1) + card + m.group(2), src, flags=re.S)
+    if n != 1:
+        sys.exit(f"error: expected 1 LATEST-MYTH block in index.html, found {n}")
+    open(path, "w").write(new)
+    return e["number"]
+
 
 def main():
     entries = load_entries()
@@ -482,6 +511,7 @@ def main():
 
     n = update_sitemap(entries)
     print(f"  sitemap.xml      {n} MyTh entries listed")
+    print(f"  index.html       latest MyTh card -> {update_homepage(entries)}")
     print(f"\n{len(entries)} entries built at {datetime.now(timezone.utc).isoformat(timespec='seconds')}")
 
 
