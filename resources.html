@@ -531,7 +531,7 @@
             <div class="card" style="padding: 2rem;">
                 <h4 style="margin-bottom: 1rem;">Selective Prediction: Act on What's Reliable</h4>
                 <p style="color: var(--text-muted); margin-bottom: 1.5rem;">3,000 test triples, split into three tiers by model uncertainty:</p>
-                <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div style="border: 1px solid rgba(52,211,153,0.35); background: rgba(52,211,153,0.06); border-radius: 14px; padding: 1.5rem; text-align:center;">
                         <span style="font-size: 1.8rem; font-weight: 800; color: #34d399;">45.1%</span>
                         <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">High Confidence<br>750 predictions · unc ≤ 1.26</p>
@@ -664,7 +664,7 @@
         </div>
     </footer>
 
-    <div id="pc-lightbox"><img id="pc-lightbox-img" src="" alt="" loading="lazy"></div>
+    <div id="pc-lightbox"><img id="pc-lightbox-img" alt="" loading="lazy"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>

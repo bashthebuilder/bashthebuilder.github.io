@@ -65,6 +65,7 @@
                 padding: 0 2rem 1rem;
                 -webkit-overflow-scrolling: touch;
             }
+            @media (max-width: 600px) { .rp-arc-row { margin: 0 -1.25rem; padding: 0 1.25rem 1rem; } }
             .rp-era { flex: 0 0 78%; scroll-snap-align: start; }
         }
         .rp-era {
@@ -597,7 +598,6 @@
             node.addEventListener('click', activate);
         });
 
-        reveal();
         revealSmall();
         updateProgress();
         checkCounters();
