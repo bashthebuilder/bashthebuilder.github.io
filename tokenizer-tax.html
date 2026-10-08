@@ -42,7 +42,7 @@
         @media (max-width: 900px) { .tt-hero h1 { font-size: 2.4rem; } }
 
         .tt-key {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
             gap: 1rem; margin: 2.5rem 0 3rem;
         }
         .tt-key div {
@@ -150,7 +150,7 @@
         @media (max-width: 700px) {
             .tt-row { grid-template-columns: 108px 1fr; gap: 10px; }
             .tt-lang { font-size: .82rem; }
-            .tt-axis { margin-left: 118px; }
+            .tt-axis { margin-left: 118px; margin-right: 25%; }
             .tt-chart-card { padding: 1.4rem 1.2rem 1.2rem; }
         }
     </style>
@@ -353,6 +353,7 @@
 
         function draw() {
             var list = ordered();
+            var scale = window.matchMedia('(max-width: 700px)').matches ? 58 : 84;
             var max = Math.max.apply(null, list.map(function (d) { return d.cl100k; }));
             document.getElementById('tt-axis-max').textContent = fmtInt(max) + ' tokens';
             rows.innerHTML = '';
@@ -383,8 +384,9 @@
                 var vals = btn.querySelectorAll('.tt-val');
                 [d.cl100k, d.o200k].forEach(function (v, i) {
                     /* 84%, not 100%: the value label sits at the data-end and
-                       must not run past the edge of the card. */
-                    var pct = (v / max) * 84;
+                       must not run past the edge of the card. On phones the
+                       track is narrower than ~3 labels, so it shrinks to 58%. */
+                    var pct = (v / max) * scale;
                     requestAnimationFrame(function () {
                         bars[i].style.width = pct + '%';
                         vals[i].style.left = pct + '%';

@@ -428,7 +428,7 @@ h3 { font-size: 2.4rem; margin-bottom: 2rem; font-weight: 700; letter-spacing: -
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 3rem;
 }
 
@@ -519,7 +519,7 @@ footer {
 
 .acc-meta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }

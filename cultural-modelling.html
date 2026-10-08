@@ -51,15 +51,15 @@
         .cm-gen-num { font-size: 3rem; font-weight: 900; letter-spacing: -2px; opacity: 0.25; }
         .cm-gen-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2.5rem; align-items: start; margin-top: 2rem; }
         @media (max-width: 900px) { .cm-gen-grid { grid-template-columns: 1fr; } }
-        .cm-gen-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .cm-gen-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 1rem; margin-top: 1.5rem; }
 
         /* Funding cards */
-        .cm-fund-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .cm-fund-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 2rem; }
         .cm-fund-card { padding: 2.2rem; }
         .cm-fund-org { color: #a5b4fc; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
 
         /* Evidence / downloads */
-        .cm-evi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .cm-evi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; }
         .cm-evi-card { padding: 1.8rem 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
         .cm-evi-meta { color: var(--text-muted); font-size: 0.85rem; }
         .cm-evi-dl { margin-top: 0.6rem; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem; }

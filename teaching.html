@@ -27,7 +27,7 @@
         @media (max-width: 1024px) { .tc-hero h1 { font-size: 2.9rem; } }
 
         /* Institution rail — one column per place taught, tallest = most modules */
-        .tc-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.2rem; align-items: end; }
+        .tc-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 1.2rem; align-items: end; }
         .tc-col { text-align: center; }
         .tc-stack { display: flex; flex-direction: column-reverse; gap: 6px; justify-content: flex-end; margin-bottom: 1rem; }
         .tc-brick {
@@ -45,7 +45,7 @@
         @media (prefers-reduced-motion: reduce) { .tc-brick { transform: none !important; opacity: 1 !important; } }
 
         /* Module cards */
-        .tc-mods { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
+        .tc-mods { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.4rem; }
         .tc-mod {
             background: var(--glass); border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 1.9rem; transition: .4s cubic-bezier(.16,.8,.3,1);
@@ -76,7 +76,7 @@
         .tc-inst-head span { color: var(--text-muted); font-size: 1rem; font-weight: 600; }
 
         /* Credential chips */
-        .tc-creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+        .tc-creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.4rem; }
         .tc-cred {
             padding: 2rem; border-radius: 20px;
             background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(236,72,153,.045));

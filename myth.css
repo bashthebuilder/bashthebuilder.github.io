@@ -11,7 +11,7 @@
 .my-mark em { font-style: normal; color: var(--text-muted); font-weight: 700; }
 
 .my-about {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
     gap: 1rem; margin: 2.5rem 0 3.5rem;
 }
 .my-about div {
@@ -112,7 +112,7 @@
 
 /* Key-numbers strip inside an entry */
 .myth-figs {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
     gap: 1rem; margin: 2rem 0 2.4rem;
 }
 .myth-fig {
@@ -182,11 +182,13 @@
 }
 
 @media (max-width: 768px) {
-    .myth-card {
-    display: grid; grid-template-columns: auto 1fr auto;
-    gap: 1.6rem; align-items: start;
-    padding: 2rem 2.4rem;
-    text-decoration: none; color: inherit;
+    .myth-card { grid-template-columns: 1fr auto; gap: .9rem 1rem; padding: 1.6rem; }
+    .myth-no { grid-column: 1 / -1; font-size: 1.25rem; }
+    .myth-head h3 { font-size: 1.28rem; }
+    .myth-body { padding: 1.8rem 1.6rem 2rem; }
+    .myth-pull { font-size: 1.12rem; padding-left: 1.2rem; }
+    .myth-table th, .myth-table td { padding: .75rem 1rem; }
+    .myth-table caption { padding: 1rem 1rem .2rem; }
 }
 
 /* ---------- Standalone entry page ---------- */
@@ -219,6 +221,10 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     margin: 3.5rem 0 0; padding-top: 2.5rem;
     border-top: 1px solid var(--glass-border);
+    /* It is a <nav>, so undo the site menu's fixed sidebar/top-bar styling. */
+    position: static; width: auto; height: auto; z-index: auto; overflow: visible;
+    background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+    border-right: none; border-bottom: none;
 }
 .myth-prevnext {
     display: block; padding: 1.4rem 1.6rem; border-radius: 18px;
@@ -227,6 +233,8 @@
 }
 .myth-prevnext:hover { border-color: rgba(129,140,248,.38); background: rgba(255,255,255,.04); }
 .myth-prevnext.next { text-align: right; }
+@media (max-width: 480px) { .myth-pn-wrap { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .myth-page-head h1 { font-size: 2.3rem; letter-spacing: -1px; } }
 .myth-pn-label {
     display: block; color: #818cf8; font-size: .7rem; font-weight: 800;
     letter-spacing: 2px; text-transform: uppercase; margin-bottom: .4rem;

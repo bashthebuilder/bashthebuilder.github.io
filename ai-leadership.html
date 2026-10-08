@@ -54,7 +54,7 @@
 
         /* ---------- Counter strip ---------- */
         .al-counters {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
             gap: 1.2rem; margin-bottom: 2rem;
         }
         .al-count-card {
@@ -78,7 +78,7 @@
         .al-count-lbl { color: var(--text-muted); font-size: .95rem; font-weight: 600; line-height: 1.4; margin-top: .5rem; display: block; }
 
         /* ---------- Objection cards (flip-style reveal) ---------- */
-        .al-obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .al-obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1.5rem; }
         .al-obj {
             background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
             border-radius: 22px; padding: 2.2rem; position: relative;
@@ -118,7 +118,7 @@
         }
         .al-decoder-head h3 { font-size: 1.5rem; margin-bottom: .4rem; letter-spacing: -.5px; }
         .al-decoder-head p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
-        .al-decoder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .al-decoder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; }
         .al-decode {
             padding: 1.8rem; border-radius: 18px;
             background: rgba(8,10,15,.35); border: 1px solid var(--glass-border);
@@ -152,7 +152,7 @@
         }
 
         /* ---------- Why-academia tiles ---------- */
-        .al-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+        .al-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 1.5rem; }
         .al-tile {
             background: var(--glass); border: 1px solid var(--glass-border);
             border-radius: 22px; padding: 2.2rem; transition: .4s cubic-bezier(.16,.8,.3,1);
@@ -249,14 +249,14 @@
         .al-call-body { color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; }
         .al-call-body a { color: #a5b4fc; }
         .al-verdict {
-            display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem;
-            padding: 6px 16px; border-radius: 100px;
+            display: inline-block; max-width: 100%; margin-top: 1rem;
+            padding: 6px 16px; border-radius: 18px;
             background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.28);
             color: #34d399; font-size: .88rem; font-weight: 800;
         }
 
         /* ---------- Decision cards ---------- */
-        .al-dec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.5rem; }
+        .al-dec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 1.5rem; }
         .al-dec {
             background: rgba(255,255,255,.025); border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 2rem; transition: .4s cubic-bezier(.16,.8,.3,1);
@@ -284,7 +284,7 @@
         .al-chip-s { color: var(--text-muted); font-size: .95rem; }
 
         /* ---------- Verify grid ---------- */
-        .al-verify { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+        .al-verify { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 1.2rem; }
         .al-vcard {
             display: block; text-decoration: none; padding: 1.8rem;
             border-radius: 18px; background: rgba(255,255,255,.03);

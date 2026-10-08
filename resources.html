@@ -50,7 +50,7 @@
         .pc-toggle-svg { width: 100%; height: auto; max-width: 620px; display: block; margin: 0 auto; }
 
         /* Idea / feature grid */
-        .pc-idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .pc-idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .pc-idea-card { padding: 1.8rem; }
         .pc-idea-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(99,102,241,0.15); color: #a5b4fc; font-weight: 800; margin-bottom: 1rem; }
 
@@ -76,7 +76,7 @@
         #pc-lightbox { position: fixed; inset: 0; background: rgba(5,6,10,0.92); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 3rem; cursor: zoom-out; }
         #pc-lightbox.open { display: flex; }
         #pc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
-        .pc-shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .pc-shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem; }
 
         /* Algorithm box */
         .pc-algo { font-family: 'SF Mono', 'Courier New', monospace; font-size: 0.88rem; line-height: 2; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.5rem 1.8rem; overflow-x: auto; color: #cbd5e1; }
@@ -84,7 +84,7 @@
         .pc-algo .pc-kw { color: #f472b6; font-weight: 700; }
 
         /* WP cards */
-        .pc-wp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .pc-wp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .pc-wp-card { padding: 1.8rem; border-top: 3px solid var(--c); }
 
         video.pc-video { width: 100%; border-radius: 20px; border: 1px solid var(--glass-border); display: block; }
@@ -531,7 +531,7 @@
             <div class="card" style="padding: 2rem;">
                 <h4 style="margin-bottom: 1rem;">Selective Prediction: Act on What's Reliable</h4>
                 <p style="color: var(--text-muted); margin-bottom: 1.5rem;">3,000 test triples, split into three tiers by model uncertainty:</p>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div style="border: 1px solid rgba(52,211,153,0.35); background: rgba(52,211,153,0.06); border-radius: 14px; padding: 1.5rem; text-align:center;">
                         <span style="font-size: 1.8rem; font-weight: 800; color: #34d399;">45.1%</span>
                         <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">High Confidence<br>750 predictions · unc ≤ 1.26</p>
@@ -591,7 +591,7 @@
                 </div>
                 <div>
                     <div class="pc-figure" data-full="assets/picaso/package-notebook.png"><img src="assets/picaso/package-notebook.png" alt="PICASO pip-installable package running in a notebook" loading="lazy"></div>
-                    <p class="pc-caption"><code>pip install git+https://github.com/ubaidazam/PICASO.git</code> — really pip-installable.</p>
+                    <p class="pc-caption"><code style="overflow-wrap: anywhere;">pip install git+https://github.com/ubaidazam/PICASO.git</code> — really pip-installable.</p>
                 </div>
             </div>
         </section>
@@ -624,7 +624,7 @@
             <h2 style="font-size: 2.2rem;">Papers, Code, and What's Public.</h2>
             <p style="color: var(--text-muted); max-width: 64ch; margin-bottom: 2rem;">All three original work packages have been completed and exceeded, with two papers already in the pipeline.</p>
 
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                 <div class="card" style="padding: 1.8rem;">
                     <span class="tag">Published · LREC 2026</span>
                     <h4 style="color:#fff; margin: 0.6rem 0;">FLiP: Lightweight Cross-Lingual Federated Prompt Tuning for Low-Resource Languages</h4>
