@@ -27,7 +27,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 CONTENT = os.path.join(ROOT, "myth-content")
 SITE = "https://bashthebuilder.github.io"
 AUTHOR = "Shoaib Jameel"
-EMAIL = "M.S.Jameel@southampton.ac.uk"
+EMAIL = "shoaib.jameel@gmail.com"
 OG_IMAGE = f"{SITE}/Shoaib_Profile_ID.jpg"
 
 NAV = """    <nav>
