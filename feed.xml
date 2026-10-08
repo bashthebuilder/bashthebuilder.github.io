@@ -6,12 +6,201 @@
   <link href="https://bashthebuilder.github.io/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://bashthebuilder.github.io/myth.html" rel="alternate" type="text/html"/>
   <id>https://bashthebuilder.github.io/myth.html</id>
-  <updated>2026-08-21T20:30:00+01:00</updated>
+  <updated>2026-10-08T09:00:00+01:00</updated>
   <author><name>Shoaib Jameel</name><email>shoaib.jameel@gmail.com</email><uri>https://bashthebuilder.github.io/index.html</uri></author>
   <icon>https://bashthebuilder.github.io/favicon.svg</icon>
   <logo>https://bashthebuilder.github.io/Shoaib_Profile_ID.jpg</logo>
   <rights>© 2026 Shoaib Jameel</rights>
   <generator uri="https://bashthebuilder.github.io/">build_myth.py</generator>
+  <entry>
+    <title>MyTh 008 · Who Marks the Scripts?</title>
+    <link href="https://bashthebuilder.github.io/myth-008.html" rel="alternate" type="text/html"/>
+    <id>https://bashthebuilder.github.io/myth-008.html</id>
+    <published>2026-10-08T09:00:00+01:00</published>
+    <updated>2026-10-08T09:00:00+01:00</updated>
+    <summary type="text">In the Hong Kong department where I did my PhD, research students did much of the routine teaching work as a condition of their studentships, and the professors spent their time on lectures and research. In the UK, that work sits almost entirely with permanent staff. What the staffing numbers say about the two designs, whether Hong Kong is simply copying North America, and why I think the British version makes both research time and university finances more fragile than they need to be.</summary>
+    <category term="Higher education"/>
+    <category term="PhD"/>
+    <category term="Research culture"/>
+    <category term="Policy"/>
+    <content type="html">&lt;p&gt;When I describe to UK colleagues how my PhD department in Hong Kong ran, one detail usually stops the conversation. Research students did a large share of the routine teaching work &amp;mdash; tutorials, marking, invigilation, preparing materials &amp;mdash; and they did it as a condition of their studentships, not as an optional side job. The professors prepared and gave the lectures, ran their research groups, and spent noticeably less of the week on the machinery of teaching.&lt;/p&gt;
+
+&lt;p&gt;I have since held posts at four UK universities, where the same machinery runs on permanent staff. I do not think either system is run by people who are careless or unkind. But they are built differently, and the difference has consequences for how much research a department can do and for how it survives a bad year. This entry sets out what the numbers say, answers a question I am often asked &amp;mdash; &lt;em&gt;is Hong Kong just copying the Americans?&lt;/em&gt; &amp;mdash; and is honest about what the Hong Kong design costs the students who carry it.&lt;/p&gt;
+
+&lt;div class=&quot;myth-figs&quot;&gt;
+    &lt;div class=&quot;myth-fig&quot;&gt;
+        &lt;b&gt;&lt;span class=&quot;counter&quot; data-count=&quot;5102&quot;&gt;0&lt;/span&gt;&lt;/b&gt;
+        &lt;span&gt;Senior and junior academic staff on Hong Kong&#x27;s general university funds in 2020/21. In 2012/13 it was 5,094&lt;a class=&quot;cit&quot; href=&quot;#s8-1&quot;&gt;1&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;myth-fig&quot;&gt;
+        &lt;b&gt;&lt;span class=&quot;counter&quot; data-count=&quot;26&quot; data-pre=&quot;+&quot; data-post=&quot;%&quot;&gt;0&lt;/span&gt;&lt;/b&gt;
+        &lt;span&gt;Growth in research postgraduates at Hong Kong&#x27;s publicly funded universities, 2013/14 to 2022/23&lt;a class=&quot;cit&quot; href=&quot;#s8-2&quot;&gt;2&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;myth-fig&quot;&gt;
+        &lt;b&gt;&lt;span class=&quot;counter&quot; data-count=&quot;36&quot; data-post=&quot;h&quot;&gt;0&lt;/span&gt;&lt;/b&gt;
+        &lt;span&gt;A month, on average: the cap on teaching-assistant duties every full-time research student at HKUST can be assigned&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;myth-fig&quot;&gt;
+        &lt;b&gt;&lt;span class=&quot;counter&quot; data-count=&quot;6&quot; data-post=&quot;h&quot;&gt;0&lt;/span&gt;&lt;/b&gt;
+        &lt;span&gt;A week, at most, recommended for teaching by UKRI-funded PhD students in the UK &amp;mdash; and it must never be compulsory&lt;a class=&quot;cit&quot; href=&quot;#s8-10&quot;&gt;10&lt;/a&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;myth-fig&quot;&gt;
+        &lt;b&gt;&lt;span class=&quot;counter&quot; data-count=&quot;35&quot; data-post=&quot;%&quot;&gt;0&lt;/span&gt;&lt;/b&gt;
+        &lt;span&gt;Of UK academic staff on teaching-only contracts, up from 26% a decade earlier&lt;a class=&quot;cit&quot; href=&quot;#s8-12&quot;&gt;12&lt;/a&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h4 data-n=&quot;ONE&quot;&gt;Two systems, two staffing curves&lt;/h4&gt;
+
+&lt;p&gt;Start with the numbers, because they are more interesting than the folklore on either side.&lt;/p&gt;
+
+&lt;p&gt;Hong Kong&#x27;s University Grants Committee publishes a consistent series for the core of its academic workforce: senior and junior academic staff in academic departments whose salaries are paid wholly from the universities&#x27; general funds. In 2011/12 there were 4,834. The four-year undergraduate degree arrived in 2012, the first-year intake doubled for one year, and the figure rose to 5,094. Then it stopped moving. Eight years later, in 2020/21, it was 5,102 &amp;mdash; eight more people across eight universities.&lt;a class=&quot;cit&quot; href=&quot;#s8-1&quot;&gt;1&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-3&quot;&gt;3&lt;/a&gt; It has grown since, to 5,398 in 2022/23, but the long flat stretch is the striking part.&lt;a class=&quot;cit&quot; href=&quot;#s8-4&quot;&gt;4&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Over almost the same period, the number of research postgraduates did move. There were 7,014 in 2013/14 and 8,862 in 2022/23, an increase of about 26%.&lt;a class=&quot;cit&quot; href=&quot;#s8-2&quot;&gt;2&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-4&quot;&gt;4&lt;/a&gt; Put the two series side by side and the ratio shifts from roughly 1.4 research students per core academic to about 1.6.&lt;/p&gt;
+
+&lt;p&gt;The UK went the other way. Times Higher Education&#x27;s analysis of HESA data puts UK academic staff at about 200,000 in 2014/15 and nearly 247,000 in 2023/24. Much of that growth came through one kind of contract: teaching-only posts rose from 26% of academic staff to 35%, while teaching-and-research posts fell from 49% to 43%.&lt;a class=&quot;cit&quot; href=&quot;#s8-12&quot;&gt;12&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;These two series are not like for like. The Hong Kong figure deliberately excludes staff paid from other sources, and the UK figure is a headcount that includes part-time staff. I would not put them on the same chart. But the direction of travel is clear in each, and the directions are different: one system held its core academic staff nearly steady and grew its research students; the other grew its academic staff, and grew them disproportionately into teaching.&lt;/p&gt;
+
+&lt;h4 data-n=&quot;TWO&quot;&gt;How the department I trained in actually ran&lt;/h4&gt;
+
+&lt;p&gt;The mechanism behind the Hong Kong curve is not a secret. It is in the universities&#x27; own rules.&lt;/p&gt;
+
+&lt;p&gt;At the Chinese University of Hong Kong, the university&#x27;s teaching centre states plainly that most full-time research postgraduates are required to undertake teaching duties as teaching assistants, and that a professional development course is mandatory for them.&lt;a class=&quot;cit&quot; href=&quot;#s8-8&quot;&gt;8&lt;/a&gt; At HKUST, every full-time research student may be assigned graduate teaching-assistant duties whether or not they hold a studentship, capped at 36 &amp;ldquo;effective hours&amp;rdquo; a month on average, preparation included. The listed duties are the ones any lecturer would recognise: marking and grading, helping with tutorials and laboratory sessions, answering students&#x27; questions, and helping to prepare class materials. Teaching training is compulsory.&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;My own recollection, which is a recollection and more than a decade old, is that in my department this also included examination invigilation and a good deal of the administration that wraps around a course. The professors I worked for were not idle; they were busy with lectures, supervision and their own research. What they were not doing was marking three hundred scripts by hand in the week before a grant deadline.&lt;/p&gt;
+
+&lt;div class=&quot;myth-pull&quot;&gt;The question is not whether PhD students should teach. It is whether teaching capacity is something a department can plan.&lt;/div&gt;
+
+&lt;h4 data-n=&quot;THREE&quot;&gt;Why the Hong Kong design flexes&lt;/h4&gt;
+
+&lt;p&gt;There are two features that make it work, and only one of them is about PhD students.&lt;/p&gt;
+
+&lt;p&gt;The first is that Hong Kong plans its student numbers. The University Grants Committee sets student number targets with the Government over a three-year planning cycle, the block grant is allocated against those targets, and a university that under-enrols by more than 4% across the institution can have funding clawed back.&lt;a class=&quot;cit&quot; href=&quot;#s8-5&quot;&gt;5&lt;/a&gt; Total enrolment at the publicly funded universities went from 95,456 in 2013/14 to 102,553 in 2022/23 &amp;mdash; about 7% in nine years.&lt;a class=&quot;cit&quot; href=&quot;#s8-2&quot;&gt;2&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-4&quot;&gt;4&lt;/a&gt; A department in that system is not trying to guess what next September looks like.&lt;/p&gt;
+
+&lt;p&gt;The second is that the layer that absorbs the routine teaching work is a cohort that turns over by design. Research students arrive, contribute, and graduate in three to four years. If a department needs more teaching support, it admits more research students; if it needs less, it admits fewer. Nobody needs to be made redundant, because the adjustment happens at intake. That is my reading of how the system behaves, not a claim any university makes about itself, but I think it is the heart of the matter.&lt;/p&gt;
+
+&lt;p&gt;Hong Kong has also chosen to fund that layer generously and to grow it. In 2022 the Government decided to raise the number of publicly funded research-postgraduate places from 5,595 to 7,200 by 2024/25 and to relax the ceiling on over-enrolment from 70% to 100%; the Committee&#x27;s chairman said the two measures together would raise research-postgraduate enrolment by more than half.&lt;a class=&quot;cit&quot; href=&quot;#s8-6&quot;&gt;6&lt;/a&gt; The flagship Hong Kong PhD Fellowship Scheme pays HK$28,400 a month in 2026/27, roughly US$3,640.&lt;a class=&quot;cit&quot; href=&quot;#s8-7&quot;&gt;7&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The government frames those decisions as research and talent policy, and I take it at its word. But the effect inside a department is the one I saw: more funded research students means more competition for each place, which in my experience means stronger students, and those students also carry part of the teaching. The same investment buys research capacity and teaching capacity at once.&lt;/p&gt;
+
+&lt;h4 data-n=&quot;FOUR&quot;&gt;Is this just the North American model?&lt;/h4&gt;
+
+&lt;p&gt;Largely, yes &amp;mdash; with two differences that matter.&lt;/p&gt;
+
+&lt;p&gt;In the United States, the teaching assistantship is a long-established way of funding a doctorate. The National Science Foundation&#x27;s survey of everyone who earned a research doctorate in 2024 shows how much it varies by field: a teaching assistantship was the main source of support for 63.1% of mathematics and statistics doctorates, but for 15.9% in computer and information sciences and 10.3% in engineering, where research assistantships paid from grants dominate (57.7% and 60.6%).&lt;a class=&quot;cit&quot; href=&quot;#s8-17&quot;&gt;17&lt;/a&gt; Canada is similar. At the University of Toronto, a PhD student&#x27;s guaranteed funding package, raised to C$40,000 including tuition from Fall 2025, is assembled from a university fellowship, supervisor contributions, research assistantships and teaching assistantships; up to C$7,500 of teaching-assistant income can count towards it.&lt;a class=&quot;cit&quot; href=&quot;#s8-18&quot;&gt;18&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The first difference is how the teaching is paid. In North America, a teaching assistantship is paid work, and at some universities it is unionised: Toronto&#x27;s teaching assistants, for example, work under a collective agreement with CUPE 3902.&lt;a class=&quot;cit&quot; href=&quot;#s8-18&quot;&gt;18&lt;/a&gt; In Hong Kong, the duty comes with the studentship itself, within a published cap.&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt; The second is the balance with research funding. In the US, a computer science or engineering doctorate is more often paid for by a professor&#x27;s grant than by teaching, so the system leans on research income as well as teaching.&lt;/p&gt;
+
+&lt;p&gt;Underneath both differences, the principle is the same. In Hong Kong, the US and Canada, research students are part of how a university plans its teaching, and their funding is tied to that role. The UK is the outlier.&lt;/p&gt;
+
+&lt;div class=&quot;myth-tw&quot;&gt;
+    &lt;table class=&quot;myth-table&quot;&gt;
+        &lt;caption&gt;Who does the routine teaching work &amp;middot; four systems compared&lt;/caption&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;System&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Do research students teach?&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Is it tied to their funding?&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;In practice&lt;/th&gt;&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;Hong Kong&lt;/th&gt;
+                &lt;td&gt;Yes, routinely: marking, tutorials, labs, materials&lt;/td&gt;
+                &lt;td&gt;Yes. Most full-time research students are required to; HKUST can assign any of them&lt;a class=&quot;cit&quot; href=&quot;#s8-8&quot;&gt;8&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt;&lt;/td&gt;
+                &lt;td&gt;A duty of the studentship, capped (HKUST: 36 hours a month on average) and backed by mandatory training&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;United States&lt;/th&gt;
+                &lt;td&gt;Yes, widely&lt;/td&gt;
+                &lt;td&gt;Often. Main support for 63% of maths doctorates; research assistantships lead in engineering and computing&lt;a class=&quot;cit&quot; href=&quot;#s8-17&quot;&gt;17&lt;/a&gt;&lt;/td&gt;
+                &lt;td&gt;Paid assistantships; the mix with research assistantships varies sharply by field&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;Canada&lt;/th&gt;
+                &lt;td&gt;Yes, widely&lt;/td&gt;
+                &lt;td&gt;Often. Teaching assistantships form part of guaranteed funding packages&lt;a class=&quot;cit&quot; href=&quot;#s8-18&quot;&gt;18&lt;/a&gt;&lt;/td&gt;
+                &lt;td&gt;Paid employment under collective agreements, e.g. CUPE 3902 at Toronto&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;United Kingdom&lt;/th&gt;
+                &lt;td&gt;Many do, and do it well&lt;/td&gt;
+                &lt;td&gt;Not for UKRI-funded students: it must not be compulsory&lt;a class=&quot;cit&quot; href=&quot;#s8-10&quot;&gt;10&lt;/a&gt;&lt;/td&gt;
+                &lt;td&gt;Optional, hourly paid, recommended under six hours a week; some universities now offer teaching-linked scholarships&lt;a class=&quot;cit&quot; href=&quot;#s8-11&quot;&gt;11&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h4 data-n=&quot;FIVE&quot;&gt;The British design, and what it does to a department&lt;/h4&gt;
+
+&lt;p&gt;I want to be careful here, because UK PhD students do a great deal of teaching, and many of them do it very well. The difference is not whether they teach. It is the terms on which they do it.&lt;/p&gt;
+
+&lt;p&gt;UKRI&#x27;s guidance for the doctoral students it funds says they may teach or demonstrate when it is compatible with their training and approved by their supervisors; that the time should not interfere with the doctorate and is recommended to be no more than six hours in any week, preparation and marking included; and that it &amp;ldquo;must not be compulsory and must be paid for at your usual rate and supported by appropriate training&amp;rdquo;. The cost cannot come from the training grant.&lt;a class=&quot;cit&quot; href=&quot;#s8-10&quot;&gt;10&lt;/a&gt; Every one of those rules protects the student, and I support all of them. Together, though, they mean that PhD teaching in the UK is something a department can hope for, not something it can plan.&lt;/p&gt;
+
+&lt;p&gt;So the routine work falls on permanent staff. In my experience, a module leader in a British department typically sets the coursework, writes the exam, marks much of it, moderates it, chases the late submissions and handles the extension requests, and then attends the exam board. None of that is research. When student numbers rise, the only way to absorb the extra work is to hire, and in a squeezed sector the cheapest hire is a teaching-only contract. The rise from 26% to 35% teaching-only is what that looks like in aggregate.&lt;a class=&quot;cit&quot; href=&quot;#s8-12&quot;&gt;12&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And student numbers in England are no longer planned centrally. The cap on home undergraduate recruitment was relaxed in 2014/15 and abolished from 2015/16.&lt;a class=&quot;cit&quot; href=&quot;#s8-13&quot;&gt;13&lt;/a&gt; Since then, a department&#x27;s teaching load has followed its recruitment, and a large part of its income has followed international recruitment in particular.&lt;/p&gt;
+
+&lt;p&gt;That is where research comes in. The Office for Students&#x27; annual costing exercise found that English universities recovered about two-thirds of the full economic cost of their research in 2023/24, down from a peak of 78% in 2010/11, leaving a research deficit of £5.4 billion. The surplus that helps fill the gap came largely from teaching international students, which recovered about 143% of its costs.&lt;a class=&quot;cit&quot; href=&quot;#s8-14&quot;&gt;14&lt;/a&gt; When international recruitment falls, that cross-subsidy shrinks, and the fixed cost of a permanent workforce does not. The regulator expected nearly half of English providers to be in deficit in 2025/26, and the University and College Union counts more than 15,000 job cuts in the current round of restructuring.&lt;a class=&quot;cit&quot; href=&quot;#s8-15&quot;&gt;15&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-16&quot;&gt;16&lt;/a&gt; I set out the wider picture in &lt;a href=&quot;https://bashthebuilder.github.io/myth-001.html&quot;&gt;MyTh 001&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;myth-pull&quot;&gt;In the UK, a rise in student numbers is met with new contracts and a fall is met with redundancy rounds. Neither leaves much time for research.&lt;/div&gt;
+
+&lt;p&gt;Put the two designs next to each other and the contrast is about where the flexibility sits. In Hong Kong, it sits in a research-student cohort that turns over every few years and that the department wants to grow anyway, because those students do the research. In the UK, it sits in the employment contracts of permanent staff, and the only levers are hiring and redundancy. The academics squeezed in the middle are the ones whose research time disappears first.&lt;/p&gt;
+
+&lt;h4 data-n=&quot;SIX&quot;&gt;What the Hong Kong design costs, and who pays&lt;/h4&gt;
+
+&lt;p&gt;It would be dishonest to present this as free. It is not, and the students pay most of the price.&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Time.&lt;/strong&gt; HKUST&#x27;s cap of 36 hours a month works out at roughly eight hours a week, well above the UK&#x27;s recommended six.&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-10&quot;&gt;10&lt;/a&gt; That is time not spent on the thesis, and a doctorate does not get longer to compensate unless someone decides it should.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;The risk of cheap labour.&lt;/strong&gt; A teaching duty written into a studentship is easy to expand quietly. The UK union has raised exactly this concern about teaching-linked scholarships, which are spreading &amp;ldquo;at a time in which many universities are making redundancies&amp;rdquo;, often without any extra time added to the PhD.&lt;a class=&quot;cit&quot; href=&quot;#s8-11&quot;&gt;11&lt;/a&gt; That concern is legitimate, and the North American answer &amp;mdash; treating the work as employment, with a contract and a union &amp;mdash; exists for a reason.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Teaching quality.&lt;/strong&gt; A first-year PhD student is not an experienced teacher. Both Hong Kong universities above make training mandatory, and they are right to.&lt;a class=&quot;cit&quot; href=&quot;#s8-8&quot;&gt;8&lt;/a&gt;&lt;a class=&quot;cit&quot; href=&quot;#s8-9&quot;&gt;9&lt;/a&gt; Without it, undergraduates pay for the savings.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;It does not travel on its own.&lt;/strong&gt; The Hong Kong design rests on planned student numbers and generous public funding for research students. Lift the teaching duty out of that setting and drop it into a market-driven system with stretched budgets, and you get the cheap-labour version, not the good one.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 data-n=&quot;SEVEN&quot;&gt;What I would change&lt;/h4&gt;
+
+&lt;p&gt;Not the whole system, and not overnight. But the UK is already edging towards the Hong Kong and North American designs, unevenly and without much of a plan. Bristol has advertised a four-year scholarship with up to 250 hours of paid teaching a year; Manchester&#x27;s teaching associate scholarships combine salary and stipend, and some run for nearly six years; Kent expects 200 hours a year.&lt;a class=&quot;cit&quot; href=&quot;#s8-11&quot;&gt;11&lt;/a&gt; The question is whether this becomes a considered model or a quiet cost-cutting exercise. Four things would decide it.&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Add time when you add teaching.&lt;/strong&gt; A PhD that carries a real teaching load should be funded for longer. Several of the better schemes above already do this, and that is the right default.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Pay it as work.&lt;/strong&gt; The UKRI rule that teaching must be paid is a good one and should apply whatever the funding source.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Cap it, publish the cap, and train for it.&lt;/strong&gt; As HKUST does: a number everyone can see, and preparation counted inside it.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Use the time it frees.&lt;/strong&gt; If research students and professional staff take on routine marking support and course administration, the academic time released should be protected for research and for better teaching, not quietly filled with something else.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;None of this needs anyone to be blamed. It needs departments to be able to plan their teaching around a cohort that also does their research, which is what the best systems I have worked in already do.&lt;/p&gt;
+
+&lt;h4 data-n=&quot;EIGHT&quot;&gt;What I am not claiming&lt;/h4&gt;
+
+&lt;p&gt;I am not claiming that Hong Kong&#x27;s universities are better than Britain&#x27;s at everything, or that their academics work less hard. I am not claiming that UK PhD students do not teach &amp;mdash; many do, often superbly. I am not claiming that the teaching-assistant model is fair to students by default; it is fair only when it is capped, paid or properly funded, and given time. And I am not claiming that the staffing figures for the two systems measure the same thing; they do not, and I have said where they differ.&lt;/p&gt;
+
+&lt;p&gt;What I am claiming is narrower. Who carries the routine teaching work is a design choice. Hong Kong, the United States and Canada give part of it to research students as part of how they fund them. The UK, for the students it funds through UKRI, has chosen not to, and has put that work on permanent staff instead. That choice decides how much research time academics have, and how a university copes when its student numbers fall.&lt;/p&gt;
+
+&lt;div class=&quot;myth-src&quot;&gt;
+    &lt;h4&gt;Sources&lt;/h4&gt;
+    &lt;ol&gt;
+        &lt;li id=&quot;s8-1&quot;&gt;University Grants Committee, &lt;cite&gt;Annual Report 2012&amp;ndash;13: Figures and Statistics&lt;/cite&gt;. Academic and research staff in academic departments of UGC-funded institutions with salaries wholly funded from general funds (headcount): senior academic staff 1,758 and 1,837, junior academic staff 3,076 and 3,257, in 2011/12 and 2012/13. &lt;a href=&quot;https://www.ugc.edu.hk/doc/eng/ugc/publication/report/AnnualRpt1213/11.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ugc.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-2&quot;&gt;University Grants Committee, &lt;cite&gt;Annual Report 2013&amp;ndash;14: Figures and Statistics&lt;/cite&gt;. 2013/14: total student enrolment 95,456, of which research postgraduates 7,014; senior academic staff 1,884, junior academic staff 3,227. &lt;a href=&quot;https://www.ugc.edu.hk/doc/eng/ugc/publication/report/AnnualRpt1314/12.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ugc.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-3&quot;&gt;University Grants Committee, &lt;cite&gt;Annual Report 2020&amp;ndash;21: Figures and Statistics&lt;/cite&gt;. 2020/21: senior academic staff 2,195, junior academic staff 2,907 (5,102 in total; the following year&#x27;s report revises the split to 2,246 and 2,856, with the same total). &lt;a href=&quot;https://www.ugc.edu.hk/doc/eng/ugc/publication/report/AnnualRpt2021/11.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ugc.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-4&quot;&gt;University Grants Committee, &lt;cite&gt;Annual Report 2022&amp;ndash;23: Figures and Statistics&lt;/cite&gt;. 2022/23: senior academic staff 2,386, junior academic staff 3,012; total student enrolment 102,553, of which research postgraduates 8,862. &lt;a href=&quot;https://www.ugc.edu.hk/doc/eng/ugc/publication/report/AnnualRpt2223/11.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ugc.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-5&quot;&gt;University Grants Committee, &lt;cite&gt;Notes on Procedures&lt;/cite&gt;, September 2025: overall student number targets by level of study &amp;ldquo;as agreed with the Government&amp;rdquo;; triennial planning exercise; the student number target as &amp;ldquo;a primary factor in the allocation of the block grant&amp;rdquo;; claw-back for institution-wide under-enrolment exceeding 4% (paragraphs 3.8&amp;ndash;3.12). &lt;a href=&quot;https://www.ugc.edu.hk/doc/eng/ugc/note/Full.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ugc.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-6&quot;&gt;Hong Kong SAR Government, &lt;cite&gt;UGC welcomes Chief Executive&#x27;s 2022 Policy Address&lt;/cite&gt;, press release, 19 October 2022: publicly funded research-postgraduate places to rise from 5,595 to 7,200 by 2024/25; over-enrolment ceiling raised from 70% to 100%; combined effect to increase research-postgraduate enrolment by more than 50%. &lt;a href=&quot;https://www.info.gov.hk/gia/general/202210/19/P2022101900459.htm&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;info.gov.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-7&quot;&gt;City University of Hong Kong, College of Computing, &lt;cite&gt;Hong Kong PhD Fellowship Scheme 2026/2027&lt;/cite&gt;: scheme established by the Research Grants Council; monthly stipend HK$28,400 (approximately US$3,640) and an annual conference and travel allowance of HK$14,200. &lt;a href=&quot;https://www.cityu.edu.hk/en/cc/programmes/research-degree-programmes/hong-kong-phd-fellowship-scheme&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;cityu.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-8&quot;&gt;The Chinese University of Hong Kong, Centre for Learning Enhancement And Research, &lt;cite&gt;Professional Development Course (PDC) for Teaching Assistants&lt;/cite&gt;: &amp;ldquo;most full-time Research Postgraduate (RPg) students are required to undertake teaching duties as TAs&amp;rdquo;; the course is mandatory for graduate teaching assistants. &lt;a href=&quot;https://clear.cuhk.edu.hk/web/professional-development-pd/professional-development-course-for-tas/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;clear.cuhk.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-9&quot;&gt;The Hong Kong University of Science and Technology, Academic Registry, &lt;cite&gt;Graduate Teaching Assistants&lt;/cite&gt;: all full-time research students may be assigned GTA duties whether or not they hold studentships; duties &amp;ldquo;limited to 36 effective hours per month on average&amp;rdquo;, including preparation; duties include marking, tutorials and laboratory sessions, answering students&#x27; questions and preparing materials; teaching training required for research students admitted from 2019/20. &lt;a href=&quot;https://registry.hkust.edu.hk/node/962&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;registry.hkust.edu.hk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-10&quot;&gt;UK Research and Innovation, &lt;cite&gt;Training Grant Terms and Conditions: Guidance&lt;/cite&gt;, section on teaching and demonstration work: recommended &amp;ldquo;no more than six hours in any week&amp;rdquo;, preparation and marking included; &amp;ldquo;must not be compulsory and must be paid for at Your usual rate and supported by appropriate training&amp;rdquo;; costs not to be taken from the training grant. See also UKRI &lt;cite&gt;Standard Terms and Conditions of Training Grant&lt;/cite&gt; (October 2025), TGC 4.6. &lt;a href=&quot;https://www.ukri.org/wp-content/uploads/2022/04/UKRI-021122-TrainingGrantTermsAndConditionsGuidance.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ukri.org&lt;/a&gt; &amp;middot; &lt;a href=&quot;https://www.ukri.org/wp-content/uploads/2025/10/UKRI-011025-StandardTrainingGrant-TermsandConditions.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ukri.org&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-11&quot;&gt;Jack Grove, &lt;cite&gt;Calls for longer PhD scholarships as teaching loads creep up&lt;/cite&gt;, &lt;cite&gt;Times Higher Education&lt;/cite&gt;, 12 January 2026. Bristol: four-year award with &amp;ldquo;up to 250 hours a year&amp;rdquo; of paid teaching; Kent: 200 hours a year; Manchester: teaching associate scholarships combining salary and stipend, some lasting nearly six years; many university codes cap teaching at 180 hours a year; UCU&#x27;s concerns and call for longer scholarships. &lt;a href=&quot;https://www.timeshighereducation.com/news/calls-longer-phd-scholarships-teaching-loads-creep&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;timeshighereducation.com&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-12&quot;&gt;Fadime Sahin, &lt;cite&gt;UK academia risks becoming a two-tier workforce&lt;/cite&gt;, &lt;cite&gt;Times Higher Education&lt;/cite&gt;, 19 March 2026, analysing HESA staff data: academic staff from about 200,000 in 2014/15 to nearly 247,000 in 2023/24; teaching-only roles from 26% to 35% and teaching-and-research roles from 49% to 43%, 2014/15 to 2024/25. &lt;a href=&quot;https://www.timeshighereducation.com/depth/uk-academia-risks-becoming-two-tier-workforce&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;timeshighereducation.com&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-13&quot;&gt;Nick Hillman, &lt;cite&gt;A guide to the removal of student number controls&lt;/cite&gt;, Higher Education Policy Institute, September 2014: the cap on home and EU undergraduate recruitment at English institutions relaxed in 2014/15 and abolished in 2015/16. &lt;a href=&quot;https://www.hepi.ac.uk/wp-content/uploads/2014/09/Clean-copy-of-SNC-paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hepi.ac.uk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-14&quot;&gt;Patrick Jack, &lt;cite&gt;University research shortfall rises above &amp;pound;5 billion in England&lt;/cite&gt;, &lt;cite&gt;Times Higher Education&lt;/cite&gt;, 10 June 2025, reporting the Office for Students&#x27; TRAC analysis for 2023/24: research deficit &amp;pound;5.4 billion; about two-thirds of full economic research costs recovered, down from 69% the year before and a peak of 78% in 2010/11; non-publicly funded teaching (mainly international students) recovered about 143% of its costs. &lt;a href=&quot;https://www.timeshighereducation.com/node/737327&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;timeshighereducation.com&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-15&quot;&gt;Office for Students, &lt;cite&gt;Significant challenges continue to face higher education finances &amp;ndash; with nearly half facing deficits in 2025&amp;ndash;26&lt;/cite&gt;, 20 November 2025. &lt;a href=&quot;https://www.officeforstudents.org.uk/news-blog-and-events/press-and-media/significant-challenges-continue-to-face-higher-education-finances-with-nearly-half-facing-deficits-in-2025-26/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;officeforstudents.org.uk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-16&quot;&gt;University and College Union, &lt;cite&gt;New analysis shows over 15,000 university job cuts as UCU launches UK-wide strike ballot&lt;/cite&gt;. &lt;a href=&quot;https://www.ucu.org.uk/article/14220/New-analysis-shows-over-15000-university-job-cuts-as-UCU-launches-UK-wide-strike-ballot&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ucu.org.uk&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-17&quot;&gt;National Center for Science and Engineering Statistics, &lt;cite&gt;Research Assistantships Are Doctorate Recipients&#x27; Most Common Source of Primary Support in Most Fields&lt;/cite&gt;, NSF 26-311, 17 February 2026, from the 2024 Survey of Earned Doctorates: teaching assistantship as primary support for 63.1% (mathematics and statistics), 15.9% (computer and information sciences) and 10.3% (engineering); research assistantship or traineeship 15.8%, 57.7% and 60.6% respectively. &lt;a href=&quot;https://www.ncses.nsf.gov/pubs/nsf26311&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ncses.nsf.gov&lt;/a&gt;&lt;/li&gt;
+        &lt;li id=&quot;s8-18&quot;&gt;University of Toronto, Institute of Health Policy, Management and Evaluation, &lt;cite&gt;Funding Policy&lt;/cite&gt;: base funding for the PhD funded cohort raised to C$40,000 including tuition from Fall 2025; package drawn from supervisor contributions, research assistantships, teaching assistantships, awards and the University of Toronto Fellowship; teaching assistantships fall under the CUPE 3902 Unit 1 bargaining unit, with up to C$7,500 applicable to the package. &lt;a href=&quot;https://ihpme.utoronto.ca/funding-policy/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ihpme.utoronto.ca&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;p class=&quot;myth-foot&quot;&gt;Sources checked on 8 October 2026. Three things to flag. &lt;strong&gt;First&lt;/strong&gt;, the Hong Kong and UK staffing figures measure different things: the Hong Kong series counts only senior and junior academic staff paid wholly from general funds, and the UK figure is a headcount that includes part-time staff; I have compared their direction, not their size. &lt;strong&gt;Second&lt;/strong&gt;, HESA&#x27;s own pages block automated access, so the UK staffing figures are taken from Times Higher Education&#x27;s analysis of HESA data (source 12) rather than from HESA directly. &lt;strong&gt;Third&lt;/strong&gt;, my account of my own PhD department, including invigilation and course administration, is a recollection from more than a decade ago and is labelled as such; the documented duties are those in sources 8 and 9. Corrections to &lt;a href=&quot;mailto:shoaib.jameel@gmail.com&quot;&gt;shoaib.jameel@gmail.com&lt;/a&gt;.&lt;/p&gt;
+    &lt;p class=&quot;myth-foot&quot;&gt;Declared interest: I trained in the Hong Kong system and work in the British one, and I supervise PhD students who would be directly affected by any change of the kind I describe. Written in a personal capacity; not the view of the University of Southampton or any body I sit on.&lt;/p&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>MyTh 007 · The Question I Never Heard</title>
     <link href="https://bashthebuilder.github.io/myth-007.html" rel="alternate" type="text/html"/>
