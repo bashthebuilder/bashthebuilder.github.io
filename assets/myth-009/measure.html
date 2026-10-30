@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MyTh 009 Measurement Script</title>
+<meta name="description" content="The script behind the token counts and vocabulary comparison in MyTh 009, The Vocabulary Budget. Runs in the browser and writes the data published as tokenizers.json.">
+<link rel="canonical" href="https://bashthebuilder.github.io/assets/myth-009/measure.html">
+<style>
+    :root { --bg: #ffffff; --fg: #1e293b; --muted: #64748b; --line: #e2e8f0; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #0f172a; --fg: #e2e8f0; --muted: #94a3b8; --line: #334155; } }
+    body { background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 2rem 16px; }
+    p { color: var(--muted); }
+    pre { white-space: pre-wrap; word-break: break-all; border: 1px solid var(--line); border-radius: 8px; padding: 1rem; font-size: .8rem; max-height: 60vh; overflow: auto; }
+    a { color: #6366f1; }
+</style>
+</head>
+<body>
+<h1>MyTh 009 measurement</h1>
+<p>This page reproduces the token counts and vocabulary comparison in <a href="../../myth-009.html">MyTh 009, <em>The Vocabulary Budget</em></a>. It downloads six public tokenizers from Hugging Face, tokenizes Article 1 of the Universal Declaration of Human Rights in 26 languages, and compares each vocabulary with Gemma 3's. The output below is the data published as <a href="tokenizers.json">tokenizers.json</a>. It takes a minute or two, depending on your connection.</p>
+<p id="status">Running&hellip;</p>
+<pre id="out"></pre>
+
+<script type="module">
+// Method notes
+// - Texts: UDHR Article 1 from the Unicode UDHR in XML project (github.com/eric-muller/udhr),
+//   the same extraction as build_tokenizer_tax.py: the article's paragraphs joined with a space.
+// - Counts exclude special tokens (no BOS/EOS).
+// - Gemma 3 is loaded from unsloth/gemma-3-27b-it because google/gemma-3-27b-it requires sign-in.
+//   Its vocabulary is identical, entry for entry, to the Gemma 3 tokenizer AI Singapore ships
+//   with Gemma-SEA-LION v4, which this script also checks.
+// - Param 2's pre-tokenizer regex uses \h (horizontal whitespace), which JavaScript lacks. It is
+//   replaced with its definition, tab or Unicode space separator. The texts contain no other
+//   horizontal whitespace, so the counts are unaffected.
+import { AutoTokenizer, PreTrainedTokenizer, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.2";
+env.allowLocalModels = false;
+
+const LANGUAGES = [{"code":"amh","name":"Amharic","script":"Ethiopic","text":"የሰው፡ልጅ፡ሁሉ፡ሲወለድ፡ነጻና፡በክብርና፡በመብትም፡እኩልነት፡ያለው፡ነው።፡የተፈጥሮ፡ማስተዋልና፡ሕሊና፡ስላለው፡አንዱ፡ሌላውን፡በወንድማማችነት፡መንፈስ፡መመልከት፡ይገባዋል።"},{"code":"arb","name":"Arabic","script":"Arabic","text":"يولد جميع الناس أحرارًا متساوين في الكرامة والحقوق. وقد وهبوا عقلاً وضميرًا وعليهم أن يعامل بعضهم بعضًا بروح الإخاء."},{"code":"ben","name":"Bengali","script":"Bengali","text":"সমস্ত মানুষ স্বাধীনভাবে সমান মর্যাদা এবং অধিকার নিয়ে জন্মগ্রহণ করে। তাঁদের বিবেক এবং বুদ্ধি আছে; সুতরাং সকলেরই একে অপরের প্রতি ভ্রাতৃত্বসুলভ মনোভাব নিয়ে আচরণ করা উচিত।"},{"code":"cmn","name":"Chinese (Simplified)","script":"Han","text":"人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。"},{"code":"cym","name":"Welsh","script":"Latin","text":"Genir pawb yn rhydd ac yn gydradd â’i gilydd mewn urddas a hawliau. Fe’u cynysgaeddir â rheswm a chydwybod, a dylai pawb ymddwyn y naill at y llall mewn ysbryd cymodlon."},{"code":"deu","name":"German","script":"Latin","text":"Alle Menschen sind frei und gleich an Würde und Rechten geboren. Sie sind mit Vernunft und Gewissen begabt und sollen einander im Geist der Brüderlichkeit begegnen."},{"code":"eng","name":"English","script":"Latin","text":"All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood."},{"code":"fra","name":"French","script":"Latin","text":"Tous les êtres humains naissent libres et égaux en dignité et en droits. Ils sont doués de raison et de conscience et doivent agir les uns envers les autres dans un esprit de fraternité."},{"code":"guj","name":"Gujarati","script":"Gujarati","text":"પ્રતિષ્ઠા અને અધિકારોની દૃષ્ટિએ સર્વ માનવો જન્મથી સ્વતંત્ર અને સમાન હોય છે. તેમનામાં વિચારશક્તિ અને અંતઃકરણ હોય છે અને તેમણે પરસ્પર બંધુત્વની ભાવનાથી વર્તવું જોઇએ."},{"code":"hin","name":"Hindi","script":"Devanagari","text":"सभी मनुष्यों को गौरव और अधिकारों के मामले में जन्मजात स्वतन्त्रता और समानता प्राप्त है । उन्हें बुद्धि और अन्तरात्मा की देन प्राप्त है और परस्पर उन्हें भाईचारे के भाव से बर्ताव करना चाहिए ।"},{"code":"jpn","name":"Japanese","script":"Japanese","text":"すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。"},{"code":"kan","name":"Kannada","script":"Kannada","text":"ಎಲ್ಲಾ ಮಾನವರೂ ಸ್ವತಂತ್ರರಾಗಿಯೇ ಜನಿಸಿದ್ದಾರೆ. ಹಾಗೂ ಘನತೆ ಮತ್ತು ಹಕ್ಕುಗಳಲ್ಲಿ ಸಮಾನರಾಗಿದ್ದಾರೆ. ವಿವೇಕ ಮತ್ತು ಅಂತಃಕರಣಗಳನ್ನು ಪಡೆದವರಾದ್ದರಿಂದ ಅವರು ಪರಸ್ಪರ ಸಹೋದರ ಭಾವದಿಂದ ವರ್ತಿಸಬೇಕು."},{"code":"kor","name":"Korean","script":"Hangul","text":"모든 인간은 태어날 때부터 자유로우며 그 존엄과 권리에 있어 동등하다. 인간은 천부적으로 이성과 양심을 부여받았으며 서로 형제애의 정신으로 행동하여야 한다."},{"code":"mal","name":"Malayalam","script":"Malayalam","text":"മനുഷ്യരെല്ലാവരും തുല്യാവകാശങ്ങളോടും അന്തസ്സോടും സ്വാതന്ത്ര്യത്തോടുംകൂടി ജനിച്ചിട്ടുള്ളവരാണ്‌. അന്യോന്യം ഭ്രാതൃഭാവത്തോടെ പെരുമാറുവാനാണ്‌ മനുഷ്യന്നു വിവേകബുദ്ധിയും മനസ്സാക്ഷിയും സിദ്ധമായിരിക്കുന്നത്‌."},{"code":"mar","name":"Marathi","script":"Devanagari","text":"सर्व मानवी व्यक्ति जन्मतःच स्वतंत्र आहेत व त्यांना समान प्रतिष्ठा व समान अधिकार आहेत. त्यांना विचारशक्ति व सदसविद्वेकबुद्धि लाभलेली आहे. व त्यांनी एकमेकांशी बंधुत्याच्या भावनेने आचरण करावे."},{"code":"nhn","name":"Nahuatl (Central)","script":"Latin","text":"Nochi tlakamej uan siuamej kipiaj manoj kuali tlakatisej, nochi san se totlatechpouiltilis uan titlatepanitalojkej, yeka moneki kuali ma timouikakaj, ma timoiknelikaj, ma timotlasojtlakaj uan ma timotlepanitakaj."},{"code":"pan","name":"Panjabi, Eastern","script":"Gurmukhi","text":"ਸਾਰਾ ਮਨੁੱਖੀ ਪਰਿਵਾਰ ਆਪਣੀ ਮਹਿਮਾ, ਸ਼ਾਨ ਅਤੇ ਹੱਕਾਂ ਦੇ ਪੱਖੋਂ ਜਨਮ ਤੋਂ ਹੀ ਆਜ਼ਾਦ ਹੈ ਅਤੇ ਸੁਤੇ ਸਿੱਧ ਸਾਰੇ ਲੋਕ ਬਰਾਬਰ ਹਨ । ਉਨ੍ਹਾਂ ਸਭਨਾ ਨੂੰ ਤਰਕ ਅਤੇ ਜ਼ਮੀਰ ਦੀ ਸੌਗਾਤ ਮਿਲੀ ਹੋਈ ਹੈ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਭਰਾਤਰੀਭਾਵ ਦੀ ਭਾਵਨਾ ਰਖਦਿਆਂ ਆਪਸ ਵਿਚ ਵਿਚਰਣਾ ਚਾਹੀਦਾ ਹੈ ।"},{"code":"rus","name":"Russian","script":"Cyrillic","text":"Все люди рождаются свободными и равными в своем достоинстве и правах. Они наделены разумом и совестью и должны поступать в отношении друг друга в духе братства."},{"code":"spa","name":"Spanish","script":"Latin","text":"Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros."},{"code":"swh","name":"Swahili","script":"Latin","text":"Watu wote wamezaliwa huru, hadhi na haki zao ni sawa. Wote wamejaliwa akili na dhamiri, hivyo yapasa watendeane kindugu."},{"code":"tam","name":"Tamil","script":"Tamil","text":"மனிதப் பிறிவியினர் சகலரும் சுதந்திரமாகவே பிறக்கின்றனர்; அவர்கள் மதிப்பிலும், உரிமைகளிலும் சமமானவர்கள், அவர்கள் நியாயத்தையும் மனச்சாட்சியையும் இயற்பண்பாகப் பெற்றவர்கள். அவர்கள் ஒருவருடனொருவர் சகோதர உணர்வுப் பாங்கில் நடந்துகொள்ளல் வேண்டும்."},{"code":"tel","name":"Telugu","script":"Telugu","text":"ప్రతిపత్తిస్వత్వముల విషయమున మానవులెల్లరును జన్మతః స్వతంత్రులును సమానులును నగుదురు. వారు వివేచన-అంతఃకరణ సంపన్నులగుటచే పరస్పరము భ్రాతృభావముతో వర్తింపవలయును."},{"code":"tha","name":"Thai","script":"Thai","text":"มนุษย์ทั้งหลายเกิดมามีอิสระและเสมอภาคกันในเกียรติศักด[เกียรติศักดิ์]และสิทธิ ต่างมีเหตุผลและมโนธรรม และควรปฏิบัติต่อกันด้วยเจตนารมณ์แห่งภราดรภาพ"},{"code":"urd","name":"Urdu","script":"Arabic","text":"تمام انسان آزاد اور حقوق و عزت کے اعتبار سے برابر پیدا ہوئے ہیں۔ انہیں ضمیر اور عقل ودیعت ہوئی ہے۔ اس لئے انہیں ایک دوسرے کے ساتھ بھائی چارے کا سلوک کرنا چاہیئے۔"},{"code":"vie","name":"Vietnamese","script":"Latin","text":"Tất cả mọi người sinh ra đều được tự do và bình đẳng về nhân phẩm và quyền. Mọi con người đều được tạo hoá ban cho lý trí và lương tâm và cần phải đối xử với nhau trong tình bằng hữu."},{"code":"zul","name":"Zulu","script":"Latin","text":"Bonke abantu bazalwa bekhululekile belingana ngesithunzi nangamalungelo. Bahlanganiswe wumcabango nangunembeza futhi kufanele baphathane ngomoya wobunye."}];
+
+const TOKENIZERS = [
+    { id: "gpt4", repo: "Xenova/gpt-4", label: "GPT-4 (cl100k_base)" },
+    { id: "gpt4o", repo: "Xenova/gpt-4o", label: "GPT-4o (o200k_base)" },
+    { id: "gemma3", repo: "unsloth/gemma-3-27b-it", label: "Gemma 3" },
+    { id: "sealion", repo: "aisingapore/Gemma-SEA-LION-v4-27B-IT", label: "Gemma-SEA-LION v4" },
+    { id: "sarvam", repo: "sarvamai/sarvam-30b", label: "Sarvam 30B" },
+    { id: "param2", repo: "bharatgenai/Param2-17B-A2.4B-Thinking", label: "BharatGen Param 2" },
+    { id: "amalia", repo: "amalia-llm/AMALIA-9B-0626-DPO", label: "AMALIA 9B" },
+];
+
+const SCRIPTS = {
+    Devanagari: /\p{Script=Devanagari}/u, Bengali: /\p{Script=Bengali}/u, Gurmukhi: /\p{Script=Gurmukhi}/u,
+    Gujarati: /\p{Script=Gujarati}/u, Odia: /\p{Script=Oriya}/u, Tamil: /\p{Script=Tamil}/u,
+    Telugu: /\p{Script=Telugu}/u, Kannada: /\p{Script=Kannada}/u, Malayalam: /\p{Script=Malayalam}/u,
+    "Ol Chiki": /\p{Script=Ol_Chiki}/u, "Meetei Mayek": /\p{Script=Meetei_Mayek}/u, Arabic: /\p{Script=Arabic}/u,
+    Han: /\p{Script=Han}/u, Hangul: /\p{Script=Hangul}/u, Kana: /[\p{Script=Hiragana}\p{Script=Katakana}]/u,
+    Thai: /\p{Script=Thai}/u, Ethiopic: /\p{Script=Ethiopic}/u, Cyrillic: /\p{Script=Cyrillic}/u, Latin: /\p{Script=Latin}/u,
+};
+const scriptOf = s => { for (const k in SCRIPTS) if (SCRIPTS[k].test(s)) return k; return "other"; };
+const tally = arr => { const t = {}; for (const x of arr) { const k = scriptOf(x); t[k] = (t[k] || 0) + 1; } return Object.fromEntries(Object.entries(t).sort((a, b) => b[1] - a[1])); };
+
+const BS = String.fromCharCode(92);
+const H = BS + "h", H_DEF = "[" + BS + "t" + BS + "p{Zs}]";
+let patched;
+function patchRegex(o) {
+    if (Array.isArray(o)) return o.map(patchRegex);
+    if (o && typeof o === "object") {
+        const n = {};
+        for (const k in o) {
+            if (k === "Regex" && typeof o[k] === "string" && o[k].includes(H)) { patched = true; n[k] = o[k].split(H).join(H_DEF); }
+            else n[k] = patchRegex(o[k]);
+        }
+        return n;
+    }
+    return o;
+}
+
+// Byte-level BPE vocabularies (GPT-2 style) store each byte as a printable stand-in character,
+// so Devanagari appears as mojibake and a leading space as "Ġ". To compare them with Gemma 3's
+// plain-text vocabulary, map entries back to bytes, decode as UTF-8, and write a leading space
+// as "▁", Gemma's word-boundary marker. Entries that are not complete UTF-8 cannot match.
+const BYTE_OF = (() => {
+    const bs = [];
+    for (let b = 33; b <= 126; b++) bs.push(b);
+    for (let b = 161; b <= 172; b++) bs.push(b);
+    for (let b = 174; b <= 255; b++) bs.push(b);
+    const cs = bs.slice(); let n = 0;
+    for (let b = 0; b < 256; b++) if (!bs.includes(b)) { bs.push(b); cs.push(256 + n++); }
+    const m = new Map(); bs.forEach((b, i) => m.set(String.fromCharCode(cs[i]), b)); return m;
+})();
+const UTF8 = new TextDecoder("utf-8", { fatal: true });
+function fromByteLevel(entry) {
+    const bytes = [];
+    for (const ch of entry) { const b = BYTE_OF.get(ch); if (b === undefined) return null; bytes.push(b); }
+    try { return UTF8.decode(new Uint8Array(bytes)).replace(/ /g, "▁"); } catch { return null; }
+}
+const isByteLevel = j => JSON.stringify(j.pre_tokenizer || {}).includes('"ByteLevel"') || (j.decoder && j.decoder.type === "ByteLevel");
+
+// Hugging Face downloads occasionally drop; retry a few times before giving up.
+async function retry(fn) {
+    for (let attempt = 1; ; attempt++) {
+        try { return await fn(); }
+        catch (e) { if (attempt >= 4) throw e; await new Promise(res => setTimeout(res, 3000 * attempt)); }
+    }
+}
+const getJSON = url => retry(async () => { const r = await fetch(url); if (!r.ok) throw new Error(`${r.status} ${url}`); return r.json(); });
+
+async function load(repo) {
+    const base = `https://huggingface.co/${repo}/resolve/main/`;
+    const json = await getJSON(base + "tokenizer.json");
+    const config = await getJSON(base + "tokenizer_config.json");
+    const v = json.model.vocab;
+    const raw = Array.isArray(v) ? v.map(x => x[0]) : Object.keys(v);
+    const byteLevel = isByteLevel(json);
+    let undecodable = 0;
+    const vocab = new Set();
+    for (const e of raw) {
+        if (!byteLevel) { vocab.add(e); continue; }
+        const s = fromByteLevel(e);
+        if (s === null) undecodable++; else vocab.add(s);
+    }
+    patched = false;
+    json.pre_tokenizer = patchRegex(json.pre_tokenizer);
+    const tok = patched ? new PreTrainedTokenizer(json, config) : await retry(() => AutoTokenizer.from_pretrained(repo));
+    return { tok, vocab, size: raw.length, byteLevel, undecodable, patched };
+}
+
+const status = document.getElementById("status");
+const vocabs = {}, meta = {}, counts = {};
+for (const t of TOKENIZERS) {
+    status.textContent = `Loading ${t.repo}…`;
+    const { tok, vocab, size, byteLevel, undecodable, patched } = await load(t.repo);
+    vocabs[t.id] = vocab;
+    let roundTrip = true;
+    counts[t.id] = {};
+    for (const l of LANGUAGES) {
+        const ids = tok.encode(l.text, { add_special_tokens: false });
+        counts[t.id][l.code] = ids.length;
+        if (tok.decode(ids) !== l.text) roundTrip = false;
+    }
+    meta[t.id] = { repo: t.repo, label: t.label, vocab_size: size, byte_level: byteLevel, entries_not_complete_utf8: undecodable, regex_patched: patched, round_trip_all_texts: roundTrip };
+}
+
+status.textContent = "Comparing vocabularies…";
+const shared = (a, b) => { let n = 0; for (const x of vocabs[a]) if (vocabs[b].has(x)) n++; return n; };
+for (const t of TOKENIZERS) {
+    const n = shared(t.id, "gemma3");
+    meta[t.id].shared_with_gemma3 = n;
+    meta[t.id].shared_with_gemma3_pct = Math.round(10000 * n / meta[t.id].vocab_size) / 100;
+}
+const onlySarvam = [...vocabs.sarvam].filter(x => !vocabs.gemma3.has(x));
+const onlyGemma = [...vocabs.gemma3].filter(x => !vocabs.sarvam.has(x));
+
+const data = {
+    generated: new Date().toISOString().slice(0, 10),
+    passage: "Universal Declaration of Human Rights, Article 1",
+    source: "Unicode UDHR in XML (github.com/eric-muller/udhr)",
+    script: "assets/myth-009/measure.html (Hugging Face transformers.js 3.0.2, no special tokens)",
+    essay: "myth-009.html",
+    tokenizers: meta,
+    sarvam_vs_gemma3: {
+        entries_only_in_sarvam: onlySarvam.length,
+        entries_only_in_gemma3: onlyGemma.length,
+        only_in_sarvam_by_script: tally(onlySarvam),
+        only_in_gemma3_by_script: tally(onlyGemma),
+        note: "Exact string comparison of vocabulary lists (byte-level vocabularies are first decoded to text, with a leading space written as U+2581); each entry is assigned to the first Unicode script found in it.",
+    },
+    languages: LANGUAGES.map(l => ({ ...l, tokens: Object.fromEntries(TOKENIZERS.map(t => [t.id, counts[t.id][l.code]])) })),
+};
+const text = JSON.stringify(data, null, 1);
+document.getElementById("out").textContent = text;
+status.textContent = "Done. This is the content of tokenizers.json.";
+console.log("MEASUREMENT_JSON " + JSON.stringify(data));
+</script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+{
+ "essay" : "myth-009.html",
+ "generated" : "2026-10-30",
+ "languages" : [
+  {
+   "code" : "amh",
+   "name" : "Amharic",
+   "script" : "Ethiopic",
+   "text" : "የሰው፡ልጅ፡ሁሉ፡ሲወለድ፡ነጻና፡በክብርና፡በመብትም፡እኩልነት፡ያለው፡ነው።፡የተፈጥሮ፡ማስተዋልና፡ሕሊና፡ስላለው፡አንዱ፡ሌላውን፡በወንድማማችነት፡መንፈስ፡መመልከት፡ይገባዋል።",
+   "tokens" : {
+    "amalia" : 310,
+    "gemma3" : 83,
+    "gpt4" : 305,
+    "gpt4o" : 206,
+    "param2" : 305,
+    "sarvam" : 309,
+    "sealion" : 83
+   }
+  },
+  {
+   "code" : "arb",
+   "name" : "Arabic",
+   "script" : "Arabic",
+   "text" : "يولد جميع الناس أحرارًا متساوين في الكرامة والحقوق. وقد وهبوا عقلاً وضميرًا وعليهم أن يعامل بعضهم بعضًا بروح الإخاء.",
+   "tokens" : {
+    "amalia" : 45,
+    "gemma3" : 44,
+    "gpt4" : 88,
+    "gpt4o" : 44,
+    "param2" : 76,
+    "sarvam" : 44,
+    "sealion" : 44
+   }
+  },
+  {
+   "code" : "ben",
+   "name" : "Bengali",
+   "script" : "Bengali",
+   "text" : "সমস্ত মানুষ স্বাধীনভাবে সমান মর্যাদা এবং অধিকার নিয়ে জন্মগ্রহণ করে। তাঁদের বিবেক এবং বুদ্ধি আছে; সুতরাং সকলেরই একে অপরের প্রতি ভ্রাতৃত্বসুলভ মনোভাব নিয়ে আচরণ করা উচিত।",
+   "tokens" : {
+    "amalia" : 229,
+    "gemma3" : 35,
+    "gpt4" : 212,
+    "gpt4o" : 56,
+    "param2" : 45,
+    "sarvam" : 35,
+    "sealion" : 35
+   }
+  },
+  {
+   "code" : "cmn",
+   "name" : "Chinese (Simplified)",
+   "script" : "Han",
+   "text" : "人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。",
+   "tokens" : {
+    "amalia" : 37,
+    "gemma3" : 31,
+    "gpt4" : 50,
+    "gpt4o" : 35,
+    "param2" : 48,
+    "sarvam" : 31,
+    "sealion" : 31
+   }
+  },
+  {
+   "code" : "cym",
+   "name" : "Welsh",
+   "script" : "Latin",
+   "text" : "Genir pawb yn rhydd ac yn gydradd â’i gilydd mewn urddas a hawliau. Fe’u cynysgaeddir â rheswm a chydwybod, a dylai pawb ymddwyn y naill at y llall mewn ysbryd cymodlon.",
+   "tokens" : {
+    "amalia" : 80,
+    "gemma3" : 70,
+    "gpt4" : 77,
+    "gpt4o" : 64,
+    "param2" : 86,
+    "sarvam" : 70,
+    "sealion" : 70
+   }
+  },
+  {
+   "code" : "deu",
+   "name" : "German",
+   "script" : "Latin",
+   "text" : "Alle Menschen sind frei und gleich an Würde und Rechten geboren. Sie sind mit Vernunft und Gewissen begabt und sollen einander im Geist der Brüderlichkeit begegnen.",
+   "tokens" : {
+    "amalia" : 38,
+    "gemma3" : 39,
+    "gpt4" : 44,
+    "gpt4o" : 38,
+    "param2" : 59,
+    "sarvam" : 39,
+    "sealion" : 39
+   }
+  },
+  {
+   "code" : "eng",
+   "name" : "English",
+   "script" : "Latin",
+   "text" : "All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.",
+   "tokens" : {
+    "amalia" : 34,
+    "gemma3" : 32,
+    "gpt4" : 33,
+    "gpt4o" : 33,
+    "param2" : 40,
+    "sarvam" : 32,
+    "sealion" : 32
+   }
+  },
+  {
+   "code" : "fra",
+   "name" : "French",
+   "script" : "Latin",
+   "text" : "Tous les êtres humains naissent libres et égaux en dignité et en droits. Ils sont doués de raison et de conscience et doivent agir les uns envers les autres dans un esprit de fraternité.",
+   "tokens" : {
+    "amalia" : 42,
+    "gemma3" : 40,
+    "gpt4" : 50,
+    "gpt4o" : 41,
+    "param2" : 63,
+    "sarvam" : 40,
+    "sealion" : 40
+   }
+  },
+  {
+   "code" : "guj",
+   "name" : "Gujarati",
+   "script" : "Gujarati",
+   "text" : "પ્રતિષ્ઠા અને અધિકારોની દૃષ્ટિએ સર્વ માનવો જન્મથી સ્વતંત્ર અને સમાન હોય છે. તેમનામાં વિચારશક્તિ અને અંતઃકરણ હોય છે અને તેમણે પરસ્પર બંધુત્વની ભાવનાથી વર્તવું જોઇએ.",
+   "tokens" : {
+    "amalia" : 402,
+    "gemma3" : 58,
+    "gpt4" : 276,
+    "gpt4o" : 59,
+    "param2" : 45,
+    "sarvam" : 47,
+    "sealion" : 58
+   }
+  },
+  {
+   "code" : "hin",
+   "name" : "Hindi",
+   "script" : "Devanagari",
+   "text" : "सभी मनुष्यों को गौरव और अधिकारों के मामले में जन्मजात स्वतन्त्रता और समानता प्राप्त है । उन्हें बुद्धि और अन्तरात्मा की देन प्राप्त है और परस्पर उन्हें भाईचारे के भाव से बर्ताव करना चाहिए ।",
+   "tokens" : {
+    "amalia" : 56,
+    "gemma3" : 45,
+    "gpt4" : 182,
+    "gpt4o" : 54,
+    "param2" : 42,
+    "sarvam" : 45,
+    "sealion" : 45
+   }
+  },
+  {
+   "code" : "jpn",
+   "name" : "Japanese",
+   "script" : "Japanese",
+   "text" : "すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。",
+   "tokens" : {
+    "amalia" : 53,
+    "gemma3" : 46,
+    "gpt4" : 93,
+    "gpt4o" : 72,
+    "param2" : 82,
+    "sarvam" : 183,
+    "sealion" : 46
+   }
+  },
+  {
+   "code" : "kan",
+   "name" : "Kannada",
+   "script" : "Kannada",
+   "text" : "ಎಲ್ಲಾ ಮಾನವರೂ ಸ್ವತಂತ್ರರಾಗಿಯೇ ಜನಿಸಿದ್ದಾರೆ. ಹಾಗೂ ಘನತೆ ಮತ್ತು ಹಕ್ಕುಗಳಲ್ಲಿ ಸಮಾನರಾಗಿದ್ದಾರೆ. ವಿವೇಕ ಮತ್ತು ಅಂತಃಕರಣಗಳನ್ನು ಪಡೆದವರಾದ್ದರಿಂದ ಅವರು ಪರಸ್ಪರ ಸಹೋದರ ಭಾವದಿಂದ ವರ್ತಿಸಬೇಕು.",
+   "tokens" : {
+    "amalia" : 450,
+    "gemma3" : 57,
+    "gpt4" : 289,
+    "gpt4o" : 57,
+    "param2" : 44,
+    "sarvam" : 41,
+    "sealion" : 57
+   }
+  },
+  {
+   "code" : "kor",
+   "name" : "Korean",
+   "script" : "Hangul",
+   "text" : "모든 인간은 태어날 때부터 자유로우며 그 존엄과 권리에 있어 동등하다. 인간은 천부적으로 이성과 양심을 부여받았으며 서로 형제애의 정신으로 행동하여야 한다.",
+   "tokens" : {
+    "amalia" : 50,
+    "gemma3" : 49,
+    "gpt4" : 85,
+    "gpt4o" : 51,
+    "param2" : 110,
+    "sarvam" : 219,
+    "sealion" : 49
+   }
+  },
+  {
+   "code" : "mal",
+   "name" : "Malayalam",
+   "script" : "Malayalam",
+   "text" : "മനുഷ്യരെല്ലാവരും തുല്യാവകാശങ്ങളോടും അന്തസ്സോടും സ്വാതന്ത്ര്യത്തോടുംകൂടി ജനിച്ചിട്ടുള്ളവരാണ്‌. അന്യോന്യം ഭ്രാതൃഭാവത്തോടെ പെരുമാറുവാനാണ്‌ മനുഷ്യന്നു വിവേകബുദ്ധിയും മനസ്സാക്ഷിയും സിദ്ധമായിരിക്കുന്നത്‌.",
+   "tokens" : {
+    "amalia" : 505,
+    "gemma3" : 68,
+    "gpt4" : 325,
+    "gpt4o" : 73,
+    "param2" : 61,
+    "sarvam" : 60,
+    "sealion" : 68
+   }
+  },
+  {
+   "code" : "mar",
+   "name" : "Marathi",
+   "script" : "Devanagari",
+   "text" : "सर्व मानवी व्यक्ति जन्मतःच स्वतंत्र आहेत व त्यांना समान प्रतिष्ठा व समान अधिकार आहेत. त्यांना विचारशक्ति व सदसविद्वेकबुद्धि लाभलेली आहे. व त्यांनी एकमेकांशी बंधुत्याच्या भावनेने आचरण करावे.",
+   "tokens" : {
+    "amalia" : 74,
+    "gemma3" : 50,
+    "gpt4" : 193,
+    "gpt4o" : 61,
+    "param2" : 46,
+    "sarvam" : 50,
+    "sealion" : 50
+   }
+  },
+  {
+   "code" : "nhn",
+   "name" : "Nahuatl (Central)",
+   "script" : "Latin",
+   "text" : "Nochi tlakamej uan siuamej kipiaj manoj kuali tlakatisej, nochi san se totlatechpouiltilis uan titlatepanitalojkej, yeka moneki kuali ma timouikakaj, ma timoiknelikaj, ma timotlasojtlakaj uan ma timotlepanitakaj.",
+   "tokens" : {
+    "amalia" : 83,
+    "gemma3" : 80,
+    "gpt4" : 88,
+    "gpt4o" : 83,
+    "param2" : 91,
+    "sarvam" : 80,
+    "sealion" : 80
+   }
+  },
+  {
+   "code" : "pan",
+   "name" : "Panjabi, Eastern",
+   "script" : "Gurmukhi",
+   "text" : "ਸਾਰਾ ਮਨੁੱਖੀ ਪਰਿਵਾਰ ਆਪਣੀ ਮਹਿਮਾ, ਸ਼ਾਨ ਅਤੇ ਹੱਕਾਂ ਦੇ ਪੱਖੋਂ ਜਨਮ ਤੋਂ ਹੀ ਆਜ਼ਾਦ ਹੈ ਅਤੇ ਸੁਤੇ ਸਿੱਧ ਸਾਰੇ ਲੋਕ ਬਰਾਬਰ ਹਨ । ਉਨ੍ਹਾਂ ਸਭਨਾ ਨੂੰ ਤਰਕ ਅਤੇ ਜ਼ਮੀਰ ਦੀ ਸੌਗਾਤ ਮਿਲੀ ਹੋਈ ਹੈ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਭਰਾਤਰੀਭਾਵ ਦੀ ਭਾਵਨਾ ਰਖਦਿਆਂ ਆਪਸ ਵਿਚ ਵਿਚਰਣਾ ਚਾਹੀਦਾ ਹੈ ।",
+   "tokens" : {
+    "amalia" : 573,
+    "gemma3" : 109,
+    "gpt4" : 358,
+    "gpt4o" : 102,
+    "param2" : 79,
+    "sarvam" : 75,
+    "sealion" : 109
+   }
+  },
+  {
+   "code" : "rus",
+   "name" : "Russian",
+   "script" : "Cyrillic",
+   "text" : "Все люди рождаются свободными и равными в своем достоинстве и правах. Они наделены разумом и совестью и должны поступать в отношении друг друга в духе братства.",
+   "tokens" : {
+    "amalia" : 41,
+    "gemma3" : 40,
+    "gpt4" : 74,
+    "gpt4o" : 41,
+    "param2" : 80,
+    "sarvam" : 40,
+    "sealion" : 40
+   }
+  },
+  {
+   "code" : "spa",
+   "name" : "Spanish",
+   "script" : "Latin",
+   "text" : "Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros.",
+   "tokens" : {
+    "amalia" : 37,
+    "gemma3" : 35,
+    "gpt4" : 44,
+    "gpt4o" : 38,
+    "param2" : 55,
+    "sarvam" : 35,
+    "sealion" : 35
+   }
+  },
+  {
+   "code" : "swh",
+   "name" : "Swahili",
+   "script" : "Latin",
+   "text" : "Watu wote wamezaliwa huru, hadhi na haki zao ni sawa. Wote wamejaliwa akili na dhamiri, hivyo yapasa watendeane kindugu.",
+   "tokens" : {
+    "amalia" : 46,
+    "gemma3" : 42,
+    "gpt4" : 48,
+    "gpt4o" : 36,
+    "param2" : 51,
+    "sarvam" : 42,
+    "sealion" : 42
+   }
+  },
+  {
+   "code" : "tam",
+   "name" : "Tamil",
+   "script" : "Tamil",
+   "text" : "மனிதப் பிறிவியினர் சகலரும் சுதந்திரமாகவே பிறக்கின்றனர்; அவர்கள் மதிப்பிலும், உரிமைகளிலும் சமமானவர்கள், அவர்கள் நியாயத்தையும் மனச்சாட்சியையும் இயற்பண்பாகப் பெற்றவர்கள். அவர்கள் ஒருவருடனொருவர் சகோதர உணர்வுப் பாங்கில் நடந்துகொள்ளல் வேண்டும்.",
+   "tokens" : {
+    "amalia" : 361,
+    "gemma3" : 64,
+    "gpt4" : 330,
+    "gpt4o" : 76,
+    "param2" : 64,
+    "sarvam" : 64,
+    "sealion" : 64
+   }
+  },
+  {
+   "code" : "tel",
+   "name" : "Telugu",
+   "script" : "Telugu",
+   "text" : "ప్రతిపత్తిస్వత్వముల విషయమున మానవులెల్లరును జన్మతః స్వతంత్రులును సమానులును నగుదురు. వారు వివేచన-అంతఃకరణ సంపన్నులగుటచే పరస్పరము భ్రాతృభావముతో వర్తింపవలయును.",
+   "tokens" : {
+    "amalia" : 337,
+    "gemma3" : 69,
+    "gpt4" : 281,
+    "gpt4o" : 78,
+    "param2" : 63,
+    "sarvam" : 67,
+    "sealion" : 69
+   }
+  },
+  {
+   "code" : "tha",
+   "name" : "Thai",
+   "script" : "Thai",
+   "text" : "มนุษย์ทั้งหลายเกิดมามีอิสระและเสมอภาคกันในเกียรติศักด[เกียรติศักดิ์]และสิทธิ ต่างมีเหตุผลและมโนธรรม และควรปฏิบัติต่อกันด้วยเจตนารมณ์แห่งภราดรภาพ",
+   "tokens" : {
+    "amalia" : 171,
+    "gemma3" : 62,
+    "gpt4" : 148,
+    "gpt4o" : 72,
+    "param2" : 149,
+    "sarvam" : 424,
+    "sealion" : 62
+   }
+  },
+  {
+   "code" : "urd",
+   "name" : "Urdu",
+   "script" : "Arabic",
+   "text" : "تمام انسان آزاد اور حقوق و عزت کے اعتبار سے برابر پیدا ہوئے ہیں۔ انہیں ضمیر اور عقل ودیعت ہوئی ہے۔ اس لئے انہیں ایک دوسرے کے ساتھ بھائی چارے کا سلوک کرنا چاہیئے۔",
+   "tokens" : {
+    "amalia" : 131,
+    "gemma3" : 41,
+    "gpt4" : 155,
+    "gpt4o" : 46,
+    "param2" : 53,
+    "sarvam" : 41,
+    "sealion" : 41
+   }
+  },
+  {
+   "code" : "vie",
+   "name" : "Vietnamese",
+   "script" : "Latin",
+   "text" : "Tất cả mọi người sinh ra đều được tự do và bình đẳng về nhân phẩm và quyền. Mọi con người đều được tạo hoá ban cho lý trí và lương tâm và cần phải đối xử với nhau trong tình bằng hữu.",
+   "tokens" : {
+    "amalia" : 146,
+    "gemma3" : 87,
+    "gpt4" : 134,
+    "gpt4o" : 112,
+    "param2" : 158,
+    "sarvam" : 128,
+    "sealion" : 87
+   }
+  },
+  {
+   "code" : "zul",
+   "name" : "Zulu",
+   "script" : "Latin",
+   "text" : "Bonke abantu bazalwa bekhululekile belingana ngesithunzi nangamalungelo. Bahlanganiswe wumcabango nangunembeza futhi kufanele baphathane ngomoya wobunye.",
+   "tokens" : {
+    "amalia" : 57,
+    "gemma3" : 53,
+    "gpt4" : 62,
+    "gpt4o" : 40,
+    "param2" : 64,
+    "sarvam" : 53,
+    "sealion" : 53
+   }
+  }
+ ],
+ "passage" : "Universal Declaration of Human Rights, Article 1",
+ "sarvam_vs_gemma3" : {
+  "entries_only_in_gemma3" : 22828,
+  "entries_only_in_sarvam" : 22828,
+  "note" : "Exact string comparison of vocabulary lists (byte-level vocabularies are first decoded to text, with a leading space written as U+2581); each entry is assigned to the first Unicode script found in it.",
+  "only_in_gemma3_by_script" : {
+   "Ethiopic" : 862,
+   "Han" : 1333,
+   "Hangul" : 4679,
+   "Kana" : 3602,
+   "Latin" : 3889,
+   "Thai" : 2175,
+   "other" : 6288
+  },
+  "only_in_sarvam_by_script" : {
+   "Gujarati" : 2642,
+   "Gurmukhi" : 3572,
+   "Kannada" : 2945,
+   "Latin" : 87,
+   "Malayalam" : 2071,
+   "Meetei Mayek" : 2396,
+   "Odia" : 3375,
+   "Ol Chiki" : 1349,
+   "Tamil" : 2,
+   "Telugu" : 2530,
+   "other" : 1859
+  }
+ },
+ "script" : "assets/myth-009/measure.html (Hugging Face transformers.js 3.0.2, no special tokens)",
+ "source" : "Unicode UDHR in XML (github.com/eric-muller/udhr)",
+ "tokenizers" : {
+  "amalia" : {
+   "byte_level" : false,
+   "entries_not_complete_utf8" : 0,
+   "label" : "AMALIA 9B",
+   "regex_patched" : false,
+   "repo" : "amalia-llm/AMALIA-9B-0626-DPO",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 92668,
+   "shared_with_gemma3_pct" : 72.4,
+   "vocab_size" : 128000
+  },
+  "gemma3" : {
+   "byte_level" : false,
+   "entries_not_complete_utf8" : 0,
+   "label" : "Gemma 3",
+   "regex_patched" : false,
+   "repo" : "unsloth/gemma-3-27b-it",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 262144,
+   "shared_with_gemma3_pct" : 100,
+   "vocab_size" : 262144
+  },
+  "gpt4" : {
+   "byte_level" : true,
+   "entries_not_complete_utf8" : 773,
+   "label" : "GPT-4 (cl100k_base)",
+   "regex_patched" : false,
+   "repo" : "Xenova/gpt-4",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 67007,
+   "shared_with_gemma3_pct" : 66.83,
+   "vocab_size" : 100263
+  },
+  "gpt4o" : {
+   "byte_level" : true,
+   "entries_not_complete_utf8" : 1562,
+   "label" : "GPT-4o (o200k_base)",
+   "regex_patched" : false,
+   "repo" : "Xenova/gpt-4o",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 130881,
+   "shared_with_gemma3_pct" : 65.44,
+   "vocab_size" : 200000
+  },
+  "param2" : {
+   "byte_level" : true,
+   "entries_not_complete_utf8" : 5473,
+   "label" : "BharatGen Param 2",
+   "regex_patched" : true,
+   "repo" : "bharatgenai/Param2-17B-A2.4B-Thinking",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 47344,
+   "shared_with_gemma3_pct" : 36.99,
+   "vocab_size" : 128000
+  },
+  "sarvam" : {
+   "byte_level" : false,
+   "entries_not_complete_utf8" : 0,
+   "label" : "Sarvam 30B",
+   "regex_patched" : false,
+   "repo" : "sarvamai/sarvam-30b",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 239316,
+   "shared_with_gemma3_pct" : 91.29,
+   "vocab_size" : 262144
+  },
+  "sealion" : {
+   "byte_level" : false,
+   "entries_not_complete_utf8" : 0,
+   "label" : "Gemma-SEA-LION v4",
+   "regex_patched" : false,
+   "repo" : "aisingapore/Gemma-SEA-LION-v4-27B-IT",
+   "round_trip_all_texts" : true,
+   "shared_with_gemma3" : 262144,
+   "shared_with_gemma3_pct" : 100,
+   "vocab_size" : 262144
+  }
+ }
+}
