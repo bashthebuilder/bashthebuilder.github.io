@@ -37,7 +37,10 @@ INDIGO = (129, 140, 248)
 # --accent-liquid: 135deg, #6366f1 -> #a855f7 -> #ec4899
 STOPS = [(0.0, (99, 102, 241)), (0.5, (168, 85, 247)), (1.0, (236, 72, 153))]
 
-SF = "/System/Library/Fonts/SFNS.ttf"
+# Inter, the site's own typeface, kept in the repo so the cards come out the
+# same on any machine. Variable font from github.com/google/fonts (ofl/inter);
+# SIL Open Font License, see assets/fonts/OFL.txt.
+FONT = os.path.join(ROOT, "assets", "fonts", "Inter-Variable.ttf")
 
 # Words a truncated line should never end on.
 DANGLING = {"a", "an", "and", "as", "at", "but", "by", "for", "from", "in", "is",
@@ -46,7 +49,7 @@ DANGLING = {"a", "an", "and", "as", "at", "but", "by", "for", "from", "in", "is"
 
 
 def font(size, weight="Regular"):
-    f = ImageFont.truetype(SF, size)
+    f = ImageFont.truetype(FONT, size)
     try:
         f.set_variation_by_name(weight)
     except Exception:
